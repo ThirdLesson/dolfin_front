@@ -1,5 +1,7 @@
 {
-  "name": "App",
+  "name": "DolFin",
+  "short_name": "돌핀",
+  "start_url": "/",
   "icons": [
     {
       "src": "/favicon/android-icon-36x36.png",
@@ -37,5 +39,8 @@
       "type": "image/png",
       "density": "4.0"
     }
-  ]
+  ],
+  "theme_color": "#C6B7FA",
+  "background_color": "#C6B7FA",
+  "display": "standalone"
 }
