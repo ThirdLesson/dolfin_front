@@ -16,6 +16,13 @@ import MdMainButton from '@/shared/components/atoms/button/MdMainButton.vue';
 import MdSubButton from '@/shared/components/atoms/button/MdSubButton.vue';
 import SmMainButton from '@/shared/components/atoms/button/SmMainButton.vue';
 import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
+import TitleInput from '@/shared/components/atoms/input/TitleInput.vue';
+import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
+import LineInput from '@/shared/components/atoms/input/LineInput.vue';
+
+import { ref } from 'vue';
+
+const value = ref('');
 </script>
 
 <template>
@@ -50,4 +57,9 @@ import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
   <MdSubButton>완료</MdSubButton>
   <SmMainButton disabled>확인</SmMainButton>
   <SmSubButton disabled>확인</SmSubButton>
+  <LineInput
+    label="제목"
+    placeholder="텍스트를 입력하세요"
+    v-model="value"
+  ></LineInput>
 </template>
