@@ -2,11 +2,18 @@
 import BaseButton from './BaseButton.vue';
 import Subtitle1 from '../typography/Subtitle1.vue';
 
+const props = defineProps({
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const emit = defineEmits(['click']);
 </script>
 
 <template>
-  <BaseButton size="large" variant="primary" @click="emit('click', $event)">
+  <BaseButton @click="emit('click', $event)" :disabled="disabled">
     <Subtitle1>
       <slot />
     </Subtitle1>

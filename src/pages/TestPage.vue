@@ -11,6 +11,11 @@ import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
 import SingleCard from '@/shared/components/molecules/card/SingleCard.vue';
 import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
+import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
+import MdMainButton from '@/shared/components/atoms/button/MdMainButton.vue';
+import MdSubButton from '@/shared/components/atoms/button/MdSubButton.vue';
+import SmMainButton from '@/shared/components/atoms/button/SmMainButton.vue';
+import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
 </script>
 
 <template>
@@ -40,4 +45,9 @@ import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
       <Subtitle2>hihihiih</Subtitle2>
     </div>
   </DoubleCard>
+  <LgMainButton>완료됨</LgMainButton>
+  <MdMainButton>완료</MdMainButton>
+  <MdSubButton>완료</MdSubButton>
+  <SmMainButton disabled>확인</SmMainButton>
+  <SmSubButton disabled>확인</SmSubButton>
 </template>
