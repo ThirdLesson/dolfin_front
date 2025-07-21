@@ -9,6 +9,8 @@ import P1 from '@/shared/components/atoms/typography/P1.vue';
 import P2 from '@/shared/components/atoms/typography/P2.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
+import SingleCard from '@/shared/components/molecules/card/SingleCard.vue';
+import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
 </script>
 
 <template>
@@ -22,4 +24,20 @@ import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
   <P2>P2입니다</P2>
   <Caption1>Caption1 입니다.</Caption1>
   <Caption2>Caption2 입니다.</Caption2>
+  <SingleCard
+    title="제목"
+    image="https://images.icon-icons.com/29/PNG/256/animal_dolphin_2740.png"
+  >
+    <Subtitle3 class="text-dol-dark-gray">hihihih</Subtitle3>
+  </SingleCard>
+  <DoubleCard
+    image="https://images.icon-icons.com/29/PNG/256/animal_dolphin_2740.png"
+    title="제목"
+    subtitle="부제목"
+  >
+    <div>
+      <Caption1>this is caption</Caption1>
+      <Subtitle2>hihihiih</Subtitle2>
+    </div>
+  </DoubleCard>
 </template>
