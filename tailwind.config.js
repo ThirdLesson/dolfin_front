@@ -13,6 +13,14 @@ export default {
         'dol-dark-gray': '#626262',
         'dol-error': '#E80B26',
       },
+      borderRadius: {
+        lg: '20px',
+        md: '10px',
+        sm: '5px',
+      },
+      boxShadow: {
+        'custom-shadow': '0 0 4px rgba(0, 0, 0, 0.25)',
+      },
     },
   },
   plugins: [],
