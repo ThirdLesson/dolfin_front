@@ -2,10 +2,10 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-  variant: {
+  color: {
     type: String,
-    default: 'primary',
-    validator: (value) => ['primary', 'secondary', 'disabled'].includes(value),
+    default: 'main',
+    validator: (value) => ['main', 'sub', 'disabled'].includes(value),
   },
   size: {
     type: String,
@@ -31,43 +31,33 @@ const buttonClasses = computed(() => {
     'inline-flex',
     'items-center',
     'justify-center',
-    'border-none',
-    'rounded-lg',
-    'font-medium',
-    'cursor-pointer',
-    'transition-all',
-    'duration-200',
-    'text-white',
-    'font-sans',
+    'rounded-md',
   ];
 
-  // 사이즈별 클래스
   const sizeClasses = {
-    large: ['h-[60px]', 'w-full', 'text-base'],
-    medium: ['h-[35px]', 'w-full', 'text-sm'],
-    small: ['h-[35px]', 'w-[50px]', 'text-sm'],
+    large: ['h-[60px]', 'w-full'],
+    medium: ['h-[35px]', 'w-full'],
+    small: ['h-[35px]', 'w-[50px]'],
   };
 
-  // 색상별 클래스
-  const variantClasses = {
-    primary: ['bg-dol-main'],
-    secondary: ['bg-dol-sub', 'text-[#000000]'],
-    disabled: ['bg-dol-light-gray', 'cursor-not-allowed'],
+  const colorClasses = {
+    main: ['bg-dol-main', 'cursor-pointer', 'text-white'],
+    sub: ['bg-dol-sub', 'cursor-pointer'],
+    disabled: ['bg-dol-light-gray', 'cursor-not-allowed', 'text-white'],
   };
 
-  // 상태별 클래스
   if (props.disabled) {
     return [
       ...baseClasses,
       ...sizeClasses[props.size],
-      ...variantClasses.disabled,
+      ...colorClasses.disabled,
     ];
   }
 
   return [
     ...baseClasses,
     ...sizeClasses[props.size],
-    ...variantClasses[props.variant],
+    ...colorClasses[props.color],
   ];
 });
 </script>
