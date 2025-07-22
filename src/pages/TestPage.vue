@@ -17,8 +17,8 @@ import MdSubButton from '@/shared/components/atoms/button/MdSubButton.vue';
 import SmMainButton from '@/shared/components/atoms/button/SmMainButton.vue';
 import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
 import LineInput from '@/shared/components/atoms/input/LineInput.vue';
-import Modal from '@/shared/components/organisms/modal/Modal.vue';
-import PwModal from '@/shared/components/organisms/modal/PwModal.vue';
+import Modal from '@/shared/components/organisms/Modal.vue';
+import PwModal from '@/shared/components/organisms/PwModal.vue';
 import RoundTab from '@/shared/components/molecules/RoundTab.vue';
 import SquareTab from '@/shared/components/molecules/SquareTab.vue';
 
@@ -157,9 +157,18 @@ const opt = ref('사과');
     @confirm="handleConfirm"
     @close="isModalOpen = false"
   >
-    <template #default>
-      <p class="text-center text-gray-700">진짜 아무 내용이나</p>
-    </template>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus
+      in quo voluptates, incidunt consequatur magni ipsa quibusdam. Quo ut,
+      similique officia incidunt rerum libero delectus a quas molestiae maxime
+      iure. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Necessitatibus in quo voluptates, incidunt consequatur magni ipsa
+      quibusdam. Quo ut, similique officia incidunt rerum libero delectus a quas
+      molestiae maxime iure. Lorem ipsum dolor, sit amet consectetur adipisicing
+      elit. Necessitatibus in quo voluptates, incidunt consequatur magni ipsa
+      quibusdam. Quo ut, similique officia incidunt rerum libero delectus a quas
+      molestiae maxime iure.
+    </p>
   </Modal>
 
   <PwModal

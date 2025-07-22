@@ -1,8 +1,9 @@
 <script setup>
-import { ref, watch, onMounted } from 'vue';
-import Subtitle1 from '../../atoms/typography/Subtitle1.vue';
-import Caption2 from '../../atoms/typography/Caption2.vue';
-import Keypad from '../../atoms/Keypad.vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
+
+import Subtitle1 from '../atoms/typography/Subtitle1.vue';
+import Caption2 from '../atoms/typography/Caption2.vue';
+import Keypad from '../atoms/Keypad.vue';
 
 const props = defineProps({
   errorMessage: { type: String, default: '비밀번호가 올바르지 않습니다.' },
@@ -25,10 +26,6 @@ const shuffleKeypad = () => {
   shuffledNumbers.value = shuffleArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 };
 
-onMounted(() => {
-  shuffleKeypad();
-});
-
 const inputNumber = (num) => {
   if (password.value.length < 4) password.value += num.toString();
 };
@@ -45,6 +42,15 @@ watch(password, (newPassword) => {
     shuffleKeypad();
   }
 });
+
+// 모달이 열릴 때 body 스크롤 막기
+onMounted(() => {
+  shuffleKeypad();
+  document.body.style.overflow = 'hidden';
+});
+onUnmounted(() => {
+  document.body.style.overflow = '';
+});
 </script>
 
 <template>
@@ -53,42 +59,41 @@ watch(password, (newPassword) => {
     @click="$emit('close')"
   >
     <div
-      class="bg-white rounded-t-2xl transition-all duration-300 w-full relative flex flex-col justify-between"
+      class="w-full h-[75vh] bg-white rounded-t-lg relative flex flex-col justify-between"
       @click.stop
     >
-      <button
-        class="absolute top-[25px] right-[25px] text-black text-xl"
-        @click="$emit('close')"
-      >
-        <i class="bi bi-x-lg"></i>
+      <button @click="$emit('close')" class="absolute top-[25px] right-[25px]">
+        <i class="bi bi-x-lg" />
       </button>
 
-      <div class="mt-[80px] text-center">
-        <Subtitle1 class="text-black">전자지갑 비밀번호</Subtitle1>
-      </div>
+      <div class="flex-1 flex flex-col justify-center">
+        <div class="w-full text-center">
+          <Subtitle1>전자지갑 비밀번호</Subtitle1>
+        </div>
 
-      <div class="flex justify-center gap-3 mt-4">
-        <div
-          v-for="i in 4"
-          :key="i"
-          class="w-5 h-5 rounded-full border-2"
-          :class="
-            password.length >= i
-              ? 'bg-dol-point border-dol-point'
-              : 'border-dol-dark-gray'
-          "
-        ></div>
-      </div>
+        <div class="w-full flex justify-center gap-3 mt-5">
+          <div
+            v-for="i in 4"
+            :key="i"
+            class="w-5 h-5 rounded-full border-2"
+            :class="
+              password.length >= i
+                ? 'bg-dol-point border-dol-point'
+                : 'border-dol-dark-gray'
+            "
+          ></div>
+        </div>
 
-      <div class="text-center mt-2 min-h-[20px]">
-        <Caption2 :class="props.showError ? 'text-dol-error' : 'opacity-0'">
+        <Caption2
+          class="text-center mt-[8px] min-h-[20px]"
+          :class="props.showError ? 'text-dol-error' : 'opacity-0'"
+        >
           {{ props.errorMessage }}
         </Caption2>
       </div>
 
-      <div class="mt-[80px] bg-dol-main h-[40vh] p-2 py-8 text-white">
+      <div class="h-[40vh] bg-dol-main text-white">
         <Keypad
-          class="w-full h-full text-white"
           :numbers="shuffledNumbers"
           @select="inputNumber"
           @reshuffle="resetAndShuffle"

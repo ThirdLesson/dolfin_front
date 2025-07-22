@@ -1,5 +1,6 @@
 <script setup>
 import Subtitle1 from './typography/Subtitle1.vue';
+
 const props = defineProps({
   numbers: { type: Array, required: true },
 });
