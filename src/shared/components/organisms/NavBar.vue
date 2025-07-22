@@ -2,14 +2,14 @@
 import { useRouter, useRoute } from 'vue-router';
 import URL from '@/shared/constants/URL';
 import P2 from '../atoms/typography/P2.vue';
-import mainIcon from '@/asset/icons/main.png';
-import exchangeIcon from '@/asset/icons/exchange.png';
-import mapIcon from '@/asset/icons/map.png';
-import remitIcon from '@/asset/icons/remit.png';
-import ActiveMainIcon from '@/asset/icons/mainActive.png';
-import ActiveExchangeIcon from '@/asset/icons/exchangeActive.png';
-import ActiveMapIcon from '@/asset/icons/mapActive.png';
-import ActiveRemitIcon from '@/asset/icons/remitActive.png';
+import mainIcon from '@/asset/icon/main.png';
+import exchangeIcon from '@/asset/icon/exchange.png';
+import mapIcon from '@/asset/icon/map.png';
+import remitIcon from '@/asset/icon/remit.png';
+import ActiveMainIcon from '@/asset/icon/mainActive.png';
+import ActiveExchangeIcon from '@/asset/icon/exchangeActive.png';
+import ActiveMapIcon from '@/asset/icon/mapActive.png';
+import ActiveRemitIcon from '@/asset/icon/remitActive.png';
 
 const router = useRouter();
 const route = useRoute();
