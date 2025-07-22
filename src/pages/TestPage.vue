@@ -16,14 +16,21 @@ import MdMainButton from '@/shared/components/atoms/button/MdMainButton.vue';
 import MdSubButton from '@/shared/components/atoms/button/MdSubButton.vue';
 import SmMainButton from '@/shared/components/atoms/button/SmMainButton.vue';
 import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
-import TitleInput from '@/shared/components/atoms/input/TitleInput.vue';
-import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LineInput from '@/shared/components/atoms/input/LineInput.vue';
 import NavBar from '@/shared/components/organisms/NavBar.vue';
+import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 
 import { ref } from 'vue';
 
 const value = ref('');
+
+const options = [
+  { label: '사과', value: 'apple' },
+  { label: '바나나', value: 'banana' },
+  { label: '오렌지', value: 'orange' },
+];
+
+const fruit = ref('banana');
 </script>
 
 <template>
@@ -64,4 +71,5 @@ const value = ref('');
     v-model="value"
   ></LineInput>
   <NavBar></NavBar>
+  <Dropdown v-model:selected="fruit" :options="options" title="과일 선택" />
 </template>
