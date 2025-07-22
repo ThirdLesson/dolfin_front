@@ -16,7 +16,7 @@ const emit = defineEmits(['click']);
   <BaseButton
     size="medium"
     color="main"
-    @click="emit('click', $event)"
+    @click="emit('click', event)"
     :disabled="disabled"
   >
     <P1>
