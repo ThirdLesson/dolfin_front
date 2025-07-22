@@ -21,6 +21,7 @@ import Modal from '@/shared/components/organisms/Modal.vue';
 import PwModal from '@/shared/components/organisms/PwModal.vue';
 import RoundTab from '@/shared/components/molecules/RoundTab.vue';
 import SquareTab from '@/shared/components/molecules/SquareTab.vue';
+import Header from '@/shared/components/molecules/Header.vue';
 
 import { ref } from 'vue';
 
@@ -80,6 +81,12 @@ const opt = ref('사과');
       <P2>P2입니다</P2>
       <Caption1>Caption1 입니다.</Caption1>
       <Caption2>Caption2 입니다.</Caption2>
+    </div>
+
+    <!-- Header 테스트 -->
+    <div class="space-y-4">
+      <Head1>Header 테스트</Head1>
+      <Header>환율 조회</Header>
     </div>
 
     <!-- Card 테스트 -->
@@ -148,43 +155,46 @@ const opt = ref('사과');
         <Subtitle3>{{ passwordResult }}</Subtitle3>
       </div>
     </div>
+
+    <Modal
+      v-if="isModalOpen"
+      title="테스트 모달"
+      buttonText="확인"
+      @confirm="handleConfirm"
+      @close="isModalOpen = false"
+    >
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus
+        in quo voluptates, incidunt consequatur magni ipsa quibusdam. Quo ut,
+        similique officia incidunt rerum libero delectus a quas molestiae maxime
+        iure. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Necessitatibus in quo voluptates, incidunt consequatur magni ipsa
+        quibusdam. Quo ut, similique officia incidunt rerum libero delectus a
+        quas molestiae maxime iure. Lorem ipsum dolor, sit amet consectetur
+        adipisicing elit. Necessitatibus in quo voluptates, incidunt consequatur
+        magni ipsa quibusdam. Quo ut, similique officia incidunt rerum libero
+        delectus a quas molestiae maxime iure.
+      </p>
+    </Modal>
+
+    <PwModal
+      v-if="isPwModalOpen"
+      :showError="showError"
+      :errorMessage="errorMessage"
+      @complete="handleComplete"
+      @close="
+        () => {
+          isPwModalOpen = false;
+          handleModalClose();
+        }
+      "
+    />
+
+    <!-- Tab 테스트 -->
+    <div class="space-y-4">
+      <Head1>Tab 테스트</Head1>
+      <SquareTab v-model="tab" :options="options"></SquareTab>
+      <RoundTab v-model="opt" opt1="사과" opt2="오렌지" />
+    </div>
   </div>
-
-  <Modal
-    v-if="isModalOpen"
-    title="테스트 모달"
-    buttonText="확인"
-    @confirm="handleConfirm"
-    @close="isModalOpen = false"
-  >
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus
-      in quo voluptates, incidunt consequatur magni ipsa quibusdam. Quo ut,
-      similique officia incidunt rerum libero delectus a quas molestiae maxime
-      iure. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-      Necessitatibus in quo voluptates, incidunt consequatur magni ipsa
-      quibusdam. Quo ut, similique officia incidunt rerum libero delectus a quas
-      molestiae maxime iure. Lorem ipsum dolor, sit amet consectetur adipisicing
-      elit. Necessitatibus in quo voluptates, incidunt consequatur magni ipsa
-      quibusdam. Quo ut, similique officia incidunt rerum libero delectus a quas
-      molestiae maxime iure.
-    </p>
-  </Modal>
-
-  <PwModal
-    v-if="isPwModalOpen"
-    :showError="showError"
-    :errorMessage="errorMessage"
-    @complete="handleComplete"
-    @close="
-      () => {
-        isPwModalOpen = false;
-        handleModalClose();
-      }
-    "
-  />
-
-  <!-- Tab 테스트 -->
-  <SquareTab v-model="tab" :options="options"></SquareTab>
-  <RoundTab v-model="opt" opt1="사과" opt2="오렌지" />
 </template>
