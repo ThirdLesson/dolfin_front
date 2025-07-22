@@ -19,6 +19,7 @@ import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
 import TitleInput from '@/shared/components/atoms/input/TitleInput.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LineInput from '@/shared/components/atoms/input/LineInput.vue';
+import NavBar from '@/shared/components/organisms/NavBar.vue';
 
 import { ref } from 'vue';
 
@@ -62,4 +63,5 @@ const value = ref('');
     placeholder="텍스트를 입력하세요"
     v-model="value"
   ></LineInput>
+  <NavBar></NavBar>
 </template>
