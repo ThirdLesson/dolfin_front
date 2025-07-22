@@ -19,6 +19,8 @@ import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
 import LineInput from '@/shared/components/atoms/input/LineInput.vue';
 import Modal from '@/shared/components/organisms/modal/Modal.vue';
 import PwModal from '@/shared/components/organisms/modal/PwModal.vue';
+import RoundTab from '@/shared/components/molecules/RoundTab.vue';
+import SquareTab from '@/shared/components/molecules/SquareTab.vue';
 
 import { ref } from 'vue';
 
@@ -52,6 +54,15 @@ const handleModalClose = () => {
   showError.value = false;
   errorMessage.value = '';
 };
+
+const options = [
+  { value: 'apple', label: '사과' },
+  { value: 'banana', label: '바나나' },
+  { value: 'orange', label: '오렌지' },
+];
+
+const tab = ref('apple');
+const opt = ref('사과');
 </script>
 
 <template>
@@ -163,4 +174,8 @@ const handleModalClose = () => {
       }
     "
   />
+
+  <!-- Tab 테스트 -->
+  <SquareTab v-model="tab" :options="options"></SquareTab>
+  <RoundTab v-model="opt" opt1="사과" opt2="오렌지" />
 </template>
