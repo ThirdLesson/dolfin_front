@@ -9,7 +9,9 @@ const goBack = () => router.back();
 </script>
 
 <template>
-  <div class="w-full flex items-center gap-5">
+  <div
+    class="w-full h-[60px] bg-white flex items-center gap-5 px-5 shadow-custom-shadow"
+  >
     <div class="cursor-pointer flex justify-center items-center">
       <img :src="chevron" @click="goBack" />
     </div>
