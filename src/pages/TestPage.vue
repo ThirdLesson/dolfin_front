@@ -83,10 +83,10 @@ const opt = ref('사과');
   </div>
 
   <!-- Header 테스트 -->
-  <div class="space-y-4 w-full">
+  <!-- <div class="space-y-4 w-full">
     <Head1>Header 테스트</Head1>
     <Header>환율 조회</Header>
-  </div>
+  </div> -->
 
   <!-- Card 테스트 -->
   <div class="space-y-4 w-full">
