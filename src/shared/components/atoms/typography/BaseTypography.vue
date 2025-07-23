@@ -16,8 +16,8 @@ const typoTypeMap = {
   Subtitle1: 'text-[20px] font-semibold',
   Subtitle2: 'text-[15px] font-semibold',
   Subtitle3: 'text-[12px] font-semibold',
-  P1: 'text-[12px] font-medium',
-  P2: 'text-[10px] font-medium',
+  P1: 'text-[15px] font-medium',
+  P2: 'text-[12px] font-medium',
   Caption1: 'text-[12px] font-light',
   Caption2: 'text-[10px] font-light',
 };
