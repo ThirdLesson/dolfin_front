@@ -68,7 +68,7 @@ const selectOption = (option) => {
         :alt="option.value"
       />
       <P2
-        class="whitespace-nowrap"
+        class="whitespace-nowrap pointer-events-none"
         :class="
           route.path === option.href ? 'text-dol-dark' : 'text-dol-light-gray'
         "
