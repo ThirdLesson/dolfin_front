@@ -4,11 +4,13 @@ import { useRoute } from 'vue-router';
 
 import NavBar from './NavBar.vue';
 import Header from '../molecules/Header.vue';
+import ExchangeHeader from '@/features/exchangeRate/exchageHeader/ui/ExchangeHeader.vue';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
 const route = useRoute();
 
 const headerText = computed(() => route.meta.header);
+const showExchangeHeader = computed(() => route.meta.exchangeHeader === true);
 const showNavBar = computed(() => route.meta.navBar !== false);
 
 const isPC = useMediaQuery();
@@ -19,11 +21,9 @@ const isPC = useMediaQuery();
     class="h-screen flex flex-col mx-auto overflow-y-auto w-full"
     :class="isPC && 'max-w-[500px] shadow-custom-shadow'"
   >
-    <header
-      v-if="headerText"
-      class="w-full fixed top-0 left-0 z-40 shadow-custom-shadow"
-    >
-      <Header>{{ headerText }}</Header>
+    <header class="w-full fixed top-0 left-0 z-40 shadow-custom-shadow">
+      <Header v-if="headerText">{{ headerText }}</Header>
+      <ExchangeHeader v-if="showExchangeHeader" />
     </header>
 
     <main

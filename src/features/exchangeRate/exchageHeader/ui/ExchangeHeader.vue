@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import useMediaQuery from '@/shared/hooks/useMediaQuery';
+
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import CanadaFlag from '@/asset/flag/canada.png';
 import ChinaFlag from '@/asset/flag/china.png';
@@ -15,9 +16,6 @@ import ThailandFlag from '@/asset/flag/thailand.png';
 import UkFlag from '@/asset/flag/uk.png';
 import UsaFlag from '@/asset/flag/usa.png';
 import VietnamFlag from '@/asset/flag/vietnam.png';
-
-const router = useRouter();
-const route = useRoute();
 
 const options = [
   {
@@ -87,13 +85,15 @@ const options = [
   },
 ];
 
+const isPC = useMediaQuery();
+
 const currentIndex = ref(0);
 let intervalId = null;
 
 onMounted(() => {
   intervalId = setInterval(() => {
     currentIndex.value = (currentIndex.value + 1) % options.length;
-  }, 2000);
+  }, 3000);
 });
 
 onBeforeUnmount(() => {
@@ -103,10 +103,10 @@ onBeforeUnmount(() => {
 
 <template>
   <header
-    class="w-full h-[60px] bg-white fixed top-0 left-0 shadow-custom-shadow flex justify-start space-x-[10px] items-center px-[20px]"
+    class="w-full h-[60px] bg-white fixed top-0 left-0 shadow-custom-shadow flex justify-start space-x-[10px] items-center px-[20px] pointer-events-none"
+    :class="isPC && 'max-w-[500px] left-1/2 -translate-x-1/2'"
   >
     <P1>환율</P1>
-
     <div
       v-if="options.length"
       :key="currentIndex"
@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
   </header>
 </template>
 
-<style>
+<style scoped>
 @keyframes slide-up-pause {
   0% {
     opacity: 0;
@@ -140,6 +140,6 @@ onBeforeUnmount(() => {
 }
 
 .animate-slide-up-pause {
-  animation: slide-up-pause 2s ease-in-out infinite;
+  animation: slide-up-pause 3s ease-in-out infinite;
 }
 </style>

@@ -27,6 +27,7 @@ const router = createRouter({
       path: URL.PAGE.MAIN,
       name: 'main',
       component: MainPage,
+      meta: { exchangeHeader: true },
     },
     {
       path: URL.PAGE.MAP,
