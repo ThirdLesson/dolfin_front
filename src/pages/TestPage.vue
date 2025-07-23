@@ -67,134 +67,123 @@ const opt = ref('사과');
 </script>
 
 <template>
-  <div class="p-6 space-y-6">
-    <!-- Typography 테스트 -->
-    <div class="space-y-2">
-      <Head1>Typography 테스트</Head1>
-      <Head1>Head1입니다</Head1>
-      <Head2>Head2입니다</Head2>
-      <Head3>Head3입니다</Head3>
-      <Subtitle1>Subtitle1입니다</Subtitle1>
-      <Subtitle2>Subtitle2입니다</Subtitle2>
-      <Subtitle3>Subtitle3입니다</Subtitle3>
-      <P1>P1입니다</P1>
-      <P2>P2입니다</P2>
-      <Caption1>Caption1 입니다.</Caption1>
-      <Caption2>Caption2 입니다.</Caption2>
-    </div>
+  <!-- Typography 테스트 -->
+  <div class="space-y-2 w-full">
+    <Head1>Typography 테스트</Head1>
+    <Head1>Head1입니다</Head1>
+    <Head2>Head2입니다</Head2>
+    <Head3>Head3입니다</Head3>
+    <Subtitle1>Subtitle1입니다</Subtitle1>
+    <Subtitle2>Subtitle2입니다</Subtitle2>
+    <Subtitle3>Subtitle3입니다</Subtitle3>
+    <P1>P1입니다</P1>
+    <P2>P2입니다</P2>
+    <Caption1>Caption1 입니다.</Caption1>
+    <Caption2>Caption2 입니다.</Caption2>
+  </div>
 
-    <!-- Header 테스트 -->
-    <div class="space-y-4">
-      <Head1>Header 테스트</Head1>
-      <Header>환율 조회</Header>
-    </div>
+  <!-- Header 테스트 -->
+  <div class="space-y-4 w-full">
+    <Head1>Header 테스트</Head1>
+    <Header>환율 조회</Header>
+  </div>
 
-    <!-- Card 테스트 -->
-    <div class="space-y-4">
-      <Head1>Card 테스트</Head1>
-      <SingleCard
-        title="제목"
-        image="https://images.icon-icons.com/29/PNG/256/animal_dolphin_2740.png"
-      >
-        <Subtitle3 class="text-dol-dark-gray">hihihih</Subtitle3>
-      </SingleCard>
-
-      <DoubleCard
-        image="https://images.icon-icons.com/29/PNG/256/animal_dolphin_2740.png"
-        title="제목"
-        subtitle="부제목"
-      >
-        <div>
-          <Caption1>this is caption</Caption1>
-          <Subtitle2>hihihiih</Subtitle2>
-        </div>
-      </DoubleCard>
-    </div>
-
-    <!-- Button 테스트 -->
-    <div class="space-y-4">
-      <Head1>Button 테스트</Head1>
-      <div class="grid grid-cols-2 gap-4">
-        <LgMainButton>완료됨</LgMainButton>
-        <MdMainButton>완료</MdMainButton>
-        <MdSubButton>완료</MdSubButton>
-        <SmMainButton disabled>확인</SmMainButton>
-        <SmSubButton disabled>확인</SmSubButton>
-      </div>
-    </div>
-
-    <!-- Input 테스트 -->
-    <div class="space-y-4">
-      <Head1>Input 테스트</Head1>
-      <LineInput
-        label="제목"
-        placeholder="텍스트를 입력하세요"
-        v-model="value"
-      />
-      <P2>입력된 값: {{ value }}</P2>
-    </div>
-
-    <!-- Modal 테스트 -->
-    <div class="space-y-4">
-      <Head1>Modal 테스트</Head1>
-
-      <div class="grid grid-cols-1 gap-4">
-        <MdMainButton @click="isModalOpen = true">
-          간단 모달 열기
-        </MdMainButton>
-
-        <MdSubButton @click="isPwModalOpen = true">
-          비밀번호 모달 열기
-        </MdSubButton>
-      </div>
-
-      <div
-        v-if="passwordResult"
-        class="p-4 bg-blue-100 text-blue-800 rounded-lg"
-      >
-        <Subtitle3>{{ passwordResult }}</Subtitle3>
-      </div>
-    </div>
-
-    <Modal
-      v-if="isModalOpen"
-      title="테스트 모달"
-      buttonText="확인"
-      @confirm="handleConfirm"
-      @close="isModalOpen = false"
+  <!-- Card 테스트 -->
+  <div class="space-y-4 w-full">
+    <Head1>Card 테스트</Head1>
+    <SingleCard
+      title="제목"
+      image="https://images.icon-icons.com/29/PNG/256/animal_dolphin_2740.png"
     >
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus
-        in quo voluptates, incidunt consequatur magni ipsa quibusdam. Quo ut,
-        similique officia incidunt rerum libero delectus a quas molestiae maxime
-        iure. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Necessitatibus in quo voluptates, incidunt consequatur magni ipsa
-        quibusdam. Quo ut, similique officia incidunt rerum libero delectus a
-        quas molestiae maxime iure. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Necessitatibus in quo voluptates, incidunt consequatur
-        magni ipsa quibusdam. Quo ut, similique officia incidunt rerum libero
-        delectus a quas molestiae maxime iure.
-      </p>
-    </Modal>
+      <Subtitle3 class="text-dol-dark-gray">hihihih</Subtitle3>
+    </SingleCard>
 
-    <PwModal
-      v-if="isPwModalOpen"
-      :showError="showError"
-      :errorMessage="errorMessage"
-      @complete="handleComplete"
-      @close="
-        () => {
-          isPwModalOpen = false;
-          handleModalClose();
-        }
-      "
-    />
+    <DoubleCard
+      image="https://images.icon-icons.com/29/PNG/256/animal_dolphin_2740.png"
+      title="제목"
+      subtitle="부제목"
+    >
+      <div>
+        <Caption1>this is caption</Caption1>
+        <Subtitle2>hihihiih</Subtitle2>
+      </div>
+    </DoubleCard>
+  </div>
 
-    <!-- Tab 테스트 -->
-    <div class="space-y-4">
-      <Head1>Tab 테스트</Head1>
-      <SquareTab v-model="tab" :options="options"></SquareTab>
-      <RoundTab v-model="opt" opt1="사과" opt2="오렌지" />
+  <!-- Button 테스트 -->
+  <div class="space-y-4 w-full">
+    <Head1>Button 테스트</Head1>
+    <div class="grid grid-cols-2 gap-4">
+      <LgMainButton>완료됨</LgMainButton>
+      <MdMainButton>완료</MdMainButton>
+      <MdSubButton>완료</MdSubButton>
+      <SmMainButton disabled>확인</SmMainButton>
+      <SmSubButton disabled>확인</SmSubButton>
     </div>
+  </div>
+
+  <!-- Input 테스트 -->
+  <div class="space-y-4 w-full">
+    <Head1>Input 테스트</Head1>
+    <LineInput label="제목" placeholder="텍스트를 입력하세요" v-model="value" />
+    <P2>입력된 값: {{ value }}</P2>
+  </div>
+
+  <!-- Modal 테스트 -->
+  <div class="space-y-4 w-full">
+    <Head1>Modal 테스트</Head1>
+
+    <div class="grid grid-cols-1 gap-4">
+      <MdMainButton @click="isModalOpen = true"> 간단 모달 열기 </MdMainButton>
+
+      <MdSubButton @click="isPwModalOpen = true">
+        비밀번호 모달 열기
+      </MdSubButton>
+    </div>
+
+    <div v-if="passwordResult" class="p-4 bg-blue-100 text-blue-800 rounded-lg">
+      <Subtitle3>{{ passwordResult }}</Subtitle3>
+    </div>
+  </div>
+
+  <Modal
+    v-if="isModalOpen"
+    title="테스트 모달"
+    buttonText="확인"
+    @confirm="handleConfirm"
+    @close="isModalOpen = false"
+  >
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus
+      in quo voluptates, incidunt consequatur magni ipsa quibusdam. Quo ut,
+      similique officia incidunt rerum libero delectus a quas molestiae maxime
+      iure. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Necessitatibus in quo voluptates, incidunt consequatur magni ipsa
+      quibusdam. Quo ut, similique officia incidunt rerum libero delectus a quas
+      molestiae maxime iure. Lorem ipsum dolor, sit amet consectetur adipisicing
+      elit. Necessitatibus in quo voluptates, incidunt consequatur magni ipsa
+      quibusdam. Quo ut, similique officia incidunt rerum libero delectus a quas
+      molestiae maxime iure.
+    </p>
+  </Modal>
+
+  <PwModal
+    v-if="isPwModalOpen"
+    :showError="showError"
+    :errorMessage="errorMessage"
+    @complete="handleComplete"
+    @close="
+      () => {
+        isPwModalOpen = false;
+        handleModalClose();
+      }
+    "
+  />
+
+  <!-- Tab 테스트 -->
+  <div class="space-y-4 w-full">
+    <Head1>Tab 테스트</Head1>
+    <SquareTab v-model="tab" :options="options"></SquareTab>
+    <RoundTab v-model="opt" opt1="사과" opt2="오렌지" />
   </div>
 </template>

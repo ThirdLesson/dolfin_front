@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import URL from '@/shared/constants/URL';
 import LoginPage from '@/pages/LoginPage.vue';
+import SignUpPage from '@/pages/SignUpPage.vue';
 import MainPage from '@/pages/MainPage.vue';
 import TestPage from '@/pages/TestPage.vue';
 import MapPage from '@/pages/MapPage.vue';
@@ -14,7 +15,13 @@ const router = createRouter({
       path: URL.PAGE.LOGIN,
       name: 'login',
       component: LoginPage,
-      meta: { header: '로그인' },
+      meta: { navBar: false },
+    },
+    {
+      path: URL.PAGE.SIGNUP,
+      name: 'signup',
+      component: SignUpPage,
+      meta: { navBar: false },
     },
     {
       path: URL.PAGE.MAIN,
