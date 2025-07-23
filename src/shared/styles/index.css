@@ -7,11 +7,18 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Pretendard;
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 @font-face {
   font-family: Pretendard;
   src: url('/Pretendard-Medium.woff');
+}
+
+/* Chrome, Safari, Opera */
+::-webkit-scrollbar {
+  display: none;
 }
 
 body {

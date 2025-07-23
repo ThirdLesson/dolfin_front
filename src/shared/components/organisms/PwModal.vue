@@ -4,11 +4,14 @@ import { ref, watch, onMounted, onUnmounted } from 'vue';
 import Subtitle1 from '../atoms/typography/Subtitle1.vue';
 import Caption2 from '../atoms/typography/Caption2.vue';
 import Keypad from '../atoms/Keypad.vue';
+import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
 const props = defineProps({
   errorMessage: { type: String, default: '비밀번호가 올바르지 않습니다.' },
   showError: { type: Boolean, default: false },
 });
+
+const isPC = useMediaQuery();
 
 const password = ref('');
 const shuffledNumbers = ref([]);
@@ -56,10 +59,11 @@ onUnmounted(() => {
 <template>
   <div
     class="fixed inset-0 bg-black/50 z-50 flex items-end justify-center"
+    :class="isPC && 'max-w-[500px] left-1/2 -translate-x-1/2'"
     @click="$emit('close')"
   >
     <div
-      class="w-full h-[75vh] bg-white rounded-t-lg relative flex flex-col justify-between"
+      class="w-full h-[70vh] bg-white rounded-t-lg relative flex flex-col justify-between"
       @click.stop
     >
       <button @click="$emit('close')" class="absolute top-[25px] right-[25px]">

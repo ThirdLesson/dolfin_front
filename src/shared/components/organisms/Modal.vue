@@ -3,6 +3,7 @@ import { onMounted, onUnmounted } from 'vue';
 
 import LgMainButton from '../atoms/button/LgMainButton.vue';
 import Head2 from '../atoms/typography/Head2.vue';
+import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
 const props = defineProps({
   title: String,
@@ -16,6 +17,8 @@ const handleConfirm = () => {
   emit('close');
 };
 
+const isPC = useMediaQuery();
+
 // 모달이 열릴 때 body 스크롤 막기
 onMounted(() => {
   document.body.style.overflow = 'hidden';
@@ -28,6 +31,7 @@ onUnmounted(() => {
 <template>
   <div
     class="fixed inset-0 bg-black/50 z-50 flex items-end justify-center"
+    :class="isPC && 'max-w-[500px] left-1/2 -translate-x-1/2'"
     @click="closeModal"
   >
     <div

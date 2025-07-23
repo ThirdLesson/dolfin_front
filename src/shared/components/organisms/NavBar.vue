@@ -2,6 +2,8 @@
 import { useRouter, useRoute } from 'vue-router';
 import URL from '@/shared/constants/URL';
 import P2 from '../atoms/typography/P2.vue';
+import useMediaQuery from '@/shared/hooks/useMediaQuery';
+
 import mainIcon from '@/asset/icon/main.png';
 import exchangeIcon from '@/asset/icon/exchange.png';
 import mapIcon from '@/asset/icon/map.png';
@@ -13,6 +15,8 @@ import ActiveRemitIcon from '@/asset/icon/remitActive.png';
 
 const router = useRouter();
 const route = useRoute();
+
+const isPC = useMediaQuery();
 
 const options = [
   {
@@ -56,6 +60,7 @@ const selectOption = (option) => {
 <template>
   <nav
     class="w-full h-[80px] bg-white fixed bottom-0 left-0 shadow-custom-shadow flex justify-between items-center px-7"
+    :class="isPC && 'max-w-[500px] left-1/2 -translate-x-1/2'"
   >
     <button
       v-for="option in options"
