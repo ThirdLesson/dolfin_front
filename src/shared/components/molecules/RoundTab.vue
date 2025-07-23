@@ -24,7 +24,7 @@ const selectedOption = computed(() => {
 </script>
 
 <template>
-  <div class="h-[35px] w-fit rounded-md bg-dol-sub flex p-[5px] select-none">
+  <div class="h-[40px] w-fit rounded-md bg-dol-sub flex p-[5px] select-none">
     <div
       class="flex-1 flex px-4 items-center justify-center rounded-md cursor-pointer transition-all"
       :class="selectedOption === props.opt1 ? 'bg-white' : 'text-dol-dark-gray'"
