@@ -32,12 +32,13 @@ const buttonClasses = computed(() => {
     'items-center',
     'justify-center',
     'rounded-md',
+    'whitespace-nowrap',
   ];
 
   const sizeClasses = {
     large: ['h-[60px]', 'w-full'],
     medium: ['h-[35px]', 'w-full'],
-    small: ['h-[35px]', 'w-[50px]'],
+    small: ['h-[35px]', 'min-w-[50px]', 'px-[5px]'],
   };
 
   const colorClasses = {
