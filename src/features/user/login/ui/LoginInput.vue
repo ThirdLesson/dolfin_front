@@ -25,12 +25,15 @@ const handleLogin = async () => {
   } else {
     alert('로그인에 실패했습니다.');
   }
+
+  loginId.value = '';
+  password.value = '';
 };
 </script>
 <template>
   <div class="flex flex-col gap-[25px]">
     <BoxInput placeholder="ID" v-model="loginId" />
-    <BoxInput placeholder="PASSWORD" v-model="password" />
+    <BoxInput placeholder="PASSWORD" v-model="password" type="password" />
     <div class="flex justify-center items-center gap-[50px] text-dol-dark-gray">
       <P1 class="underline cursor-pointer" @click="() => router.push('/signup')"
         >회원가입</P1

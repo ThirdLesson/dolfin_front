@@ -1,6 +1,10 @@
 <script setup>
 const props = defineProps({
   placeholder: String,
+  type: {
+    type: String,
+    default: 'text',
+  },
 });
 
 const value = defineModel();
@@ -15,6 +19,7 @@ const value = defineModel();
         class="text-[15px] font-semibold w-full bg-transparent border-none outline-none h-full py-[15px] px-[20px] placeholder-dol-light-gray"
         v-model="value"
         :placeholder="placeholder"
+        :type="type"
       />
     </div>
   </div>
