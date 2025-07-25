@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-  <main>exchange rate check</main>
+  <main>transaction</main>
 </template>
