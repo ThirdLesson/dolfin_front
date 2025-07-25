@@ -11,4 +11,12 @@ export const user = {
     url: `${import.meta.env.VITE_APP_API_URL}/auth/signout`,
     method: 'GET',
   }),
+  checkId: () => ({
+    url: `${import.meta.env.VITE_APP_API_URL}/auth/check-id`,
+    method: 'POST',
+  }),
+  signUp: () => ({
+    url: `${import.meta.env.VITE_APP_API_URL}/auth/join`,
+    method: 'POST',
+  }),
 };
