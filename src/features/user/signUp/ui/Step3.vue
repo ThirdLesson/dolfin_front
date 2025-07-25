@@ -2,18 +2,41 @@
 import { ref, computed } from 'vue';
 
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
+import Head3 from '@/shared/components/atoms/typography/Head3.vue';
+import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import TitleInput from '@/shared/components/atoms/input/TitleInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
+import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 
+const props = defineProps({
+  joinSuccess: {
+    type: Boolean,
+  },
+});
 const emit = defineEmits(['next', 'update']);
 
 const name = ref('');
 const passportNumber = ref('');
 const nationality = ref('');
-
 const month = ref('');
 const day = ref('');
 const year = ref('');
+
+const countries = [
+  { value: 'RUSSIA', label: '러시아' },
+  { value: 'MONGOLIA', label: '몽골' },
+  { value: 'USA', label: '미국' },
+  { value: 'VIETNAM', label: '베트남' },
+  { value: 'INDIA', label: '인도' },
+  { value: 'INDONESIA', label: '인도네시아' },
+  { value: 'JAPAN', label: '일본' },
+  { value: 'CHINA', label: '중국' },
+  { value: 'THAILAND', label: '태국' },
+  { value: 'PHILIPPINES', label: '필리핀' },
+  { value: 'KOREAN_RUSSIAN', label: '고려인' },
+  { value: 'KOREAN_CHINESE', label: '조선족' },
+  { value: 'OTHER', label: '기타' },
+];
 
 const birth = computed(() => {
   if (
@@ -29,6 +52,15 @@ const birth = computed(() => {
   return null;
 });
 
+const isValid = computed(
+  () =>
+    name.value &&
+    birth.value &&
+    passportNumber.value &&
+    nationality.value &&
+    birth.value,
+);
+
 const handleComplete = () => {
   emit('update', {
     name: name.value,
@@ -38,15 +70,6 @@ const handleComplete = () => {
   });
   emit('submit');
 };
-
-const isValid = computed(
-  () =>
-    name.value &&
-    birth.value &&
-    passportNumber.value &&
-    nationality.value &&
-    birth.value,
-);
 </script>
 <template>
   <div class="flex flex-col flex-1 gap-[10vh] justify-center">
@@ -79,8 +102,23 @@ const isValid = computed(
         </div>
       </div>
       <TitleInput title="여권번호" v-model="passportNumber" />
-      <TitleInput title="국적" v-model="nationality" />
+      <Dropdown
+        title="국적"
+        :options="countries"
+        v-model="nationality"
+        color="true"
+      />
     </div>
   </div>
-  <LgMainButton :disabled="!isValid" @click="handleComplete">완료</LgMainButton>
+  <div class="w-full flex flex-col items-center gap-2">
+    <div class="h-4">
+      <Caption1 v-show="!joinSuccess" class="underline text-dol-error"
+        >개인 정보가 조회되지 않습니다. 입력한 정보가 올바른지
+        확인해주세요.</Caption1
+      >
+    </div>
+    <LgMainButton :disabled="!isValid" @click="handleComplete"
+      >완료</LgMainButton
+    >
+  </div>
 </template>

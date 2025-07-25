@@ -8,7 +8,18 @@ import Step4 from '@/features/user/signUp/ui/Step4.vue';
 
 import { signUp } from '@/features/user/signUp/services/signUp.service';
 
-const step = ref(1);
+const step = ref(3);
+const joinSuccess = ref(true);
+const signupData = reactive({
+  birth: 0,
+  country: '',
+  loginId: '',
+  name: '',
+  nationality: '',
+  passportNumber: '',
+  password: '',
+  phoneNumber: '',
+});
 
 const currentStep = computed(() => {
   switch (step.value) {
@@ -21,17 +32,6 @@ const currentStep = computed(() => {
     case 4:
       return Step4;
   }
-});
-
-const signupData = reactive({
-  birth: 0,
-  country: '',
-  loginId: '',
-  name: '',
-  nationality: '',
-  passportNumber: '',
-  password: '',
-  phoneNumber: '',
 });
 
 const submit = async () => {
@@ -49,6 +49,7 @@ const submit = async () => {
 
   if (result) {
     alert('회원가입 실패');
+    joinSuccess.value = false;
   }
 };
 
@@ -65,6 +66,7 @@ watch(
   <div class="h-full flex flex-col justify-between">
     <component
       :is="currentStep"
+      :joinSuccess="joinSuccess"
       v-bind="signupData"
       @next="() => step++"
       @prev="() => step--"

@@ -1,10 +1,12 @@
 <script setup>
-import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
+
+const router = useRouter();
 
 const infos = [
   {
@@ -35,25 +37,21 @@ const infos = [
         결과</Subtitle2
       >
     </div>
-    <div class="flex flex-col gap-3">
-      <section>
-        <div class="w-full h-[2px] bg-dol-light-gray" />
-        <div
-          v-for="info in infos"
-          :key="info.value"
-          class="w-full px-4 py-3 flex border-b border-1 border-dol-light-gray"
-        >
-          <div class="w-[80%] flex items-center justify-between">
-            <Subtitle2>{{ info.label }}</Subtitle2>
-            <P1>{{ info.value }}</P1>
-          </div>
-        </div>
-        <div class="w-full h-[1px] bg-dol-light-gray" />
-      </section>
-      <P1 class="text-dol-dark text-end"
-        >해당 정보가 맞다면 완료 버튼을 눌러주세요</P1
+
+    <section>
+      <div class="w-full h-[2px] bg-dol-light-gray" />
+      <div
+        v-for="info in infos"
+        :key="info.value"
+        class="w-full px-4 py-3 flex border-b border-1 border-dol-light-gray"
       >
-    </div>
+        <div class="w-[80%] flex items-center justify-between">
+          <Subtitle2>{{ info.label }}</Subtitle2>
+          <P1>{{ info.value }}</P1>
+        </div>
+      </div>
+      <div class="w-full h-[1px] bg-dol-light-gray" />
+    </section>
   </div>
-  <LgMainButton @click="handleComplete">완료</LgMainButton>
+  <LgMainButton @click="router.push('/')">완료</LgMainButton>
 </template>
