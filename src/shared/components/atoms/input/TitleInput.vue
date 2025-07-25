@@ -1,4 +1,6 @@
 <script setup>
+import Head3 from '../typography/Head3.vue';
+
 const props = defineProps({
   placeholder: {
     type: String,

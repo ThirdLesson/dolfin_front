@@ -10,6 +10,10 @@ const props = defineProps({
     default: () => [],
     required: true,
   },
+  color: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const isOpen = ref(false);
@@ -28,12 +32,17 @@ const selectedLabel = computed(() => {
 });
 </script>
 <template>
-  <div class="w-full flex flex-col gap-[10px]">
-    <Subtitle2 v-if="props.title">{{ props.title }}</Subtitle2>
+  <div class="w-full flex flex-col gap-[10px]" v-bind="$attrs">
+    <Subtitle2 v-if="props.title" :class="props.color && 'text-dol-main'">{{
+      props.title
+    }}</Subtitle2>
     <div class="relative">
       <div
-        :class="isOpen ? 'border-dol-main' : 'border-dol-dark-gray'"
-        class="h-[50px] px-5 border-2 border-dol-dark-gray text-[15px] font-semibold rounded-sm flex items-center justify-between cursor-pointer"
+        class="h-[50px] px-5 border-2 text-[15px] font-semibold rounded-sm flex items-center justify-between cursor-pointer"
+        :class="[
+          props.color && 'border-dol-main',
+          isOpen ? 'border-dol-main' : 'border-dol-dark-gray',
+        ]"
         @click="isOpen = !isOpen"
       >
         {{ selectedLabel }}

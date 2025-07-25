@@ -50,13 +50,13 @@ const isValid = computed(
   <div class="flex flex-col flex-1 gap-[10vh] justify-center">
     <Head2>사용하실 아이디와 <br />비밀번호를 알려주세요</Head2>
     <div class="flex flex-col gap-[40px]">
-      <TitleInput title="아이디" v-model="loginId" />
       <div class="flex items-end gap-2">
-        <TitleInput title="비밀번호" type="password" v-model="password" />
+        <TitleInput title="아이디" v-model="loginId" />
         <SmMainButton class="shrink-0" @click="checkIdFunction"
           >중복확인</SmMainButton
         >
       </div>
+      <TitleInput title="비밀번호" type="password" v-model="password" />
       <TitleInput
         title="비밀번호 확인"
         type="password"
