@@ -7,6 +7,8 @@ import TestPage from '@/pages/TestPage.vue';
 import MapPage from '@/pages/MapPage.vue';
 import ExchangeRateCheckPage from '@/pages/ExchangeRateCheckPage.vue';
 import GroupRemitPage from '@/pages/GroupRemitPage.vue';
+import LoadingPage from '@/pages/LoadingPage.vue';
+import ComingPage from '@/pages/ComingPage.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,6 +54,18 @@ const router = createRouter({
       name: 'test',
       component: TestPage,
       meta: { header: '테스트' },
+    },
+    {
+      path: URL.PAGE.LOADING,
+      name: 'loading',
+      component: LoadingPage,
+      meta: { navBar: false },
+    },
+    {
+      path: URL.PAGE.COMING,
+      name: 'coming',
+      component: ComingPage,
+      meta: { header: '뒤로가기' },
     },
   ],
 });
