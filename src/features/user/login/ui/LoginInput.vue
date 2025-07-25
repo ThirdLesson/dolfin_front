@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import P1 from '@/shared/components/atoms/typography/P1.vue';
@@ -7,14 +7,12 @@ import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 
 import { signIn } from '../services/login.service';
-import { refresh } from '../services/login.service';
 
 const router = useRouter();
 
-const loginId = ref('ss7622');
+const loginId = ref('');
 const password = ref('');
 const isLoggedIn = ref(false);
-const memberId = ref(1);
 
 const handleLogin = async () => {
   const result = await signIn({
@@ -33,22 +31,6 @@ const handleLogin = async () => {
   loginId.value = '';
   password.value = '';
 };
-
-const refreshFunction = async () => {
-  const result = await refresh({
-    loginId: loginId.value,
-    memberId: memberId.value,
-  });
-
-  console.log('refresh', result);
-};
-
-// isLoggedIn이 true로 바뀔 때 refreshFunction 실행
-watch(isLoggedIn, (newVal) => {
-  if (newVal) {
-    refreshFunction();
-  }
-});
 </script>
 <template>
   <div class="flex flex-col gap-[25px]">
