@@ -31,7 +31,7 @@ const options = [
     label: '환율조회',
     src: exchangeIcon,
     activeSrc: ActiveExchangeIcon,
-    href: URL.PAGE.EXCHANGE_RATE_CHECK,
+    href: URL.PAGE.EXCHANGE_CHECK,
   },
   {
     value: 'map',
@@ -45,7 +45,7 @@ const options = [
     label: '공동송금',
     src: remitIcon,
     activeSrc: ActiveRemitIcon,
-    href: URL.PAGE.GROUP_REMITTANCE,
+    href: URL.PAGE.GROUP_REMIT,
   },
 ];
 
