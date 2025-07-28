@@ -46,7 +46,7 @@ onUnmounted(() => {
           <i class="bi bi-x-lg" />
         </button>
       </div>
-      <div class="flex-1 overflow-y-auto">
+      <div class="flex-1 overflow-y-auto p-[2px]">
         <slot />
       </div>
       <div class="sticky bottom-0 bg-white mt-[10px]">
