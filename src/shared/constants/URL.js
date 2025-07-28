@@ -12,6 +12,7 @@ const URL = {
     MYPAGE: '/mypage',
     GROUP_REMIT: '/group-remit',
     EXCHANGE_CHECK: '/exchange-check',
+    EXCHANGE_RESULT: '/exchange-result',
     EXCHANGE_CALCULATOR: '/exchange-calculator',
     LOADING: '/loading',
     COMING: '/coming',
