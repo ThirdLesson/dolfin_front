@@ -59,7 +59,7 @@ watch(
   <Modal
     v-if="props.show"
     title="상품 상세 정보"
-    button-text="확인"
+    buttonText="확인"
     @close="emit('close')"
   >
     <div class="max-h-[80vh]">

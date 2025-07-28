@@ -16,10 +16,10 @@ const emit = defineEmits(['close']);
   <Modal
     v-if="props.isOpen"
     title="상세 정보"
-    button-text="확인"
+    buttonText="확인"
     @close="emit('close')"
   >
-    <div class="space-y-4 mb-6 text-gray-800">
+    <div class="space-y-4 mb-6">
       <div>
         <Head3>{{
           props.tabType === '다문화 가족 지원 센터' ? '센터명' : '은행 지점명'

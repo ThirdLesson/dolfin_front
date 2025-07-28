@@ -10,8 +10,8 @@ const props = defineProps({
     default: false,
   },
   height: {
-    type: Number,
-    default: 50,
+    type: String,
+    default: 'lg',
   },
 });
 
@@ -25,8 +25,8 @@ const value = defineModel();
       :class="[
         color ? 'border-dol-sub' : 'border-dol-dark-gray',
         'focus-within:border-dol-main',
+        height === 'lg' ? 'h-[50px]' : 'h-[40px]',
       ]"
-      :style="{ height: `${height}px` }"
     >
       <input
         class="text-[15px] font-semibold w-full bg-transparent border-none outline-none h-full py-[15px] px-[20px] placeholder-dol-light-gray"

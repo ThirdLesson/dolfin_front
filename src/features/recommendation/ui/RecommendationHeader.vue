@@ -129,9 +129,9 @@ watch(filteredProducts, (val) => emit('update:filteredProducts', val), {
         <Head3 class="pt-[10px]">대출 한도</Head3>
         <div class="flex flex-col gap-2 pt-[5px]">
           <div class="flex">
-            <BoxInput placeholder="최소 금액" :color="true" :height="40" />
+            <BoxInput placeholder="최소 금액" :color="true" height="sm" />
             <p class="text-[20px] font-midium pt-[6px] px-[5px]">~</p>
-            <BoxInput placeholder="최대 금액" :color="true" :height="40" />
+            <BoxInput placeholder="최대 금액" :color="true" height="sm" />
           </div>
         </div>
       </div>
