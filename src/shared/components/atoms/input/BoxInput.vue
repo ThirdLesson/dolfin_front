@@ -9,6 +9,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  height: {
+    type: Number,
+    default: 50,
+  },
 });
 
 const value = defineModel();
@@ -17,11 +21,12 @@ const value = defineModel();
 <template>
   <div class="w-full">
     <div
-      class="h-[50px] border-2 border-dol-dark-gray rounded focus-within:border-dol-main transition-colors"
+      class="border-2 border-dol-dark-gray rounded focus-within:border-dol-main transition-colors"
       :class="[
         color ? 'border-dol-sub' : 'border-dol-dark-gray',
         'focus-within:border-dol-main',
       ]"
+      :style="{ height: `${height}px` }"
     >
       <input
         class="text-[15px] font-semibold w-full bg-transparent border-none outline-none h-full py-[15px] px-[20px] placeholder-dol-light-gray"
