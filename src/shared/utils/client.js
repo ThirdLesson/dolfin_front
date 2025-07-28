@@ -1,7 +1,4 @@
-import { useRouter } from 'vue-router';
 import { user } from '@/entities/user/user.api';
-
-const router = useRouter();
 
 async function refresh() {
   // todo: loginId, memberId Pinia에서 가져오기
@@ -25,7 +22,7 @@ async function refresh() {
     localStorage.setItem('accessToken', accessToken);
   }
 
-  return res.data;
+  return res;
 }
 
 export async function apiFetch(url, options = {}) {
@@ -43,14 +40,14 @@ export async function apiFetch(url, options = {}) {
     ...options,
   };
 
-  const response = await fetch(url, config);
+  let response = await fetch(url, config);
 
   // AccessToken 만료 → refresh
   if (response.status === 401) {
-    const result = await refresh();
+    const refreshed = await refresh();
 
-    if (result.status === 200) {
-      // 리프레시 성공 시 토큰 갱신하고 재요청
+    if (refreshed.data) {
+      // 리프레시 성공 → 토큰 갱신하고 재요청
       const retryHeaders = {
         ...headers,
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -60,10 +57,10 @@ export async function apiFetch(url, options = {}) {
         headers: retryHeaders,
       };
 
-      return fetch(url, retryConfig);
+      response = await fetch(url, retryConfig);
     } else {
-      // 리프레시 실패 시 로그인 페이지로 리디렉션
-      router.push('/');
+      // 리프레시 실패 → 로그인 페이지 이동
+      window.location.href = '/';
       return;
     }
   }

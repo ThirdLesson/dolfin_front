@@ -16,6 +16,7 @@ import RemitPage from '@/pages/RemitPage.vue';
 import AccountPage from '@/pages/AccountPage.vue';
 import MyPage from '@/pages/MyPage.vue';
 import ExchangeCalculatorPage from '@/pages/ExchangeCalculatorPage.vue';
+import ExchangeResultPage from '@/pages/ExchangeResultPage.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -90,6 +91,12 @@ const router = createRouter({
       path: URL.PAGE.EXCHANGE_CHECK,
       name: 'exchange-check',
       component: ExchangeCheckPage,
+      meta: { header: '환율 조회' },
+    },
+    {
+      path: URL.PAGE.EXCHANGE_RESULT,
+      name: 'exchange-result',
+      component: ExchangeResultPage,
       meta: { header: '환율 조회' },
     },
     {

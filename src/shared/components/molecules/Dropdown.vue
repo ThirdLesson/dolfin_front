@@ -23,11 +23,10 @@ const select = (option) => {
   isOpen.value = false;
 };
 
-// 현재 선택된 옵션의 label 값을 보여주기 위한 계산된 값
-const selectedLabel = computed(() => {
+// 현재 선택된 옵션을 보여주기 위한 계산된 값
+const selectedOption = computed(() => {
   return (
-    props.options.find((opt) => opt.value === model.value)?.label ||
-    props.options[0].label
+    props.options.find((opt) => opt.value === model.value) || props.options[0]
   );
 });
 </script>
@@ -45,7 +44,14 @@ const selectedLabel = computed(() => {
         ]"
         @click="isOpen = !isOpen"
       >
-        {{ selectedLabel }}
+        <div class="flex items-center gap-2">
+          <img
+            v-if="selectedOption.src"
+            :src="selectedOption.src"
+            class="w-5 h-5 object-contain"
+          />
+          {{ selectedOption.label }}
+        </div>
         <i
           :class="isOpen ? 'text-dol-main' : 'text-dol-dark-gray'"
           class="bi bi-caret-down-fill"
@@ -61,7 +67,12 @@ const selectedLabel = computed(() => {
           @click="select(option.value)"
           class="h-[45px] px-4 py-2 border-b border-dol-light-gray hover:bg-dol-sub text-[15px] font-semibold cursor-pointer"
         >
-          {{ option.label }}
+          <div class="flex items-center gap-[15px]">
+            <div class="h-5 w-5 lex items-center justify-center">
+              <img v-if="option.src" :src="option.src" class="object-fit" />
+            </div>
+            {{ option.label }}
+          </div>
         </li>
       </ul>
     </div>
