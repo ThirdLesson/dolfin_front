@@ -32,9 +32,9 @@ const state = reactive({
     />
 
     <PlaceInfoModal
-      :is-open="state.isOpen"
+      :isOpen="state.isOpen"
       :place="state.selectedPlace"
-      :tab-type="state.activeTab"
+      :tabType="state.activeTab"
       @close="state.isOpen = false"
     />
   </div>

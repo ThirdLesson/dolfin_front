@@ -6,7 +6,7 @@ export async function getBanks() {
   const response = await apiFetch(url, { method });
 
   const res = await response.json();
-  return res.data || [];
+  return res.data;
 }
 
 export async function getCenters() {
@@ -14,5 +14,5 @@ export async function getCenters() {
   const response = await apiFetch(url, { method });
 
   const res = await response.json();
-  return res.data || [];
+  return res.data;
 }
