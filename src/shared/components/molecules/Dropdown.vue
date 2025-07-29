@@ -68,8 +68,11 @@ const selectedOption = computed(() => {
           class="h-[45px] px-4 py-2 border-b border-dol-light-gray hover:bg-dol-sub text-[15px] font-semibold cursor-pointer"
         >
           <div class="flex items-center gap-[15px]">
-            <div class="h-5 w-5 lex items-center justify-center">
-              <img v-if="option.src" :src="option.src" class="object-fit" />
+            <div
+              v-if="option.src"
+              class="h-5 w-5 lex items-center justify-center"
+            >
+              <img :src="option.src" class="object-fit" />
             </div>
             {{ option.label }}
           </div>
