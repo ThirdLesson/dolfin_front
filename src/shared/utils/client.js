@@ -22,7 +22,10 @@ async function refresh() {
     localStorage.setItem('accessToken', accessToken);
   }
 
-  return res;
+  return {
+    status: response.status,
+    ...res,
+  };
 }
 
 export async function apiFetch(url, options = {}) {

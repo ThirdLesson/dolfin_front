@@ -5,14 +5,14 @@ import { useRouter } from 'vue-router';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
-
 import { signIn } from '../services/login.service';
+import { useUserStore } from '@/entities/user/user.store';
 
 const router = useRouter();
+const userStore = useUserStore();
 
 const loginId = ref('');
 const password = ref('');
-const isLoggedIn = ref(false);
 
 const handleLogin = async () => {
   const result = await signIn({
@@ -21,9 +21,8 @@ const handleLogin = async () => {
   });
 
   if (result) {
-    router.push('/main'); // 로그인 성공 후 페이지 이동
-    isLoggedIn.value = true;
-    // 사용자 정보 store에 저장
+    userStore.setUserInfo(result);
+    router.push('/main');
   } else {
     alert('로그인에 실패했습니다.');
   }
@@ -43,6 +42,6 @@ const handleLogin = async () => {
       <P1>|</P1>
       <P1 class="underline cursor-pointer">비밀번호 찾기</P1>
     </div>
-    <LgMainButton @click="handleLogin">완료</LgMainButton>
+    <LgMainButton @click="handleLogin">로그인</LgMainButton>
   </div>
 </template>
