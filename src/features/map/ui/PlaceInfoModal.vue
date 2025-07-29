@@ -32,13 +32,13 @@ const emit = defineEmits(['close']);
       </div>
       <div>
         <Head3>전화번호</Head3>
-        <P1>{{ props.place?.phone }}</P1>
+        <P1>{{ props.place?.tel }}</P1>
       </div>
-      <div v-if="props.place?.website">
+      <div>
         <Head3>웹사이트</Head3>
         <P1>
           <a
-            :href="props.place.website"
+            :href="props.place?.website"
             target="_blank"
             rel="noopener noreferrer"
             class="text-dol-dark underline hover:opacity-80"
@@ -46,12 +46,6 @@ const emit = defineEmits(['close']);
             {{ props.place.website }}
           </a>
         </P1>
-      </div>
-      <div>
-        <Head3>{{
-          props.tabType === '다문화 가족 지원 센터' ? '센터 안내' : '은행 안내'
-        }}</Head3>
-        <P1>{{ props.place?.description }}</P1>
       </div>
     </div>
   </Modal>
