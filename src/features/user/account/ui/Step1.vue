@@ -1,43 +1,71 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
+import { addAccount } from '../services/account.service';
 
-// todo: api 명세서가 어떤지 보고 korengmap 쓸 수 있으면 쓰기
 const options = [
-  { label: '신협은행', value: 'cuh' },
-  { label: '우체국예금', value: 'epost' },
-  { label: '전북은행', value: 'jeonbuk' },
-  { label: '새마을금고', value: 'mg' },
-  { label: 'SC제일은행', value: 'sc' },
-  { label: 'KB국민은행', value: 'kb' },
-  { label: '우리은행', value: 'woori' },
-  { label: '하나은행', value: 'hana' },
-  { label: '산업은행', value: 'kdb' },
-  { label: '토스뱅크', value: 'toss' },
-  { label: '부산은행', value: 'bnk' },
-  { label: '광주은행', value: 'gwangju' },
-  { label: '아이엠뱅크', value: 'iambank' },
-  { label: '신한은행', value: 'shinhan' },
-  { label: '농협', value: 'nonghyup' },
-  { label: '카카오뱅크', value: 'kakaobank' },
-  { label: '케이뱅크', value: 'kbank' },
-  { label: '씨티은행', value: 'citi' },
-  { label: '수협은행', value: 'suhyup' },
-  { label: '기업은행', value: 'ibk' },
-  { label: '대구은행', value: 'daegu' },
+  { label: '신협은행', value: '신협은행' },
+  { label: '우체국예금', value: '우체국예금' },
+  { label: '전북은행', value: '전북은행' },
+  { label: '새마을금고', value: '새마을금고' },
+  { label: '제일은행', value: '제일은행' },
+  { label: '국민은행', value: '국민은행' },
+  { label: '우리은행', value: '우리은행' },
+  { label: '하나은행', value: '하나은행' },
+  { label: '산업은행', value: '산업은행' },
+  { label: '토스뱅크', value: '토스뱅크' },
+  { label: '부산은행', value: '부산은행' },
+  { label: '광주은행', value: '광주은행' },
+  { label: '아이엠뱅크', value: '아이엠뱅크' },
+  { label: '신한은행', value: '신한은행' },
+  { label: '농협', value: '농협' },
+  { label: '카카오뱅크', value: '카카오뱅크' },
+  { label: '케이뱅크', value: '케이뱅크' },
+  { label: '씨티은행', value: '씨티은행' },
+  { label: '수협은행', value: '수협은행' },
+  { label: '기업은행', value: '기업은행' },
+  { label: '대구은행', value: '대구은행' },
 ];
 
 const emit = defineEmits(['next']);
 
-const bankType = ref('');
-const accountNumber = ref('');
 const bankId = ref('');
 const bankPassword = ref('');
+const accountNumber = ref('');
+const bankType = ref(options[0].value);
+const showError = ref(false);
+
+const handleNext = async () => {
+  const result = await addAccount({
+    accountNumber: accountNumber.value,
+    bankId: bankId.value,
+    bankPassword: bankPassword.value,
+    bankType: bankType.value,
+  });
+
+  if (!result.data) {
+    showError.value = true;
+    return;
+  }
+
+  const authCode = result.data.authCode;
+  emit('next', {
+    accountNumber: accountNumber.value,
+    bankType: bankType.value,
+    authCode,
+  });
+};
+
+watch([bankId, bankPassword], () => {
+  if (showError.value) {
+    showError.value = false;
+  }
+});
 </script>
 
 <template>
@@ -61,10 +89,13 @@ const bankPassword = ref('');
         </div>
         <div class="flex flex-col gap-[10px]">
           <Subtitle2>은행 계정 비밀번호</Subtitle2>
-          <BoxInput v-model="bankPassword" />
+          <BoxInput v-model="bankPassword" type="password" />
         </div>
       </div>
-      <LgMainButton @click="emit('next')">다음</LgMainButton>
+      <Caption1 v-if="showError" class="text-dol-error"
+        >은행 아이디 또는 비밀번호가 일치하지 않습니다.</Caption1
+      >
+      <LgMainButton @click="handleNext">다음</LgMainButton>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, reactive, watch } from 'vue';
+import { ref, computed, reactive } from 'vue';
 
 import Step1 from '@/features/user/signUp/ui/Step1.vue';
 import Step2 from '@/features/user/signUp/ui/Step2.vue';
