@@ -4,6 +4,7 @@ export async function signIn({ loginId, password }) {
   const { url, method } = user.signIn();
   const result = await fetch(url, {
     method: method,
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -22,7 +23,6 @@ export async function signIn({ loginId, password }) {
 
   return res.data;
 }
-
 
 export async function signOut() {
   const { url, method } = user.signOut();
