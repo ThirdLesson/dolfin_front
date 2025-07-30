@@ -1,6 +1,6 @@
 <script setup>
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
-import ExchangeResult from '@/features/exchangeRate/exchangeCheck/ui/ExchangeResult.vue';
+import ExchangeResult from '@/features/exchange/exchangeCheck/ui/ExchangeResult.vue';
 </script>
 <template>
   <div>

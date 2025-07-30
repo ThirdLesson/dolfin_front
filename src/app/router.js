@@ -10,7 +10,7 @@ import GroupRemitPage from '@/pages/GroupRemitPage.vue';
 import LoadingPage from '@/pages/LoadingPage.vue';
 import ComingPage from '@/pages/ComingPage.vue';
 import RecommendationPage from '@/pages/RecommendationPage.vue';
-import TransactionPage from '@/pages/TransactionPage.vue';
+import HistoryPage from '@/pages/HistoryPage.vue';
 import ChargePage from '@/pages/ChargePage.vue';
 import RemitPage from '@/pages/RemitPage.vue';
 import AccountPage from '@/pages/AccountPage.vue';
@@ -46,9 +46,9 @@ const router = createRouter({
       meta: { header: '스마트맵' },
     },
     {
-      path: URL.PAGE.TRANSACTION,
-      name: 'transaction',
-      component: TransactionPage,
+      path: URL.PAGE.HISTORY,
+      name: 'history',
+      component: HistoryPage,
       meta: { header: '거래내역' },
     },
     {
@@ -122,6 +122,12 @@ const router = createRouter({
       name: 'test',
       component: TestPage,
       meta: { header: '테스트' },
+    },
+    {
+      path: URL.PAGE.DUTCH,
+      name: 'dutch',
+      component: ComingPage,
+      meta: { header: '뒤로가기' },
     },
   ],
 });

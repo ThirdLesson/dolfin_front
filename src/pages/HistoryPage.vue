@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import { transactions } from '@/entities/trasnsaction/transaction.mock';
-import TransactionFilter from '@/features/user/transaction/ui/TransactionFilter.vue';
-import TransactionList from '@/features/user/transaction/ui/TransactionList.vue';
+import { transactions } from '@/entities/transaction/transaction.mock';
+import HistoryFilter from '@/features/transaction/history/ui/HistoryFilter.vue';
+import HistoryList from '@/features/transaction/history/ui/HistoryList.vue';
 
 const showFilterModal = ref(false);
 const filterTab = ref('1개월');
@@ -11,16 +11,16 @@ const sortTab = ref('최신순');
 const minAmount = ref('');
 const maxAmount = ref('');
 
-const filteredTransactions = ref([...transactions.value]);
+const filteredHistories = ref([...transactions.value]);
 
 const updateFilteredProducts = (data) => {
-  filteredTransactions.value = data;
+  filteredHistories.value = data;
 };
 </script>
 
 <template>
   <div class="flex flex-col w-full min-h-screen bg-white">
-    <TransactionFilter
+    <HistoryFilter
       :filterTab="filterTab"
       :categoryTab="categoryTab"
       :sortTab="sortTab"
@@ -37,6 +37,6 @@ const updateFilteredProducts = (data) => {
       @updateFilteredProducts="updateFilteredProducts"
     />
 
-    <TransactionList :transactions="filteredTransactions" />
+    <HistoryList :transactions="filteredHistories" />
   </div>
 </template>

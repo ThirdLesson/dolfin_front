@@ -4,7 +4,7 @@ const URL = {
     SIGNUP: '/signup',
     MAIN: '/main',
     MAP: '/map',
-    TRANSACTION: '/transaction',
+    HISTORY: '/history',
     CHARGE: '/charge',
     REMIT: '/remit',
     ACCOUNT: '/account',
@@ -17,6 +17,7 @@ const URL = {
     LOADING: '/loading',
     COMING: '/coming',
     TEST: '/test',
+    DUTCH: '/dutch',
   },
 };
 

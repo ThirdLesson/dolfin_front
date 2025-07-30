@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 
 import NavBar from './NavBar.vue';
 import Header from '../molecules/Header.vue';
-import ExchangeHeader from '@/features/exchangeRate/exchageHeader/ui/ExchangeHeader.vue';
+import ExchangeHeader from '@/features/exchange/exchageHeader/ui/ExchangeHeader.vue';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
 const route = useRoute();
