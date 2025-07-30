@@ -75,8 +75,7 @@ export async function apiFetch(url, options = {}) {
 
     if (refreshed.message === '로그인이 필요한 서비스입니다.') {
       // 리프레시 실패 → 로그인 페이지 이동
-      alert('로그인이 필요한 서비스입니다.');
-      // window.location.href = '/';
+      window.location.href = '/';
     }
   }
 

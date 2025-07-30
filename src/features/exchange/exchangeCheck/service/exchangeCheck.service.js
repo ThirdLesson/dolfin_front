@@ -16,6 +16,17 @@ export async function exchangeCheck({ amount, targetCurrency, type }) {
   return res;
 }
 
+export async function getExchangeGraph(param) {
+  const { url, method } = exchange.graph();
+  const queryUrl = `${url}?targetExchange=${param}`;
+  const response = await apiFetch(queryUrl, {
+    method,
+  });
+
+  const res = await response.json();
+  return res;
+}
+
 export async function exchangeCalculate({ amount, targetCurrency }) {
   const { url, method } = exchange.calculate();
   const response = await apiFetch(url, {
