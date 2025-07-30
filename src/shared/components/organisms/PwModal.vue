@@ -7,15 +7,19 @@ import Keypad from '../atoms/Keypad.vue';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
 const props = defineProps({
+  title: {
+    type: String,
+    default: '전자지갑 비밀번호',
+  },
   errorMessage: { type: String, default: '비밀번호가 올바르지 않습니다.' },
   showError: { type: Boolean, default: false },
 });
+const emit = defineEmits(['close', 'complete']);
 
 const isPC = useMediaQuery();
 
 const password = ref('');
 const shuffledNumbers = ref([]);
-const emit = defineEmits(['close', 'complete']);
 
 const shuffleArray = (arr) => {
   const array = [...arr];
@@ -36,6 +40,11 @@ const deleteNumber = () => (password.value = password.value.slice(0, -1));
 const resetAndShuffle = () => {
   password.value = '';
   shuffleKeypad();
+};
+
+const handleSelect = (num) => {
+  inputNumber(num);
+  emit('input');
 };
 
 watch(password, (newPassword) => {
@@ -72,7 +81,7 @@ onUnmounted(() => {
 
       <div class="flex-1 flex flex-col justify-center">
         <div class="w-full text-center">
-          <Subtitle1>전자지갑 비밀번호</Subtitle1>
+          <Subtitle1>{{ props.title }}</Subtitle1>
         </div>
 
         <div class="w-full flex justify-center gap-3 mt-5">
@@ -99,7 +108,7 @@ onUnmounted(() => {
       <div class="h-[40vh] bg-dol-main text-white">
         <Keypad
           :numbers="shuffledNumbers"
-          @select="inputNumber"
+          @select="handleSelect"
           @reshuffle="resetAndShuffle"
           @delete="deleteNumber"
         />

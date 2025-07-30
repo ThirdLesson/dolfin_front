@@ -37,7 +37,7 @@ const currentStep = computed(() => {
 });
 
 const handleSignUp = async () => {
-  console.log('최종 제출할 데이터:', signupData);
+  // console.log('최종 제출할 데이터:', signupData);
   const result = await signUp({
     birth: formatDate(signupData.birth, '-'),
     country: signupData.country,
@@ -58,14 +58,6 @@ const handleSignUp = async () => {
   signUpResult.value = result.data;
   step.value = 4;
 };
-
-watch(
-  signupData,
-  (newVal) => {
-    console.log('signupData 변경됨:', newVal);
-  },
-  { deep: true },
-);
 </script>
 
 <template>
