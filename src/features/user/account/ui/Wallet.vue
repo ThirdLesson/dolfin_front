@@ -16,15 +16,17 @@ const router = useRouter();
 const isAccountRegistered = ref(true);
 const accountBalance = ref(0);
 
-const goToPage = (path) => router.push(path);
-
-onMounted(async () => {
+const fetchBalance = async () => {
   try {
     accountBalance.value = await getBalance();
   } catch (error) {
     console.error('잔액을 불러오는 중 오류 발생:', error);
     accountBalance.value = 0;
   }
+};
+
+onMounted(() => {
+  fetchBalance();
 });
 </script>
 
@@ -32,7 +34,7 @@ onMounted(async () => {
   <PlainCard
     v-if="!isAccountRegistered"
     class="flex flex-col items-center justify-center cursor-pointer gap-3 h-[200px]"
-    @click="goToPage(URL.PAGE.ACCOUNT)"
+    @click="() => router.push(URL.PAGE.ACCOUNT)"
   >
     <i class="bi bi-plus-circle-dotted text-5xl text-dol-light-gray"></i>
     <P1 class="text-dol-light-gray">계좌 등록하기</P1>
@@ -49,14 +51,18 @@ onMounted(async () => {
 
     <Head1
       class="mb-3 cursor-pointer text-center w-full"
-      @click="goToPage(URL.PAGE.HISTORY)"
+      @click="() => router.push(URL.PAGE.HISTORY)"
     >
       {{ accountBalance.toLocaleString() }} P
     </Head1>
 
     <div class="flex gap-4 w-full justify-center">
-      <MdSubButton @click="goToPage(URL.PAGE.CHARGE)">충전하기</MdSubButton>
-      <MdMainButton @click="goToPage(URL.PAGE.REMIT)">송금하기</MdMainButton>
+      <MdSubButton @click="() => router.push(URL.PAGE.CHARGE)"
+        >충전하기</MdSubButton
+      >
+      <MdMainButton @click="() => router.push(URL.PAGE.REMIT)"
+        >송금하기</MdMainButton
+      >
     </div>
   </PlainCard>
 </template>

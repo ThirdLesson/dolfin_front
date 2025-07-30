@@ -5,7 +5,6 @@ import URL from '@/shared/constants/URL';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 
 const router = useRouter();
-const goToPage = (path) => router.push(path);
 </script>
 
 <template>
@@ -15,7 +14,7 @@ const goToPage = (path) => router.push(path);
     <div class="flex flex-row">
       <div
         class="flex flex-col items-center justify-center w-1/3 cursor-pointer"
-        @click="goToPage(URL.PAGE.GROUP_REMIT)"
+        @click="() => router.push(URL.PAGE.GROUP_REMIT)"
       >
         <img
           :src="Icons.remitMenu"
@@ -27,7 +26,7 @@ const goToPage = (path) => router.push(path);
 
       <div
         class="flex flex-col items-center justify-center w-1/3 cursor-pointer py-6 border-l border-gray-200 h-[70%] self-center"
-        @click="goToPage(URL.PAGE.RECOMMENDATION)"
+        @click="() => router.push(URL.PAGE.RECOMMENDATION)"
       >
         <img
           :src="Icons.recommend"
@@ -39,7 +38,7 @@ const goToPage = (path) => router.push(path);
 
       <div
         class="flex flex-col items-center justify-center w-1/3 cursor-pointer py-6 border-l border-gray-200 h-[70%] self-center"
-        @click="goToPage(URL.PAGE.DUTCH)"
+        @click="() => router.push(URL.PAGE.DUTCH)"
       >
         <img
           :src="Icons.dutchpay"
