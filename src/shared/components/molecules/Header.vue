@@ -1,14 +1,24 @@
 <script setup>
 import { useRouter } from 'vue-router';
-
 import Head2 from '../atoms/typography/Head2.vue';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
-
 import chevron from '@/asset/chevron-left.png';
+
+const props = defineProps({
+  hasCustomBack: {
+    type: Boolean,
+    default: false,
+  },
+});
+const emit = defineEmits(['customBack']);
 
 const router = useRouter();
 const isPC = useMediaQuery();
-const goBack = () => router.back();
+
+const goBack = () => {
+  if (props.hasCustomBack) emit('customBack');
+  else router.back();
+};
 </script>
 
 <template>

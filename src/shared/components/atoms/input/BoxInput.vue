@@ -1,6 +1,9 @@
 <script setup>
 const props = defineProps({
-  placeholder: String,
+  placeholder: {
+    type: String,
+    default: '텍스트를 입력하세요.',
+  },
   type: {
     type: String,
     default: 'text',
