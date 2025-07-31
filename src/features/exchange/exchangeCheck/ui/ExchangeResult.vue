@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, watch } from 'vue';
 import SmallDropdown from '@/shared/components/molecules/SmallDropdown.vue';
 import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
@@ -8,6 +8,9 @@ import { exchangeCheck } from '../service/exchangeCheck.service';
 import { Banks } from '@/asset/images';
 import { bankNameMap } from '@/shared/utils/KorEngMap';
 import BenefitInfo from './BenefitInfo.vue';
+import { useExchangeStore } from '@/entities/exchange/exchange.store';
+
+const store = useExchangeStore();
 
 const options = [
   {
@@ -37,21 +40,23 @@ const data = ref([]);
 
 const exchangeCheckFunction = async () => {
   const result = await exchangeCheck({
-    amount: 1000,
-    targetCurrency: 'VND',
+    amount: store.exchangeOption.amount,
+    targetCurrency: store.exchangeOption.targetCurrency,
     type: selectedType.value,
   });
 
   data.value = result.data.allBanks;
 };
 
-onMounted(() => {
-  exchangeCheckFunction();
-});
-
-watch(selectedType, () => {
-  exchangeCheckFunction();
-});
+watch(
+  selectedType,
+  () => {
+    exchangeCheckFunction();
+  },
+  {
+    immediate: true,
+  },
+);
 </script>
 <template>
   <div class="flex flex-col">

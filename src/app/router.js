@@ -67,7 +67,10 @@ const router = createRouter({
       path: URL.PAGE.ACCOUNT,
       name: 'account',
       component: AccountPage,
-      meta: { header: '계좌등록' },
+      meta: {
+        header: '계좌등록',
+        customBack: true,
+      },
     },
     {
       path: URL.PAGE.RECOMMENDATION,

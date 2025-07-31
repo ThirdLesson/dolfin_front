@@ -5,6 +5,7 @@ export const useUserStore = defineStore(
   'user',
   () => {
     const userInfo = ref({
+      loginId: '',
       birth: '',
       currency: '',
       grantType: '',
@@ -22,6 +23,7 @@ export const useUserStore = defineStore(
 
     const clearUserInfo = () => {
       userInfo.value = {
+        loginId: '',
         birth: '',
         currency: '',
         grantType: '',
