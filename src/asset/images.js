@@ -33,7 +33,6 @@ import uk from './flag/uk.png';
 import usa from './flag/usa.png';
 import vietnam from './flag/vietnam.png';
 
-import calculator from './icon/calculator.png';
 import check from './icon/check.png';
 import dutchpay from './icon/dutchpay.png';
 import exchange from './icon/exchange.png';
@@ -45,6 +44,7 @@ import mapActive from './icon/mapActive.png';
 import recommend from './icon/recommend.png';
 import remit from './icon/remit.png';
 import remitActive from './icon/remitActive.png';
+import remitMenu from './icon/remitMenu.png';
 
 import circleLogo from './logo/circleLogo.png';
 import comingLogo from './logo/comingLogo.png';
@@ -59,7 +59,6 @@ export const Logos = {
 };
 
 export const Icons = {
-  calculator,
   check,
   dutchpay,
   exchange,
@@ -71,6 +70,7 @@ export const Icons = {
   recommend,
   remit,
   remitActive,
+  remitMenu,
 };
 
 export const Flags = {
