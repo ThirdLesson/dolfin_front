@@ -22,9 +22,7 @@ const recentTransactions = ref([
         :key="index"
         :class="[
           'flex justify-between pb-3',
-          index !== recentTransactions.slice(0, 3).length - 1
-            ? 'border-b border-dol-light-gray'
-            : '',
+          index !== recentTransactions.slice(0, 3).length - 1 ? 'border-b' : '',
         ]"
       >
         <div>

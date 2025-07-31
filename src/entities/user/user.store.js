@@ -15,10 +15,15 @@ export const useUserStore = defineStore(
       passportNumber: '',
       phoneNumber: '',
       remainTime: '',
+      walletId: null,
     });
 
     const setUserInfo = (data) => {
       userInfo.value = { ...data };
+    };
+
+    const setWalletId = (id) => {
+      userInfo.value.walletId = id;
     };
 
     const clearUserInfo = () => {
@@ -33,6 +38,7 @@ export const useUserStore = defineStore(
         passportNumber: '',
         phoneNumber: '',
         remainTime: '',
+        walletId: null,
       };
     };
 
@@ -57,6 +63,7 @@ export const useUserStore = defineStore(
       clearUserInfo,
       isLoggedIn,
       remainDays,
+      setWalletId,
     };
   },
   {
