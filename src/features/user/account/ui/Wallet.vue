@@ -2,7 +2,7 @@
 import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/entities/user/user.store';
-import { getBalance } from '@/features/user/account/services/account.service';
+import { getWalletInfo } from '@/features/user/account/services/account.service';
 
 import URL from '@/shared/constants/URL';
 import CircleLogo from '@/asset/logo/circleLogo.png';
@@ -16,35 +16,35 @@ import MdMainButton from '@/shared/components/atoms/button/MdMainButton.vue';
 
 const router = useRouter();
 const accountBalance = ref(null);
+const walletId = ref(null);
 
 const userStore = useUserStore();
 const { setWalletId } = userStore;
 
-const fetchBalance = async () => {
-  const result = await getBalance();
+const fetchWalletInfo = async () => {
+  const result = await getWalletInfo();
 
-  if (result?.balance != null) {
-    accountBalance.value = result.balance;
-    setWalletId(result.walletId);
-  } else {
-    accountBalance.value = null;
+  if (result.data) {
+    accountBalance.value = result.data.balance;
+    walletId.value = result.data.walletId;
+    setWalletId(result.data.walletId);
   }
 };
 
-const showRegister = computed(() => accountBalance.value === null);
+const isRegistered = computed(() => walletId.value === null);
 
 onMounted(() => {
-  fetchBalance();
+  fetchWalletInfo();
 });
 </script>
 
 <template>
   <PlainCard
-    v-if="showRegister"
-    class="flex flex-col items-center justify-center cursor-pointer gap-3 h-[200px]"
+    v-if="isRegistered"
+    class="flex flex-col items-center justify-center cursor-pointer gap-3 h-[20vh]"
     @click="() => router.push(URL.PAGE.ACCOUNT)"
   >
-    <i class="bi bi-plus-circle-dotted text-5xl text-dol-light-gray"></i>
+    <i class="bi bi-plus-circle-dotted text-5xl text-dol-light-gray" />
     <P1 class="text-dol-light-gray">계좌 등록하기</P1>
   </PlainCard>
 
@@ -62,7 +62,7 @@ onMounted(() => {
         class="cursor-pointer text-center w-full"
         @click="() => router.push(URL.PAGE.HISTORY)"
       >
-        {{ accountBalance.toLocaleString() }} P
+        {{ accountBalance?.toLocaleString() }} P
       </Head1>
 
       <div class="flex gap-4 w-full justify-center">

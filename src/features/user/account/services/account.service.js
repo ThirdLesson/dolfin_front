@@ -1,4 +1,5 @@
 import { transaction } from '@/entities/transaction/transaction.api';
+import { user } from '@/entities/user/user.api';
 import { apiFetch } from '@/shared/utils/client';
 
 export async function addAccount(data) {
@@ -41,4 +42,12 @@ export async function setWalletPw(data) {
     status: response.status,
     ...res,
   };
+}
+
+export async function getWalletInfo() {
+  const { url, method } = user.wallet();
+  const response = await apiFetch(url, { method });
+
+  const res = await response.json();
+  return res;
 }
