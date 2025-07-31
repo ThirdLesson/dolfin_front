@@ -13,16 +13,12 @@ import MdMainButton from '@/shared/components/atoms/button/MdMainButton.vue';
 import { getBalance } from '@/features/user/account/services/account.service';
 
 const router = useRouter();
-const isAccountRegistered = ref(true);
+const isAccountRegistered = ref(false);
 const accountBalance = ref(0);
 
 const fetchBalance = async () => {
-  try {
-    accountBalance.value = await getBalance();
-  } catch (error) {
-    console.error('잔액을 불러오는 중 오류 발생:', error);
-    accountBalance.value = 0;
-  }
+  const result = await getBalance();
+  accountBalance.value = result.data.balance ?? 0;
 };
 
 onMounted(() => {
