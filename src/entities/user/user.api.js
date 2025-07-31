@@ -27,4 +27,8 @@ export const user = {
     url: `${import.meta.env.VITE_APP_API_URL}/auth/join`,
     method: 'POST',
   }),
+  wallet: () => ({
+    url: `${import.meta.env.VITE_APP_API_URL}/wallet`,
+    method: 'GET',
+  }),
 };
