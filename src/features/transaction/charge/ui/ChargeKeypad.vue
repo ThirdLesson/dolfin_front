@@ -29,14 +29,19 @@ const selectedAccount = reactive({
   accountNumber: '',
 });
 
-onMounted(async () => {
+const fetchMyAccounts = async () => {
   if (!walletId.value) return;
+
   const res = await getLinkedAccounts(walletId.value);
   if (res.status === 200 && res.data?.length) {
     accounts.value = res.data;
     selectedAccount.bankType = accounts.value[0].bankType;
     selectedAccount.accountNumber = accounts.value[0].accountNumber;
   }
+};
+
+onMounted(() => {
+  fetchMyAccounts();
 });
 
 const amount = ref(0);
