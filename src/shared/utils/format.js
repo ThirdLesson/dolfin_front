@@ -10,3 +10,13 @@ export function formatDate(date, delimiter = '.') {
 
   return [year, month, day].join(delimiter);
 }
+
+export function formatAccountNumber(accountNumber) {
+  // 간단한 하이픈 포맷터 예시 (원하는 방식대로 조정 가능)
+  if (!accountNumber || accountNumber === '0') return '-';
+  return accountNumber.replace(/(\d{3})(\d{2,3})(\d{4})/, '$1-$2-$3');
+}
+
+export function formatPhoneNumber(phoneNumber) {
+  return phoneNumber.replace(/-/g, ''); // '-' 제거
+}

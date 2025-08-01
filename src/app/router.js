@@ -12,11 +12,14 @@ import ComingPage from '@/pages/ComingPage.vue';
 import RecommendationPage from '@/pages/RecommendationPage.vue';
 import HistoryPage from '@/pages/HistoryPage.vue';
 import ChargePage from '@/pages/ChargePage.vue';
-import RemitPage from '@/pages/RemitPage.vue';
 import AccountPage from '@/pages/AccountPage.vue';
 import MyPage from '@/pages/MyPage.vue';
 import ExchangeCalculatorPage from '@/pages/ExchangeCalculatorPage.vue';
 import ExchangeResultPage from '@/pages/ExchangeResultPage.vue';
+import RemitSelectPage from '@/pages/RemitSelectPage.vue';
+import RemitInputPage from '@/pages/RemitInputPage.vue';
+import RemitAmountPage from '@/pages/RemitAmountPage.vue';
+import RemitCompletePage from '@/pages/RemitCompletePage.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,12 +61,6 @@ const router = createRouter({
       meta: { header: '충전' },
     },
     {
-      path: URL.PAGE.REMIT,
-      name: 'remit',
-      component: RemitPage,
-      meta: { header: '송금' },
-    },
-    {
       path: URL.PAGE.ACCOUNT,
       name: 'account',
       component: AccountPage,
@@ -71,6 +68,30 @@ const router = createRouter({
         header: '계좌등록',
         customBack: true,
       },
+    },
+    {
+      path: URL.PAGE.REMIT_SELECT,
+      name: 'remit-select',
+      component: RemitSelectPage,
+      meta: { header: '송금하기' },
+    },
+    {
+      path: URL.PAGE.REMIT_INPUT,
+      name: 'remit-input',
+      component: RemitInputPage,
+      meta: { header: '송금하기' },
+    },
+    {
+      path: URL.PAGE.REMIT_AMOUNT,
+      name: 'remit-amount',
+      component: RemitAmountPage,
+      meta: { header: '송금하기' },
+    },
+    {
+      path: URL.PAGE.REMIT_COMPLETE,
+      name: 'remit-complete',
+      component: RemitCompletePage,
+      meta: { header: '송금하기' },
     },
     {
       path: URL.PAGE.RECOMMENDATION,

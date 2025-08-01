@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import URL from '@/shared/constants/URL';
 import SelectCurrency from '@/features/exchange/exchangeCheck/ui/SelectCurrency.vue';
 import ExchangeGraph from '@/features/exchange/exchangeCheck/ui/ExchangeGraph.vue';
 import InputAmount from '@/features/exchange/exchangeCheck/ui/InputAmount.vue';
@@ -14,7 +15,7 @@ const exchangeStore = useExchangeStore();
 
 const targetCurrency = ref(userStore.userInfo.currency);
 const amount = ref('');
- 
+
 const handleComplete = () => {
   const option = {
     amount: Number(amount.value),
@@ -22,7 +23,7 @@ const handleComplete = () => {
   };
 
   exchangeStore.setExchangeOption(option);
-  router.push('/exchange-result');
+  router.push(URL.PAGE.EXCHANGE_RESULT);
 };
 </script>
 

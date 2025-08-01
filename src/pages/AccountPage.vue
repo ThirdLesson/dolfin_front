@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import { useRouter } from 'vue-router';
+import URL from '@/shared/constants/URL';
 import Step1 from '@/features/user/account/ui/Step1.vue';
 import Step2 from '@/features/user/account/ui/Step2.vue';
 import { setWalletPw } from '@/features/user/account/services/account.service';
@@ -39,7 +40,7 @@ const handleComplete = async (pw) => {
   });
 
   if (result.status === 204) {
-    router.push('/main');
+    router.push(URL.PAGE.MAIN);
   }
 };
 

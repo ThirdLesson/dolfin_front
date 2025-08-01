@@ -3,7 +3,7 @@ import { reactive, ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/entities/user/user.store';
 import { chargeWallet } from '../services/charge.service';
-import { getLinkedAccounts } from '@/features/user/account/services/account.service';
+import { getMyAccounts } from '../../remit/services/remit.service';
 import { Icons } from '@/asset/images';
 
 import Keypad from '@/shared/components/atoms/Keypad.vue';
@@ -19,22 +19,22 @@ import Head2 from '@/shared/components/atoms/typography/Head2.vue';
 
 const router = useRouter();
 const userStore = useUserStore();
-const walletId = computed(() => userStore.userInfo.walletId);
+
+const amount = ref(0);
 const pwError = ref(false);
 const minAmountError = ref(false);
-
 const accounts = ref([]);
 const selectedAccount = reactive({
   bankType: '',
   accountNumber: '',
 });
 
-const fetchMyAccounts = async () => {
-  if (!walletId.value) return;
+const walletId = computed(() => userStore.userInfo.walletId);
 
-  const res = await getLinkedAccounts(walletId.value);
-  if (res.status === 200 && res.data?.length) {
-    accounts.value = res.data;
+const fetchMyAccounts = async () => {
+  const result = await getMyAccounts();
+  if (result.status === 200) {
+    accounts.value = result.data;
     selectedAccount.bankType = accounts.value[0].bankType;
     selectedAccount.accountNumber = accounts.value[0].accountNumber;
   }
@@ -43,8 +43,6 @@ const fetchMyAccounts = async () => {
 onMounted(() => {
   fetchMyAccounts();
 });
-
-const amount = ref(0);
 
 const quickTabs = [
   { label: '+1천', value: 1000 },
@@ -109,10 +107,6 @@ const handlePasswordComplete = async (walletPassword) => {
   }
 };
 
-const handleConfirm = () => {
-  router.push(URL.PAGE.MAIN);
-};
-
 const handleSelectAccount = (account) => {
   selectedAccount.bankType = account.bankType;
   selectedAccount.accountNumber = account.accountNumber;
@@ -131,7 +125,9 @@ const handleSelectAccount = (account) => {
       <Head2 class="text-dol-dark-gray">충전 완료</Head2>
     </div>
 
-    <LgMainButton class="w-full" @click="handleConfirm">확인</LgMainButton>
+    <LgMainButton class="w-full" @click="router.push(URL.PAGE.MAIN)"
+      >확인</LgMainButton
+    >
   </div>
 
   <div v-else class="flex flex-col h-full px-6 pb-6 pt-4 gap-4 justify-between">

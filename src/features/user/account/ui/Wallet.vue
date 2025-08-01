@@ -69,7 +69,7 @@ onMounted(() => {
         <MdSubButton @click="() => router.push(URL.PAGE.CHARGE)"
           >충전하기</MdSubButton
         >
-        <MdMainButton @click="() => router.push(URL.PAGE.REMIT)"
+        <MdMainButton @click="() => router.push(URL.PAGE.REMIT_SELECT)"
           >송금하기</MdMainButton
         >
       </div>

@@ -72,3 +72,45 @@ dateList.forEach(({ date, count }) => {
 transactionsArr.sort((a, b) => new Date(b.date) - new Date(a.date));
 
 export const transactions = ref(transactionsArr);
+
+export const mockRecentAccounts = [
+  {
+    accountNumber: '110251387021',
+    bankType: '국민은행',
+    name: '김민준',
+  },
+  {
+    accountNumber: '302123456789',
+    bankType: '농협은행',
+    name: '박지민',
+  },
+  {
+    accountNumber: '3332045123456',
+    bankType: '카카오뱅크',
+    name: '이정후',
+  },
+  {
+    accountNumber: '110449912345',
+    bankType: '신한은행',
+    name: '최예빈',
+  },
+];
+
+export const mockRecentTels = [
+  {
+    name: '김민준',
+    phoneNumber: '010-1234-5678',
+  },
+  {
+    name: '박지민',
+    phoneNumber: '010-9876-5432',
+  },
+  {
+    name: '이정후',
+    phoneNumber: '010-1111-2222',
+  },
+  {
+    name: '최예빈',
+    phoneNumber: '010-3333-4444',
+  },
+];

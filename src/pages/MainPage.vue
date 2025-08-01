@@ -9,7 +9,6 @@ import Menu from '@/features/user/menu/ui/Menu.vue';
 import RecentHistory from '@/features/transaction/history/ui/RecentHistory.vue';
 
 const router = useRouter();
-
 const userStore = useUserStore();
 const { userInfo } = storeToRefs(userStore);
 </script>

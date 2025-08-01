@@ -18,5 +18,5 @@ export const bankNameMap = {
   수협은행: 'sh',
   한국산업은행: 'kdb',
   제주은행: 'im',
-  CU: 'cu',
+  신협은행: 'cu',
 };

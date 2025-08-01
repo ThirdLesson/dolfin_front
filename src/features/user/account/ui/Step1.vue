@@ -92,10 +92,12 @@ watch([bankId, bankPassword], () => {
           <BoxInput v-model="bankPassword" type="password" />
         </div>
       </div>
-      <Caption1 v-if="showError" class="text-dol-error"
-        >은행 아이디 또는 비밀번호가 일치하지 않습니다.</Caption1
-      >
-      <LgMainButton @click="handleNext">다음</LgMainButton>
+      <div class="flex flex-col items-center">
+        <Caption1 v-if="showError" class="text-dol-error"
+          >은행 아이디 또는 비밀번호가 일치하지 않습니다.</Caption1
+        >
+        <LgMainButton @click="handleNext">다음</LgMainButton>
+      </div>
     </div>
   </div>
 </template>
