@@ -36,13 +36,13 @@ const emit = defineEmits([
   >
     <ul>
       <li
-        v-for="(account, idx) in props.accounts"
+        v-for="(item, idx) in props.accounts"
         :key="idx"
         class="py-3 cursor-pointer"
-        @click="emit('selectAccount', account)"
+        @click="emit('selectAccount', item)"
       >
-        <SingleCard :image="Banks[bankNameMap[account.bankType]]"
-          >{{ account.bankType }} {{ account.accountNumber }}</SingleCard
+        <SingleCard :image="Banks[bankNameMap[item.bankType]]"
+          >{{ item.bankType }} {{ item.accountNumber }}</SingleCard
         >
       </li>
     </ul>
@@ -51,8 +51,8 @@ const emit = defineEmits([
   <PwModal
     v-if="props.showPwModal"
     title="전자지갑 비밀번호"
-    :showError="$props.showError"
-    :errorMessage="$props.errorMessage"
+    :showError="props.showError"
+    :errorMessage="props.errorMessage"
     @close="emit('closePwModal')"
     @complete="(pw) => emit('passwordComplete', pw)"
   />

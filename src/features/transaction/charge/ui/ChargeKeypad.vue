@@ -107,6 +107,12 @@ const handlePasswordComplete = async (walletPassword) => {
 const handleConfirm = () => {
   router.push(URL.PAGE.MAIN);
 };
+
+const handleSelectAccount = (account) => {
+  selectedAccount.bankType = account.bankType;
+  selectedAccount.accountNumber = account.accountNumber;
+  showModal.value = false;
+};
 </script>
 
 <template>
@@ -181,13 +187,7 @@ const handleConfirm = () => {
     :accounts="accounts"
     :showPwModal="showPwModal"
     :showError="pwError"
-    @selectAccount="
-      (account) => {
-        selectedAccount.bankType = account.bankType;
-        selectedAccount.accountNumber = account.accountNumber;
-        showModal = false;
-      }
-    "
+    @selectAccount="handleSelectAccount"
     @closeModal="showModal = false"
     @closePwModal="showPwModal = false"
     @passwordComplete="handlePasswordComplete"
