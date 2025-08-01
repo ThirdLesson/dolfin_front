@@ -1,5 +1,9 @@
-<script setup></script>
+<script setup>
+import ChargeKeypad from '@/features/transaction/charge/ui/ChargeKeypad.vue';
+</script>
 
 <template>
-  <main>charge</main>
+  <div class="flex flex-col w-full h-full bg-white">
+    <ChargeKeypad />
+  </div>
 </template>
