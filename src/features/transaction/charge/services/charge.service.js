@@ -9,7 +9,7 @@ export const chargeWallet = async ({
 }) => {
   const { url, method } = transaction.charge(walletId);
 
-  const response = await apiFetch(url, {
+  const response = await apiFetch(`${url}/${walletId}`, {
     method,
     body: JSON.stringify({
       amount,

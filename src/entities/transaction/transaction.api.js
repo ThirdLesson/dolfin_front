@@ -11,8 +11,8 @@ export const transaction = {
     url: `${import.meta.env.VITE_APP_API_URL}/codef/account/wallet`,
     method: 'POST',
   }),
-  charge: (walletId) => ({
-    url: `${import.meta.env.VITE_APP_API_URL}/wallet/${walletId}`,
+  charge: () => ({
+    url: `${import.meta.env.VITE_APP_API_URL}/wallet`,
     method: 'POST',
   }),
   getLinkedAccounts: (walletId) => ({
