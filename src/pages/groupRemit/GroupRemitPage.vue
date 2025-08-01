@@ -1,12 +1,7 @@
-
 <script setup>
-import RemitGuide from '@/features/groupRemit/ui/RemitGuide.vue';
+import GroupGuide from '@/features/groupRemit/ui/GroupGuide.vue';
 </script>
 
 <template>
-  <RemitGuide></RemitGuide>
+  <GroupGuide />
 </template>
-
-
-
-

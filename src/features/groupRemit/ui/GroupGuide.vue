@@ -12,7 +12,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="bg-dol-sub px-4 py-6 space-y-6">
+  <div class="bg-dol-sub space-y-6">
     <div class="flex flex-col text-left gap-[10px]">
       <div>
         <Head2>함께하면 더 저렴한 해외 송금</Head2>
@@ -31,7 +31,7 @@ const router = useRouter();
     </div>
 
     <PlainCard class="bg-white p-4">
-      <div class="flex items-center items-start gap-4">
+      <div class="flex items-center gap-4">
         <img
           :src="Icons.recruit"
           alt="recruit"
@@ -45,12 +45,12 @@ const router = useRouter();
     </PlainCard>
 
     <PlainCard class="bg-white p-4">
-      <div class="flex items-center items-start gap-4">
+      <div class="flex items-center gap-4">
         <img
           :src="Icons.autoRemit"
           alt="autoRemit"
           class="w-[30px] h-[30px] mt-1"
-        />
+        /><img />
         <div class="flex flex-col">
           <Head3 class="mb-1">자동 이체</Head3>
           <P2 class="text-dol-gray">
@@ -62,7 +62,7 @@ const router = useRouter();
     </PlainCard>
 
     <PlainCard class="bg-white p-4">
-      <div class="flex items-center items-start gap-4">
+      <div class="flex items-start gap-4">
         <img
           :src="Icons.condition"
           alt="condition"
