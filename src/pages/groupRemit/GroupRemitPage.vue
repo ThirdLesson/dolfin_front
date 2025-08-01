@@ -1,3 +1,4 @@
+
 <script setup>
 import RemitGuide from '@/features/groupRemit/ui/RemitGuide.vue';
 </script>
@@ -5,3 +6,7 @@ import RemitGuide from '@/features/groupRemit/ui/RemitGuide.vue';
 <template>
   <RemitGuide></RemitGuide>
 </template>
+
+
+
+
