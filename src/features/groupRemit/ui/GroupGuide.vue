@@ -5,22 +5,20 @@ import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import P2 from '@/shared/components/atoms/typography/P2.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { Icons, Logos } from '@/asset/images';
-import PlainCard from '@/shared/components/molecules/card/PlainCard.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
+import SingleCard from '@/shared/components/molecules/card/SingleCard.vue';
 
 const router = useRouter();
 </script>
 
 <template>
-  <div class="bg-dol-sub space-y-6">
-    <div class="flex flex-col text-left gap-[10px]">
-      <div>
+  <div class="bg-dol-sub flex flex-col gap-6">
+    <div class="flex flex-col text-left">
+      <div class="pt-[10px]">
         <Head2>함께하면 더 저렴한 해외 송금</Head2>
-        <Head3 class="text-dol-main font-semibold"
-          >30명이 모이면 특별 혜택 시작!</Head3
-        >
+        <Head3 class="text-dol-main">30명이 모이면 특별 혜택 시작!</Head3>
       </div>
-      <div>
+      <div class="pt-[10px]">
         <P2 class="text-dol-gray"
           >혼자 보내면 비싸지만, 함께 보내면 저렴해요</P2
         >
@@ -30,53 +28,26 @@ const router = useRouter();
       </div>
     </div>
 
-    <PlainCard class="bg-white p-4">
-      <div class="flex items-center gap-4">
-        <img
-          :src="Icons.recruit"
-          alt="recruit"
-          class="w-[30px] h-[30px] mt-1"
-        />
-        <div class="flex flex-col">
-          <Head3 class="mb-1">상시 모집</Head3>
-          <P2 class="text-dol-gray"> 매월 1일~31일까지 언제든 참여 가능 </P2>
-        </div>
-      </div>
-    </PlainCard>
+    <SingleCard
+      class="bg-white"
+      :title="'상시 모집'"
+      :subtitle="'매월 1일~31일까지 언제든 참여 가능'"
+      :image="Icons.recruit"
+    />
 
-    <PlainCard class="bg-white p-4">
-      <div class="flex items-center gap-4">
-        <img
-          :src="Icons.autoRemit"
-          alt="autoRemit"
-          class="w-[30px] h-[30px] mt-1"
-        /><img />
-        <div class="flex flex-col">
-          <Head3 class="mb-1">자동 이체</Head3>
-          <P2 class="text-dol-gray">
-            매월 설정한 날짜에 자동으로 송금 실행<br />
-            최소 10만원 ~ 최대 300만원
-          </P2>
-        </div>
-      </div>
-    </PlainCard>
+    <SingleCard
+      class="bg-white"
+      :title="'자동 이체'"
+      :subtitle="'매월 설정한 날짜에 자동으로 송금 실행\n최소 10만원 ~ 최대 300만원'"
+      :image="Icons.autoRemit"
+    />
 
-    <PlainCard class="bg-white p-4">
-      <div class="flex items-start gap-4">
-        <img
-          :src="Icons.condition"
-          alt="condition"
-          class="w-[30px] h-[30px] mt-1"
-        />
-        <div class="flex flex-col">
-          <Head3 class="mb-1">참여 조건</Head3>
-          <P2 class="text-dol-gray">
-            KB국민은행의 스타뱅킹 가입 및 외국환거래등록이 되어 있다면 누구나
-            참여 가능
-          </P2>
-        </div>
-      </div>
-    </PlainCard>
+    <SingleCard
+      class="bg-white"
+      :title="'참여 조건'"
+      :subtitle="'KB국민은행의 스타뱅킹 가입 및 외국환 거래 등록이 되어 있다면 누구나 참여 가능'"
+      :image="Icons.condition"
+    />
 
     <div
       class="rounded-xl p-6 text-center text-white bg-gradient-to-r from-[#3F7FF5] to-[#8F35EA]"
