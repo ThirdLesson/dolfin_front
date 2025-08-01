@@ -51,3 +51,14 @@ export async function getWalletInfo() {
   const res = await response.json();
   return res;
 }
+
+export async function getLinkedAccounts(walletId) {
+  const { url, method } = transaction.getLinkedAccounts(walletId);
+  const response = await apiFetch(url, { method });
+
+  const res = await response.json();
+  return {
+    status: response.status,
+    ...res,
+  };
+}
