@@ -51,12 +51,14 @@ import circleLogo from './logo/circleLogo.png';
 import comingLogo from './logo/comingLogo.png';
 import loading from './logo/loading.gif';
 import logo from './logo/logo.png';
+import nbgLogo from './logo/nbgLogo.png';
 
 export const Logos = {
   circleLogo,
   comingLogo,
   loading,
   logo,
+  nbgLogo,
 };
 
 export const Icons = {
