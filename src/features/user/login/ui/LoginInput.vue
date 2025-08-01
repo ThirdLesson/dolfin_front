@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-
+import URL from '@/shared/constants/URL';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';

@@ -11,7 +11,7 @@ defineEmits(['select', 'reshuffle', 'delete']);
 
 <template>
   <div
-    class="grid grid-cols-3 grid-rows-4 gap-2 w-full h-[18vh] justify-items-center"
+    class="grid grid-cols-3 grid-rows-4 gap-2 w-full min-h-[18vh] justify-items-center"
     :class="{ 'h-full': heightFull }"
   >
     <button
