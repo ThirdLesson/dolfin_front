@@ -45,6 +45,7 @@ import recommend from './icon/recommend.png';
 import remit from './icon/remit.png';
 import remitActive from './icon/remitActive.png';
 import remitMenu from './icon/remitMenu.png';
+import tel from './icon/tel.png';
 
 import circleLogo from './logo/circleLogo.png';
 import comingLogo from './logo/comingLogo.png';
@@ -73,6 +74,7 @@ export const Icons = {
   remit,
   remitActive,
   remitMenu,
+  tel,
 };
 
 export const Flags = {
