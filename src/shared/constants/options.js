@@ -1,0 +1,25 @@
+import { Banks } from '@/asset/images';
+
+export const bankOptions = [
+  { label: '신협은행', value: '신협은행', src: Banks.cu },
+  { label: '우체국예금', value: '우체국예금', src: Banks.post },
+  { label: '전북은행', value: '전북은행', src: Banks.gwangju },
+  { label: '새마을금고', value: '새마을금고', src: Banks.mg },
+  { label: '제일은행', value: '제일은행', src: Banks.sc },
+  { label: '국민은행', value: '국민은행', src: Banks.kb },
+  { label: '우리은행', value: '우리은행', src: Banks.woori },
+  { label: '하나은행', value: '하나은행', src: Banks.hana },
+  { label: '산업은행', value: '산업은행', src: Banks.kdb },
+  { label: '토스뱅크', value: '토스뱅크', src: Banks.toss },
+  { label: '부산은행', value: '부산은행', src: Banks.busan },
+  { label: '광주은행', value: '광주은행', src: Banks.gwangju },
+  { label: '아이엠뱅크', value: '아이엠뱅크', src: Banks.im },
+  { label: '신한은행', value: '신한은행', src: Banks.shinhan },
+  { label: '농협', value: '농협', src: Banks.nh },
+  { label: '카카오뱅크', value: '카카오뱅크', src: Banks.kakao },
+  { label: '케이뱅크', value: '케이뱅크', src: Banks.k },
+  { label: '씨티은행', value: '씨티은행', src: Banks.city },
+  { label: '수협은행', value: '수협은행', src: Banks.sh },
+  { label: '기업은행', value: '기업은행', src: Banks.ibk },
+  { label: '대구은행', value: '대구은행', src: Banks.dgb },
+];

@@ -3,6 +3,11 @@ import PlainCard from '@/shared/components/molecules/card/PlainCard.vue';
 import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import { Flags } from '@/asset/images';
+import { useUserStore } from '@/entities/user/user.store';
+
+const store = useUserStore();
+
+const userName = store.userInfo.name;
 
 const options = [
   {
@@ -72,7 +77,7 @@ const model = defineModel();
 
 <template>
   <PlainCard>
-    <Head3>루나키키님의 기준 통화</Head3>
+    <Head3>{{ userName }}님의 기준 통화</Head3>
     <Dropdown :options="options" v-model="model" />
   </PlainCard>
 </template>

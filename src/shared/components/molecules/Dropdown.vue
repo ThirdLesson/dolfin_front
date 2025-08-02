@@ -62,19 +62,19 @@ const selectedOption = computed(() => {
         class="absolute top-[48px] z-10 mt-1 w-full border border-dol-dark-gray rounded bg-white shadow"
       >
         <li
-          v-for="option in props.options"
-          :key="option.value"
-          @click="select(option.value)"
-          class="h-[45px] px-4 py-2 border-b border-dol-light-gray hover:bg-dol-sub text-[15px] font-semibold cursor-pointer"
+          v-for="item in props.options"
+          :key="item.value"
+          @click="select(item.value)"
+          class="flex items-center h-[45px] px-4 border-b border-dol-light-gray hover:bg-dol-sub text-[15px] font-semibold cursor-pointer"
         >
-          <div class="flex items-center gap-[15px]">
+          <div class="flex items-center gap-[10px]">
             <div
-              v-if="option.src"
-              class="h-5 w-5 lex items-center justify-center"
+              v-if="item.src"
+              class="h-5 w-5 flex items-center justify-center"
             >
-              <img :src="option.src" class="object-fit" />
+              <img :src="item.src" class="object-fit" />
             </div>
-            {{ option.label }}
+            {{ item.label }}
           </div>
         </li>
       </ul>

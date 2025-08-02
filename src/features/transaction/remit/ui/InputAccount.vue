@@ -9,36 +9,13 @@ import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { checkAccountName } from '../services/remit.service';
 import { useTransStore } from '@/entities/transaction/transaction.store';
-
-const options = [
-  { label: '신협은행', value: '신협은행' },
-  { label: '우체국예금', value: '우체국예금' },
-  { label: '전북은행', value: '전북은행' },
-  { label: '새마을금고', value: '새마을금고' },
-  { label: '제일은행', value: '제일은행' },
-  { label: '국민은행', value: '국민은행' },
-  { label: '우리은행', value: '우리은행' },
-  { label: '하나은행', value: '하나은행' },
-  { label: '산업은행', value: '산업은행' },
-  { label: '토스뱅크', value: '토스뱅크' },
-  { label: '부산은행', value: '부산은행' },
-  { label: '광주은행', value: '광주은행' },
-  { label: '아이엠뱅크', value: '아이엠뱅크' },
-  { label: '신한은행', value: '신한은행' },
-  { label: '농협', value: '농협' },
-  { label: '카카오뱅크', value: '카카오뱅크' },
-  { label: '케이뱅크', value: '케이뱅크' },
-  { label: '씨티은행', value: '씨티은행' },
-  { label: '수협은행', value: '수협은행' },
-  { label: '기업은행', value: '기업은행' },
-  { label: '대구은행', value: '대구은행' },
-];
+import { bankOptions } from '@/shared/constants/options';
 
 const router = useRouter();
 const store = useTransStore();
 
 const accountNumber = ref(null);
-const bankType = ref(options[0].value);
+const bankType = ref(bankOptions[0].value);
 const showError = ref(false);
 const errorMsg = ref('');
 
@@ -82,7 +59,7 @@ watch([accountNumber], () => {
           v-model="accountNumber"
         />
       </div>
-      <Dropdown title="은행 선택" :options="options" v-model="bankType" />
+      <Dropdown title="은행 선택" :options="bankOptions" v-model="bankType" />
     </div>
     <div class="flex flex-col items-center">
       <Caption1
