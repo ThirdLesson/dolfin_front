@@ -1,10 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import Head1 from '@/shared/components/atoms/typography/Head1.vue';
-import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
-import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
-import Keypad from '@/shared/components/atoms/Keypad.vue';
+import AmountDisplay from '@/features/transaction/remit/ui/AmountDisplay.vue';
+import QuickAddButtons from '@/features/transaction/remit/ui/QuickAddButtons.vue';
+import AmountKeypad from '@/features/transaction/remit/ui/AmountKeypad.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import PwModal from '@/shared/components/organisms/PwModal.vue';
 import URL from '@/shared/constants/URL';
@@ -16,17 +15,10 @@ import {
 } from '@/features/transaction/remit/services/remit.service';
 
 const store = useTransStore();
-const route = useRoute();
 const router = useRouter();
+const route = useRoute();
 
 const type = route.query.type;
-
-const quickTabs = [
-  { label: '+1천', value: 1000 },
-  { label: '+5천', value: 5000 },
-  { label: '+1만', value: 10000 },
-  { label: '+10만', value: 100000 },
-];
 
 const amount = ref(0);
 const password = ref('');
@@ -40,18 +32,14 @@ const handleSelect = (num) => {
   amount.value = isNaN(newVal) ? 0 : newVal;
 };
 
-const handlePwComplete = (pw) => {
-  password.value = pw;
-  handleTransfer();
-};
-
-const handleQuickAdd = (value) => {
-  amount.value += value;
-};
-
 const handleDelete = () => {
   const str = amount.value.toString();
   amount.value = str.length > 1 ? parseInt(str.slice(0, -1), 10) : 0;
+};
+
+const handlePwComplete = (pw) => {
+  password.value = pw;
+  handleTransfer();
 };
 
 const handleTransfer = async () => {
@@ -88,7 +76,6 @@ const handleTransfer = async () => {
 
 const fetchBalanceInfo = async () => {
   const result = await getWalletInfo();
-
   if (result.data) {
     accountBalance.value = result.data.balance;
   }
@@ -100,51 +87,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-full w-full flex flex-col">
-    <div class="flex flex-col">
-      <Subtitle2 class="text-dol-dark-gray"
-        >{{ store.transInfo.name }} 님께</Subtitle2
-      >
-      <Subtitle1>얼마를 보낼까요?</Subtitle1>
-    </div>
-    <div class="flex flex-col items-center justify-center h-[30vh]">
-      <Head1>{{ Number(amount).toLocaleString() }} P</Head1>
-      <Subtitle2 class="text-dol-dark-gray"
-        >현재 잔액: {{ accountBalance?.toLocaleString() }} P</Subtitle2
-      >
-    </div>
-
-    <div class="flex gap-2 justify-between w-full">
-      <button
-        v-for="tab in quickTabs"
-        :key="tab.value"
-        class="flex-1 h-10 rounded-sm border border-dol-main bg-white text-dol-main text-sm font-medium leading-none"
-        @click="handleQuickAdd(tab.value)"
-      >
-        {{ tab.label }}
-      </button>
-    </div>
-    
-    <div class="flex-1 overflow-auto flex flex-col justify-center p-3">
-      <Keypad
-        :numbers="[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]"
-        :showDoubleZero="true"
-        :heightFull="false"
-        class="gap-[40px]"
-        @select="handleSelect"
-        @delete="handleDelete"
-      />
-    </div>
-
-    <div>
-      <LgMainButton @click="() => (isModalOpen = true)">완료</LgMainButton>
-    </div>
+  <div class="flex flex-col w-full h-full">
+    <AmountDisplay
+      :amount="amount"
+      :balance="accountBalance"
+      :recipient="store.transInfo.name"
+    />
+    <QuickAddButtons @quickAdd="(value) => (amount += value)" />
+    <AmountKeypad @select="handleSelect" @delete="handleDelete" />
+    <LgMainButton @click="() => (isModalOpen = true)">완료</LgMainButton>
     <PwModal
       v-if="isModalOpen"
-      title="전자지갑 비밀번호"
-      :errorMessage="errorMessage"
       :showError="showError"
-      @input="showError = false"
+      :errorMessage="errorMessage"
       @complete="handlePwComplete"
       @close="
         () => {
@@ -152,6 +107,7 @@ onMounted(() => {
           showError = false;
         }
       "
+      @input="showError = false"
     />
   </div>
 </template>
