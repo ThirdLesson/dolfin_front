@@ -58,7 +58,7 @@ const router = createRouter({
       path: URL.PAGE.CHARGE,
       name: 'charge',
       component: ChargePage,
-      meta: { header: '충전' },
+      meta: { header: '충전하기' },
     },
     {
       path: URL.PAGE.ACCOUNT,

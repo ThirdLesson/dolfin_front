@@ -8,6 +8,10 @@ import useMediaQuery from '@/shared/hooks/useMediaQuery';
 const props = defineProps({
   title: String,
   buttonText: { type: String, default: '확인' },
+  showButton: {
+    type: Boolean,
+    default: true,
+  },
 });
 const emit = defineEmits(['close', 'confirm']);
 
@@ -49,7 +53,7 @@ onUnmounted(() => {
       <div class="flex-1 overflow-y-auto p-[2px]">
         <slot />
       </div>
-      <div class="sticky bottom-0 bg-white mt-[10px]">
+      <div v-if="showButton" class="sticky bottom-0 bg-white mt-[15px]">
         <LgMainButton @click="handleConfirm">
           {{ buttonText }}
         </LgMainButton>

@@ -1,6 +1,5 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue';
-
 import Subtitle1 from '../atoms/typography/Subtitle1.vue';
 import Caption2 from '../atoms/typography/Caption2.vue';
 import Keypad from '../atoms/Keypad.vue';
@@ -29,6 +28,7 @@ const shuffleArray = (arr) => {
   }
   return array;
 };
+
 const shuffleKeypad = () => {
   shuffledNumbers.value = shuffleArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 };
@@ -36,8 +36,10 @@ const shuffleKeypad = () => {
 const inputNumber = (num) => {
   if (password.value.length < 4) password.value += num.toString();
 };
-const deleteNumber = () => (password.value = password.value.slice(0, -1));
-const resetAndShuffle = () => {
+
+const handleDelete = () => (password.value = password.value.slice(0, -1));
+
+const handleReshuffle = () => {
   password.value = '';
   shuffleKeypad();
 };
@@ -109,8 +111,8 @@ onUnmounted(() => {
         <Keypad
           :numbers="shuffledNumbers"
           @select="handleSelect"
-          @reshuffle="resetAndShuffle"
-          @delete="deleteNumber"
+          @reshuffle="handleReshuffle"
+          @delete="handleDelete"
         />
       </div>
     </div>

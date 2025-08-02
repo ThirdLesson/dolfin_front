@@ -1,14 +1,6 @@
 <script setup>
 import { reactive, ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { useUserStore } from '@/entities/user/user.store';
-import { chargeWallet } from '../services/charge.service';
-import { getMyAccounts } from '../../remit/services/remit.service';
-import { Icons } from '@/asset/images';
-
-import Keypad from '@/shared/components/atoms/Keypad.vue';
-import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
-import ChargeModal from './ChargeModal.vue';
 import URL from '@/shared/constants/URL';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
 import Head1 from '@/shared/components/atoms/typography/Head1.vue';
@@ -17,6 +9,15 @@ import P1 from '@/shared/components/atoms/typography/P1.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
 
+import { Icons } from '@/asset/images';
+import Keypad from '@/shared/components/atoms/Keypad.vue';
+import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
+import ChargeModal from './AccountModal.vue';
+import { useUserStore } from '@/entities/user/user.store';
+import { chargeWallet } from '../services/charge.service';
+import { getMyAccounts } from '../../remit/services/remit.service';
+import QuickAddButtons from '../../remit/ui/QuickAddButtons.vue';
+
 const router = useRouter();
 const userStore = useUserStore();
 
@@ -24,6 +25,9 @@ const amount = ref(0);
 const pwError = ref(false);
 const minAmountError = ref(false);
 const accounts = ref([]);
+const showModal = ref(false);
+const showPwModal = ref(false);
+const showComplete = ref(false);
 const selectedAccount = reactive({
   bankType: '',
   accountNumber: '',
@@ -40,25 +44,6 @@ const fetchMyAccounts = async () => {
   }
 };
 
-onMounted(() => {
-  fetchMyAccounts();
-});
-
-const quickTabs = [
-  { label: '+1천', value: 1000 },
-  { label: '+5천', value: 5000 },
-  { label: '+1만', value: 10000 },
-  { label: '+10만', value: 100000 },
-];
-
-const showModal = ref(false);
-const showPwModal = ref(false);
-const showComplete = ref(false);
-
-const handleQuickAdd = (value) => {
-  amount.value += value;
-};
-
 const handleSelect = (num) => {
   const newVal = parseInt(`${amount.value}${num}`, 10);
   amount.value = isNaN(newVal) ? 0 : newVal;
@@ -71,9 +56,16 @@ const handleDelete = () => {
 
 const handleSubmit = () => {
   minAmountError.value = amount.value < 10000;
+
   if (!minAmountError.value) {
     showPwModal.value = true;
   }
+};
+
+const handleSelectAccount = (account) => {
+  selectedAccount.bankType = account.bankType;
+  selectedAccount.accountNumber = account.accountNumber;
+  showModal.value = false;
 };
 
 const handlePasswordComplete = async (walletPassword) => {
@@ -107,11 +99,9 @@ const handlePasswordComplete = async (walletPassword) => {
   }
 };
 
-const handleSelectAccount = (account) => {
-  selectedAccount.bankType = account.bankType;
-  selectedAccount.accountNumber = account.accountNumber;
-  showModal.value = false;
-};
+onMounted(() => {
+  fetchMyAccounts();
+});
 </script>
 
 <template>
@@ -152,17 +142,7 @@ const handleSelectAccount = (account) => {
         </P1>
         <i class="bi bi-caret-down-fill ml-1"></i>
       </div>
-
-      <div class="flex gap-2 justify-between w-full">
-        <button
-          v-for="tab in quickTabs"
-          :key="tab.value"
-          class="flex-1 h-10 rounded-sm border border-dol-main bg-white text-dol-main text-sm font-medium leading-none"
-          @click="handleQuickAdd(tab.value)"
-        >
-          {{ tab.label }}
-        </button>
-      </div>
+      <QuickAddButtons @quickAdd="(value) => (amount += value)" />
     </div>
 
     <div class="flex-1 overflow-auto flex flex-col justify-center pb-6">
@@ -170,17 +150,12 @@ const handleSelectAccount = (account) => {
         :numbers="[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]"
         :showDoubleZero="true"
         :heightFull="false"
-        class="gap-[50px]"
+        class="gap-[0px]"
         @select="handleSelect"
         @delete="handleDelete"
       />
     </div>
-
-    <div class="w-full">
-      <LgMainButton class="w-full h-14 text-base" @click="handleSubmit">
-        완료
-      </LgMainButton>
-    </div>
+    <LgMainButton @click="handleSubmit">완료</LgMainButton>
   </div>
 
   <ChargeModal

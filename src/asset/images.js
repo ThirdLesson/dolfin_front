@@ -13,7 +13,7 @@ import kdb from './bank/kdb.png';
 import mg from './bank/mg.png';
 import nh from './bank/nh.png';
 import post from './bank/post.png';
-import sc from './bank/SC.png';
+import sc from './bank/sc.png';
 import sh from './bank/sh.png';
 import shinhan from './bank/shinhan.png';
 import toss from './bank/toss.png';
