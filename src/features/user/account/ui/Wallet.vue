@@ -65,7 +65,7 @@ onMounted(() => {
         {{ accountBalance?.toLocaleString() }} P
       </Head1>
 
-      <div class="flex gap-4 w-full justify-center">
+      <div class="flex gap-[10px] w-full justify-center">
         <MdSubButton @click="() => router.push(URL.PAGE.CHARGE)"
           >충전하기</MdSubButton
         >

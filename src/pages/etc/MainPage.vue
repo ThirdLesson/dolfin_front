@@ -10,20 +10,20 @@ import RecentHistory from '@/features/transaction/history/ui/RecentHistory.vue';
 
 const router = useRouter();
 const userStore = useUserStore();
+
 const { userInfo } = storeToRefs(userStore);
 </script>
 
 <template>
-  <div class="flex flex-col bg-white min-h-screen overflow-auto pb-[80px]">
+  <div class="flex flex-col gap-5">
     <div
-      class="flex items-center gap-1 px-4 cursor-pointer flex-none pt-[70px]"
+      class="flex items-center gap-2 cursor-pointer pt-[70px]"
       @click="() => router.push(URL.PAGE.MYPAGE)"
     >
       <Head2>{{ userInfo.name }} 님</Head2>
       <Head2>&gt;</Head2>
     </div>
-
-    <div class="flex flex-col px-4 gap-4 mt-4">
+    <div class="flex flex-col gap-4">
       <Wallet />
       <Menu />
       <RecentHistory />
