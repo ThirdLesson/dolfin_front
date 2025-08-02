@@ -10,7 +10,7 @@ const emit = defineEmits(['select', 'delete']);
       :numbers="[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]"
       :showDoubleZero="true"
       :heightFull="false"
-      class="gap-[10vw]"
+      class="gap-[40px]"
       @select="(num) => emit('select', num)"
       @delete="emit('delete')"
     />

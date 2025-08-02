@@ -1,13 +1,6 @@
 <script setup>
 import { reactive, ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { useUserStore } from '@/entities/user/user.store';
-import { chargeWallet } from '../services/charge.service';
-import { getMyAccounts } from '../../remit/services/remit.service';
-import { Icons } from '@/asset/images';
-import Keypad from '@/shared/components/atoms/Keypad.vue';
-import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
-import ChargeModal from './ChargeModal.vue';
 import URL from '@/shared/constants/URL';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
 import Head1 from '@/shared/components/atoms/typography/Head1.vue';
@@ -16,15 +9,17 @@ import P1 from '@/shared/components/atoms/typography/P1.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
 
+import { Icons } from '@/asset/images';
+import Keypad from '@/shared/components/atoms/Keypad.vue';
+import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
+import ChargeModal from './AccountModal.vue';
+import { useUserStore } from '@/entities/user/user.store';
+import { chargeWallet } from '../services/charge.service';
+import { getMyAccounts } from '../../remit/services/remit.service';
+import QuickAddButtons from '../../remit/ui/QuickAddButtons.vue';
+
 const router = useRouter();
 const userStore = useUserStore();
-
-const quickTabs = [
-  { label: '+1천', value: 1000 },
-  { label: '+5천', value: 5000 },
-  { label: '+1만', value: 10000 },
-  { label: '+10만', value: 100000 },
-];
 
 const amount = ref(0);
 const pwError = ref(false);
@@ -47,10 +42,6 @@ const fetchMyAccounts = async () => {
     selectedAccount.bankType = accounts.value[0].bankType;
     selectedAccount.accountNumber = accounts.value[0].accountNumber;
   }
-};
-
-const handleQuickAdd = (value) => {
-  amount.value += value;
 };
 
 const handleSelect = (num) => {
@@ -151,17 +142,7 @@ onMounted(() => {
         </P1>
         <i class="bi bi-caret-down-fill ml-1"></i>
       </div>
-
-      <div class="flex gap-2 justify-between w-full">
-        <button
-          v-for="tab in quickTabs"
-          :key="tab.value"
-          class="flex-1 h-10 rounded-sm border border-dol-main bg-white text-dol-main text-sm font-medium leading-none"
-          @click="handleQuickAdd(tab.value)"
-        >
-          {{ tab.label }}
-        </button>
-      </div>
+      <QuickAddButtons @quickAdd="(value) => (amount += value)" />
     </div>
 
     <div class="flex-1 overflow-auto flex flex-col justify-center pb-6">
