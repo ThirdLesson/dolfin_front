@@ -1,36 +1,91 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import Subtitle3 from '@/shared/components/atoms/typography/Subtitle3.vue';
 import SmMainButton from '@/shared/components/atoms/button/SmMainButton.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
+import { getTransactions } from '../services/history.service';
 
 const props = defineProps({
-  transactions: {
-    type: Array,
-    default: () => [],
-  },
+  period: { type: String, default: 'ONE_MONTH' },
+  type: { type: String, default: undefined },
+  sortDirection: { type: String, default: 'LATEST' },
+  minAmount: { type: Number, default: undefined },
+  maxAmount: { type: Number, default: undefined },
 });
 
+const transactions = ref([]);
 const currentPage = ref(1);
-const itemsPerPage = 20;
+const totalPages = ref(0);
+const pageSize = 20;
 
-const totalPages = computed(() =>
-  Math.ceil(props.transactions.length / itemsPerPage),
-);
+const convertUiType = (apitype) => {
+  switch (apitype) {
+    case 'CHARGE':
+      return '충전';
+    case 'WITHDRAW':
+      return '출금';
+    case 'DEPOSIT':
+      return '입금';
+    default:
+      return '기타';
+  }
+};
 
-const paginatedTransactions = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage;
-  return props.transactions.slice(start, start + itemsPerPage);
-});
+const getDisplayName = (item) => {
+  const type = item.type?.toUpperCase();
+  switch (type) {
+    case 'CHARGE':
+      return '충전';
+    case 'DEPOSIT':
+      return item.counterPartyName || '입금';
+    case 'WITHDRAW':
+      return item.counterPartyName || '출금';
+    default:
+      return '기타';
+  }
+};
 
-const groupedTransactions = computed(() => {
-  return paginatedTransactions.value.reduce((groups, item) => {
-    (groups[item.date] ||= []).push(item);
+const getTime = (createdAt) => {
+  if (!createdAt) return '';
+  return createdAt.includes(' ') ? createdAt.split(' ')[1] : createdAt;
+};
+
+const fetchTransactions = async () => {
+  const res = await getTransactions({
+    page: currentPage.value - 1,
+    size: pageSize,
+    period: props.period,
+    type: props.type,
+    sortDirection: props.sortDirection,
+    minAmount: props.minAmount,
+    maxAmount: props.maxAmount,
+  });
+
+  totalPages.value = res.data?.totalPages || 0;
+
+  transactions.value =
+    res.data?.content.flatMap((group) =>
+      group.transactions.map((item) => ({
+        date: group.date,
+        time: getTime(item.createdAt),
+        name: getDisplayName(item),
+        type: convertUiType(item.type),
+        rawType: item.type?.toUpperCase(),
+        amount: item.amount,
+      })),
+    ) || [];
+};
+
+const groupedTransactions = computed(() =>
+  transactions.value.reduce((groups, item) => {
+    if (!props.type || item.rawType === props.type) {
+      (groups[item.date] ||= []).push(item);
+    }
     return groups;
-  }, {});
-});
+  }, {}),
+);
 
 const pageNumbers = computed(() => {
   const total = totalPages.value;
@@ -47,12 +102,28 @@ const pageNumbers = computed(() => {
 const goToPage = (page) => {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
+    fetchTransactions();
   }
 };
 
+watch(
+  () => [
+    props.period,
+    props.type,
+    props.sortDirection,
+    props.minAmount,
+    props.maxAmount,
+  ],
+  () => {
+    currentPage.value = 1;
+    fetchTransactions();
+  },
+);
+
+onMounted(fetchTransactions);
+
 const typeColor = (type) =>
   type === '출금' ? 'text-dol-error' : 'text-dol-main';
-
 const isActivePage = (page) =>
   page === currentPage.value
     ? 'bg-dol-sub text-white'
@@ -73,7 +144,7 @@ const isActivePage = (page) =>
       >
         <div class="flex flex-col">
           <Caption1 class="text-dol-light-gray">{{ item.time }}</Caption1>
-          <Head3 class="font-semibold">{{ item.name }}</Head3>
+          <Head3>{{ item.name }}</Head3>
         </div>
         <div class="flex flex-col text-right items-end gap-1">
           <Caption1 :class="typeColor(item.type)">{{ item.type }}</Caption1>

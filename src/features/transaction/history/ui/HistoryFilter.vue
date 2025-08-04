@@ -1,25 +1,17 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import Modal from '@/shared/components/organisms/Modal.vue';
 import SquareTab from '@/shared/components/molecules/SquareTab.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
-import P2 from '@/shared/components/atoms/typography/P2.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
+import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 
 const props = defineProps({
   showFilterModal: Boolean,
-  transactions: Array,
 });
-const emit = defineEmits([
-  'updateFilterTab',
-  'updateCategoryTab',
-  'updateSortTab',
-  'updateMinAmount',
-  'updateMaxAmount',
-  'updateShowFilterModal',
-  'updateFilteredProducts',
-]);
+
+const emit = defineEmits(['updateShowFilterModal', 'updateFilter']);
 
 const filterTab = ref('1개월');
 const categoryTab = ref('전체');
@@ -44,59 +36,47 @@ const sorttabs = [
   { value: '과거순', label: '과거순' },
 ];
 
-const selectedFilterLabel = computed(() => {
-  const period = filterTab.value;
-  const category = categoryTab.value || '전체';
-  return `${period} / ${category} / ${sortTab.value}`;
-});
-
-const filteredTransactions = ref([...props.transactions]);
-
-const applyFilters = () => {
-  let data = [...(props.transactions || [])];
-
-  const months = parseInt(filterTab.value?.replace('개월', '')) || 0;
-  if (months > 0) {
-    const cutoff = new Date();
-    cutoff.setMonth(cutoff.getMonth() - months);
-    data = data.filter((item) => new Date(item.date) >= cutoff);
+const convertPeriod = (label) => {
+  switch (label) {
+    case '1주일':
+      return 'ONE_WEEK';
+    case '1개월':
+      return 'ONE_MONTH';
+    case '3개월':
+      return 'THREE_MONTH';
+    case '6개월':
+      return 'SIX_MONTH';
+    default:
+      return 'ONE_MONTH';
   }
-
-  if (categoryTab.value && categoryTab.value !== '전체') {
-    data = data.filter((item) => item.type === categoryTab.value);
-  }
-
-  const minVal = parseInt(minAmount.value) || 0;
-  const maxVal = parseInt(maxAmount.value) || Infinity;
-  data = data.filter((item) => {
-    const amt = item.amount || 0;
-    return amt >= minVal && amt <= maxVal;
-  });
-
-  data.sort((a, b) =>
-    sortTab.value === '최신순'
-      ? new Date(b.date) - new Date(a.date)
-      : new Date(a.date) - new Date(b.date),
-  );
-
-  filteredTransactions.value = data;
-
-  emit('updateFilterTab', filterTab.value);
-  emit('updateCategoryTab', categoryTab.value);
-  emit('updateSortTab', sortTab.value);
-  emit('updateMinAmount', minVal);
-  emit('updateMaxAmount', maxVal);
-  emit('updateFilteredProducts', data);
-  emit('updateShowFilterModal', false);
 };
 
-const dateRange = computed(() => {
-  if (!filteredTransactions.value.length) return '';
-  const firstDate = filteredTransactions.value[0].date;
-  const lastDate =
-    filteredTransactions.value[filteredTransactions.value.length - 1].date;
-  return `${lastDate} ~ ${firstDate}`;
-});
+const convertType = (label) => {
+  switch (label) {
+    case '출금':
+      return 'WITHDRAW';
+    case '입금':
+      return 'DEPOSIT';
+    case '충전':
+      return 'CHARGE';
+    default:
+      return undefined;
+  }
+};
+
+const convertSort = (label) => (label === '과거순' ? 'OLDEST' : 'LATEST');
+
+const applyFilters = () => {
+  emit('updateFilter', {
+    newPeriod: convertPeriod(filterTab.value),
+    newType: convertType(categoryTab.value),
+    newSort: convertSort(sortTab.value),
+    newMin: minAmount.value ? Number(minAmount.value) : undefined,
+    newMax: maxAmount.value ? Number(maxAmount.value) : undefined,
+  });
+
+  emit('updateShowFilterModal', false);
+};
 </script>
 
 <template>
@@ -105,12 +85,8 @@ const dateRange = computed(() => {
       class="flex justify-end items-center gap-1 px-4 py-2 bg-dol-sub cursor-pointer"
       @click="emit('updateShowFilterModal', true)"
     >
-      <P2>{{ selectedFilterLabel }}</P2>
+      <Caption1>{{ filterTab }} / {{ categoryTab }} / {{ sortTab }}</Caption1>
       <i class="bi bi-caret-down-fill"></i>
-    </div>
-
-    <div v-if="dateRange" class="text-dol-light-gray text-xs px-4 pt-3 mt-1">
-      {{ dateRange }}
     </div>
 
     <Modal
@@ -154,7 +130,7 @@ const dateRange = computed(() => {
             :color="true"
             height="sm"
           />
-          <Subtitle1 class="text-[20px] pt-[6px] px-[5px]">~</Subtitle1>
+          <Subtitle1 class="pt-[6px] px-[5px]">~</Subtitle1>
           <BoxInput
             v-model="maxAmount"
             placeholder="최대 금액"
