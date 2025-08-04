@@ -15,6 +15,7 @@ const headerText = computed(() => route.meta.header);
 const showExchangeHeader = computed(() => route.meta.exchangeHeader === true);
 const showNavBar = computed(() => route.meta.navBar !== false);
 const hasCustomBack = computed(() => route.meta.customBack === true);
+const hasbgColor = computed(() => route.meta.bgColor === true);
 
 const handleCustomBack = () => {
   const onBack = route.meta.onBack;
@@ -29,7 +30,10 @@ const handleCustomBack = () => {
 <template>
   <div
     class="h-screen flex flex-col mx-auto overflow-y-auto w-full"
-    :class="isPC && 'max-w-[500px] shadow-custom-shadow'"
+    :class="[
+      isPC && 'max-w-[500px] shadow-custom-shadow',
+      hasbgColor && 'bg-dol-sub',
+    ]"
   >
     <header class="w-full fixed top-0 left-0 z-40 shadow-custom-shadow">
       <Header

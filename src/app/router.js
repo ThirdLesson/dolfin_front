@@ -6,7 +6,9 @@ import MainPage from '@/pages/etc/MainPage.vue';
 import TestPage from '@/pages/etc/TestPage.vue';
 import MapPage from '@/pages/map/MapPage.vue';
 import ExchangeCheckPage from '@/pages/exchange/ExchangeCheckPage.vue';
-import GroupRemitPage from '@/pages/groupRemit/GroupRemitPage.vue';
+import GroupPage from '@/pages/groupRemit/GroupPage.vue';
+import GroupSignupPage from '@/pages/groupRemit/GroupSignupPage.vue';
+import GroupCompletePage from '@/pages/groupRemit/GroupCompletePage.vue';
 import LoadingPage from '@/pages/etc/LoadingPage.vue';
 import ComingPage from '@/pages/etc/ComingPage.vue';
 import RecommendationPage from '@/pages/recommendation/RecommendationPage.vue';
@@ -106,10 +108,22 @@ const router = createRouter({
       meta: { header: '마이페이지' },
     },
     {
-      path: URL.PAGE.GROUP_REMIT,
-      name: 'group-remit',
-      component: GroupRemitPage,
-      meta: { header: '공동 송금' },
+      path: URL.PAGE.GROUP,
+      name: 'group',
+      component: GroupPage,
+      meta: { header: '공동 송금', bgColor: true, customBack: true },
+    },
+    {
+      path: URL.PAGE.GROUP_SIGNUP,
+      name: 'group-signup',
+      component: GroupSignupPage,
+      meta: { header: '공동 송금 신청하기' },
+    },
+    {
+      path: URL.PAGE.GROUP_COMPLETE,
+      name: 'group-complete',
+      component: GroupCompletePage,
+      meta: { header: '공동 송금 신청하기' },
     },
     {
       path: URL.PAGE.EXCHANGE_CHECK,

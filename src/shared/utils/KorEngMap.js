@@ -23,27 +23,19 @@ export const bankNameMap = {
   새마을금고: 'mg',
 };
 
-export const transFilterMap = {
-  period: {
-    '1주일': 'ONE_WEEK',
-    '1개월': 'ONE_MONTH',
-    '3개월': 'THREE_MONTH',
-    '6개월': 'SIX_MONTH',
-  },
-  category: {
-    전체: undefined,
-    출금: 'WITHDRAW',
-    입금: 'DEPOSIT',
-    충전: 'CHARGE',
-  },
-  sort: {
-    최신순: 'LATEST',
-    과거순: 'OLDEST',
-  },
-};
-
-export const apiTypeMap = {
-  CHARGE: '충전',
-  WITHDRAW: '출금',
-  DEPOSIT: '입금',
+export const countryNameMap = {
+  USD: '미국',
+  JPY: '일본',
+  EUR: '유럽연합',
+  GBP: '영국',
+  CAD: '캐나다',
+  KRW: '대한민국',
+  HKD: '홍콩',
+  CNY: '중국',
+  THB: '태국',
+  IDR: '인도네시아',
+  VND: '베트남',
+  RUB: '러시아',
+  BDT: '방글라데시',
+  MYR: '말레이시아',
 };

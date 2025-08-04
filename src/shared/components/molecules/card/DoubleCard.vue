@@ -11,11 +11,20 @@ const props = defineProps({
   image: {
     type: String,
   },
+  showShadow: {
+    type: Boolean,
+    default: true,
+  },
 });
 </script>
 
 <template>
-  <BaseCard :title="title" :subtitle="subtitle" :image="image">
+  <BaseCard
+    :title="title"
+    :subtitle="subtitle"
+    :image="image"
+    :showShadow="showShadow"
+  >
     <template #right>
       <slot />
     </template>

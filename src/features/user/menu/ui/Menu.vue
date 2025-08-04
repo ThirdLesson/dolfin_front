@@ -12,7 +12,7 @@ const router = useRouter();
     <div class="flex">
       <div
         class="flex flex-col items-center justify-center w-1/3 cursor-pointer py-4"
-        @click="() => router.push(URL.PAGE.GROUP_REMIT)"
+        @click="() => router.push(URL.PAGE.GROUP)"
       >
         <div
           class="h-[60px] w-[60px] justify-center items-center overflow-hidden"

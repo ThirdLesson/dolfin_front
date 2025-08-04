@@ -1,6 +1,28 @@
 import { Banks } from '@/asset/images';
 
-export const bankOptions = [
+export const accountBankOptions = [
+  { label: '신협은행', value: '신협은행', src: Banks.cu },
+  { label: '우체국예금', value: '우체국예금', src: Banks.post },
+  { label: '전북은행', value: '전북은행', src: Banks.gwangju },
+  { label: '새마을금고', value: '새마을금고', src: Banks.mg },
+  { label: '제일은행', value: '제일은행', src: Banks.sc },
+  { label: '국민은행', value: '국민은행', src: Banks.kb },
+  { label: '우리은행', value: '우리은행', src: Banks.woori },
+  { label: '하나은행', value: '하나은행', src: Banks.hana },
+  { label: '산업은행', value: '산업은행', src: Banks.kdb },
+  { label: '부산은행', value: '부산은행', src: Banks.busan },
+  { label: '광주은행', value: '광주은행', src: Banks.gwangju },
+  { label: '아이엠뱅크', value: '아이엠뱅크', src: Banks.im },
+  { label: '신한은행', value: '신한은행', src: Banks.shinhan },
+  { label: '농협', value: '농협', src: Banks.nh },
+  { label: '케이뱅크', value: '케이뱅크', src: Banks.k },
+  { label: '씨티은행', value: '씨티은행', src: Banks.city },
+  { label: '수협은행', value: '수협은행', src: Banks.sh },
+  { label: '기업은행', value: '기업은행', src: Banks.ibk },
+  { label: '대구은행', value: '대구은행', src: Banks.dgb },
+];
+
+export const transferBankOptions = [
   { label: '신협은행', value: '신협은행', src: Banks.cu },
   { label: '우체국예금', value: '우체국예금', src: Banks.post },
   { label: '전북은행', value: '전북은행', src: Banks.gwangju },
@@ -22,4 +44,21 @@ export const bankOptions = [
   { label: '수협은행', value: '수협은행', src: Banks.sh },
   { label: '기업은행', value: '기업은행', src: Banks.ibk },
   { label: '대구은행', value: '대구은행', src: Banks.dgb },
+];
+
+export const currencyOptions = [
+  { value: 'USD', label: 'USD' },
+  { value: 'JPY', label: 'JPY' },
+  { value: 'EUR', label: 'EUR' },
+  { value: 'GBP', label: 'GBP' },
+  { value: 'CAD', label: 'CAD' },
+  { value: 'KRW', label: 'KRW' },
+  { value: 'HKD', label: 'HKD' },
+  { value: 'CNY', label: 'CNY' },
+  { value: 'THB', label: 'THB' },
+  { value: 'IDR', label: 'IDR' },
+  { value: 'VND', label: 'VND' },
+  { value: 'RUB', label: 'RUB' },
+  { value: 'BDT', label: 'BDT' },
+  { value: 'MYR', label: 'MYR' },
 ];
