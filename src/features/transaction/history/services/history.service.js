@@ -23,6 +23,7 @@ export const getTransactions = async ({
   if (minAmount != null) params.append('minAmount', minAmount);
   if (maxAmount != null) params.append('maxAmount', maxAmount);
 
-  const response = await apiFetch(`${url}?${params.toString()}`, { method });
+  const queryUrl = `${url}?${params.toString()}`;
+  const response = await apiFetch(queryUrl, { method });
   return response.json();
 };

@@ -5,36 +5,9 @@ import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
 import { getTransactions } from '../services/history.service';
+import { apiTypeMap } from '@/shared/utils/KorEngMap';
 
 const recentTransactions = ref([]);
-
-const convertUiType = (apiType) => {
-  const type = apiType?.toUpperCase();
-  switch (type) {
-    case 'CHARGE':
-      return '충전';
-    case 'WITHDRAW':
-      return '출금';
-    case 'DEPOSIT':
-      return '입금';
-    default:
-      return '기타';
-  }
-};
-
-const getDisplayName = (item) => {
-  const type = item.type?.toUpperCase();
-  switch (type) {
-    case 'CHARGE':
-      return '충전';
-    case 'DEPOSIT':
-      return item.counterPartyName || '입금';
-    case 'WITHDRAW':
-      return item.counterPartyName || '출금';
-    default:
-      return '기타';
-  }
-};
 
 const getTime = (createdAt) => {
   if (!createdAt) return '';
@@ -52,8 +25,11 @@ onMounted(async () => {
     res.data?.content.flatMap((group) =>
       group.transactions.map((item) => ({
         time: getTime(item.createdAt),
-        title: getDisplayName(item),
-        type: convertUiType(item.type),
+        title:
+          item.type === 'DEPOSIT' || item.type === 'WITHDRAW'
+            ? item.counterPartyName || apiTypeMap[item.type]
+            : apiTypeMap[item.type],
+        type: apiTypeMap[item.type],
         amount: item.amount,
       })),
     ) || [];

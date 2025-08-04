@@ -6,6 +6,7 @@ import SmMainButton from '@/shared/components/atoms/button/SmMainButton.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import { getTransactions } from '../services/history.service';
+import { apiTypeMap } from '@/shared/utils/KorEngMap.js';
 
 const props = defineProps({
   period: { type: String, default: 'ONE_MONTH' },
@@ -20,31 +21,12 @@ const currentPage = ref(1);
 const totalPages = ref(0);
 const pageSize = 20;
 
-const convertUiType = (apitype) => {
-  switch (apitype) {
-    case 'CHARGE':
-      return '충전';
-    case 'WITHDRAW':
-      return '출금';
-    case 'DEPOSIT':
-      return '입금';
-    default:
-      return '기타';
-  }
-};
-
 const getDisplayName = (item) => {
-  const type = item.type?.toUpperCase();
-  switch (type) {
-    case 'CHARGE':
-      return '충전';
-    case 'DEPOSIT':
-      return item.counterPartyName || '입금';
-    case 'WITHDRAW':
-      return item.counterPartyName || '출금';
-    default:
-      return '기타';
+  const type = item.type;
+  if (type === 'DEPOSIT' || type === 'WITHDRAW') {
+    return item.counterPartyName || apiTypeMap[type];
   }
+  return apiTypeMap[type];
 };
 
 const getTime = (createdAt) => {
@@ -71,8 +53,8 @@ const fetchTransactions = async () => {
         date: group.date,
         time: getTime(item.createdAt),
         name: getDisplayName(item),
-        type: convertUiType(item.type),
-        rawType: item.type?.toUpperCase(),
+        type: apiTypeMap[item.type],
+        rawType: item.type,
         amount: item.amount,
       })),
     ) || [];

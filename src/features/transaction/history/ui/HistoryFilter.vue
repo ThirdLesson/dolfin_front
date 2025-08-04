@@ -7,6 +7,8 @@ import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 
+import { transFilterMap } from '@/shared/utils/KorEngMap';
+
 const props = defineProps({
   showFilterModal: Boolean,
 });
@@ -36,41 +38,11 @@ const sorttabs = [
   { value: '과거순', label: '과거순' },
 ];
 
-const convertPeriod = (label) => {
-  switch (label) {
-    case '1주일':
-      return 'ONE_WEEK';
-    case '1개월':
-      return 'ONE_MONTH';
-    case '3개월':
-      return 'THREE_MONTH';
-    case '6개월':
-      return 'SIX_MONTH';
-    default:
-      return 'ONE_MONTH';
-  }
-};
-
-const convertType = (label) => {
-  switch (label) {
-    case '출금':
-      return 'WITHDRAW';
-    case '입금':
-      return 'DEPOSIT';
-    case '충전':
-      return 'CHARGE';
-    default:
-      return undefined;
-  }
-};
-
-const convertSort = (label) => (label === '과거순' ? 'OLDEST' : 'LATEST');
-
 const applyFilters = () => {
   emit('updateFilter', {
-    newPeriod: convertPeriod(filterTab.value),
-    newType: convertType(categoryTab.value),
-    newSort: convertSort(sortTab.value),
+    newPeriod: transFilterMap.period[filterTab.value],
+    newType: transFilterMap.category[categoryTab.value],
+    newSort: transFilterMap.sort[sortTab.value],
     newMin: minAmount.value ? Number(minAmount.value) : undefined,
     newMax: maxAmount.value ? Number(maxAmount.value) : undefined,
   });
@@ -96,47 +68,45 @@ const applyFilters = () => {
       @confirm="applyFilters"
       @close="emit('updateShowFilterModal', false)"
     >
-      <Head3>조회 기간</Head3>
-      <div class="overflow-x-auto whitespace-nowrap">
-        <SquareTab
-          v-model="filterTab"
-          :options="filtertabs"
-          class="flex w-max py-2"
-        />
-      </div>
+      <div class="flex flex-col gap-[10px]">
+        <div class="flex flex-col gap-2">
+          <Head3>조회 기간</Head3>
+          <div class="overflow-x-auto">
+            <div class="flex whitespace-nowrap w-max">
+              <SquareTab v-model="filterTab" :options="filtertabs" />
+            </div>
+          </div>
+        </div>
 
-      <Head3 class="pt-[10px]">유형</Head3>
-      <div class="overflow-x-auto whitespace-nowrap">
-        <SquareTab
-          v-model="categoryTab"
-          :options="categorytabs"
-          class="flex w-max gap-2 py-2"
-        />
-      </div>
+        <div class="flex flex-col gap-2">
+          <Head3>유형</Head3>
+          <div class="overflow-x-auto">
+            <div class="flex whitespace-nowrap w-max">
+              <SquareTab v-model="categoryTab" :options="categorytabs" />
+            </div>
+          </div>
+        </div>
 
-      <Head3 class="pt-[10px]">정렬</Head3>
-      <SquareTab
-        v-model="sortTab"
-        :options="sorttabs"
-        class="flex w-max py-2"
-      />
+        <Head3>정렬</Head3>
+        <SquareTab v-model="sortTab" :options="sorttabs" />
 
-      <Head3 class="pt-[10px]">금액 범위</Head3>
-      <div class="flex flex-col gap-2 pt-[5px]">
-        <div class="flex">
-          <BoxInput
-            v-model="minAmount"
-            placeholder="최소 금액"
-            :color="true"
-            height="sm"
-          />
-          <Subtitle1 class="pt-[6px] px-[5px]">~</Subtitle1>
-          <BoxInput
-            v-model="maxAmount"
-            placeholder="최대 금액"
-            :color="true"
-            height="sm"
-          />
+        <Head3>금액 범위</Head3>
+        <div class="flex flex-col gap-2">
+          <div class="flex">
+            <BoxInput
+              v-model="minAmount"
+              placeholder="최소 금액"
+              :color="true"
+              height="sm"
+            />
+            <Subtitle1 class="px-[5px]">~</Subtitle1>
+            <BoxInput
+              v-model="maxAmount"
+              placeholder="최대 금액"
+              :color="true"
+              height="sm"
+            />
+          </div>
         </div>
       </div>
     </Modal>

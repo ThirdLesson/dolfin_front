@@ -22,3 +22,28 @@ export const bankNameMap = {
   신협은행: 'cu',
   새마을금고: 'mg',
 };
+
+export const transFilterMap = {
+  period: {
+    '1주일': 'ONE_WEEK',
+    '1개월': 'ONE_MONTH',
+    '3개월': 'THREE_MONTH',
+    '6개월': 'SIX_MONTH',
+  },
+  category: {
+    전체: undefined,
+    출금: 'WITHDRAW',
+    입금: 'DEPOSIT',
+    충전: 'CHARGE',
+  },
+  sort: {
+    최신순: 'LATEST',
+    과거순: 'OLDEST',
+  },
+};
+
+export const apiTypeMap = {
+  CHARGE: '충전',
+  WITHDRAW: '출금',
+  DEPOSIT: '입금',
+};
