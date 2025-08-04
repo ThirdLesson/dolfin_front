@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Modal from '@/shared/components/organisms/Modal.vue';
 import SquareTab from '@/shared/components/molecules/SquareTab.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
@@ -7,46 +7,46 @@ import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 
-import { transFilterMap } from '@/shared/utils/KorEngMap';
-
-const props = defineProps({
-  showFilterModal: Boolean,
-});
-
+const props = defineProps({ showFilterModal: Boolean });
 const emit = defineEmits(['updateShowFilterModal', 'updateFilter']);
 
-const filterTab = ref('1개월');
-const categoryTab = ref('전체');
-const sortTab = ref('최신순');
+const filterTab = ref('ONE_MONTH');
+const categoryTab = ref(undefined);
+const sortTab = ref('LATEST');
 const minAmount = ref('');
 const maxAmount = ref('');
 
 const filtertabs = [
-  { value: '1주일', label: '1주일' },
-  { value: '1개월', label: '1개월' },
-  { value: '3개월', label: '3개월' },
-  { value: '6개월', label: '6개월' },
+  { value: 'ONE_WEEK', label: '1주일' },
+  { value: 'ONE_MONTH', label: '1개월' },
+  { value: 'THREE_MONTH', label: '3개월' },
+  { value: 'SIX_MONTH', label: '6개월' },
 ];
 const categorytabs = [
-  { value: '전체', label: '전체' },
-  { value: '출금', label: '출금' },
-  { value: '입금', label: '입금' },
-  { value: '충전', label: '충전' },
+  { value: undefined, label: '전체' },
+  { value: 'WITHDRAW', label: '출금' },
+  { value: 'DEPOSIT', label: '입금' },
+  { value: 'CHARGE', label: '충전' },
 ];
 const sorttabs = [
-  { value: '최신순', label: '최신순' },
-  { value: '과거순', label: '과거순' },
+  { value: 'LATEST', label: '최신순' },
+  { value: 'OLDEST', label: '과거순' },
 ];
+
+const displayLabel = computed(() => {
+  const findLabel = (tabs, val) =>
+    tabs.find((t) => t.value === val)?.label || '';
+  return `${findLabel(filtertabs, filterTab.value)} / ${findLabel(categorytabs, categoryTab.value)} / ${findLabel(sorttabs, sortTab.value)}`;
+});
 
 const applyFilters = () => {
   emit('updateFilter', {
-    newPeriod: transFilterMap.period[filterTab.value],
-    newType: transFilterMap.category[categoryTab.value],
-    newSort: transFilterMap.sort[sortTab.value],
+    newPeriod: filterTab.value,
+    newType: categoryTab.value,
+    newSort: sortTab.value,
     newMin: minAmount.value ? Number(minAmount.value) : undefined,
     newMax: maxAmount.value ? Number(maxAmount.value) : undefined,
   });
-
   emit('updateShowFilterModal', false);
 };
 </script>
@@ -57,7 +57,7 @@ const applyFilters = () => {
       class="flex justify-end items-center gap-1 px-4 py-2 bg-dol-sub cursor-pointer"
       @click="emit('updateShowFilterModal', true)"
     >
-      <Caption1>{{ filterTab }} / {{ categoryTab }} / {{ sortTab }}</Caption1>
+      <Caption1>{{ displayLabel }}</Caption1>
       <i class="bi bi-caret-down-fill"></i>
     </div>
 
