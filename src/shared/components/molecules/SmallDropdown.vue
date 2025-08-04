@@ -29,7 +29,7 @@ const selectedLabel = computed(() => {
 <template>
   <div class="relative">
     <div
-      class="w-[150px] h-[45px] shadow-custom-shadow px-5 border-2 text-[15px] font-semibold rounded-md flex items-center justify-between cursor-pointer"
+      class="w-[150px] h-[45px] shadow-custom-shadow px-5 border-2 text-[15px] font-semibold rounded-md flex items-center justify-between cursor-pointer bg-white"
       :class="[isOpen ? 'border-dol-dark-gray' : 'border-dol-light-gray']"
       @click="isOpen = !isOpen"
     >

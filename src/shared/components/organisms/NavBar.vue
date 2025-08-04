@@ -45,7 +45,7 @@ const options = [
     label: '공동송금',
     src: remitIcon,
     activeSrc: ActiveRemitIcon,
-    href: URL.PAGE.GROUP_REMIT,
+    href: URL.PAGE.GROUP,
   },
 ];
 

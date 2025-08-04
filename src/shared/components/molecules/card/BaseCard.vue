@@ -6,13 +6,20 @@ const props = defineProps({
   title: String,
   subtitle: String,
   image: String,
+  showShadow: {
+    type: Boolean,
+    default: true,
+  },
 });
 </script>
 
 <template>
-  <div class="w-full flex-col">
+  <div class="w-full flex-col bg-white">
     <div
-      class="flex shadow-custom-shadow rounded-sm p-5 gap-[10px] items-center justify-between"
+      class="flex rounded-sm p-5 gap-[10px] items-center justify-between"
+      :class="
+        showShadow ? 'shadow-custom-shadow' : 'border border-dol-light-gray'
+      "
     >
       <div class="flex gap-[10px] items-center">
         <div
