@@ -6,7 +6,6 @@ import SmMainButton from '@/shared/components/atoms/button/SmMainButton.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import { getTransactions } from '../services/history.service';
-import { apiTypeMap } from '@/shared/utils/KorEngMap.js';
 
 const props = defineProps({
   period: { type: String, default: 'ONE_MONTH' },
@@ -24,9 +23,22 @@ const pageSize = 20;
 const getDisplayName = (item) => {
   const type = item.type;
   if (type === 'DEPOSIT' || type === 'WITHDRAW') {
-    return item.counterPartyName || apiTypeMap[type];
+    return item.counterPartyName || (type === 'DEPOSIT' ? '입금' : '출금');
   }
-  return apiTypeMap[type];
+  if (type === 'CHARGE') return '충전';
+};
+
+const getUiType = (type) => {
+  switch (type) {
+    case 'WITHDRAW':
+      return '출금';
+    case 'DEPOSIT':
+      return '입금';
+    case 'CHARGE':
+      return '충전';
+    default:
+      return '';
+  }
 };
 
 const getTime = (createdAt) => {
@@ -53,7 +65,7 @@ const fetchTransactions = async () => {
         date: group.date,
         time: getTime(item.createdAt),
         name: getDisplayName(item),
-        type: apiTypeMap[item.type],
+        type: getUiType(item.type),
         rawType: item.type,
         amount: item.amount,
       })),

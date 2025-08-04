@@ -5,13 +5,25 @@ import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
 import { getTransactions } from '../services/history.service';
-import { apiTypeMap } from '@/shared/utils/KorEngMap';
 
 const recentTransactions = ref([]);
 
 const getTime = (createdAt) => {
   if (!createdAt) return '';
   return createdAt.includes(' ') ? createdAt.split(' ')[1] : createdAt;
+};
+
+const getUiType = (type) => {
+  switch (type) {
+    case 'WITHDRAW':
+      return '출금';
+    case 'DEPOSIT':
+      return '입금';
+    case 'CHARGE':
+      return '충전';
+    default:
+      return '';
+  }
 };
 
 onMounted(async () => {
@@ -27,9 +39,9 @@ onMounted(async () => {
         time: getTime(item.createdAt),
         title:
           item.type === 'DEPOSIT' || item.type === 'WITHDRAW'
-            ? item.counterPartyName || apiTypeMap[item.type]
-            : apiTypeMap[item.type],
-        type: apiTypeMap[item.type],
+            ? item.counterPartyName || getUiType(item.type)
+            : getUiType(item.type),
+        type: getUiType(item.type),
         amount: item.amount,
       })),
     ) || [];
