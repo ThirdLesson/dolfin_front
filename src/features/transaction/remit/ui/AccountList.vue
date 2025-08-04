@@ -75,6 +75,7 @@ onMounted(() => {
       :title="item.name"
       :subtitle="item.bankType"
       :image="Banks[bankNameMap[item.bankType]]"
+      @click="handleSelectAccount(item)"
     >
       <Subtitle2>{{ formatAccountNumber(item.accountNumber) }}</Subtitle2>
     </DoubleCard>

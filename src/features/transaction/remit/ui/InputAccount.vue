@@ -9,13 +9,13 @@ import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { checkAccountName } from '../services/remit.service';
 import { useTransStore } from '@/entities/transaction/transaction.store';
-import { bankOptions } from '@/shared/constants/options';
+import { transferBankOptions } from '@/shared/constants/options';
 
 const router = useRouter();
 const store = useTransStore();
 
 const accountNumber = ref(null);
-const bankType = ref(bankOptions[0].value);
+const bankType = ref(transferBankOptions[0].value);
 const showError = ref(false);
 const errorMsg = ref('');
 
@@ -59,7 +59,11 @@ watch([accountNumber], () => {
           v-model="accountNumber"
         />
       </div>
-      <Dropdown title="은행 선택" :options="bankOptions" v-model="bankType" />
+      <Dropdown
+        title="은행 선택"
+        :options="transferBankOptions"
+        v-model="bankType"
+      />
     </div>
     <div class="flex flex-col items-center">
       <Caption1

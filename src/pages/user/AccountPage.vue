@@ -46,7 +46,11 @@ const handleComplete = async (pw) => {
 
 onMounted(() => {
   route.meta.onBack = () => {
-    if (step.value > 1) step.value--;
+    if (step.value > 1) {
+      step.value--;
+    } else {
+      router.back();
+    }
   };
 });
 </script>

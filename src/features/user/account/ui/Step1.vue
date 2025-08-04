@@ -7,14 +7,14 @@ import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { addAccount } from '../services/account.service';
-import { bankOptions } from '@/shared/constants/options';
+import { accountBankOptions } from '@/shared/constants/options';
 
 const emit = defineEmits(['next']);
 
 const bankId = ref('');
 const bankPassword = ref('');
 const accountNumber = ref('');
-const bankType = ref(bankOptions[0].value);
+const bankType = ref(accountBankOptions[0].value);
 const showError = ref(false);
 
 const handleNext = async () => {
@@ -55,7 +55,11 @@ watch([bankId, bankPassword], () => {
     </div>
     <div class="flex flex-1 flex-col justify-between">
       <div class="w-full flex flex-col gap-[15px]">
-        <Dropdown title="은행 선택" :options="bankOptions" v-model="bankType" />
+        <Dropdown
+          title="은행 선택"
+          :options="accountBankOptions"
+          v-model="bankType"
+        />
         <div class="flex flex-col gap-[10px]">
           <Subtitle2>계좌번호</Subtitle2>
           <BoxInput v-model="accountNumber" />
