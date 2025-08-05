@@ -22,7 +22,7 @@ const handleLogin = async () => {
 
   if (result) {
     userStore.setUserInfo(result);
-    router.push('/main');
+    router.push(URL.PAGE.MAIN);
   } else {
     alert('로그인에 실패했습니다.');
   }

@@ -24,7 +24,7 @@ const maxAmount = ref('');
 const displayLabel = computed(() => {
   const findLabel = (tabs, val) =>
     tabs.find((t) => t.value === val)?.label || '';
-  return `${findLabel(periodOptions, selectedPeriod.value)} / ${findLabel(categoryOptions, selectedCategory.value)} / ${findLabel(selectedSort, selectedSort.value)}`;
+  return `${findLabel(periodOptions, selectedPeriod.value)} / ${findLabel(categoryOptions, selectedCategory.value)} / ${findLabel(sortOptions, selectedSort.value)}`;
 });
 
 const applyFilters = () => {

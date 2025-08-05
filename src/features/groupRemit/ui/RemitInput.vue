@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, reactive, watch } from 'vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
-import Subtitle3 from '@/shared/components/atoms/typography/Subtitle3.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import PlainCard from '@/shared/components/molecules/card/PlainCard.vue';
@@ -76,18 +75,13 @@ onMounted(fetchGroupCommission);
       <PlainCard>
         <div class="flex flex-col gap-5">
           <Head3>송금 정보</Head3>
-          <div class="flex flex-col">
-            <Subtitle3>송금 국가</Subtitle3>
-            <LineInput v-model="countryNameMap[currency]" :disabled="true" />
-          </div>
-          <div class="flex flex-col">
-            <Subtitle3>거래 목적</Subtitle3>
-            <LineInput v-model="purpose" />
-          </div>
-          <div class="flex flex-col">
-            <Subtitle3>송금 금액</Subtitle3>
-            <LineInput v-model="amount" />
-          </div>
+          <LineInput
+            v-model="countryNameMap[currency]"
+            title="송금 국가"
+            :disabled="true"
+          />
+          <LineInput v-model="purpose" title="거래 목적" />
+          <LineInput v-model="amount" title="송금 금액" />
         </div>
       </PlainCard>
 
