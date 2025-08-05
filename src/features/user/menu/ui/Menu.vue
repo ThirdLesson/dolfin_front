@@ -42,7 +42,9 @@ const router = useRouter();
         class="flex flex-col items-center justify-center w-1/3 cursor-pointer border-l border-dol-light-gray h-[70%] self-center"
         @click="() => router.push(URL.PAGE.DUTCH)"
       >
-        <div class="h-[55px] justify-center items-center overflow-hidden">
+        <div
+          class="h-[60px] w-[70px] justify-center items-center overflow-hidden"
+        >
           <img
             :src="Icons.dutchpay"
             alt="dutchpay"
