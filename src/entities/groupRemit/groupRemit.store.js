@@ -10,6 +10,7 @@ export const useGroupRemitStore = defineStore(
       amount: null,
       memberCount: null,
       commission: 5000,
+      isSignedUp: false,
     });
 
     const setGroupRemitInfo = (data) => {

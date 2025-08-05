@@ -36,7 +36,7 @@ const handleComplete = async () => {
   const result = await joinGroupRemit(joinData);
 
   if (result.status === 204) {
-    store.setGroupRemitInfo({ amount: joinData.amount });
+    store.setGroupRemitInfo({ amount: joinData.amount, isSignedUp: true });
     router.push(URL.PAGE.GROUP_COMPLETE);
   } else {
     showError.value = true;
