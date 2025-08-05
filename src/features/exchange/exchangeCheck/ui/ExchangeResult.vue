@@ -2,7 +2,6 @@
 import { ref, watch, computed } from 'vue';
 import SmallDropdown from '@/shared/components/molecules/SmallDropdown.vue';
 import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
-import P2 from '@/shared/components/atoms/typography/P2.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';

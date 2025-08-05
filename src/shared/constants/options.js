@@ -1,4 +1,5 @@
-import { Banks } from '@/asset/images';
+import { Banks, Flags, Icons } from '@/asset/images';
+import URL from './URL';
 
 export const accountBankOptions = [
   { label: '신협은행', value: '신협은행', src: Banks.cu },
@@ -63,6 +64,69 @@ export const currencyOptions = [
   { value: 'MYR', label: 'MYR' },
 ];
 
+export const currencyImgOptions = [
+  {
+    value: 'USD',
+    label: 'US Dollar (USD)',
+    src: Flags.usa,
+  },
+  {
+    value: 'JPY',
+    label: 'Japanese Yen (JPY)',
+    src: Flags.japan,
+  },
+  {
+    value: 'EUR',
+    label: 'Euro (EUR)',
+    src: Flags.eu,
+  },
+  {
+    value: 'GBP',
+    label: 'British Pound (GBP)',
+    src: Flags.uk,
+  },
+  {
+    value: 'CAD',
+    label: 'Canadian Dollar (CAD)',
+    src: Flags.canada,
+  },
+  {
+    value: 'HKD',
+    label: 'Hong Kong Dollar (HKD)',
+    src: Flags.hongkong,
+  },
+  {
+    value: 'CNY',
+    label: 'Chinese Yuan (CNY)',
+    src: Flags.china,
+  },
+  {
+    value: 'THB',
+    label: 'Thai Baht (THB)',
+    src: Flags.thailand,
+  },
+  {
+    value: 'IDR',
+    label: 'Indonesian Rupiah (IDR)',
+    src: Flags.indonesia,
+  },
+  {
+    value: 'VND',
+    label: 'Vietnamese Dong (VND)',
+    src: Flags.vietnam,
+  },
+  {
+    value: 'RUB',
+    label: 'Russian Ruble (RUB)',
+    src: Flags.russia,
+  },
+  {
+    value: 'MYR',
+    label: 'Malaysian Ringgit (MYR)',
+    src: Flags.malaysia,
+  },
+];
+
 export const exchangeOptions = [
   {
     value: 'GETCASH',
@@ -84,4 +148,81 @@ export const exchangeOptions = [
     value: 'BASE',
     label: '매매 기준율',
   },
+];
+
+export const remitOptions = [
+  {
+    label: '계좌번호',
+    value: 'account',
+  },
+  {
+    label: '전화번호',
+    value: 'tel',
+  },
+];
+
+export const countryOptions = [
+  { value: 'RUSSIA', label: '러시아' },
+  { value: 'MONGOLIA', label: '몽골' },
+  { value: 'USA', label: '미국' },
+  { value: 'VIETNAM', label: '베트남' },
+  { value: 'INDIA', label: '인도' },
+  { value: 'INDONESIA', label: '인도네시아' },
+  { value: 'JAPAN', label: '일본' },
+  { value: 'CHINA', label: '중국' },
+  { value: 'THAILAND', label: '태국' },
+  { value: 'PHILIPPINES', label: '필리핀' },
+  { value: 'KOREAN_RUSSIAN', label: '고려인' },
+  { value: 'KOREAN_CHINESE', label: '조선족' },
+  { value: 'OTHER', label: '기타' },
+];
+
+export const navBarOptions = [
+  {
+    value: 'main',
+    label: '메인',
+    src: Icons.main,
+    activeSrc: Icons.mainActive,
+    href: URL.PAGE.MAIN,
+  },
+  {
+    value: 'exchange',
+    label: '환율조회',
+    src: Icons.exchange,
+    activeSrc: Icons.exchangeActive,
+    href: URL.PAGE.EXCHANGE_CHECK,
+  },
+  {
+    value: 'map',
+    label: '스마트맵',
+    src: Icons.map,
+    activeSrc: Icons.mapActive,
+    href: URL.PAGE.MAP,
+  },
+  {
+    value: 'groupRemittance',
+    label: '공동송금',
+    src: Icons.remit,
+    activeSrc: Icons.remitActive,
+    href: URL.PAGE.GROUP,
+  },
+];
+
+export const periodOptions = [
+  { value: 'ONE_WEEK', label: '1주일' },
+  { value: 'ONE_MONTH', label: '1개월' },
+  { value: 'THREE_MONTH', label: '3개월' },
+  { value: 'SIX_MONTH', label: '6개월' },
+];
+
+export const categoryOptions = [
+  { value: undefined, label: '전체' },
+  { value: 'WITHDRAW', label: '출금' },
+  { value: 'DEPOSIT', label: '입금' },
+  { value: 'CHARGE', label: '충전' },
+];
+
+export const sortOptions = [
+  { value: 'LATEST', label: '최신순' },
+  { value: 'OLDEST', label: '과거순' },
 ];

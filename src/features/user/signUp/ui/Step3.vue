@@ -1,12 +1,12 @@
 <script setup>
 import { ref, computed } from 'vue';
-
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import TitleInput from '@/shared/components/atoms/input/TitleInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import Dropdown from '@/shared/components/molecules/Dropdown.vue';
+import { countryOptions } from '@/shared/constants/options';
 
 const props = defineProps({
   joinSuccess: {
@@ -21,22 +21,6 @@ const nationality = ref('');
 const month = ref('');
 const day = ref('');
 const year = ref('');
-
-const countries = [
-  { value: 'RUSSIA', label: '러시아' },
-  { value: 'MONGOLIA', label: '몽골' },
-  { value: 'USA', label: '미국' },
-  { value: 'VIETNAM', label: '베트남' },
-  { value: 'INDIA', label: '인도' },
-  { value: 'INDONESIA', label: '인도네시아' },
-  { value: 'JAPAN', label: '일본' },
-  { value: 'CHINA', label: '중국' },
-  { value: 'THAILAND', label: '태국' },
-  { value: 'PHILIPPINES', label: '필리핀' },
-  { value: 'KOREAN_RUSSIAN', label: '고려인' },
-  { value: 'KOREAN_CHINESE', label: '조선족' },
-  { value: 'OTHER', label: '기타' },
-];
 
 const birth = computed(() => {
   if (
@@ -104,7 +88,7 @@ const handleComplete = () => {
       <TitleInput title="여권번호" v-model="passportNumber" />
       <Dropdown
         title="국적"
-        :options="countries"
+        :options="countryOptions"
         v-model="nationality"
         color="true"
       />

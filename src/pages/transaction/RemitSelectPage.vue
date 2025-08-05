@@ -7,19 +7,9 @@ import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import AccountList from '@/features/transaction/remit/ui/AccountList.vue';
 import TelList from '@/features/transaction/remit/ui/TelList.vue';
 import URL from '@/shared/constants/URL';
+import { remitOptions } from '@/shared/constants/options';
 
-const options = [
-  {
-    label: '계좌번호',
-    value: 'account',
-  },
-  {
-    label: '전화번호',
-    value: 'tel',
-  },
-];
-
-const selected = ref('account');
+const selected = ref(remitOptions[0].value);
 const router = useRouter();
 </script>
 
@@ -27,7 +17,7 @@ const router = useRouter();
   <div class="flex flex-col h-full justify-between gap-5">
     <div class="flex flex-col gap-5">
       <Subtitle1>어디로 보낼까요?</Subtitle1>
-      <SquareTab :options="options" v-model="selected" />
+      <SquareTab :options="remitOptions" v-model="selected" />
       <AccountList v-if="selected === 'account'" />
       <TelList v-if="selected === 'tel'" />
     </div>

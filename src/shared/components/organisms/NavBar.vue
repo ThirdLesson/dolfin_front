@@ -12,45 +12,15 @@ import ActiveMainIcon from '@/asset/icon/mainActive.png';
 import ActiveExchangeIcon from '@/asset/icon/exchangeActive.png';
 import ActiveMapIcon from '@/asset/icon/mapActive.png';
 import ActiveRemitIcon from '@/asset/icon/remitActive.png';
+import { navBarOptions } from '@/shared/constants/options';
 
 const router = useRouter();
 const route = useRoute();
 
 const isPC = useMediaQuery();
 
-const options = [
-  {
-    value: 'main',
-    label: '메인',
-    src: mainIcon,
-    activeSrc: ActiveMainIcon,
-    href: URL.PAGE.MAIN,
-  },
-  {
-    value: 'exchange',
-    label: '환율조회',
-    src: exchangeIcon,
-    activeSrc: ActiveExchangeIcon,
-    href: URL.PAGE.EXCHANGE_CHECK,
-  },
-  {
-    value: 'map',
-    label: '스마트맵',
-    src: mapIcon,
-    activeSrc: ActiveMapIcon,
-    href: URL.PAGE.MAP,
-  },
-  {
-    value: 'groupRemittance',
-    label: '공동송금',
-    src: remitIcon,
-    activeSrc: ActiveRemitIcon,
-    href: URL.PAGE.GROUP,
-  },
-];
-
 const selectOption = (option) => {
-  const selected = options.find((opt) => opt.value === option);
+  const selected = navBarOptions.find((opt) => opt.value === option);
   if (!selected) return;
 
   router.push(selected.href);
@@ -63,7 +33,7 @@ const selectOption = (option) => {
     :class="isPC && 'max-w-[500px] left-1/2 -translate-x-1/2'"
   >
     <button
-      v-for="option in options"
+      v-for="option in navBarOptions"
       :key="option.value"
       @click="selectOption(option.value)"
       class="flex flex-col gap-[5px] items-center"
