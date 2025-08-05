@@ -39,8 +39,6 @@ watch(
     fetchMemberCount();
     store.setGroupRemitInfo({
       currency: selectedType.value,
-      day: null,
-      amount: null,
     });
   },
   {
