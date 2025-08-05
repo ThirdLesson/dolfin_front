@@ -91,7 +91,7 @@ onMounted(fetchGroupCommission);
         </div>
       </PlainCard>
 
-      <div class="flex flex-col items-center bg-dol-sub rounded-md p-5">
+      <div class="flex flex-col items-center bg-dol-light-sub rounded-md p-5">
         <Head3>예상 혜택</Head3>
         <div class="w-full flex flex-col gap-[10px]">
           <div class="flex justify-between">

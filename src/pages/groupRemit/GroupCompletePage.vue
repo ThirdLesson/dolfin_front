@@ -40,7 +40,7 @@ const totalAmount = store.getTotalAmount;
           </div>
         </div>
       </div>
-      <div class="flex flex-col bg-dol-sub rounded-md p-5 gap-[15px]">
+      <div class="flex flex-col bg-dol-light-sub rounded-md p-5 gap-[15px]">
         <div class="flex items-center justify-between">
           <Subtitle2 class="text-dol-dark-gray">송금 국가</Subtitle2>
           <P1>{{ countryNameMap[currency] }}</P1>

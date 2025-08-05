@@ -32,7 +32,7 @@ const handleCustomBack = () => {
     class="h-screen flex flex-col mx-auto overflow-y-auto w-full"
     :class="[
       isPC && 'max-w-[500px] shadow-custom-shadow',
-      hasbgColor && 'bg-dol-sub',
+      hasbgColor && 'bg-dol-light-sub',
     ]"
   >
     <header class="w-full fixed top-0 left-0 z-40 shadow-custom-shadow">

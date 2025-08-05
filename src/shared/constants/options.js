@@ -62,3 +62,26 @@ export const currencyOptions = [
   { value: 'BDT', label: 'BDT' },
   { value: 'MYR', label: 'MYR' },
 ];
+
+export const exchangeOptions = [
+  {
+    value: 'GETCASH',
+    label: '현찰 받을 때',
+  },
+  {
+    value: 'SELLCASH',
+    label: '현찰 팔 때',
+  },
+  {
+    value: 'SEND',
+    label: '송금 보낼 때',
+  },
+  {
+    value: 'RECEIVE',
+    label: '송금 받을 때',
+  },
+  {
+    value: 'BASE',
+    label: '매매 기준율',
+  },
+];

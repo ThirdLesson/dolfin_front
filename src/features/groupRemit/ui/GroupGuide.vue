@@ -31,7 +31,7 @@ const text = [
 </script>
 
 <template>
-  <div class="bg-dol-sub flex flex-col gap-5">
+  <div class="bg-dol-light-sub flex flex-col gap-5">
     <div class="flex flex-col gap-5">
       <div>
         <Head2>함께하면 더 저렴한 해외 송금</Head2>
