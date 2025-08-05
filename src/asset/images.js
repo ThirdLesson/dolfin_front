@@ -46,15 +46,15 @@ import remit from './icon/remit.png';
 import remitActive from './icon/remitActive.png';
 import groupRemit from './icon/groupRemit.svg';
 import tel from './icon/tel.png';
-import autoRemit from './icon/autoRemit.png';
-import recruit from './icon/recruit.png';
-import condition from './icon/condition.png';
+import autoRemit from './icon/autoRemit.svg';
+import recruit from './icon/recruit.svg';
+import condition from './icon/condition.svg';
 
 import circleLogo from './logo/circleLogo.png';
 import comingLogo from './logo/comingLogo.png';
 import loading from './logo/loading.gif';
 import logo from './logo/logo.png';
-import nbgLogo from './logo/nbgLogo.png';
+import nbgLogo from './logo/nbgLogo.svg';
 
 export const Logos = {
   circleLogo,
