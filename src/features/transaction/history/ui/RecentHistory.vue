@@ -29,7 +29,7 @@ const getUiType = (type) => {
 onMounted(async () => {
   const res = await getTransactions({
     page: 0,
-    size: 3,
+    size: 4,
     sortDirection: 'LATEST',
   });
 
@@ -53,11 +53,11 @@ onMounted(async () => {
     <Head3>최근 거래 내역</Head3>
     <ul class="flex flex-col gap-3">
       <li
-        v-for="(item, index) in recentTransactions.slice(0, 3)"
+        v-for="(item, index) in recentTransactions.slice(0, 4)"
         :key="index"
         :class="[
           'flex justify-between pb-3',
-          index !== recentTransactions.slice(0, 3).length - 1 ? 'border-b' : '',
+          index !== recentTransactions.slice(0, 4).length - 1 ? 'border-b' : '',
         ]"
       >
         <div>

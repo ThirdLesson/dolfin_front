@@ -34,17 +34,17 @@ import usa from './flag/usa.png';
 import vietnam from './flag/vietnam.png';
 
 import check from './icon/check.png';
-import dutchpay from './icon/dutchpay.png';
+import dutchpay from './icon/dutchpay.svg';
 import exchange from './icon/exchange.png';
 import exchangeActive from './icon/exchangeActive.png';
 import main from './icon/main.png';
 import mainActive from './icon/mainActive.png';
 import map from './icon/map.png';
 import mapActive from './icon/mapActive.png';
-import recommend from './icon/recommend.png';
+import recommendation from './icon/recommendation.svg';
 import remit from './icon/remit.png';
 import remitActive from './icon/remitActive.png';
-import remitMenu from './icon/remitMenu.png';
+import groupRemit from './icon/groupRemit.svg';
 import tel from './icon/tel.png';
 import autoRemit from './icon/autoRemit.png';
 import recruit from './icon/recruit.png';
@@ -73,10 +73,10 @@ export const Icons = {
   mainActive,
   map,
   mapActive,
-  recommend,
+  recommendation,
   remit,
   remitActive,
-  remitMenu,
+  groupRemit,
   tel,
   autoRemit,
   condition,

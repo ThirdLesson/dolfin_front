@@ -26,7 +26,9 @@ const { userInfo } = storeToRefs(userStore);
     <div class="flex flex-col gap-4">
       <Wallet />
       <Menu />
-      <RecentHistory />
+      <div @click="() => router.push(URL.PAGE.HISTORY)">
+        <RecentHistory />
+      </div>
     </div>
   </div>
 </template>
