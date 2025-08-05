@@ -18,7 +18,8 @@ export const bankNameMap = {
   우체국: 'post',
   수협은행: 'sh',
   산업은행: 'kdb',
-  제주은행: 'im',
+  제주은행: 'shinhan',
+  아이엠뱅크: 'im',
   신협은행: 'cu',
   새마을금고: 'mg',
 };
