@@ -1,11 +1,21 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import Subtitle3 from '@/shared/components/atoms/typography/Subtitle3.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 
+const props = defineProps({
+  policyList: Array,
+  changguAmount: String,
+});
+
 const showDetail = ref(false);
+
+const maxBenefitAmount = computed(() => {
+  if (!props.policyList || props.policyList.length === 0) return '';
+  return props.policyList[0].amount;
+});
 </script>
 <template>
   <div
@@ -13,32 +23,39 @@ const showDetail = ref(false);
     @click="showDetail = !showDetail"
   >
     <div class="flex items-center gap-2">
-      <Subtitle2>총 21,000.91 VND</Subtitle2>
-      <Subtitle3 class="text-dol-main">최대 혜택가</Subtitle3>
+      <Subtitle2>총 {{ maxBenefitAmount }}</Subtitle2>
     </div>
     <div class="flex items-center gap-1">
-      <Caption1>자세히</Caption1>
+      <Caption1 class="text-dol-main">더 많은 혜택 보기</Caption1>
       <i
-        class="bi bi-caret-down-fill text-dol-light-gray transition-transform duration-300"
+        class="bi bi-caret-down-fill text-dol-main transition-transform duration-300"
         :class="{ 'rotate-180': showDetail }"
       />
     </div>
   </div>
+
   <Transition name="slide-fade">
     <div
       v-show="showDetail"
-      class="w-full flex flex-col bg-dol-light-bg p-4 rounded-b-sm mt-[-3px]"
+      class="w-full flex flex-col bg-dol-light-sub p-4 rounded-b-sm mt-[-3px]"
     >
       <ul class="flex flex-col gap-1">
-        <li class="flex justify-between">
-          <P1 class="max-w-[80%]">• KB스타뱅킹 앱 이용 시</P1>
-          <P1 class="shrink-0">21,000.91 VND</P1>
+        <li
+          v-if="props.changguAmount"
+          class="flex justify-between items-center"
+        >
+          <Subtitle3 class="text-dol-dark-gray">ⓘ 은행 창구 이용 시</Subtitle3>
+          <Subtitle3 class="text-dol-dark-gray">{{
+            props.changguAmount
+          }}</Subtitle3>
         </li>
-        <li class="flex justify-between">
-          <P1 class="max-w-[60%]" style="word-break: keep-all"
-            >• 최근 1년 이내 인터넷 환전 이용 실적 있는 경우</P1
-          >
-          <P1 class="shrink-0">21,000.21 VND</P1>
+        <li
+          v-for="(item, index) in props.policyList"
+          :key="index"
+          class="flex justify-between"
+        >
+          <P1 class="max-w-[70%] break-keep">• {{ item.name }}</P1>
+          <P1 class="shrink-0">{{ item.amount }}</P1>
         </li>
       </ul>
     </div>

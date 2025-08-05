@@ -1,42 +1,25 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import SmallDropdown from '@/shared/components/molecules/SmallDropdown.vue';
 import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
+import P2 from '@/shared/components/atoms/typography/P2.vue';
+import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
+import Subtitle3 from '@/shared/components/atoms/typography/Subtitle3.vue';
 import { exchangeCheck } from '../service/exchangeCheck.service';
 import { Banks } from '@/asset/images';
 import { bankNameMap } from '@/shared/utils/KorEngMap';
 import BenefitInfo from './BenefitInfo.vue';
 import { useExchangeStore } from '@/entities/exchange/exchange.store';
+import { exchangeOptions } from '@/shared/constants/options';
 
 const store = useExchangeStore();
 
-const options = [
-  {
-    value: 'SELLCASH',
-    label: '현찰 팔 때',
-  },
-  {
-    value: 'GETCASH',
-    label: '현찰 받을 때',
-  },
-  {
-    value: 'SEND',
-    label: '송금 보낼 때',
-  },
-  {
-    value: 'RECEIVE',
-    label: '송금 받을 때',
-  },
-  {
-    value: 'BASE',
-    label: '매매 기준율',
-  },
-];
-
-const selectedType = ref('GETCASH');
+const selectedType = ref(exchangeOptions[0].value);
 const data = ref([]);
+
+const isSendType = computed(() => selectedType.value === 'SEND');
 
 const exchangeCheckFunction = async () => {
   const result = await exchangeCheck({
@@ -45,7 +28,7 @@ const exchangeCheckFunction = async () => {
     type: selectedType.value,
   });
 
-  data.value = result.data.allBanks;
+  data.value = result.data.banks;
 };
 
 watch(
@@ -58,23 +41,36 @@ watch(
   },
 );
 </script>
+
 <template>
   <div class="flex flex-col">
-    <div class="flex justify-end mb-[25px]">
-      <SmallDropdown :options="options" v-model="selectedType" />
+    <div class="w-full flex flex-col items-end mb-[20px] gap-[15px]">
+      <SmallDropdown :options="exchangeOptions" v-model="selectedType" />
+      <div
+        v-if="isSendType"
+        class="w-full flex flex-col p-4 rounded-sm bg-dol-light"
+      >
+        <Subtitle3>※ 유의 사항</Subtitle3>
+        <Caption1
+          >창구를 통한 해외 송금 이외에는 외국환 등록이 필요합니다.</Caption1
+        >
+      </div>
     </div>
-    <div v-for="(item, index) in data" :key="item.index" class="mb-[15px]">
+    <div v-for="item in data" :key="item.index" class="mb-[15px]">
       <DoubleCard
         :title="item.bankName"
         :image="Banks[bankNameMap[item.bankName]]"
-        :class="index == 0 && 'bg-[rgba(206,223,246,0.6)]'"
       >
         <div class="flex flex-col items-end">
           <Caption2>{{ item.exchangeRate }}</Caption2>
           <Subtitle2>총 {{ item.totalAmount }}</Subtitle2>
         </div>
       </DoubleCard>
-      <BenefitInfo />
+      <BenefitInfo
+        v-if="item.policyList.length > 0"
+        :policyList="item.policyList"
+        :changguAmount="isSendType ? item.changguAmount : null"
+      />
     </div>
   </div>
 </template>
