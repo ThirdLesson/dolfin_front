@@ -1,11 +1,9 @@
 <script setup>
-import { computed, watch } from 'vue';
-import SquareTab from '@/shared/components/molecules/SquareTab.vue';
 import P2 from '@/shared/components/atoms/typography/P2.vue';
 import Modal from '@/shared/components/organisms/Modal.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
+import SquareTab from '@/shared/components/molecules/SquareTab.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
-import { allProducts } from '@/entities/recommendation/recommendation.mock';
 
 const props = defineProps({
   activeTab: String,
@@ -18,7 +16,6 @@ const emit = defineEmits([
   'update:filterTab',
   'update:conditionTab',
   'update:showFilterModal',
-  'update:filteredProducts',
 ]);
 
 const tabs = [
@@ -39,33 +36,17 @@ const conditiontabs = [
   { value: '재예치', label: '재예치' },
   { value: '비대면가입', label: '비대면가입' },
   { value: '공과금연동', label: '공과금연동' },
-  { value: '주택청약', label: '주택청약' },
+  { value: '은행앱사용', label: '은행앱사용' },
   { value: '입출금통장', label: '입출금통장' },
   { value: '급여연동', label: '급여연동' },
 ];
-
-const filteredProducts = computed(() => {
-  let products = allProducts[props.activeTab] || [];
-  const months = parseInt(props.filterTab.replace('개월', '')) || 0;
-  if (months > 0) products = products.filter((p) => p.period === months);
-  if (props.conditionTab.length > 0) {
-    products = products.filter((p) =>
-      props.conditionTab.every((cond) => p.preferential.includes(cond)),
-    );
-  }
-  return products;
-});
-
-watch(filteredProducts, (val) => emit('update:filteredProducts', val), {
-  immediate: true,
-});
 </script>
 
 <template>
   <div class="flex flex-col">
     <div class="sticky top-[60px] w-full overflow-x-auto bg-white">
       <SquareTab
-        v-model="props.activeTab"
+        :modelValue="props.activeTab"
         :options="tabs"
         class="flex w-max py-2"
         @update:modelValue="(val) => emit('update:activeTab', val)"
@@ -94,7 +75,7 @@ watch(filteredProducts, (val) => emit('update:filteredProducts', val), {
         <Head3>저축 기간</Head3>
         <div class="w-full overflow-x-auto bg-white">
           <SquareTab
-            v-model="props.filterTab"
+            :modelValue="props.filterTab"
             :options="filtertabs"
             class="flex w-max py-2"
             @update:modelValue="(val) => emit('update:filterTab', val)"
@@ -103,7 +84,7 @@ watch(filteredProducts, (val) => emit('update:filteredProducts', val), {
 
         <Head3 class="pt-[10px]">우대 조건 (중복 선택)</Head3>
         <SquareTab
-          v-model="props.conditionTab"
+          :modelValue="props.conditionTab"
           :options="conditiontabs"
           :multiple="true"
           class="flex flex-wrap gap-2 py-2"
@@ -115,7 +96,7 @@ watch(filteredProducts, (val) => emit('update:filteredProducts', val), {
         <Head3 class="pt-[15px]">대출 금리</Head3>
         <div class="w-full overflow-x-auto bg-white">
           <SquareTab
-            v-model="props.filterTab"
+            :modelValue="props.filterTab"
             :options="[
               { value: '최저 기준', label: '최저 기준' },
               { value: '최고 기준', label: '최고 기준' },
