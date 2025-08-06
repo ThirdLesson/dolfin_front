@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import URL from '@/shared/constants/URL';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
@@ -9,11 +9,12 @@ import RemitInput from '@/features/groupRemit/ui/RemitInput.vue';
 import RecipientInput from '@/features/groupRemit/ui/RecipientInput.vue';
 import { joinGroupRemit } from '@/features/groupRemit/service/groupRemit.service';
 import { useGroupRemitStore } from '@/entities/groupRemit/groupRemit.store';
+import { getMemberCount } from '@/features/groupRemit/service/groupRemit.service';
 
 const router = useRouter();
 const store = useGroupRemitStore();
 const remittanceDate = computed(() => store.groupRemitInfo.remittanceDate);
-const memberCount = computed(() => store.groupRemitInfo.memberCount);
+const memberCount = ref(null);
 
 const selected = ref('remit');
 const joinData = reactive({
@@ -32,6 +33,16 @@ const joinData = reactive({
 const showError = ref(false);
 const errorMessage = ref('');
 
+const getMemberCountByDay = async () => {
+  const result = await getMemberCount({
+    currency: store.groupRemitInfo.currency,
+  });
+
+  const matched = result.data.find((item) => item.day === remittanceDate.value);
+
+  memberCount.value = matched?.memberCount ?? 0;
+};
+
 const handleComplete = async () => {
   const result = await joinGroupRemit(joinData);
 
@@ -43,6 +54,10 @@ const handleComplete = async () => {
     errorMessage.value = result.message;
   }
 };
+
+onMounted(() => {
+  getMemberCountByDay();
+});
 </script>
 
 <template>

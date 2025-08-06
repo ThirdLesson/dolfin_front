@@ -19,7 +19,6 @@ const handleClick = (item) => {
   store.setGroupRemitInfo({
     currency: selectedType.value,
     remittanceDate: item.day,
-    memberCount: item.memberCount,
   });
 
   router.push(URL.PAGE.GROUP_SIGNUP);
