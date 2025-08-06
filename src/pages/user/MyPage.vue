@@ -1,5 +1,7 @@
-<script setup></script>
+<script setup>
+import UserInfo from '@/features/user/userInfo/ui/UserInfo.vue';
+</script>
 
 <template>
-  <main>mypage</main>
+  <UserInfo />
 </template>
