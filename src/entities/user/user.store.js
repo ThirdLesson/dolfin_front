@@ -16,7 +16,6 @@ export const useUserStore = defineStore(
       phoneNumber: '',
       remainTime: '',
       walletId: null,
-      isFCMInitialized: false,
     });
 
     const isFCMInitialized = ref(false);
