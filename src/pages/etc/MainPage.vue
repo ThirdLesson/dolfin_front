@@ -26,7 +26,7 @@ onMounted(async () => {
 
     const token = await requestForToken();
     if (token) {
-      console.log('✅ FCM 토큰 발급 성공:', token);
+      console.log('✅ FCM 토큰 발급 성공:');
 
       isFCMInitialized.value = true;
     }
