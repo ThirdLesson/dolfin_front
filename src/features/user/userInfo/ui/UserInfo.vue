@@ -13,7 +13,7 @@ import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
 import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
 import CollectCard from '@/features/groupRemit/ui/CollectCard.vue';
 
-import logo from '@/asset/logo/circlelogo.png';
+import { Logos } from '@/asset/images';
 import { Banks } from '@/asset/images';
 import { bankNameMap } from '@/shared/utils/KorEngMap';
 import { formatAccountNumber } from '@/shared/utils/format';
@@ -86,7 +86,7 @@ onMounted(() => {
   <div class="flex flex-col px-4 py-4 space-y-4 overflow-y-auto">
     <div class="flex items-center justify-between w-full">
       <div class="flex items-center gap-2">
-        <img :src="logo" class="w-[50px] h-[50px]" />
+        <img :src="Logos.circleLogo" class="w-[50px] h-[50px]" />
         <Head2>{{ userInfo.name || '사용자' }}님</Head2>
       </div>
       <button
