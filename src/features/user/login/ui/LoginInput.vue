@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
 import URL from '@/shared/constants/URL';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
@@ -10,6 +11,7 @@ import { useUserStore } from '@/entities/user/user.store';
 
 const router = useRouter();
 const userStore = useUserStore();
+const { isFCMInitialized } = storeToRefs(userStore);
 
 const loginId = ref('');
 const password = ref('');
@@ -22,6 +24,7 @@ const handleLogin = async () => {
 
   if (result) {
     userStore.setUserInfo(result);
+    isFCMInitialized.value = false;
     router.push(URL.PAGE.MAIN);
   } else {
     alert('로그인에 실패했습니다.');

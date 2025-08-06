@@ -1,7 +1,7 @@
 <script setup>
-import { watch } from 'vue';
-import { useRouter } from 'vue-router';
+import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 import { useUserStore } from '@/entities/user/user.store';
 import URL from '@/shared/constants/URL';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
@@ -14,39 +14,40 @@ const router = useRouter();
 const userStore = useUserStore();
 const { userInfo, isFCMInitialized } = storeToRefs(userStore);
 
-watch(
-  () => userInfo.value.memberId,
-  async (memberId) => {
-    if (memberId && !isFCMInitialized.value) {
-      isFCMInitialized.value = true;
+onMounted(async () => {
+  if (!userInfo.value.memberId || isFCMInitialized.value) return;
 
-      if ('Notification' in window) {
-        const permission = await Notification.requestPermission();
-        if (permission === 'granted') {
-          const token = await requestForToken();
-          if (token) {
-            console.log('로그인 후 FCM 토큰 발급 완료');
-          }
-        }
-      }
-
-      onMessageListener()
-        .then((payload) => {
-          console.log('메시지 수신:', payload);
-          if (Notification.permission === 'granted') {
-            new Notification(payload.notification.title, {
-              body: payload.notification.body,
-              icon: '/favicon/favicon-32x32.png',
-            });
-          }
-        })
-        .catch((err) => {
-          console.error('메시지 수신 에러:', err);
-        });
+  try {
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') {
+      console.log('알림 권한 거부됨');
+      return;
     }
-  },
-  { immediate: true },
-);
+
+    const token = await requestForToken();
+    if (token) {
+      console.log('✅ FCM 토큰 발급 성공:', token);
+
+      isFCMInitialized.value = true;
+    }
+
+    onMessageListener()
+      .then((payload) => {
+        console.log('메시지 수신:', payload);
+        if (Notification.permission === 'granted') {
+          new Notification(payload.notification.title, {
+            body: payload.notification.body,
+            icon: '/favicon/favicon-32x32.png',
+          });
+        }
+      })
+      .catch((err) => {
+        console.error('메시지 수신 리스너 등록 실패:', err);
+      });
+  } catch (err) {
+    console.error('FCM 처리 실패:', err);
+  }
+});
 </script>
 
 <template>
