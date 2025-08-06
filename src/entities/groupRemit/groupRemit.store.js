@@ -8,7 +8,6 @@ export const useGroupRemitStore = defineStore(
       currency: '',
       remittanceDate: null,
       amount: null,
-      memberCount: null,
       commission: 5000,
       isSignedUp: false,
     });
