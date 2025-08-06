@@ -47,13 +47,8 @@ const currencyOptions = [
 ];
 
 const handleLogout = async () => {
-  try {
-    await signOut();
-  } finally {
-    userStore.clearUserInfo();
-    localStorage.removeItem('token');
-    router.push('/');
-  }
+  await signOut();
+  router.push('/');
 };
 
 const fetchMyAccounts = async () => {
