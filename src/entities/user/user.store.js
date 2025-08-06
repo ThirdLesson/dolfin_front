@@ -16,7 +16,10 @@ export const useUserStore = defineStore(
       phoneNumber: '',
       remainTime: '',
       walletId: null,
+      isFCMInitialized: false,
     });
+
+    const isFCMInitialized = ref(false);
 
     const setUserInfo = (data) => {
       userInfo.value = { ...data };
@@ -40,6 +43,8 @@ export const useUserStore = defineStore(
         remainTime: '',
         walletId: null,
       };
+      
+      isFCMInitialized.value = false;
     };
 
     const isLoggedIn = computed(() => !!userInfo.value.memberId);
@@ -59,6 +64,7 @@ export const useUserStore = defineStore(
 
     return {
       userInfo,
+      isFCMInitialized,
       setUserInfo,
       clearUserInfo,
       isLoggedIn,

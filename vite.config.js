@@ -1,10 +1,9 @@
 import { fileURLToPath, URL } from 'node:url';
-
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import { VitePWA } from 'vite-plugin-pwa';
-import basicSsl from '@vitejs/plugin-basic-ssl';
+import mkcert from 'vite-plugin-mkcert';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -13,14 +12,14 @@ export default defineConfig({
     vueDevTools(),
     VitePWA({
       registerType: 'autoUpdate',
-      filename: 'sw.js',
       devOptions: {
-        enabled: true,
+        enabled: false,
         type: 'module',
+        fallback: true,
       },
       injectRegister: 'auto',
     }),
-    basicSsl(),
+    mkcert(),
   ],
   resolve: {
     alias: {
@@ -29,5 +28,6 @@ export default defineConfig({
   },
   server: {
     https: true,
+    port: 5173,
   },
 });
