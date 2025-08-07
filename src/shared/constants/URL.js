@@ -1,6 +1,8 @@
 const URL = {
   PAGE: {
-    LOGIN: '/',
+    SPLASH: '/',
+    ONBOARDING: '/onboarding',
+    LOGIN: '/login',
     SIGNUP: '/signup',
     MAIN: '/main',
     MAP: '/map',

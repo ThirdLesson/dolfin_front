@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 
+import URL from '@/shared/constants/URL';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
 import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 import P2 from '@/shared/components/atoms/typography/P2.vue';
@@ -48,7 +49,7 @@ const currencyOptions = [
 
 const handleLogout = async () => {
   await signOut();
-  router.push('/');
+  router.push(URL.PAGE.LOGIN);
 };
 
 const fetchMyAccounts = async () => {

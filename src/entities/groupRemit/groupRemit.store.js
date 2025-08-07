@@ -19,6 +19,16 @@ export const useGroupRemitStore = defineStore(
       };
     };
 
+    const clearGroupRemitInfo = () => {
+      groupRemitInfo.value = {
+        currency: '',
+        remittanceDate: null,
+        amount: null,
+        commission: 5000,
+        isSignedUp: false,
+      };
+    };
+
     // 총 예상 금액 계산: 송금 금액 + 수수료
     const getTotalAmount = computed(() => {
       const amount = Number(groupRemitInfo.value.amount || 0);
@@ -29,6 +39,7 @@ export const useGroupRemitStore = defineStore(
     return {
       groupRemitInfo,
       setGroupRemitInfo,
+      clearGroupRemitInfo,
       getTotalAmount,
     };
   },

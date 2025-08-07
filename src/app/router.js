@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useUserStore } from '@/entities/user/user.store';
 import URL from '@/shared/constants/URL';
+import SplashPage from '@/pages/etc/SplashPage.vue';
+import OnboardingPage from '@/pages/etc/OnboardingPage.vue';
 import LoginPage from '@/pages/user/LoginPage.vue';
 import SignUpPage from '@/pages/user/SignUpPage.vue';
 import MainPage from '@/pages/etc/MainPage.vue';
@@ -27,6 +29,18 @@ import RemitCompletePage from '@/pages/transaction/RemitCompletePage.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: URL.PAGE.SPLASH,
+      name: 'splash',
+      component: SplashPage,
+      meta: { navBar: false },
+    },
+    {
+      path: URL.PAGE.ONBOARDING,
+      name: 'onboarding',
+      component: OnboardingPage,
+      meta: { navBar: false },
+    },
     {
       path: URL.PAGE.LOGIN,
       name: 'login',
@@ -175,11 +189,14 @@ router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   const isLoggedIn = userStore.isLoggedIn;
 
-  const publicPages = [URL.PAGE.LOGIN, URL.PAGE.SIGNUP];
+  const publicPages = [URL.PAGE.LOGIN, URL.PAGE.SIGNUP, URL.PAGE.SPLASH];
   const authRequired = !publicPages.includes(to.path);
 
+  // 로그인 안 되어 있는데 인증이 필요한 페이지에 접근하려고 하면 → 로그인으로 보냄
   if (!isLoggedIn && authRequired) {
     next(URL.PAGE.LOGIN);
+
+    // 이미 로그인 되어 있는데 로그인 페이지 가려고 하면 → 메인 페이지로 보냄
   } else if (isLoggedIn && to.path === URL.PAGE.LOGIN) {
     next(URL.PAGE.MAIN);
   } else {
