@@ -55,6 +55,11 @@ import comingLogo from './logo/comingLogo.png';
 import loading from './logo/loading.gif';
 import logo from './logo/logo.png';
 import nbgLogo from './logo/nbgLogo.svg';
+import splash from './logo/splash.gif';
+
+import onboarding1 from './onboarding/onboarding1.png';
+import onboarding2 from './onboarding/onboarding2.png';
+import onboarding3 from './onboarding/onboarding3.png';
 
 export const Logos = {
   circleLogo,
@@ -62,6 +67,7 @@ export const Logos = {
   loading,
   logo,
   nbgLogo,
+  splash,
 };
 
 export const Icons = {
@@ -120,4 +126,10 @@ export const Banks = {
   shinhan,
   toss,
   woori,
+};
+
+export const Onboardings = {
+  onboarding1,
+  onboarding2,
+  onboarding3,
 };
