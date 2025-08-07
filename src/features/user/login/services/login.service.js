@@ -1,4 +1,5 @@
 import { user } from '@/entities/user/user.api';
+import { useUserStore } from '@/entities/user/user.store';
 
 export async function signIn({ loginId, password }) {
   const { url, method } = user.signIn();
@@ -25,6 +26,8 @@ export async function signIn({ loginId, password }) {
 }
 
 export async function signOut() {
+  const userStore = useUserStore();
+
   const { url, method } = user.signOut();
   const result = await fetch(url, {
     method: method,
@@ -32,6 +35,7 @@ export async function signOut() {
 
   const res = await result.json();
   localStorage.removeItem('accessToken');
+  userStore.clearUserInfo()
 
   return res.data;
 }
