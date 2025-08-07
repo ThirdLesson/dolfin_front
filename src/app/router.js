@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { useUserStore } from '@/entities/user/user.store';
 import URL from '@/shared/constants/URL';
 import LoginPage from '@/pages/user/LoginPage.vue';
 import SignUpPage from '@/pages/user/SignUpPage.vue';
@@ -168,6 +169,22 @@ const router = createRouter({
       meta: { header: '뒤로가기' },
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+  const isLoggedIn = userStore.isLoggedIn;
+
+  const publicPages = [URL.PAGE.LOGIN, URL.PAGE.SIGNUP];
+  const authRequired = !publicPages.includes(to.path);
+
+  if (!isLoggedIn && authRequired) {
+    next(URL.PAGE.LOGIN);
+  } else if (isLoggedIn && to.path === URL.PAGE.LOGIN) {
+    next(URL.PAGE.MAIN);
+  } else {
+    next();
+  }
 });
 
 export default router;
