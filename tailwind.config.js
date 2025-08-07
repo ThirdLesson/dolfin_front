@@ -24,6 +24,9 @@ export default {
       boxShadow: {
         'custom-shadow': '0 0 4px rgba(0, 0, 0, 0.25)',
       },
+      fontFamily: {
+        jua: ['Jua', 'sans-serif'],
+      },
     },
   },
   plugins: [],
