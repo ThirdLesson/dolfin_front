@@ -10,9 +10,14 @@ const userStore = useUserStore();
 
 const splashGif = Logos.splash;
 
+const isFirstVisit = localStorage.getItem('hasVisited');
+
 onMounted(() => {
   setTimeout(() => {
-    if (userStore.isLoggedIn) {
+    if (!isFirstVisit) {
+      localStorage.setItem('hasVisited', 'true');
+      router.replace(URL.PAGE.ONBOARDING);
+    } else if (userStore.isLoggedIn) {
       router.replace(URL.PAGE.MAIN);
     } else {
       router.replace(URL.PAGE.LOGIN);

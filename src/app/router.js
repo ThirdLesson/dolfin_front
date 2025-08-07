@@ -189,7 +189,12 @@ router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   const isLoggedIn = userStore.isLoggedIn;
 
-  const publicPages = [URL.PAGE.LOGIN, URL.PAGE.SIGNUP, URL.PAGE.SPLASH];
+  const publicPages = [
+    URL.PAGE.LOGIN,
+    URL.PAGE.SIGNUP,
+    URL.PAGE.SPLASH,
+    URL.PAGE.ONBOARDING,
+  ];
   const authRequired = !publicPages.includes(to.path);
 
   // 로그인 안 되어 있는데 인증이 필요한 페이지에 접근하려고 하면 → 로그인으로 보냄
