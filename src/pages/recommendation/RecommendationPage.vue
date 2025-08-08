@@ -4,14 +4,12 @@ import RecommendationHeader from '@/features/recommendation/ui/RecommendationHea
 import ProductList from '@/features/recommendation/ui/ProductList.vue';
 import ProductInfoModal from '@/features/recommendation/ui/ProductInfoModal.vue';
 
-const activeTab = ref('예금');
-const filterTab = ref('');
-const conditionTab = ref([]);
+const productOption = ref('예금');
+const periodOption = ref('STAY_EXPIRATION');
+const conditionOption = ref([]);
 const showFilterModal = ref(false);
 const showInfoModal = ref(false);
 const selectedProduct = ref(null);
-
-const filteredProducts = ref([]);
 
 const openInfoModal = (product) => {
   selectedProduct.value = product;
@@ -20,16 +18,20 @@ const openInfoModal = (product) => {
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen gap-[15px]">
     <RecommendationHeader
-      v-model:activeTab="activeTab"
-      v-model:filterTab="filterTab"
-      v-model:conditionTab="conditionTab"
+      v-model:productOption="productOption"
+      v-model:periodOption="periodOption"
+      v-model:conditionOption="conditionOption"
       v-model:showFilterModal="showFilterModal"
-      v-model:filteredProducts="filteredProducts"
     />
 
-    <ProductList :products="filteredProducts" @select="openInfoModal" />
+    <ProductList
+      :productOption="productOption"
+      :periodOption="periodOption"
+      :conditionOption="conditionOption"
+      @select="openInfoModal"
+    />
 
     <ProductInfoModal
       :show="showInfoModal"
