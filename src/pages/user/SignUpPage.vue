@@ -9,7 +9,7 @@ import Step4 from '@/features/user/signUp/ui/Step4.vue';
 import { signUp } from '@/features/user/signUp/services/signUp.service';
 import { formatDate } from '@/shared/utils/format';
 
-const step = ref(1);
+const step = ref(4);
 const signUpResult = ref(null);
 const joinSuccess = ref(true);
 const signupData = reactive({
@@ -37,7 +37,6 @@ const currentStep = computed(() => {
 });
 
 const handleSignUp = async () => {
-  // console.log('최종 제출할 데이터:', signupData);
   const result = await signUp({
     birth: formatDate(signupData.birth, '-'),
     country: signupData.country,

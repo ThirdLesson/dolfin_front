@@ -56,7 +56,7 @@ const handleComplete = () => {
 };
 </script>
 <template>
-  <div class="flex flex-col flex-1 gap-[10vh] justify-center">
+  <div class="flex flex-col flex-1 gap-[10vh] justify-center overflow-y-scroll">
     <Head2>개인정보를 알려주세요</Head2>
     <div class="flex flex-col gap-[40px]">
       <TitleInput title="이름" v-model="name" />
