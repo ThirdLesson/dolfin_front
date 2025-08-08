@@ -9,7 +9,7 @@ import Step4 from '@/features/user/signUp/ui/Step4.vue';
 import { signUp } from '@/features/user/signUp/services/signUp.service';
 import { formatDate } from '@/shared/utils/format';
 
-const step = ref(4);
+const step = ref(1);
 const signUpResult = ref(null);
 const joinSuccess = ref(true);
 const signupData = reactive({
