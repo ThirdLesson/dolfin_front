@@ -26,6 +26,7 @@ export default {
       },
       fontFamily: {
         jua: ['Jua', 'sans-serif'],
+        corelight: ['S-CoreDream-3Light', 'sans-serif'],
       },
     },
   },
