@@ -50,7 +50,7 @@ const infos = [
         :key="info.value"
         class="w-full px-4 py-3 flex border-b border-1 border-dol-light-gray"
       >
-        <div class="w-[80%] flex items-center justify-between">
+        <div class="w-[90%] flex items-center justify-between">
           <Subtitle2>{{ info.label }}</Subtitle2>
           <P1>{{ info.value }}</P1>
         </div>

@@ -60,7 +60,7 @@ const handleComplete = () => {
     <Head2>개인정보를 알려주세요</Head2>
     <div class="flex flex-col gap-[40px]">
       <TitleInput title="이름" v-model="name" />
-      <div>
+      <div tabindex="-1">
         <Head3 class="mb-2 text-dol-main">생년월일</Head3>
         <div class="flex gap-2 border-b-2 border-dol-main pb-2">
           <input
