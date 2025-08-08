@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router';
-
+import URL from '@/shared/constants/URL';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
@@ -58,5 +58,5 @@ const infos = [
       <div class="w-full h-[1px] bg-dol-light-gray" />
     </section>
   </div>
-  <LgMainButton @click="router.push('/')">완료</LgMainButton>
+  <LgMainButton @click="router.push(URL.PAGE.LOGIN)">완료</LgMainButton>
 </template>

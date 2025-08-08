@@ -37,7 +37,6 @@ const currentStep = computed(() => {
 });
 
 const handleSignUp = async () => {
-  // console.log('최종 제출할 데이터:', signupData);
   const result = await signUp({
     birth: formatDate(signupData.birth, '-'),
     country: signupData.country,
