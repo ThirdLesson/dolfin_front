@@ -1,21 +1,27 @@
 import { apiFetch } from '@/shared/utils/client';
 import { recommendation } from '@/entities/recommendation/recommendation.api';
 
-export async function getDeposits(data) {
-  const { url, method } = recommendation.deposits();
-  const response = await apiFetch(url, {
-    method,
-    body: JSON.stringify(data),
-  });
-  return await response.json();
-}
-
-export async function getDepositsFilter(query = '') {
+export async function getDepositsFilter({
+  productPeriod,
+  pageNumber,
+  pageSize = 20,
+  spclConditions,
+}) {
   const { url, method } = recommendation.depositsFilter();
-  const queryUrl = `${url}${query}`;
 
+  const params = new URLSearchParams({
+    productPeriod,
+    pageNumber,
+    pageSize,
+  });
+
+  spclConditions?.forEach((cond) => params.append('spclConditions', cond));
+
+  const queryUrl = `${url}?${params.toString()}`;
   const response = await apiFetch(queryUrl, { method });
-  return await response.json();
+
+  const res = await response.json();
+  return res;
 }
 
 export async function getDepositInfo(depositId) {
@@ -23,5 +29,7 @@ export async function getDepositInfo(depositId) {
   const queryUrl = `${url}/${depositId}`;
 
   const response = await apiFetch(queryUrl, { method });
-  return await response.json();
+
+  const res = await response.json();
+  return res;
 }

@@ -40,3 +40,21 @@ export const countryNameMap = {
   BDT: '방글라데시',
   MYR: '말레이시아',
 };
+
+export const conditionNameMap = {
+  ONLINE: '비대면가입',
+  BANK_APP: '은행앱사용',
+  USING_CARD: '카드사용',
+  USING_SALARY_ACCOUNT: '급여연동',
+  USING_UTILITY_BILL: '공과금연동',
+  FIRST_BANKING: '첫거래',
+  DEPOSIT_ACCOUNT: '입출금통장',
+  DEPOSIT_AGAIN: '재예치',
+};
+
+export const periodNameMap = {
+  '6개월': 'SIX_MONTH',
+  '12개월': 'ONE_YEAR',
+  '24개월': 'TWO_YEAR',
+  체류기간: 'STAY_EXPIRATION',
+};

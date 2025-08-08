@@ -208,11 +208,18 @@ export const navBarOptions = [
   },
 ];
 
-export const periodOptions = [
+export const historyPeriodOptions = [
   { value: 'ONE_WEEK', label: '1주일' },
   { value: 'ONE_MONTH', label: '1개월' },
   { value: 'THREE_MONTH', label: '3개월' },
   { value: 'SIX_MONTH', label: '6개월' },
+];
+
+export const recommendPeriodOptions = [
+  { value: 'SIX_MONTH', label: '6개월' },
+  { value: 'ONE_YEAR', label: '12개월' },
+  { value: 'TWO_YEAR', label: '24개월' },
+  { value: 'STAY_EXPIRATION', label: '체류기간' },
 ];
 
 export const categoryOptions = [
@@ -225,4 +232,22 @@ export const categoryOptions = [
 export const sortOptions = [
   { value: 'LATEST', label: '최신순' },
   { value: 'OLDEST', label: '과거순' },
+];
+
+export const conditionOptions = [
+  { value: 'USING_CARD', label: '카드사용' },
+  { value: 'FIRST_BANKING', label: '첫거래' },
+  { value: 'DEPOSIT_AGAIN', label: '재예치' },
+  { value: 'ONLINE', label: '비대면가입' },
+  { value: 'USING_UTILITY_BILL', label: '공과금연동' },
+  { value: 'BANK_APP', label: '은행앱사용' },
+  { value: 'DEPOSIT_ACCOUNT', label: '입출금통장' },
+  { value: 'USING_SALARY_ACCOUNT', label: '급여연동' },
+];
+
+export const productOptions = [
+  { value: '예금', label: '예금' },
+  { value: '적금', label: '적금' },
+  { value: '개인 신용 대출', label: '개인 신용 대출' },
+  { value: '전세 대출', label: '전세 대출' },
 ];

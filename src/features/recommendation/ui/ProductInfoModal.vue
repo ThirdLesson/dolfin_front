@@ -7,6 +7,7 @@ import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import { useKakaoMap } from '@/shared/hooks/useKakaoMap';
 import { branchLocations } from '@/entities/recommendation/recommendation.mock';
 import { getDepositInfo } from '../services/recommendation.service';
+import { conditionNameMap } from '@/shared/utils/KorEngMap';
 
 const props = defineProps({
   show: Boolean,
@@ -18,17 +19,6 @@ const mapContainer = ref(null);
 const detailInfo = ref(null);
 const { initMap, drawMarkers, nearest, userPos, setCenter } = useKakaoMap();
 
-const conditionLabelMap = {
-  ONLINE: '비대면가입',
-  BANK_APP: '은행앱사용',
-  USING_CARD: '카드사용',
-  USING_SALARY_ACCOUNT: '급여연동',
-  USING_UTILITY_BILL: '공과금연동',
-  FIRST_BANKING: '첫거래',
-  DEPOSIT_ACCOUNT: '입출금통장',
-  DEPOSIT_AGAIN: '재예치',
-};
-
 const displayConditions = computed(() => {
   let conds =
     detailInfo.value?.spclConditions ?? props.product.preferential ?? [];
@@ -36,19 +26,14 @@ const displayConditions = computed(() => {
     conds = conds.split(',').map((v) => v.trim());
   }
   if (!Array.isArray(conds) || !conds.length) return ['-'];
-  return conds.map((cond) => conditionLabelMap[cond] || cond);
+  return conds.map((cond) => conditionNameMap[cond] || cond);
 });
 
 const fetchDepositDetail = async (id) => {
-  try {
-    const res = await getDepositInfo(id);
-    if (res?.status === 200 && res.data) {
-      detailInfo.value = res.data;
-    } else {
-      detailInfo.value = props.product;
-    }
-  } catch {
-    detailInfo.value = props.product;
+  const res = await getDepositInfo(id);
+
+  if (res?.status === 200) {
+    detailInfo.value = res.data;
   }
 };
 
@@ -97,7 +82,7 @@ watch(
     buttonText="확인"
     @close="emit('close')"
   >
-    <div class="max-h-[80vh] overflow-y-auto">
+    <div class="max-h-[80vh]">
       <PlainCard v-if="detailInfo">
         <Head3>상품명</Head3>
         <P1>{{ detailInfo.depositName || props.product.title }}</P1>
@@ -136,7 +121,7 @@ watch(
       </PlainCard>
 
       <Head3 class="pt-[15px]">가장 가까운 지점 (1.5km 이내)</Head3>
-      <div ref="mapContainer" class="w-full h-[300px] mt-2"></div>
+      <div ref="mapContainer" class="w-full h-[300px] mt-2" />
     </div>
   </Modal>
 </template>

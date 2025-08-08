@@ -7,7 +7,7 @@ import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import {
-  periodOptions,
+  historyPeriodOptions,
   categoryOptions,
   sortOptions,
 } from '@/shared/constants/options';
@@ -15,7 +15,7 @@ import {
 const props = defineProps({ showFilterModal: Boolean });
 const emit = defineEmits(['updateShowFilterModal', 'updateFilter']);
 
-const selectedPeriod = ref(periodOptions[1].value);
+const selectedPeriod = ref(historyPeriodOptions[1].value);
 const selectedCategory = ref(categoryOptions[0].value);
 const selectedSort = ref(sortOptions[0].value);
 const minAmount = ref('');
@@ -24,7 +24,7 @@ const maxAmount = ref('');
 const displayLabel = computed(() => {
   const findLabel = (tabs, val) =>
     tabs.find((t) => t.value === val)?.label || '';
-  return `${findLabel(periodOptions, selectedPeriod.value)} / ${findLabel(categoryOptions, selectedCategory.value)} / ${findLabel(sortOptions, selectedSort.value)}`;
+  return `${findLabel(historyPeriodOptions, selectedPeriod.value)} / ${findLabel(categoryOptions, selectedCategory.value)} / ${findLabel(sortOptions, selectedSort.value)}`;
 });
 
 const applyFilters = () => {
@@ -61,7 +61,10 @@ const applyFilters = () => {
           <Head3>조회 기간</Head3>
           <div class="overflow-x-auto">
             <div class="flex whitespace-nowrap w-max">
-              <SquareTab v-model="selectedPeriod" :options="periodOptions" />
+              <SquareTab
+                v-model="selectedPeriod"
+                :options="historyPeriodOptions"
+              />
             </div>
           </div>
         </div>

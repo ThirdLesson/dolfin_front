@@ -1,84 +1,101 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
 import P2 from '@/shared/components/atoms/typography/P2.vue';
+import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
+import P1 from '@/shared/components/atoms/typography/P1.vue';
 import { getDepositsFilter } from '../services/recommendation.service';
-
 import { Banks } from '@/asset/images';
 import { bankNameMap } from '@/shared/utils/KorEngMap';
 
 const props = defineProps({
-  activeTab: String,
-  filterTab: String,
-  conditionTab: Array,
+  productOption: String,
+  periodOption: String,
+  conditionOption: Array,
 });
 const emit = defineEmits(['select']);
 
 const products = ref([]);
-
-const periodMap = {
-  '6개월': 'SIX_MONTH',
-  '12개월': 'ONE_YEAR',
-  '24개월': 'TWO_YEAR',
-  체류기간: 'STAY_EXPIRATION',
-};
-
-const conditionMap = {
-  비대면가입: 'ONLINE',
-  카드사용: 'USING_CARD',
-  급여연동: 'USING_SALARY_ACCOUNT',
-  은행앱사용: 'BANK_APP',
-  공과금연동: 'USING_UTILITY_BILL',
-  첫거래: 'FIRST_BANKING',
-  입출금통장: 'DEPOSIT_ACCOUNT',
-  재예치: 'DEPOSIT_AGAIN',
-};
+const totalCount = ref(0);
+const totalPages = ref(0);
+const currentPage = ref(1);
 
 const fetchDepositProducts = async () => {
-  const period = periodMap[props.filterTab] || 'STAY_EXPIRATION';
-  const spclConditions = (props.conditionTab || [])
-    .map((c) => conditionMap[c])
-    .filter(Boolean);
+  const period = props.periodOption || 'STAY_EXPIRATION';
+  const spclConditions = props.conditionOption || [];
 
-  const query = new URLSearchParams({
+  const res = await getDepositsFilter({
     productPeriod: period,
-    pageNumber: 0,
-    pageSize: 20,
+    pageNumber: currentPage.value - 1,
+    spclConditions,
   });
-  spclConditions.forEach((cond) => query.append('spclConditions', cond));
 
-  console.log('필터 요청 URL:', `?${query.toString()}`);
+  if (res.status === 200 && Array.isArray(res.data.content)) {
+    totalCount.value = res.data.totalCount;
+    totalPages.value = res.data.totalPages;
 
-  const res = await getDepositsFilter(`?${query.toString()}`);
-  products.value =
-    res?.status === 200 && res.data?.length
-      ? res.data.map(({ company, product }) => ({
-          id: product.depositId,
-          title: product.name,
-          bank: company.name,
-          basicrate: product.interestRate,
-          maximumrate: product.maxInterestRate,
-          period: product.saveMonth,
-          preferential: (product.spclConditions || []).join(', '),
-          logo: Banks[bankNameMap[company.name]] || '',
-          website: company.homepageUrl,
-          callcenter: company.callNumber,
-        }))
-      : [];
+    const newItems = res.data.content.map(({ company, product }) => ({
+      id: product.depositId,
+      title: product.name,
+      bank: company.name,
+      basicrate: product.interestRate,
+      maximumrate: product.maxInterestRate,
+      period: product.saveMonth,
+      preferential: (product.spclConditions || []).join(', '),
+      website: company.homepageUrl,
+      callcenter: company.callNumber,
+      logo: Banks[bankNameMap[company.name]] || '',
+    }));
+
+    products.value = newItems;
+  } else {
+    products.value = [];
+    totalCount.value = 0;
+    totalPages.value = 0;
+  }
+};
+
+const pageNumbers = computed(() => {
+  const total = totalPages.value;
+  const current = currentPage.value;
+  const groupSize = 5;
+  const startPage = Math.floor((current - 1) / groupSize) * groupSize + 1;
+  const endPage = Math.min(startPage + groupSize - 1, total);
+  return Array.from(
+    { length: endPage - startPage + 1 },
+    (_, i) => startPage + i,
+  );
+});
+
+const goToPage = (page) => {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page;
+    fetchDepositProducts();
+  }
+};
+
+const isActivePage = (page) => {
+  return page === currentPage.value
+    ? 'bg-dol-sub text-white rounded-sm font-bold'
+    : 'text-dol-gray hover:text-dol-main';
 };
 
 watch(
-  () => [props.activeTab, props.filterTab, props.conditionTab],
+  () => [props.productOption, props.periodOption, props.conditionOption],
   ([tab]) => {
-    if (tab === '예금') fetchDepositProducts();
-    else products.value = [];
+    if (tab === '예금') {
+      currentPage.value = 1;
+      fetchDepositProducts();
+    } else {
+      products.value = [];
+    }
   },
   { immediate: true, deep: true },
 );
 </script>
 
 <template>
-  <div class="flex flex-col px-4 py-4 space-y-3 overflow-y-auto">
+  <div class="flex flex-col gap-[15px]">
     <DoubleCard
       v-for="product in products"
       :key="product.id"
@@ -95,6 +112,37 @@ watch(
 
     <div v-if="products.length === 0" class="text-center text-dol-gray py-8">
       조회 가능한 상품이 없습니다.
+    </div>
+
+    <div
+      v-if="totalPages > 1"
+      class="flex justify-center items-center gap-2 py-4"
+    >
+      <SmSubButton
+        v-if="currentPage > 5"
+        @click="goToPage(currentPage - 1)"
+        class="text-white"
+      >
+        이전
+      </SmSubButton>
+
+      <P1
+        v-for="page in pageNumbers"
+        :key="page"
+        class="px-3 py-1 cursor-pointer"
+        :class="isActivePage(page)"
+        @click="goToPage(page)"
+      >
+        {{ page }}
+      </P1>
+
+      <SmSubButton
+        v-if="totalPages > 5"
+        @click="goToPage(currentPage + 1)"
+        class="text-white"
+      >
+        다음
+      </SmSubButton>
     </div>
   </div>
 </template>
