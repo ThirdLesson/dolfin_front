@@ -17,7 +17,10 @@ onMounted(() => {
     if (!isFirstVisit) {
       localStorage.setItem('hasVisited', 'true');
       router.replace(URL.PAGE.ONBOARDING);
-    } else if (userStore.isLoggedIn) {
+      return;
+    }
+
+    if (userStore.isLoggedIn) {
       router.replace(URL.PAGE.MAIN);
     } else {
       router.replace(URL.PAGE.LOGIN);

@@ -45,7 +45,7 @@ const onNext = () => {
 };
 
 const onSkip = () => {
-  router.replace(URL.PAGE.MAIN);
+  router.replace(URL.PAGE.SIGNUP);
 };
 </script>
 

@@ -18,7 +18,12 @@ export const useUserStore = defineStore(
       walletId: null,
     });
 
+    const isLoggedIn = ref(false);
     const isFCMInitialized = ref(false);
+
+    const setLoginState = (state) => {
+      isLoggedIn.value = state;
+    };
 
     const setUserInfo = (data) => {
       userInfo.value = { ...data };
@@ -42,11 +47,9 @@ export const useUserStore = defineStore(
         remainTime: '',
         walletId: null,
       };
-      
+      isLoggedIn.value = false;
       isFCMInitialized.value = false;
     };
-
-    const isLoggedIn = computed(() => !!userInfo.value.memberId);
 
     const remainDays = computed(() => {
       const targetDateStr = userInfo.value.remainTime;
@@ -63,7 +66,9 @@ export const useUserStore = defineStore(
 
     return {
       userInfo,
+      isLoggedIn,
       isFCMInitialized,
+      setLoginState,
       setUserInfo,
       clearUserInfo,
       isLoggedIn,

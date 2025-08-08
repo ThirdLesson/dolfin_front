@@ -25,6 +25,7 @@ const handleLogin = async () => {
   if (result) {
     userStore.setUserInfo(result);
     isFCMInitialized.value = false;
+    userStore.setLoginState(true);
     router.push(URL.PAGE.MAIN);
   } else {
     alert('로그인에 실패했습니다.');
