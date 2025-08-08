@@ -26,7 +26,7 @@ const fetchDepositProducts = async () => {
 
   const res = await getDepositsFilter({
     productPeriod: period,
-    pageNumber: currentPage.value - 1,
+    page: currentPage.value - 1,
     spclConditions,
   });
 

@@ -3,7 +3,7 @@ import { recommendation } from '@/entities/recommendation/recommendation.api';
 
 export async function getDepositsFilter({
   productPeriod,
-  pageNumber,
+  page,
   pageSize = 20,
   spclConditions,
 }) {
@@ -11,7 +11,7 @@ export async function getDepositsFilter({
 
   const params = new URLSearchParams({
     productPeriod,
-    pageNumber,
+    page,
     pageSize,
   });
 
