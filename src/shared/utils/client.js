@@ -2,6 +2,7 @@ import router from '@/router';
 import URL from '@/shared/constants/URL';
 import { user } from '@/entities/user/user.api';
 import { useUserStore } from '@/entities/user/user.store';
+import { signOut } from '@/features/user/login/services/login.service';
 
 async function refresh() {
   const userStore = useUserStore();
@@ -76,8 +77,8 @@ export async function apiFetch(url, options = {}) {
     }
 
     if (refreshed.message === '로그인이 필요한 서비스입니다.') {
-      // 리프레시 실패 → 로그인 페이지 이동
-      await router.replace(URL.PAGE.LOGIN);
+      // 리프레시 실패 → 사용자 정보 & 토큰 삭제
+      await signOut();
     }
   }
 
