@@ -7,6 +7,7 @@ import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import PwModal from '@/shared/components/organisms/PwModal.vue';
 import { verifyCode } from '../services/account.service';
+import { useUserStore } from '@/entities/user/user.store';
 
 const emit = defineEmits(['complete']);
 const props = defineProps({
@@ -15,6 +16,8 @@ const props = defineProps({
     default: '',
   },
 });
+
+const userStore = useUserStore();
 
 const password = ref('');
 const passwordCheck = ref('');
@@ -25,6 +28,8 @@ const inputAuthCode = ref(props.authCode);
 
 const time = ref(300);
 let timer;
+
+const hasWallet = computed(() => !!userStore.userInfo.walletId);
 
 const formattedTime = computed(() => {
   const minutes = String(Math.floor(time.value / 60)).padStart(1, '0');
@@ -37,9 +42,15 @@ const handleComplete = async () => {
     authCode: Number(inputAuthCode.value),
   });
 
-  if (result.status === 204) {
-    isModalOpen.value = true;
+  if (result.status !== 204) return;
+
+  // 기존에 등록한 계좌가 있는 경우
+  if (hasWallet.value) {
+    emit('complete', null);
+    return;
   }
+  // 계좌를 최초로 등록하는 경우
+  isModalOpen.value = true;
 };
 
 const handlePwComplete = (pw) => {

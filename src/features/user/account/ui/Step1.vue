@@ -16,6 +16,7 @@ const bankPassword = ref('');
 const accountNumber = ref('');
 const bankType = ref(accountBankOptions[0].value);
 const showError = ref(false);
+const errorMsg = ref('');
 
 const handleNext = async () => {
   const result = await addAccount({
@@ -26,6 +27,7 @@ const handleNext = async () => {
   });
 
   if (!result.data) {
+    errorMsg.value = result.message;
     showError.value = true;
     return;
   }
@@ -73,10 +75,10 @@ watch([bankId, bankPassword], () => {
           <BoxInput v-model="bankPassword" type="password" />
         </div>
       </div>
-      <div class="flex flex-col items-center">
-        <Caption1 v-if="showError" class="text-dol-error"
-          >은행 아이디 또는 비밀번호가 일치하지 않습니다.</Caption1
-        >
+      <div class="flex flex-col items-center gap-1">
+        <Caption1 v-if="showError" class="text-dol-error">{{
+          errorMsg
+        }}</Caption1>
         <LgMainButton @click="handleNext">다음</LgMainButton>
       </div>
     </div>

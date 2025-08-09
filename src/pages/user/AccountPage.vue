@@ -14,7 +14,7 @@ const step = ref(1);
 const authCode = ref('');
 const accountInfo = reactive({
   accountNumber: '',
-  bankType: '국민은행',
+  bankType: '',
 });
 
 const handleNext = (data) => {
