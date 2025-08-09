@@ -27,7 +27,6 @@ onMounted(async () => {
     const token = await requestForToken();
     if (token) {
       console.log('✅ FCM 토큰 발급 성공:');
-
       isFCMInitialized.value = true;
     }
 
@@ -51,7 +50,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-5">
+  <div class="h-full flex flex-col gap-5">
     <div
       class="flex items-center gap-2 cursor-pointer pt-[70px]"
       @click="() => router.push(URL.PAGE.MYPAGE)"

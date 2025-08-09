@@ -1,3 +1,5 @@
+import router from '@/router';
+import URL from '@/shared/constants/URL';
 import { user } from '@/entities/user/user.api';
 import { useUserStore } from '@/entities/user/user.store';
 
@@ -9,7 +11,7 @@ async function refresh() {
   const { url, method } = user.refresh();
 
   const response = await fetch(url, {
-    method: method,
+    method,
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
@@ -75,7 +77,7 @@ export async function apiFetch(url, options = {}) {
 
     if (refreshed.message === '로그인이 필요한 서비스입니다.') {
       // 리프레시 실패 → 로그인 페이지 이동
-      window.location.href = '/login';
+      await router.replace(URL.PAGE.LOGIN);
     }
   }
 

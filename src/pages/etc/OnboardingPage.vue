@@ -38,7 +38,7 @@ const slides = [
 
 const onNext = () => {
   if (currentIndex.value === slides.length - 1) {
-    router.replace(URL.PAGE.SIGNUP);
+    router.replace(URL.PAGE.LOGIN);
   } else {
     swiperInstance.value?.slideNext();
   }
@@ -75,7 +75,7 @@ const onNext = () => {
     </Swiper>
 
     <div class="flex items-center justify-between mt-5 p-5">
-      <button @click="router.replace(URL.PAGE.SIGNUP)">
+      <button @click="router.replace(URL.PAGE.LOGIN)">
         <P1 class="text-dol-light-gray">SKIP</P1>
       </button>
 

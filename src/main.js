@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
 import App from './app/App.vue';
-import router from './app/router';
+import router from '@/router';
 import './shared/styles/index.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';

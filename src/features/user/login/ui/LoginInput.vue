@@ -29,6 +29,7 @@ const handleLogin = async () => {
     router.push(URL.PAGE.MAIN);
   } else {
     alert('로그인에 실패했습니다.');
+    userStore.setLoginState(false);
   }
 
   loginId.value = '';
@@ -40,11 +41,13 @@ const handleLogin = async () => {
     <BoxInput placeholder="ID" v-model="loginId" />
     <BoxInput placeholder="PASSWORD" v-model="password" type="password" />
     <div class="flex justify-center items-center gap-[50px] text-dol-dark-gray">
-      <P1 class="underline cursor-pointer" @click="() => router.push('/signup')"
+      <P1 class="underline cursor-pointer" @click="router.push(URL.PAGE.SIGNUP)"
         >회원가입</P1
       >
       <P1>|</P1>
-      <P1 class="underline cursor-pointer">비밀번호 찾기</P1>
+      <P1 class="underline cursor-pointer" @click="router.push(URL.PAGE.COMING)"
+        >비밀번호 찾기</P1
+      >
     </div>
     <LgMainButton @click="handleLogin">로그인</LgMainButton>
   </div>
