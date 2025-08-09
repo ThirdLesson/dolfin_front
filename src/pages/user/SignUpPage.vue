@@ -12,7 +12,7 @@ import { formatDate } from '@/shared/utils/format';
 
 const router = useRouter();
 
-const step = ref(3);
+const step = ref(1);
 const signUpResult = ref(null);
 const joinSuccess = ref(true);
 
