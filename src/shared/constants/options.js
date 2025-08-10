@@ -272,3 +272,8 @@ export const interestRateOptions = [
   { value: 'MAX_RATE', label: '최고 기준' },
   { value: 'AVG_RATE', label: '평균 기준' },
 ];
+
+export const languageOptions = [
+  { label: '한국어', value: 'ko' },
+  { label: '영어', value: 'en' },
+];
