@@ -50,6 +50,10 @@ export const conditionNameMap = {
   FIRST_BANKING: '첫거래',
   DEPOSIT_ACCOUNT: '입출금통장',
   DEPOSIT_AGAIN: '재예치',
+  HOUSING_SUBSCRIPTION: '주택청약',
+  AUTO_DEPOSIT: '자동이체',
+  RECOMMEND_COUPON: '추천',
+  ETC: '기타',
 };
 
 export const periodNameMap = {

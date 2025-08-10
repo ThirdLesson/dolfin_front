@@ -1,4 +1,3 @@
-import router from '@/router';
 import URL from '@/shared/constants/URL';
 import { user } from '@/entities/user/user.api';
 import { useUserStore } from '@/entities/user/user.store';
@@ -79,6 +78,7 @@ export async function apiFetch(url, options = {}) {
     if (refreshed.message === '로그인이 필요한 서비스입니다.') {
       // 리프레시 실패 → 사용자 정보 & 토큰 삭제
       await signOut();
+      window.location.href = URL.PAGE.LOGIN;
     }
   }
 
