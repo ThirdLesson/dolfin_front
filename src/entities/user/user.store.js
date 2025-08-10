@@ -16,17 +16,21 @@ export const useUserStore = defineStore(
       phoneNumber: '',
       remainTime: '',
       walletId: null,
+      language: 'ko',
     });
 
     const isLoggedIn = ref(false);
     const isFCMInitialized = ref(false);
 
-    const setLoginState = (state) => {
-      isLoggedIn.value = state;
+    const setUserInfo = (data) => {
+      userInfo.value = {
+        ...userInfo.value,
+        ...data,
+      };
     };
 
-    const setUserInfo = (data) => {
-      userInfo.value = { ...data };
+    const setLoginState = (state) => {
+      isLoggedIn.value = state;
     };
 
     const setWalletId = (id) => {
@@ -46,6 +50,7 @@ export const useUserStore = defineStore(
         phoneNumber: '',
         remainTime: '',
         walletId: null,
+        language: 'ko',
       };
       isLoggedIn.value = false;
       isFCMInitialized.value = false;

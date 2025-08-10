@@ -1,6 +1,5 @@
 import { user } from '@/entities/user/user.api';
 import { useUserStore } from '@/entities/user/user.store';
-import { useGroupRemitStore } from '@/entities/groupRemit/groupRemit.store';
 
 export async function signIn({ loginId, password }) {
   const { url, method } = user.signIn();
@@ -28,7 +27,6 @@ export async function signIn({ loginId, password }) {
 
 export async function signOut() {
   const userStore = useUserStore();
-  const groupStore = useGroupRemitStore();
 
   const { url, method } = user.signOut();
   const result = await fetch(url, {
@@ -38,7 +36,6 @@ export async function signOut() {
   const res = await result.json();
   localStorage.removeItem('accessToken');
   userStore.clearUserInfo();
-  groupStore.clearGroupRemitInfo();
 
   return res.data;
 }
