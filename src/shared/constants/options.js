@@ -215,7 +215,7 @@ export const historyPeriodOptions = [
   { value: 'SIX_MONTH', label: '6개월' },
 ];
 
-export const recommendPeriodOptions = [
+export const productPeriodOptions = [
   { value: 'SIX_MONTH', label: '6개월' },
   { value: 'ONE_YEAR', label: '12개월' },
   { value: 'TWO_YEAR', label: '24개월' },
@@ -234,7 +234,7 @@ export const sortOptions = [
   { value: 'OLDEST', label: '과거순' },
 ];
 
-export const conditionOptions = [
+export const depositConditionOptions = [
   { value: 'USING_CARD', label: '카드사용' },
   { value: 'FIRST_BANKING', label: '첫거래' },
   { value: 'DEPOSIT_AGAIN', label: '재예치' },
@@ -245,9 +245,30 @@ export const conditionOptions = [
   { value: 'USING_SALARY_ACCOUNT', label: '급여연동' },
 ];
 
+export const savingConditionOptions = [
+  { value: 'USING_CARD', label: '카드사용' },
+  { value: 'FIRST_BANKING', label: '첫거래' },
+  { value: 'DEPOSIT_AGAIN', label: '재예치' },
+  { value: 'ONLINE', label: '비대면가입' },
+  { value: 'USING_UTILITY_BILL', label: '공과금연동' },
+  { value: 'BANK_APP', label: '은행앱사용' },
+  { value: 'DEPOSIT_ACCOUNT', label: '입출금통장' },
+  { value: 'USING_SALARY_ACCOUNT', label: '급여연동' },
+  { value: 'HOUSING_SUBSCRIPTION', label: '주택청약' },
+  { value: 'AUTO_DEPOSIT', label: '자동이체' },
+  { value: 'RECOMMEND_COUPON', label: '추천' },
+  { value: 'ETC', label: '기타' },
+];
+
 export const productOptions = [
-  { value: '예금', label: '예금' },
-  { value: '적금', label: '적금' },
-  { value: '개인 신용 대출', label: '개인 신용 대출' },
-  { value: '전세 대출', label: '전세 대출' },
+  { value: 'DEPOSIT', label: '예금' },
+  { value: 'SAVING', label: '적금' },
+  { value: 'PERSONAL_LOAN', label: '개인 신용 대출' },
+  { value: 'JEONSE_LOAN', label: '전세 대출' },
+];
+
+export const interestRateOptions = [
+  { value: 'MIN_RATE', label: '최저 기준' },
+  { value: 'MAX_RATE', label: '최고 기준' },
+  { value: 'AVG_RATE', label: '평균 기준' },
 ];

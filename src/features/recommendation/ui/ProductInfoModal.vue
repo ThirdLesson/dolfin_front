@@ -3,25 +3,39 @@ import { watch, ref, nextTick, computed } from 'vue';
 import Modal from '@/shared/components/organisms/Modal.vue';
 import PlainCard from '@/shared/components/molecules/card/PlainCard.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
+import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
+import { useUserStore } from '@/entities/user/user.store';
 import { useKakaoMap } from '@/shared/hooks/useKakaoMap';
 import { branchLocations } from '@/entities/recommendation/recommendation.mock';
-import { getDepositInfo } from '../services/recommendation.service';
+import {
+  getDepositInfo,
+  getSavingInfo,
+  getPersonalLoanInfo,
+} from '../services/recommendation.service';
 import { conditionNameMap } from '@/shared/utils/KorEngMap';
 
 const props = defineProps({
   show: Boolean,
+  productOption: String,
   product: Object,
 });
 const emit = defineEmits(['close']);
 
 const mapContainer = ref(null);
 const detailInfo = ref(null);
+
+const userStore = useUserStore();
 const { initMap, drawMarkers, nearest, userPos, setCenter } = useKakaoMap();
 
-const displayConditions = computed(() => {
-  let conds =
-    detailInfo.value?.spclConditions ?? props.product.preferential ?? [];
+const isLoanType = computed(
+  () =>
+    props.productOption === 'PERSONAL_LOAN' ||
+    props.productOption === 'JEONSE_LOAN',
+);
+
+const spclConditions = computed(() => {
+  let conds = detailInfo.value?.product.spclConditions || [];
   if (typeof conds === 'string') {
     conds = conds.split(',').map((v) => v.trim());
   }
@@ -29,8 +43,24 @@ const displayConditions = computed(() => {
   return conds.map((cond) => conditionNameMap[cond] || cond);
 });
 
-const fetchDepositDetail = async (id) => {
-  const res = await getDepositInfo(id);
+const fetchDetail = async (id) => {
+  let res;
+  switch (props.productOption) {
+    case 'DEPOSIT':
+      res = await getDepositInfo(id);
+      break;
+    case 'SAVING':
+      res = await getSavingInfo(id);
+      break;
+    case 'PERSONAL_LOAN':
+      res = await getPersonalLoanInfo(id);
+      break;
+    // case 'JEONSE_LOAN':
+    //   res = await getJeonseLoanInfo(id);
+    //   break;
+    default:
+      res = null;
+  }
 
   if (res?.status === 200) {
     detailInfo.value = res.data;
@@ -57,7 +87,7 @@ watch(
   async (val) => {
     if (val && props.product) {
       detailInfo.value = null;
-      await fetchDepositDetail(props.product.id);
+      await fetchDetail(props.product.id);
       await nextTick();
       const map = await initMap(mapContainer.value, userPos, {
         draggable: false,
@@ -77,51 +107,110 @@ watch(
 
 <template>
   <Modal
-    v-if="props.show"
+    v-if="props.show && detailInfo"
     title="상품 상세 정보"
     buttonText="확인"
     @close="emit('close')"
   >
-    <div class="max-h-[80vh]">
-      <PlainCard v-if="detailInfo">
-        <Head3>상품명</Head3>
-        <P1>{{ detailInfo.depositName || props.product.title }}</P1>
+    <div class="flex flex-col gap-[15px]">
+      <PlainCard v-if="isLoanType">
+        <div class="flex flex-col gap-[5px]">
+          <Head3>상품명</Head3>
+          <P1>{{ detailInfo.productName }}</P1>
+        </div>
 
-        <Head3>기간</Head3>
-        <P1>{{ detailInfo.periodMonth || props.product.period }}개월</P1>
-
-        <Head3>금리</Head3>
-        <P1>
-          기본 {{ detailInfo.basicRate || props.product.basicrate }}%, 최대
-          {{ detailInfo.maxRate || props.product.maximumrate }}%
-        </P1>
-
-        <Head3>우대 조건</Head3>
-        <P1>{{ displayConditions.join(', ') }}</P1>
-      </PlainCard>
-
-      <PlainCard v-if="props.product" class="mt-4">
-        <Head3>은행명</Head3>
-        <P1>{{ props.product.bank }}</P1>
-
-        <Head3>홈페이지</Head3>
-        <P1 v-if="props.product.website">
-          <a
-            :href="props.product.website"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-dol-dark underline hover:opacity-80"
+        <div class="flex flex-col gap-[5px]">
+          <Head3>상환 기간</Head3>
+          <P1
+            >{{ detailInfo.minPeriod }}개월 ~ {{ detailInfo.maxPeriod }}개월</P1
           >
-            {{ props.product.website }}
-          </a>
-        </P1>
+        </div>
 
-        <Head3>콜센터</Head3>
-        <P1>{{ props.product.callcenter || '-' }}</P1>
+        <div class="flex flex-col gap-[5px]">
+          <Head3>대출 금액</Head3>
+          <P1>최대 {{ detailInfo.maxLoanAmount }}만원</P1>
+        </div>
+
+        <div class="flex flex-col gap-[5px]">
+          <Head3>금리 정보</Head3>
+          <P1>
+            최저 {{ detailInfo.minRate }}%, 평균 {{ detailInfo.avgRate }}%, 최대
+            {{ detailInfo.maxRate }}%
+          </P1>
+        </div>
+
+        <div class="flex flex-col gap-[5px]">
+          <Head3>가입 조건</Head3>
+          <P1>{{ detailInfo.loanConditions }}</P1>
+        </div>
+
+        <div class="flex flex-col gap-[5px]">
+          <Head3>비자 최소 기간</Head3>
+          <div class="flex flex-col">
+            <P1>{{ detailInfo.minPeriod }}개월</P1>
+            <Subtitle2 v-if="detailInfo.joinAvailable" class="text-dol-main">
+              {{ userStore.userInfo.name }}님은 이 상품에 가입하실 수 있습니다.
+            </Subtitle2>
+            <P1 v-else class="text-dol-error">
+              {{ userStore.userInfo.name }}님은 이 상품에 가입하실 수 없습니다.
+            </P1>
+          </div>
+        </div>
       </PlainCard>
 
-      <Head3 class="pt-[15px]">가장 가까운 지점 (1.5km 이내)</Head3>
-      <div ref="mapContainer" class="w-full h-[300px] mt-2" />
+      <PlainCard v-else>
+        <div class="flex flex-col gap-[5px]">
+          <Head3>상품명</Head3>
+          <P1>{{ detailInfo.product.name }}</P1>
+        </div>
+
+        <div class="flex flex-col gap-[5px]">
+          <Head3>기간</Head3>
+          <P1>{{ detailInfo.product.saveMonth }}개월</P1>
+        </div>
+
+        <div class="flex flex-col gap-[5px]">
+          <Head3>금리</Head3>
+          <P1>
+            기본 {{ detailInfo.product.interestRate }}%, 최대
+            {{ detailInfo.product.maxInterestRate }}%
+          </P1>
+        </div>
+
+        <div class="flex flex-col gap-[5px]">
+          <Head3>우대 조건</Head3>
+          <P1>{{ spclConditions.join(', ') }}</P1>
+        </div>
+      </PlainCard>
+
+      <PlainCard v-if="props.product">
+        <div class="flex flex-col gap-[5px]">
+          <Head3>은행명</Head3>
+          <P1>{{ detailInfo.companyName || detailInfo.company.name }}</P1>
+        </div>
+
+        <div class="flex flex-col gap-[5px]">
+          <Head3>홈페이지</Head3>
+          <P1 v-if="detailInfo.homepageUrl || detailInfo.company.homepageUrl">
+            <a
+              :href="detailInfo.homepageUrl || detailInfo.company.homepageUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-dol-dark underline hover:opacity-80"
+            >
+              {{ detailInfo.homepageUrl || detailInfo.company.homepageUrl }}
+            </a>
+          </P1>
+        </div>
+
+        <div class="flex flex-col gap-[5px]">
+          <Head3>콜센터</Head3>
+          <P1>{{ detailInfo.callNumber || detailInfo.company.callNumber }}</P1>
+        </div>
+      </PlainCard>
+
+      <Head3>가장 가까운 지점 (1.5km 이내)</Head3>
+      <div ref="mapContainer" class="w-full h-[300px]" />
     </div>
   </Modal>
 </template>

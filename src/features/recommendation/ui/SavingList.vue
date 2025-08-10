@@ -1,33 +1,38 @@
 <script setup>
 import { ref, watch, computed } from 'vue';
-import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
-import P2 from '@/shared/components/atoms/typography/P2.vue';
-import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
-import { getDepositsFilter } from '../services/recommendation.service';
+import P2 from '@/shared/components/atoms/typography/P2.vue';
+import Head3 from '@/shared/components/atoms/typography/Head3.vue';
+import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
+import SmSubButton from '@/shared/components/atoms/button/SmSubButton.vue';
+import Modal from '@/shared/components/organisms/Modal.vue';
+import SquareTab from '@/shared/components/molecules/SquareTab.vue';
+import { getSavingsFilter } from '../services/recommendation.service';
+import {
+  savingConditionOptions,
+  productPeriodOptions,
+} from '@/shared/constants/options';
 import { Banks } from '@/asset/images';
 import { bankNameMap } from '@/shared/utils/KorEngMap';
 
 const props = defineProps({
-  productOption: String,
-  periodOption: String,
-  conditionOption: Array,
+  showModal: Boolean,
 });
-const emit = defineEmits(['select']);
+const emit = defineEmits(['select', 'confirm']);
 
 const products = ref([]);
 const totalCount = ref(0);
 const totalPages = ref(0);
 const currentPage = ref(1);
 
-const fetchDepositProducts = async () => {
-  const period = props.periodOption || 'STAY_EXPIRATION';
-  const spclConditions = props.conditionOption || [];
+const periodOption = ref('STAY_EXPIRATION');
+const spclConditions = ref([]);
 
-  const res = await getDepositsFilter({
-    productPeriod: period,
+const fetchSavingProducts = async () => {
+  const res = await getSavingsFilter({
+    productPeriod: periodOption.value,
     page: currentPage.value - 1,
-    spclConditions,
+    spclConditions: spclConditions.value,
   });
 
   if (res.status === 200 && Array.isArray(res.data.content)) {
@@ -35,15 +40,15 @@ const fetchDepositProducts = async () => {
     totalPages.value = res.data.totalPages;
 
     const newItems = res.data.content.map(({ company, product }) => ({
-      id: product.depositId,
+      id: product.savingId,
       title: product.name,
       bank: company.name,
-      basicrate: product.interestRate,
-      maximumrate: product.maxInterestRate,
-      period: product.saveMonth,
+      interestRate: product.interestRate,
+      maxInterestRate: product.maxInterestRate,
+      saveMonth: product.saveMonth,
       preferential: (product.spclConditions || []).join(', '),
       website: company.homepageUrl,
-      callcenter: company.callNumber,
+      callNumber: company.callNumber,
       logo: Banks[bankNameMap[company.name]] || '',
     }));
 
@@ -70,7 +75,7 @@ const pageNumbers = computed(() => {
 const goToPage = (page) => {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
-    fetchDepositProducts();
+    fetchSavingProducts();
   }
 };
 
@@ -81,16 +86,12 @@ const isActivePage = (page) => {
 };
 
 watch(
-  () => [props.productOption, props.periodOption, props.conditionOption],
-  ([tab]) => {
-    if (tab === '예금') {
-      currentPage.value = 1;
-      fetchDepositProducts();
-    } else {
-      products.value = [];
-    }
+  () => [periodOption.value, JSON.stringify(spclConditions.value)],
+  () => {
+    currentPage.value = 1;
+    fetchSavingProducts();
   },
-  { immediate: true, deep: true },
+  { immediate: true },
 );
 </script>
 
@@ -104,9 +105,11 @@ watch(
       :subtitle="product.bank"
       @click="emit('select', product)"
     >
-      <div class="flex flex-col text-right">
-        <P2 class="text-dol-dark-gray">기본 금리 {{ product.basicrate }}%</P2>
-        <P2 class="text-dol-main">최대 금리 {{ product.maximumrate }}%</P2>
+      <div class="flex flex-col text-right shrink-0">
+        <P2 class="text-dol-dark-gray"
+          >기본 금리 {{ product.interestRate }}%</P2
+        >
+        <P2 class="text-dol-main">최대 금리 {{ product.maxInterestRate }}%</P2>
       </div>
     </DoubleCard>
 
@@ -145,4 +148,35 @@ watch(
       </SmSubButton>
     </div>
   </div>
+
+  <Modal
+    v-if="showModal"
+    title="조회 조건 설정"
+    button-text="조회"
+    @close="emit('close')"
+    @confirm="emit('close')"
+  >
+    <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-[10px]">
+        <Head3>저축 기간</Head3>
+        <div class="w-full overflow-x-auto bg-white">
+          <SquareTab
+            v-model="periodOption"
+            :options="productPeriodOptions"
+            class="flex w-max"
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-[10px]">
+        <Head3>우대 조건 (중복 선택)</Head3>
+        <SquareTab
+          v-model="spclConditions"
+          :options="savingConditionOptions"
+          :multiple="true"
+          class="flex flex-wrap"
+        />
+      </div>
+    </div>
+  </Modal>
 </template>
