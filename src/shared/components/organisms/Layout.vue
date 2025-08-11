@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n';
 
 import NavBar from './NavBar.vue';
 import Header from '../molecules/Header.vue';
-import ExchangeHeader from '@/features/exchange/exchageHeader/ui/ExchangeHeader.vue';
+import ExchangeHeader from '@/features/exchange/exchangeHeader/ui/ExchangeHeader.vue';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
 const route = useRoute();
