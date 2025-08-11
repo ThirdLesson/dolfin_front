@@ -10,5 +10,20 @@
   "confirm": "확인",
   "loading": "로딩중. . .",
   "comingSoon": "준비중입니다.",
-  "comingSoonDesc": "추후 더 좋은 서비스로 찾아뵙겠습니다."
+  "comingSoonDesc": "추후 더 좋은 서비스로 찾아뵙겠습니다.",
+  "header": {
+    "map": "스마트맵",
+    "history": "거래내역",
+    "charge": "충전하기",
+    "account": "계좌등록",
+    "remit": "송금하기",
+    "recommendation": "상품추천",
+    "mypage": "마이페이지",
+    "exchangeCheck": "환율 조회",
+    "exchangeCalculator": "환율 계산",
+    "group": "공동 송금",
+    "groupSignup": "공동 송금 신청하기",
+    "test": "테스트",
+    "back": "뒤로가기"
+  }
 }

@@ -8,5 +8,20 @@
   "join": "join",
   "loading": "Loading...",
   "comingSoon": "Coming Soon",
-  "comingSoonDesc": "We will come back with better services."
+  "comingSoonDesc": "We will come back with better services.",
+  "header": {
+    "map": "Smart Map",
+    "history": "Transactions History",
+    "charge": "Charge",
+    "account": "Register Account",
+    "remit": "Remittance",
+    "recommendation": "Recommendations",
+    "mypage": "My Page",
+    "exchangeCheck": "Exchange Check",
+    "exchangeCalculator": "Exchange Calculator",
+    "group": "Group Remit",
+    "groupSignup": "Apply Group Remit",
+    "test": "Test",
+    "back": "Back"
+  }
 }

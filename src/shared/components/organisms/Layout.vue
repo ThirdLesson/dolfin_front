@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 
 import NavBar from './NavBar.vue';
 import Header from '../molecules/Header.vue';
@@ -10,8 +11,15 @@ import useMediaQuery from '@/shared/hooks/useMediaQuery';
 const route = useRoute();
 const router = useRouter();
 const isPC = useMediaQuery();
+const { t } = useI18n();
 
-const headerText = computed(() => route.meta.header);
+// headerKey 우선 사용 + 문자열 header는 폴백
+const headerTitle = computed(() => {
+  const key = route.meta?.headerKey;
+  if (key) return t(key);
+  return typeof route.meta?.header === 'string' ? route.meta.header : '';
+});
+
 const showExchangeHeader = computed(() => route.meta.exchangeHeader === true);
 const showNavBar = computed(() => route.meta.navBar !== false);
 const hasCustomBack = computed(() => route.meta.customBack === true);
@@ -19,11 +27,8 @@ const hasbgColor = computed(() => route.meta.bgColor === true);
 
 const handleCustomBack = () => {
   const onBack = route.meta.onBack;
-  if (typeof onBack === 'function') {
-    onBack();
-  } else {
-    router.back();
-  }
+  if (typeof onBack === 'function') onBack();
+  else router.back();
 };
 </script>
 
@@ -37,17 +42,18 @@ const handleCustomBack = () => {
   >
     <header class="w-full fixed top-0 left-0 z-40 shadow-custom-shadow">
       <Header
-        v-if="headerText"
+        v-if="headerTitle"
         :hasCustomBack="hasCustomBack"
         @customBack="handleCustomBack"
-        >{{ headerText }}</Header
       >
+        {{ headerTitle }}
+      </Header>
       <ExchangeHeader v-if="showExchangeHeader" />
     </header>
 
     <main
       class="flex-1 flex flex-col p-5"
-      :class="headerText && 'pt-[80px] pb-[100px]'"
+      :class="headerTitle && 'pt-[80px] pb-[100px]'"
     >
       <slot />
     </main>
