@@ -1,0 +1,47 @@
+{
+  "common": {
+    "baseRate": "Base rate {rate}%",
+    "maxRate": "Max rate {rate}%",
+    "ratePerYear": "Annual rate {rate}%",
+    "noResults": "No products available.",
+    "filterTitle": "Filter Conditions",
+    "search": "Search",
+    "savingPeriod": "Saving Period",
+    "preferential": "Preferential Conditions",
+    "multiple": "(Multiple selection)",
+    "productFilter": "Product Filter",
+    "range": "~"
+  },
+  "loan": {
+    "filterTitle": "Loan Conditions",
+    "rate": "Loan Rate",
+    "limit": "Loan Limit",
+    "minAmount": "Minimum Amount",
+    "maxAmount": "Maximum Amount"
+  },
+  "detail": {
+    "title": "Product Details",
+    "ok": "OK",
+    "productName": "Product Name",
+    "repayPeriod": "Repayment Period",
+    "repayPeriodRange": "{min}-{max} months",
+    "loanAmount": "Loan Amount",
+    "maxLoanAmount": "Up to {amount} (10k KRW)",
+    "rateInfo": "Rate Information",
+    "rateTriplet": "Min {min}%, Avg {avg}%, Max {max}%",
+    "joinConditions": "Eligibility",
+    "minVisaPeriod": "Minimum Visa Period",
+    "minVisaMonths": "{months} months",
+    "eligible": "{name} is eligible for this product.",
+    "ineligible": "{name} is not eligible for this product.",
+    "period": "Period",
+    "months": "{months} months",
+    "rate": "Interest Rate",
+    "baseAndMax": "Base {base}%, Max {max}%",
+    "preferential": "Preferential Conditions",
+    "bankName": "Bank",
+    "homepage": "Homepage",
+    "callCenter": "Call Center",
+    "nearest": "Nearest branch (within {km} km)"
+  }
+}

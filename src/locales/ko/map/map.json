@@ -1,0 +1,15 @@
+{
+  "tabs": {
+    "multicultural": "다문화 가족 지원 센터",
+    "bank": "은행 외국인 특화 점포"
+  },
+  "modal": {
+    "title": "상세 정보",
+    "centerName": "센터명",
+    "bankName": "은행 지점명",
+    "address": "주소",
+    "phone": "전화번호",
+    "website": "웹사이트",
+    "confirm": "확인"
+  }
+}

@@ -1,13 +1,32 @@
 <script setup>
-import { reactive } from 'vue';
+import { reactive, watch, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import RoundTab from '@/shared/components/molecules/RoundTab.vue';
 import MapView from '@/features/map/ui/MapView.vue';
 import PlaceInfoModal from '@/features/map/ui/PlaceInfoModal.vue';
 
+const { t, locale } = useI18n({ useScope: 'global' });
+
 const state = reactive({
-  activeTab: '다문화 가족 지원 센터',
+  activeTab: '',
+  activeKey: 'multicultural',
   isOpen: false,
   selectedPlace: {},
+});
+
+onMounted(() => {
+  state.activeTab = t('tabs.multicultural');
+});
+
+watch(
+  () => state.activeTab,
+  (val) => {
+    state.activeKey = val === t('tabs.bank') ? 'bank' : 'multicultural';
+  },
+);
+
+watch(locale, () => {
+  state.activeTab = t(`tabs.${state.activeKey}`);
 });
 </script>
 
@@ -16,13 +35,13 @@ const state = reactive({
     <div class="flex justify-center pt-6">
       <RoundTab
         v-model="state.activeTab"
-        opt1="다문화 가족 지원 센터"
-        opt2="은행 외국인 특화 점포"
+        :opt1="t('tabs.multicultural')"
+        :opt2="t('tabs.bank')"
       />
     </div>
 
     <MapView
-      :active-tab="state.activeTab"
+      :active-key="state.activeKey"
       @placeClick="
         (place) => {
           state.selectedPlace = place;
@@ -34,7 +53,7 @@ const state = reactive({
     <PlaceInfoModal
       :isOpen="state.isOpen"
       :place="state.selectedPlace"
-      :tabType="state.activeTab"
+      :tab-key="state.activeKey"
       @close="state.isOpen = false"
     />
   </div>

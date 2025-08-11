@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useI18n } from 'vue-i18n';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
 import P1 from '@/shared/components/atoms/typography/P1.vue';
@@ -16,6 +17,8 @@ import ThailandFlag from '@/asset/flag/thailand.png';
 import UkFlag from '@/asset/flag/uk.png';
 import UsaFlag from '@/asset/flag/usa.png';
 import VietnamFlag from '@/asset/flag/vietnam.png';
+
+const { t } = useI18n();
 
 const options = [
   {
@@ -106,7 +109,7 @@ onBeforeUnmount(() => {
     class="w-full h-[60px] bg-white fixed top-0 left-0 shadow-custom-shadow flex justify-start space-x-[10px] items-center px-[20px] pointer-events-none"
     :class="isPC && 'max-w-[500px] left-1/2 -translate-x-1/2'"
   >
-    <P1>환율</P1>
+    <P1>{{ t('header.rate') }}</P1>
     <div
       v-if="options.length"
       :key="currentIndex"

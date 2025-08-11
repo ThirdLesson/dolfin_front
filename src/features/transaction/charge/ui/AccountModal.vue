@@ -1,8 +1,11 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
 import Modal from '@/shared/components/organisms/Modal.vue';
 import SingleCard from '@/shared/components/molecules/card/SingleCard.vue';
 import { Banks } from '@/asset/images';
 import { bankNameMap } from '@/shared/utils/KorEngMap';
+
+const { t } = useI18n();
 
 const props = defineProps({
   showModal: Boolean,
@@ -15,7 +18,7 @@ const emit = defineEmits(['select', 'close']);
 <template>
   <Modal
     v-if="props.showModal"
-    title="어떤 계좌를 사용할까요?"
+    :title="t('charge.selectAccount')"
     :showButton="false"
     @close="emit('close')"
   >

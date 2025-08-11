@@ -1,0 +1,20 @@
+{
+  "remit": {
+    "myAccount": "내 계좌",
+    "recentTransactions": "최근 거래 목록",
+    "sendTo": "{name} 님께",
+    "howMuch": "얼마를 보낼까요?",
+    "currentBalance": "현재 잔액",
+    "accountNumber": "계좌번호",
+    "accountNumberPlaceholder": "계좌번호를 입력하세요.",
+    "phoneNumber": "전화번호",
+    "phoneNumberPlaceholder": "전화번호를 입력하세요.",
+    "bankSelect": "은행 선택",
+    "quickAdd": {
+      "thousand": "+1천",
+      "fiveThousand": "+5천",
+      "tenThousand": "+1만",
+      "hundredThousand": "+10만"
+    }
+  }
+}

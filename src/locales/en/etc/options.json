@@ -1,0 +1,124 @@
+{
+  "options": {
+    "banks": {
+      "cu": "Shinhyup Bank",
+      "post": "Korea Post",
+      "jeonbuk": "Jeonbuk Bank",
+      "mg": "Saemaeul Geumgo",
+      "sc": "SC First Bank",
+      "kb": "KB Kookmin Bank",
+      "woori": "Woori Bank",
+      "hana": "Hana Bank",
+      "kdb": "KDB Industrial Bank",
+      "busan": "Busan Bank",
+      "gwangju": "Gwangju Bank",
+      "im": "I'M Bank",
+      "shinhan": "Shinhan Bank",
+      "nh": "NongHyup Bank",
+      "k": "K Bank",
+      "city": "Citibank Korea",
+      "sh": "Suhyup Bank",
+      "ibk": "IBK Industrial Bank",
+      "dgb": "Daegu Bank",
+      "toss": "Toss Bank",
+      "kakao": "KakaoBank"
+    },
+    "exchange": {
+      "getCash": "When getting cash",
+      "sellCash": "When selling cash",
+      "send": "When sending remittance",
+      "receive": "When receiving remittance",
+      "baseRate": "Base rate"
+    },
+    "remit": {
+      "accountNumber": "Account number",
+      "phoneNumber": "Phone number"
+    },
+    "countries": {
+      "russia": "Russia",
+      "mongolia": "Mongolia",
+      "usa": "USA",
+      "vietnam": "Vietnam",
+      "india": "India",
+      "indonesia": "Indonesia",
+      "japan": "Japan",
+      "china": "China",
+      "thailand": "Thailand",
+      "philippines": "Philippines",
+      "koreanRussian": "Koryoin (Korean Russian)",
+      "koreanChinese": "Joseonjok (Korean Chinese)",
+      "other": "Other"
+    },
+    "nav": {
+      "main": "Main",
+      "exchange": "Exchange",
+      "map": "Smart Map",
+      "groupRemittance": "Group Remit"
+    },
+    "history": {
+      "period": {
+        "oneWeek": "1 week",
+        "oneMonth": "1 month",
+        "threeMonth": "3 months",
+        "sixMonth": "6 months"
+      },
+      "category": {
+        "all": "All",
+        "withdraw": "Withdraw",
+        "deposit": "Deposit",
+        "charge": "Charge"
+      },
+      "sort": {
+        "latest": "Latest",
+        "oldest": "Oldest"
+      }
+    },
+    "productPeriod": {
+      "sixMonth": "6 months",
+      "oneYear": "12 months",
+      "twoYear": "24 months",
+      "stayExpiration": "Stay duration"
+    },
+    "conditions": {
+      "deposit": {
+        "usingCard": "Use card",
+        "firstBanking": "First transaction",
+        "depositAgain": "Re-deposit",
+        "online": "Online sign-up",
+        "utilityBill": "Utility bill link",
+        "bankApp": "Use bank app",
+        "depositAccount": "Demand deposit",
+        "salaryAccount": "Salary link"
+      },
+      "saving": {
+        "usingCard": "Use card",
+        "firstBanking": "First transaction",
+        "depositAgain": "Re-deposit",
+        "online": "Online sign-up",
+        "utilityBill": "Utility bill link",
+        "bankApp": "Use bank app",
+        "depositAccount": "Demand deposit",
+        "salaryAccount": "Salary link",
+        "housingSubscription": "Housing subscription",
+        "autoDeposit": "Auto transfer",
+        "recommendCoupon": "Recommendation",
+        "etc": "Etc"
+      }
+    },
+    "products": {
+      "deposit": "Deposit",
+      "saving": "Savings",
+      "personalLoan": "Personal Credit Loan",
+      "jeonseLoan": "Jeonse Loan"
+    },
+    "interestRate": {
+      "min": "Min rate",
+      "max": "Max rate",
+      "avg": "Avg rate"
+    },
+    "languages": {
+      "ko": "Korean",
+      "en": "English"
+    }
+  }
+}

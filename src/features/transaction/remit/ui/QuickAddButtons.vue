@@ -1,13 +1,15 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 
+const { t } = useI18n();
 const emit = defineEmits(['quickAdd']);
 
 const quickTabs = [
-  { label: '+1천', value: 1000 },
-  { label: '+5천', value: 5000 },
-  { label: '+1만', value: 10000 },
-  { label: '+10만', value: 100000 },
+  { label: t('remit.quickAdd.thousand'), value: 1000 },
+  { label: t('remit.quickAdd.fiveThousand'), value: 5000 },
+  { label: t('remit.quickAdd.tenThousand'), value: 10000 },
+  { label: t('remit.quickAdd.hundredThousand'), value: 100000 },
 ];
 </script>
 

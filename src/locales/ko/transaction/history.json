@@ -1,0 +1,41 @@
+{
+  "label": {
+    "deposit": "입금",
+    "withdraw": "출금",
+    "charge": "충전"
+  },
+  "title": {
+    "transactionHistory": "거래내역",
+    "recentHistory": "최근 거래내역"
+  },
+  "filter": {
+    "title": "조회 조건 설정",
+    "confirm": "조회",
+    "period": "조회 기간",
+    "category": "유형",
+    "sort": "정렬",
+    "amountRange": "금액 범위",
+    "min": "최소 금액",
+    "max": "최대 금액",
+    "periods": {
+      "ONE_WEEK": "1주일",
+      "ONE_MONTH": "1개월",
+      "THREE_MONTH": "3개월",
+      "SIX_MONTH": "6개월",
+      "ONE_YEAR": "1년",
+      "TWO_YEAR": "2년"
+    },
+    "categories": {
+      "ALL": "전체",
+      "WITHDRAW": "출금",
+      "DEPOSIT": "입금",
+      "CHARGE": "충전",
+      "ACCOUNT_TRANSFER": "계좌이체",
+      "WALLET_TRANSFER": "지갑이체"
+    },
+    "sorts": {
+      "LATEST": "최신순",
+      "OLDEST": "과거순"
+    }
+  }
+}

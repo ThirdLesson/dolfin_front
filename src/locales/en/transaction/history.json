@@ -1,0 +1,43 @@
+{
+  "label": {
+    "deposit": "Deposit",
+    "withdraw": "Withdraw",
+    "charge": "Charge",
+    "prev": "Prev",
+    "next": "Next"
+  },
+  "title": {
+    "transactionHistory": "Transaction History",
+    "recentHistory": "Recent Transaction History"
+  },
+  "filter": {
+    "title": "Set Filters",
+    "confirm": "Apply",
+    "period": "Period",
+    "category": "Type",
+    "sort": "Sort",
+    "amountRange": "Amount Range",
+    "min": "Min Amount",
+    "max": "Max Amount",
+    "periods": {
+      "ONE_WEEK": "1 Week",
+      "ONE_MONTH": "1 Month",
+      "THREE_MONTH": "3 Months",
+      "SIX_MONTH": "6 Months",
+      "ONE_YEAR": "1 Year",
+      "TWO_YEAR": "2 Years"
+    },
+    "categories": {
+      "ALL": "All",
+      "WITHDRAW": "Withdraw",
+      "DEPOSIT": "Deposit",
+      "CHARGE": "Charge",
+      "ACCOUNT_TRANSFER": "Account Transfer",
+      "WALLET_TRANSFER": "Wallet Transfer"
+    },
+    "sorts": {
+      "LATEST": "Latest",
+      "OLDEST": "Oldest"
+    }
+  }
+}

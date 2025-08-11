@@ -1,0 +1,13 @@
+{
+  "charge": {
+    "title": "얼마를 충전할까요?",
+    "amount": "충전 금액",
+    "complete": "충전 완료",
+    "account": "충전 계좌",
+    "selectAccount": "어떤 계좌를 사용할까요?",
+    "error": {
+      "minAmount": "최소 충전 금액은 10,000원부터 입니다.",
+      "invalidPassword": "비밀번호가 올바르지 않습니다."
+    }
+  }
+}

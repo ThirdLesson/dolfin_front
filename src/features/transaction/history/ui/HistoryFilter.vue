@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Modal from '@/shared/components/organisms/Modal.vue';
 import SquareTab from '@/shared/components/molecules/SquareTab.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
@@ -12,19 +13,23 @@ import {
   sortOptions,
 } from '@/shared/constants/options';
 
+const { t } = useI18n();
+
 const props = defineProps({ showFilterModal: Boolean });
 const emit = defineEmits(['updateShowFilterModal', 'updateFilter']);
 
 const selectedPeriod = ref(historyPeriodOptions[1].value);
-const selectedCategory = ref(categoryOptions[0].value);
+const selectedCategory = ref(categoryOptions[0].value || 'ALL');
 const selectedSort = ref(sortOptions[0].value);
 const minAmount = ref('');
 const maxAmount = ref('');
 
 const displayLabel = computed(() => {
-  const findLabel = (tabs, val) =>
-    tabs.find((t) => t.value === val)?.label || '';
-  return `${findLabel(historyPeriodOptions, selectedPeriod.value)} / ${findLabel(categoryOptions, selectedCategory.value)} / ${findLabel(sortOptions, selectedSort.value)}`;
+  const p = t(`history.filter.periods.${selectedPeriod.value}`);
+  const cKey = selectedCategory.value || 'ALL'; // ← 요거!
+  const c = t(`history.filter.categories.${cKey}`);
+  const s = t(`history.filter.sorts.${selectedSort.value}`);
+  return `${p} / ${c} / ${s}`;
 });
 
 const applyFilters = () => {
@@ -51,52 +56,70 @@ const applyFilters = () => {
 
     <Modal
       v-if="props.showFilterModal"
-      title="조회 조건 설정"
-      button-text="조회"
+      :title="t('history.filter.title')"
+      :button-text="t('history.filter.confirm')"
       @confirm="applyFilters"
       @close="emit('updateShowFilterModal', false)"
     >
       <div class="flex flex-col gap-[10px]">
         <div class="flex flex-col gap-2">
-          <Head3>조회 기간</Head3>
+          <Head3>{{ t('history.filter.period') }}</Head3>
           <div class="overflow-x-auto">
             <div class="flex whitespace-nowrap w-max">
               <SquareTab
                 v-model="selectedPeriod"
-                :options="historyPeriodOptions"
+                :options="
+                  historyPeriodOptions.map((o) => ({
+                    ...o,
+                    label: t(`history.filter.periods.${o.value}`),
+                  }))
+                "
               />
             </div>
           </div>
         </div>
 
         <div class="flex flex-col gap-2">
-          <Head3>유형</Head3>
+          <Head3>{{ t('history.filter.category') }}</Head3>
           <div class="overflow-x-auto">
             <div class="flex whitespace-nowrap w-max">
               <SquareTab
                 v-model="selectedCategory"
-                :options="categoryOptions"
+                :options="
+                  categoryOptions.map((o) => ({
+                    ...o,
+                    label: t(`history.filter.categories.${o.value || 'ALL'}`),
+                  }))
+                "
               />
             </div>
           </div>
         </div>
 
-        <Head3>정렬</Head3>
-        <SquareTab v-model="selectedSort" :options="sortOptions" />
+        <Head3>{{ t('history.filter.sort') }}</Head3>
+        <SquareTab
+          v-model="selectedSort"
+          :options="
+            sortOptions.map((o) => ({
+              ...o,
+              label: t(`history.filter.sorts.${o.value}`),
+            }))
+          "
+        />
 
-        <Head3>금액 범위</Head3>
+        <Head3>{{ t('history.filter.amountRange') }}</Head3>
         <div class="flex flex-col gap-2">
           <div class="flex">
             <BoxInput
               v-model="minAmount"
-              placeholder="최소 금액"
+              :placeholder="t('history.filter.min')"
               :color="true"
               height="sm"
             />
             <Subtitle1 class="px-[5px]">~</Subtitle1>
             <BoxInput
               v-model="maxAmount"
-              placeholder="최대 금액"
+              :placeholder="t('history.filter.max')"
               :color="true"
               height="sm"
             />

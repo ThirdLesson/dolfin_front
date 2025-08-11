@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import PlainCard from '@/shared/components/molecules/card/PlainCard.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
@@ -7,6 +8,8 @@ import Caption2 from '@/shared/components/atoms/typography/Caption2.vue';
 import { getTransactions } from '../services/history.service';
 
 const recentTransactions = ref([]);
+
+const { t } = useI18n();
 
 const getTime = (createdAt) => {
   if (!createdAt) return '';
@@ -16,11 +19,11 @@ const getTime = (createdAt) => {
 const getUiType = (type) => {
   switch (type) {
     case 'WITHDRAW':
-      return '출금';
+      return t('history.label.withdraw');
     case 'DEPOSIT':
-      return '입금';
+      return t('history.label.deposit');
     case 'CHARGE':
-      return '충전';
+      return t('history.label.charge');
     default:
       return '';
   }
@@ -50,7 +53,7 @@ onMounted(async () => {
 
 <template>
   <PlainCard>
-    <Head3>최근 거래 내역</Head3>
+    <Head3>{{ t('history.title.recentHistory') }}</Head3>
     <ul class="flex flex-col gap-3">
       <li
         v-for="(item, index) in recentTransactions.slice(0, 4)"
@@ -66,12 +69,20 @@ onMounted(async () => {
         </div>
         <div class="flex flex-col items-end">
           <Caption1
-            :class="item.type === '출금' ? 'text-dol-error' : 'text-dol-main'"
+            :class="
+              item.type === t('history.label.withdraw')
+                ? 'text-dol-error'
+                : 'text-dol-main'
+            "
           >
             {{ item.type }}
           </Caption1>
           <Head3
-            :class="item.type === '출금' ? 'text-dol-error' : 'text-dol-main'"
+            :class="
+              item.type === t('history.label.withdraw')
+                ? 'text-dol-error'
+                : 'text-dol-main'
+            "
           >
             {{ item.amount.toLocaleString() }} P
           </Head3>

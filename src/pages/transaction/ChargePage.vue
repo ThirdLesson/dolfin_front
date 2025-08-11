@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, ref, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
 import Head1 from '@/shared/components/atoms/typography/Head1.vue';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
@@ -16,6 +17,7 @@ import { getMyAccounts } from '@/features/transaction/remit/services/remit.servi
 import { chargeWallet } from '@/features/transaction/charge/services/charge.service';
 
 const router = useRouter();
+const { t } = useI18n();
 
 const selectedAccount = reactive({
   bankType: '',
@@ -27,7 +29,7 @@ const minError = ref(false);
 const showAccountModal = ref(false);
 const showPwModal = ref(false);
 const showError = ref(false);
-const errorMessage = ref('비밀번호가 올바르지 않습니다.');
+const errorMessage = ref('');
 const isComplete = ref(false);
 
 const handleComplete = () => {
@@ -66,7 +68,7 @@ const handlePwComplete = async (pw) => {
     isComplete.value = true;
   } else {
     showError.value = true;
-    errorMessage.value = result.message;
+    errorMessage.value = result.message || t('charge.error.invalidPassword');
   }
 };
 
@@ -87,6 +89,7 @@ watch(amount, () => {
 
 onMounted(() => {
   fetchMyAccounts();
+  errorMessage.value = t('charge.error.invalidPassword');
 });
 </script>
 
@@ -98,10 +101,12 @@ onMounted(() => {
       <img :src="Icons.check" alt="complete" />
       <div class="flex flex-col items-center justify-center">
         <Head1> {{ amount.toLocaleString() }} P </Head1>
-        <Head2 class="text-dol-dark-gray">충전 완료</Head2>
+        <Head2 class="text-dol-dark-gray">{{ t('charge.complete') }}</Head2>
       </div>
     </div>
-    <LgMainButton @click="router.push(URL.PAGE.MAIN)">확인</LgMainButton>
+    <LgMainButton @click="router.push(URL.PAGE.MAIN)">{{
+      t('common.confirm')
+    }}</LgMainButton>
   </div>
 
   <div v-else class="flex flex-col w-full h-full">
@@ -113,7 +118,9 @@ onMounted(() => {
     />
     <QuickAddButtons @quickAdd="(value) => (amount += value)" />
     <AmountKeypad @select="handleSelect" @delete="handleDelete" />
-    <LgMainButton @click="handleComplete">완료</LgMainButton>
+    <LgMainButton @click="handleComplete">{{
+      t('common.complete')
+    }}</LgMainButton>
     <AccountModal
       :showModal="showAccountModal"
       :accounts="accounts"

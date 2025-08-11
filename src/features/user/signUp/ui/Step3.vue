@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
@@ -8,11 +9,9 @@ import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 import { countryOptions } from '@/shared/constants/options';
 
-const props = defineProps({
-  joinSuccess: {
-    type: Boolean,
-  },
-});
+const { t } = useI18n({ useScope: 'global' });
+
+const props = defineProps({ joinSuccess: { type: Boolean } });
 const emit = defineEmits(['next', 'update']);
 
 const name = ref('');
@@ -55,39 +54,43 @@ const handleComplete = () => {
   emit('submit');
 };
 </script>
+
 <template>
   <div class="flex flex-col flex-1 gap-[10vh] justify-center overflow-y-scroll">
-    <Head2>개인정보를 알려주세요</Head2>
+    <Head2>{{ t('signup.step3.title') }}</Head2>
     <div class="flex flex-col gap-[40px]">
-      <TitleInput title="이름" v-model="name" />
+      <TitleInput :title="t('signup.step3.name')" v-model="name" />
       <div tabindex="-1">
-        <Head3 class="mb-2 text-dol-main">생년월일</Head3>
+        <Head3 class="mb-2 text-dol-main">{{ t('signup.step3.birth') }}</Head3>
         <div class="flex gap-2 border-b-2 border-dol-main pb-2">
           <input
             class="text-[15px] font-bold w-1/3 text-center bg-transparent outline-none"
-            placeholder="YYYY"
+            :placeholder="t('signup.step3.yyyy')"
             maxlength="4"
             v-model="year"
           />
           <span class="text-dol-main">/</span>
           <input
             class="text-[15px] font-bold w-1/3 text-center bg-transparent outline-none"
-            placeholder="MM"
+            :placeholder="t('signup.step3.mm')"
             maxlength="2"
             v-model="month"
           />
           <span class="text-dol-main">/</span>
           <input
             class="text-[15px] font-bold w-1/3 text-center bg-transparent outline-none"
-            placeholder="DD"
+            :placeholder="t('signup.step3.dd')"
             maxlength="2"
             v-model="day"
           />
         </div>
       </div>
-      <TitleInput title="여권번호" v-model="passportNumber" />
+      <TitleInput
+        :title="t('signup.step3.passport')"
+        v-model="passportNumber"
+      />
       <Dropdown
-        title="국적"
+        :title="t('signup.step3.nationality')"
         :options="countryOptions"
         v-model="nationality"
         color="true"
@@ -96,13 +99,12 @@ const handleComplete = () => {
   </div>
   <div class="w-full flex flex-col items-center gap-2">
     <div class="h-4">
-      <Caption1 v-show="!joinSuccess" class="underline text-dol-error"
-        >개인 정보가 조회되지 않습니다. 입력한 정보가 올바른지
-        확인해주세요.</Caption1
-      >
+      <Caption1 v-show="!joinSuccess" class="underline text-dol-error">
+        {{ t('signup.step3.notFound') }}
+      </Caption1>
     </div>
-    <LgMainButton :disabled="!isValid" @click="handleComplete"
-      >완료</LgMainButton
-    >
+    <LgMainButton :disabled="!isValid" @click="handleComplete">{{
+      t('common.complete')
+    }}</LgMainButton>
   </div>
 </template>

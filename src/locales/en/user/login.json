@@ -1,0 +1,8 @@
+{
+  "id": "ID",
+  "password": "Password",
+  "signup": "Sign Up",
+  "forgotPassword": "Forgot Password",
+  "login": "Log In",
+  "error": "Login failed."
+}

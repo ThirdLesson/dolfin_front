@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
@@ -14,6 +15,7 @@ import { useUserStore } from '@/entities/user/user.store';
 const router = useRouter();
 const transStore = useTransStore();
 const userStore = useUserStore();
+const { t } = useI18n();
 
 const myAccounts = ref([]);
 const recentAccounts = ref([]);
@@ -56,7 +58,7 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col gap-[15px]">
-    <Subtitle2>내 계좌</Subtitle2>
+    <Subtitle2>{{ t('remit.myAccount') }}</Subtitle2>
     <DoubleCard
       v-for="(item, index) in myAccounts"
       :key="index"
@@ -68,7 +70,7 @@ onMounted(() => {
     </DoubleCard>
   </div>
   <div class="flex flex-col gap-[15px]">
-    <Subtitle2>최근 거래 목록</Subtitle2>
+    <Subtitle2>{{ t('remit.recentTransactions') }}</Subtitle2>
     <DoubleCard
       v-for="(item, index) in recentAccounts"
       :key="index"

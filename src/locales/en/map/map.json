@@ -1,0 +1,15 @@
+{
+  "tabs": {
+    "multicultural": "Multicultural Family Support Center",
+    "bank": "Bank Foreign Specialized Branch"
+  },
+  "modal": {
+    "title": "Details",
+    "centerName": "Center Name",
+    "bankName": "Bank Branch Name",
+    "address": "Address",
+    "phone": "Phone Number",
+    "website": "Website",
+    "confirm": "OK"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "account": {
+    "add": {
+      "title": "계좌를 등록해주세요.",
+      "caption": "안전한 1원 인증으로 계좌를 확인합니다.",
+      "selectBank": "은행 선택",
+      "accountNumber": "계좌번호",
+      "bankLoginId": "은행 계정 아이디",
+      "bankLoginPw": "은행 계정 비밀번호"
+    },
+    "verify": {
+      "title": "입금자명을 확인해주세요",
+      "caption": "계좌로 입금된 1원의 입금자명을 입력해주세요.",
+      "depositor": "입금자명",
+      "timer": "인증시간 {time} 남음",
+      "demoNotice": "데모버전에서는 1원 인증 기능을 제공하지 않습니다.",
+      "walletPwSetTitle": "전자지갑 비밀번호 설정",
+      "walletPwConfirmTitle": "비밀번호 확인",
+      "walletPwMismatch": "비밀번호가 일치하지 않습니다."
+    }
+  }
+}

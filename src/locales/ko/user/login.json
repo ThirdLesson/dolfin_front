@@ -1,0 +1,8 @@
+{
+  "id": "ID",
+  "password": "비밀번호",
+  "signup": "회원가입",
+  "forgotPassword": "비밀번호 찾기",
+  "login": "로그인",
+  "error": "로그인에 실패했습니다."
+}

@@ -1,9 +1,12 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import Subtitle3 from '@/shared/components/atoms/typography/Subtitle3.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
+
+const { t } = useI18n();
 
 const props = defineProps({
   policyList: Array,
@@ -17,16 +20,19 @@ const maxBenefitAmount = computed(() => {
   return props.policyList[0].amount;
 });
 </script>
+
 <template>
   <div
     class="w-full flex justify-between items-center rounded-b-sm border-2 border-dol-light-bg px-5 py-[15px] cursor-pointer"
     @click="showDetail = !showDetail"
   >
     <div class="flex items-center gap-2">
-      <Subtitle2>총 {{ maxBenefitAmount }}</Subtitle2>
+      <Subtitle2
+        >{{ t('benefit.totalPrefix') }} {{ maxBenefitAmount }}</Subtitle2
+      >
     </div>
     <div class="flex items-center gap-1">
-      <Caption1 class="text-dol-main">더 많은 혜택 보기</Caption1>
+      <Caption1 class="text-dol-main">{{ t('benefit.more') }}</Caption1>
       <i
         class="bi bi-caret-down-fill text-dol-main transition-transform duration-300"
         :class="{ 'rotate-180': showDetail }"
@@ -44,7 +50,9 @@ const maxBenefitAmount = computed(() => {
           v-if="props.changguAmount"
           class="flex justify-between items-center"
         >
-          <Subtitle3 class="text-dol-dark-gray">ⓘ 은행 창구 이용 시</Subtitle3>
+          <Subtitle3 class="text-dol-dark-gray"
+            >ⓘ {{ t('benefit.counterNotice') }}</Subtitle3
+          >
           <Subtitle3 class="text-dol-dark-gray">{{
             props.changguAmount
           }}</Subtitle3>
@@ -69,7 +77,6 @@ const maxBenefitAmount = computed(() => {
   overflow: hidden;
   max-height: 500px;
 }
-
 .slide-fade-enter-from,
 .slide-fade-leave-to {
   opacity: 0;

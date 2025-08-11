@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import Subtitle2 from '../atoms/typography/Subtitle2.vue';
+import { useI18n } from 'vue-i18n';
 
 const model = defineModel(); // 양방향 바인딩을 위한 변수
 const props = defineProps({
@@ -16,6 +17,7 @@ const props = defineProps({
   },
 });
 
+const { t } = useI18n();
 const isOpen = ref(false);
 
 const select = (option) => {
@@ -23,17 +25,27 @@ const select = (option) => {
   isOpen.value = false;
 };
 
-// 현재 선택된 옵션을 보여주기 위한 계산된 값
+// 옵션 라벨(i18n 키)을 번역해 _label 로 보강
+const localizedOptions = computed(() =>
+  props.options.map((o) => ({
+    ...o,
+    _label: typeof o.label === 'string' ? t(o.label) : o.label,
+  })),
+);
+
+// 선택 표시 localizedOptions 기준으로 찾고, _label 사용
 const selectedOption = computed(() => {
   return (
-    props.options.find((opt) => opt.value === model.value) || props.options[0]
+    localizedOptions.value.find((opt) => opt.value === model.value) ||
+    localizedOptions.value[0]
   );
 });
 </script>
 <template>
   <div class="w-full flex flex-col gap-[10px]" v-bind="$attrs">
+    <!-- title 도 t() 적용 (키면 번역, 일반문자면 원문) -->
     <Subtitle2 v-if="props.title" :class="props.color && 'text-dol-main'">{{
-      props.title
+      t(props.title)
     }}</Subtitle2>
     <div class="relative">
       <div
@@ -46,11 +58,11 @@ const selectedOption = computed(() => {
       >
         <div class="flex items-center gap-2">
           <img
-            v-if="selectedOption.src"
+            v-if="selectedOption?.src"
             :src="selectedOption.src"
             class="w-5 h-5 object-contain"
           />
-          {{ selectedOption.label }}
+          {{ selectedOption?._label }}
         </div>
         <i
           :class="isOpen ? 'text-dol-main' : 'text-dol-dark-gray'"
@@ -61,8 +73,9 @@ const selectedOption = computed(() => {
         v-if="isOpen"
         class="absolute top-[48px] z-10 mt-1 w-full border border-dol-dark-gray rounded bg-white shadow"
       >
+        <!-- 변경: props.options → localizedOptions, item.label → item._label -->
         <li
-          v-for="item in props.options"
+          v-for="item in localizedOptions"
           :key="item.value"
           @click="select(item.value)"
           class="flex items-center h-[45px] px-4 border-b border-dol-light-gray hover:bg-dol-sub text-[15px] font-semibold cursor-pointer"
@@ -74,7 +87,7 @@ const selectedOption = computed(() => {
             >
               <img :src="item.src" class="object-fit" />
             </div>
-            {{ item.label }}
+            {{ item._label }}
           </div>
         </li>
       </ul>

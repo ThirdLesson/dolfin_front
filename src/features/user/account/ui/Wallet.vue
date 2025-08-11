@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/entities/user/user.store';
 import { getWalletInfo } from '@/features/user/account/services/account.service';
+import { useI18n } from 'vue-i18n';
 
 import URL from '@/shared/constants/URL';
 import CircleLogo from '@/asset/logo/circleLogo.png';
@@ -15,6 +16,7 @@ import MdSubButton from '@/shared/components/atoms/button/MdSubButton.vue';
 import MdMainButton from '@/shared/components/atoms/button/MdMainButton.vue';
 
 const router = useRouter();
+const { t } = useI18n();
 const accountBalance = ref(null);
 const walletId = ref(null);
 
@@ -45,15 +47,15 @@ onMounted(() => {
     @click="() => router.push(URL.PAGE.ACCOUNT)"
   >
     <i class="bi bi-plus-circle-dotted text-5xl text-dol-light-gray" />
-    <P1 class="text-dol-light-gray">계좌 등록하기</P1>
+    <P1 class="text-dol-light-gray">{{ t('mainpage.wallet.register') }}</P1>
   </PlainCard>
 
   <PlainCard v-else class="flex flex-col">
     <div class="flex flex-row items-center gap-2 self-start">
       <img :src="CircleLogo" alt="Bank Logo" class="w-[52px] h-[52px]" />
       <div class="flex flex-col">
-        <Subtitle3>DolFin 전자지갑</Subtitle3>
-        <P2 class="text-dol-dark-gray">현재 잔액 포인트</P2>
+        <Subtitle3>{{ t('mainpage.wallet.title') }}</Subtitle3>
+        <P2 class="text-dol-dark-gray">{{ t('mainpage.wallet.subtitle') }}</P2>
       </div>
     </div>
 
@@ -66,12 +68,12 @@ onMounted(() => {
       </Head1>
 
       <div class="flex gap-[10px] w-full justify-center">
-        <MdSubButton @click="() => router.push(URL.PAGE.CHARGE)"
-          >충전하기</MdSubButton
-        >
-        <MdMainButton @click="() => router.push(URL.PAGE.REMIT_SELECT)"
-          >송금하기</MdMainButton
-        >
+        <MdSubButton @click="() => router.push(URL.PAGE.CHARGE)">{{
+          t('mainpage.wallet.charge')
+        }}</MdSubButton>
+        <MdMainButton @click="() => router.push(URL.PAGE.REMIT_SELECT)">{{
+          t('mainpage.wallet.remit')
+        }}</MdMainButton>
       </div>
     </div>
   </PlainCard>

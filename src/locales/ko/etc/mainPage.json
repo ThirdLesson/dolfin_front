@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "groupRemit": "공동 송금",
+    "recommendation": "상품 추천",
+    "dutchpay": "더치페이"
+  },
+  "wallet": {
+    "register": "계좌 등록하기",
+    "title": "DolFin 전자지갑",
+    "subtitle": "현재 잔액 포인트",
+    "charge": "충전하기",
+    "remit": "송금하기"
+  }
+}

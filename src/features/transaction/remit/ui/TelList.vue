@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
@@ -9,6 +10,7 @@ import { Icons } from '@/asset/images';
 import { useTransStore } from '@/entities/transaction/transaction.store';
 import { formatPhoneNumber } from '@/shared/utils/format';
 
+const { t } = useI18n();
 const router = useRouter();
 const store = useTransStore();
 
@@ -41,7 +43,7 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col gap-[15px]">
-    <Subtitle2>최근 거래 목록</Subtitle2>
+    <Subtitle2>{{ t('remit.recentTransactions') }}</Subtitle2>
     <DoubleCard
       v-for="(item, index) in recentTels"
       :key="index"

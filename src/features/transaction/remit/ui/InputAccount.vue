@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
@@ -13,6 +14,7 @@ import { transferBankOptions } from '@/shared/constants/options';
 
 const router = useRouter();
 const store = useTransStore();
+const { t } = useI18n();
 
 const accountNumber = ref(null);
 const bankType = ref(transferBankOptions[0].value);
@@ -53,14 +55,14 @@ watch([accountNumber], () => {
   <div class="flex flex-col justify-between h-full">
     <div class="flex flex-col gap-[15px]">
       <div class="flex flex-col gap-[15px]">
-        <Subtitle2>계좌번호</Subtitle2>
+        <Subtitle2>{{ t('remit.accountNumber') }}</Subtitle2>
         <BoxInput
-          placeholder="계좌번호를 입력하세요."
+          :placeholder="t('remit.accountNumberPlaceholder')"
           v-model="accountNumber"
         />
       </div>
       <Dropdown
-        title="은행 선택"
+        :title="t('remit.bankSelect')"
         :options="transferBankOptions"
         v-model="bankType"
       />
@@ -72,7 +74,7 @@ watch([accountNumber], () => {
       >
         {{ errorMsg }}
       </Caption1>
-      <LgMainButton @click="handleNext">완료</LgMainButton>
+      <LgMainButton @click="handleNext">{{ t('common.coplete') }}</LgMainButton>
     </div>
   </div>
 </template>

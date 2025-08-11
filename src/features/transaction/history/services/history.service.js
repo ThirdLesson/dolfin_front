@@ -19,9 +19,15 @@ export const getTransactions = async ({
     sortDirection,
   });
 
-  if (type) params.append('type', type);
-  if (minAmount != null) params.append('minAmount', minAmount);
-  if (maxAmount != null) params.append('maxAmount', maxAmount);
+  if (type && type !== 'ALL') {
+    params.append('type', type);
+  }
+  if (minAmount !== undefined && minAmount !== null && minAmount !== '') {
+    params.append('minAmount', minAmount);
+  }
+  if (maxAmount !== undefined && maxAmount !== null && maxAmount !== '') {
+    params.append('maxAmount', maxAmount);
+  }
 
   const queryUrl = `${url}?${params.toString()}`;
   const response = await apiFetch(queryUrl, { method });

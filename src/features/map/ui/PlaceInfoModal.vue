@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Modal from '@/shared/components/organisms/Modal.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
@@ -6,36 +8,42 @@ import P1 from '@/shared/components/atoms/typography/P1.vue';
 const props = defineProps({
   isOpen: Boolean,
   place: Object,
-  tabType: String,
+  tabKey: String,
 });
 
 const emit = defineEmits(['close']);
+
+const { t } = useI18n();
+
+const nameLabel = computed(() => {
+  return props.tabKey === 'multicultural'
+    ? t('modal.centerName')
+    : t('modal.bankName');
+});
 </script>
 
 <template>
   <Modal
     v-if="props.isOpen"
-    title="상세 정보"
-    buttonText="확인"
+    :title="t('modal.title')"
+    :buttonText="t('modal.confirm')"
     @close="emit('close')"
   >
     <div class="space-y-4 mb-6">
       <div>
-        <Head3>{{
-          props.tabType === '다문화 가족 지원 센터' ? '센터명' : '은행 지점명'
-        }}</Head3>
+        <Head3>{{ nameLabel }}</Head3>
         <P1>{{ props.place?.name }}</P1>
       </div>
       <div>
-        <Head3>주소</Head3>
+        <Head3>{{ t('modal.address') }}</Head3>
         <P1>{{ props.place?.address }}</P1>
       </div>
       <div>
-        <Head3>전화번호</Head3>
+        <Head3>{{ t('modal.phone') }}</Head3>
         <P1>{{ props.place?.tel }}</P1>
       </div>
       <div>
-        <Head3>웹사이트</Head3>
+        <Head3>{{ t('modal.website') }}</Head3>
         <P1>
           <a
             :href="props.place?.website"
@@ -43,7 +51,7 @@ const emit = defineEmits(['close']);
             rel="noopener noreferrer"
             class="text-dol-dark underline hover:opacity-80"
           >
-            {{ props.place.website }}
+            {{ props.place?.website }}
           </a>
         </P1>
       </div>

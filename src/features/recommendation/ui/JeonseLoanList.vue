@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import P2 from '@/shared/components/atoms/typography/P2.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
@@ -13,9 +14,9 @@ import { interestRateOptions } from '@/shared/constants/options';
 import { Banks } from '@/asset/images';
 import { bankNameMap } from '@/shared/utils/KorEngMap';
 
-const props = defineProps({
-  showModal: Boolean,
-});
+const { t } = useI18n();
+
+const props = defineProps({ showModal: Boolean });
 const emit = defineEmits(['select', 'confirm']);
 
 const products = ref([]);
@@ -73,11 +74,10 @@ const goToPage = (page) => {
   }
 };
 
-const isActivePage = (page) => {
-  return page === currentPage.value
+const isActivePage = (page) =>
+  page === currentPage.value
     ? 'bg-dol-sub text-white rounded-sm font-bold'
     : 'text-dol-gray hover:text-dol-main';
-};
 
 watch(
   () => [interestRateOption.value, minAmount.value, maxAmount.value],
@@ -100,12 +100,14 @@ watch(
       @click="emit('select', product)"
     >
       <div class="flex flex-col text-right shrink-0">
-        <P2 class="text-dol-main">금리 연 {{ product.interestRate }}%</P2>
+        <P2 class="text-dol-main">{{
+          t('recommendation.common.ratePerYear', { rate: product.interestRate })
+        }}</P2>
       </div>
     </DoubleCard>
 
     <div v-if="products.length === 0" class="text-center text-dol-gray py-8">
-      조회 가능한 상품이 없습니다.
+      {{ t('recommendation.common.noResults') }}
     </div>
 
     <div
@@ -117,7 +119,7 @@ watch(
         @click="goToPage(currentPage - 1)"
         class="text-white"
       >
-        이전
+        {{ t('recommendation.common.prev') }}
       </SmSubButton>
 
       <P1
@@ -135,21 +137,21 @@ watch(
         @click="goToPage(currentPage + 1)"
         class="text-white"
       >
-        다음
+        {{ t('recommendation.common.next') }}
       </SmSubButton>
     </div>
   </div>
 
   <Modal
     v-if="showModal"
-    title="대출 조건 설정"
-    button-text="조회"
+    :title="t('recommendation.loan.filterTitle')"
+    :button-text="t('recommendation.common.search')"
     @close="emit('close')"
     @confirm="emit('close')"
   >
     <div class="flex flex-col gap-5">
       <div class="flex flex-col gap-[10px]">
-        <Head3>대출 금리</Head3>
+        <Head3>{{ t('recommendation.loan.rate') }}</Head3>
         <div class="w-full overflow-x-auto bg-white">
           <SquareTab
             v-model="interestRateOption"
@@ -160,17 +162,19 @@ watch(
       </div>
 
       <div class="flex flex-col gap-[10px]">
-        <Head3>대출 한도</Head3>
+        <Head3>{{ t('recommendation.loan.limit') }}</Head3>
         <div class="flex">
           <BoxInput
-            placeholder="최소 금액"
+            :placeholder="t('recommendation.loan.minAmount')"
             :color="true"
             height="sm"
             v-model="minAmount"
           />
-          <p class="text-[20px] font-midium pt-[6px] px-[5px]">~</p>
+          <p class="text-[20px] font-midium pt-[6px] px-[5px]">
+            {{ t('recommendation.common.range') }}
+          </p>
           <BoxInput
-            placeholder="최대 금액"
+            :placeholder="t('recommendation.loan.maxAmount')"
             :color="true"
             height="sm"
             v-model="maxAmount"

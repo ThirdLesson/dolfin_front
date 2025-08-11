@@ -1,0 +1,47 @@
+{
+  "common": {
+    "baseRate": "기본 금리 {rate}%",
+    "maxRate": "최대 금리 {rate}%",
+    "ratePerYear": "금리 연 {rate}%",
+    "noResults": "조회 가능한 상품이 없습니다.",
+    "filterTitle": "조회 조건 설정",
+    "search": "조회",
+    "savingPeriod": "저축 기간",
+    "preferential": "우대 조건",
+    "multiple": "(중복 선택)",
+    "productFilter": "상품 필터",
+    "range": "~"
+  },
+  "loan": {
+    "filterTitle": "대출 조건 설정",
+    "rate": "대출 금리",
+    "limit": "대출 한도",
+    "minAmount": "최소 금액",
+    "maxAmount": "최대 금액"
+  },
+  "detail": {
+    "title": "상품 상세 정보",
+    "ok": "확인",
+    "productName": "상품명",
+    "repayPeriod": "상환 기간",
+    "repayPeriodRange": "{min}개월 ~ {max}개월",
+    "loanAmount": "대출 금액",
+    "maxLoanAmount": "최대 {amount}만원",
+    "rateInfo": "금리 정보",
+    "rateTriplet": "최저 {min}%, 평균 {avg}%, 최대 {max}%",
+    "joinConditions": "가입 조건",
+    "minVisaPeriod": "비자 최소 기간",
+    "minVisaMonths": "{months}개월",
+    "eligible": "{name}님은 이 상품에 가입하실 수 있습니다.",
+    "ineligible": "{name}님은 이 상품에 가입하실 수 없습니다.",
+    "period": "기간",
+    "months": "{months}개월",
+    "rate": "금리",
+    "baseAndMax": "기본 {base}%, 최대 {max}%",
+    "preferential": "우대 조건",
+    "bankName": "은행명",
+    "homepage": "홈페이지",
+    "callCenter": "콜센터",
+    "nearest": "가장 가까운 지점 ({km}km 이내)"
+  }
+}

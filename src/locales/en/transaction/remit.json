@@ -1,0 +1,20 @@
+{
+  "remit": {
+    "myAccount": "My Accounts",
+    "recentTransactions": "Recent Transactions",
+    "sendTo": "To {name}",
+    "howMuch": "How much would you like to send?",
+    "currentBalance": "Current Balance",
+    "accountNumber": "Account Number",
+    "accountNumberPlaceholder": "Enter account number.",
+    "phoneNumber": "Phone Number",
+    "phoneNumberPlaceholder": "Enter phone number.",
+    "bankSelect": "Select Bank",
+    "quickAdd": {
+      "thousand": "+1K",
+      "fiveThousand": "+5K",
+      "tenThousand": "+10K",
+      "hundredThousand": "+100K"
+    }
+  }
+}

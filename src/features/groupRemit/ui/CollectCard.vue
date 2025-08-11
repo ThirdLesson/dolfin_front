@@ -1,8 +1,11 @@
 <script setup>
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import Subtitle3 from '@/shared/components/atoms/typography/Subtitle3.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
+
+const { t } = useI18n();
 
 const props = defineProps({
   remittanceDate: Number,
@@ -55,8 +58,8 @@ const isComplete = computed(() => remaining.value === 0);
             <Caption1 class="text-dol-dark-gray">
               {{
                 isComplete
-                  ? '혜택 그룹 완성!'
-                  : `${remaining}명 더 모이면 혜택 그룹 완성!`
+                  ? t('groupRemit.collect.done')
+                  : t('groupRemit.collect.needMore', { count: remaining })
               }}</Caption1
             >
           </div>

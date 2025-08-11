@@ -1,0 +1,43 @@
+{
+  "step1": {
+    "title1": "Please provide your",
+    "title2": "ID and password",
+    "id": "ID",
+    "password": "Password",
+    "passwordConfirm": "Confirm Password",
+    "checkDuplicate": "Check",
+    "idTooShort": "ID must be at least 6 characters.",
+    "idExists": "This ID is already taken.",
+    "idAvailable": "This ID is available.",
+    "passwordRules": "Password must be 10+ chars and include upper/lowercase letters, numbers, and special characters.",
+    "passwordMismatch": "Passwords do not match."
+  },
+  "step2": {
+    "title1": "For identity verification,",
+    "title2": "please enter your phone number",
+    "phoneNumber": "Phone Number",
+    "code": "Verification Code",
+    "sendCode": "Send Code",
+    "verifyCode": "Verify Code",
+    "timeLeft": "Time left {time}"
+  },
+  "step3": {
+    "title": "Please enter your personal information",
+    "name": "Name",
+    "birth": "Date of Birth",
+    "yyyy": "YYYY",
+    "mm": "MM",
+    "dd": "DD",
+    "passport": "Passport Number",
+    "nationality": "Nationality",
+    "notFound": "We couldn't find your information. Please check the details you entered."
+  },
+  "result": {
+    "welcomeTitle": "Welcome, {name}{suffix}!",
+    "remainTitle": "Remaining Stay Check Result",
+    "passport": "Passport Number",
+    "nationality": "Nationality",
+    "birth": "Date of Birth",
+    "remainTime": "Stay Expiration Date"
+  }
+}

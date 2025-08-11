@@ -1,11 +1,14 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import Subtitle3 from '@/shared/components/atoms/typography/Subtitle3.vue';
 import SmMainButton from '@/shared/components/atoms/button/SmMainButton.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import { getTransactions } from '../services/history.service';
+
+const { t } = useI18n();
 
 const props = defineProps({
   period: { type: String, default: 'ONE_MONTH' },
@@ -23,19 +26,19 @@ const pageSize = 20;
 const getDisplayName = (item) => {
   const type = item.type;
   if (type === 'DEPOSIT' || type === 'WITHDRAW') {
-    return item.counterPartyName || (type === 'DEPOSIT' ? '입금' : '출금');
+    return item.counterPartyName || t(`history.label.${type.toLowerCase()}`);
   }
-  if (type === 'CHARGE') return '충전';
+  if (type === 'CHARGE') return t('history.label.charge');
 };
 
 const getUiType = (type) => {
   switch (type) {
     case 'WITHDRAW':
-      return '출금';
+      return t('history.label.withdraw');
     case 'DEPOSIT':
-      return '입금';
+      return t('history.label.deposit');
     case 'CHARGE':
-      return '충전';
+      return t('history.label.charge');
     default:
       return '';
   }
@@ -117,7 +120,7 @@ watch(
 onMounted(fetchTransactions);
 
 const typeColor = (type) =>
-  type === '출금' ? 'text-dol-error' : 'text-dol-main';
+  type === t('history.label.withdraw') ? 'text-dol-error' : 'text-dol-main';
 const isActivePage = (page) =>
   page === currentPage.value
     ? 'bg-dol-sub text-white'
@@ -155,7 +158,7 @@ const isActivePage = (page) =>
         @click="goToPage(currentPage - 1)"
         :disabled="currentPage === 1"
       >
-        이전
+        {{ t('common.prev') }}
       </SmMainButton>
 
       <P1
@@ -173,7 +176,7 @@ const isActivePage = (page) =>
         @click="goToPage(currentPage + 1)"
         :disabled="currentPage === totalPages"
       >
-        다음
+        {{ t('common.next') }}
       </SmMainButton>
     </div>
   </div>

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, reactive, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
@@ -9,6 +10,8 @@ import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { useGroupRemitStore } from '@/entities/groupRemit/groupRemit.store';
 import { getGroupCommission } from '../service/groupRemit.service';
 import { countryNameMap } from '@/shared/utils/KorEngMap';
+
+const { t } = useI18n();
 
 const emit = defineEmits(['updateRemit', 'next']);
 
@@ -74,35 +77,44 @@ onMounted(fetchGroupCommission);
     <div class="flex flex-col gap-5">
       <PlainCard>
         <div class="flex flex-col gap-5">
-          <Head3>송금 정보</Head3>
+          <Head3>{{ t('groupRemit.remit.title') }}</Head3>
           <LineInput
             v-model="countryNameMap[currency]"
-            title="송금 국가"
+            :title="t('groupRemit.remit.country')"
             :disabled="true"
           />
-          <LineInput v-model="purpose" title="거래 목적" />
-          <LineInput v-model="amount" title="송금 금액" />
+          <LineInput v-model="purpose" :title="t('groupRemit.remit.purpose')" />
+          <LineInput v-model="amount" :title="t('groupRemit.remit.amount')" />
         </div>
       </PlainCard>
 
       <div class="flex flex-col items-center bg-dol-light-sub rounded-md p-5">
-        <Head3>예상 혜택</Head3>
+        <Head3>{{ t('groupRemit.remit.benefitTitle') }}</Head3>
         <div class="w-full flex flex-col gap-[10px]">
           <div class="flex justify-between">
-            <P1 class="text-dol-dark-gray">기존 송금 수수료</P1>
+            <P1 class="text-dol-dark-gray">{{
+              t('groupRemit.remit.originFee')
+            }}</P1>
             <P1 class="line-through"
-              >{{ commissionInfo.originalCommission?.toLocaleString() }}원</P1
+              >{{ commissionInfo.originalCommission?.toLocaleString()
+              }}{{ t('common.won') }}</P1
             >
           </div>
           <div class="flex justify-between">
-            <P1 class="text-dol-dark-gray">공동 송금 수수료</P1>
-            <P1>{{ commissionInfo.benefitCommission?.toLocaleString() }}원</P1>
+            <P1 class="text-dol-dark-gray">{{
+              t('groupRemit.remit.groupFee')
+            }}</P1>
+            <P1
+              >{{ commissionInfo.benefitCommission?.toLocaleString()
+              }}{{ t('common.won') }}</P1
+            >
           </div>
           <div class="w-full h-[2px] bg-dol-light-gray" />
           <div class="flex justify-between">
-            <Head3>절약 금액</Head3>
+            <Head3>{{ t('groupRemit.remit.save') }}</Head3>
             <Head3 class="text-dol-main"
-              >{{ commissionInfo.benefitAmount?.toLocaleString() }}원</Head3
+              >{{ commissionInfo.benefitAmount?.toLocaleString()
+              }}{{ t('common.won') }}</Head3
             >
           </div>
         </div>
@@ -116,9 +128,9 @@ onMounted(fetchGroupCommission);
       >
         {{
           minError
-            ? '송금 금액은 최소 10만원 이상이어야 합니다.'
+            ? t('groupRemit.remit.errMin')
             : maxError
-              ? '송금 금액은 최대 300만원 이하이어야 합니다.'
+              ? t('groupRemit.remit.errMax')
               : ''
         }}
       </Caption1>
