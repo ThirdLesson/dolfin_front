@@ -1,5 +1,5 @@
-import enMyPage from '@/locales/en/user/mypage.json';
-import koMyPage from '@/locales/ko/user/mypage.json';
+import enMyPage from '@/locales/en/user/myPage.json';
+import koMyPage from '@/locales/ko/user/myPage.json';
 import enCommon from '@/locales/en/etc/common.json';
 import koCommon from '@/locales/ko/etc/common.json';
 import enMainPage from '@/locales/en/etc/mainPage.json';
