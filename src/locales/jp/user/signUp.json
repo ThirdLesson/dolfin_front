@@ -1,0 +1,43 @@
+{
+  "step1": {
+    "title1": "IDとパスワードを",
+    "title2": "入力してください",
+    "id": "ID",
+    "password": "パスワード",
+    "passwordConfirm": "パスワード確認",
+    "checkDuplicate": "確認",
+    "idTooShort": "IDは6文字以上で入力してください。",
+    "idExists": "このIDは既に使用されています。",
+    "idAvailable": "このIDは使用可能です。",
+    "passwordRules": "パスワードは10文字以上で、大文字・小文字・数字・特殊文字を含める必要があります。",
+    "passwordMismatch": "パスワードが一致しません。"
+  },
+  "step2": {
+    "title1": "本人確認のため、",
+    "title2": "電話番号を入力してください",
+    "phoneNumber": "電話番号",
+    "code": "認証コード",
+    "sendCode": "コード送信",
+    "verifyCode": "コード認証",
+    "timeLeft": "残り時間 {time}"
+  },
+  "step3": {
+    "title": "個人情報を入力してください",
+    "name": "氏名",
+    "birth": "生年月日",
+    "yyyy": "年(YYYY)",
+    "mm": "月(MM)",
+    "dd": "日(DD)",
+    "passport": "パスポート番号",
+    "nationality": "国籍",
+    "notFound": "入力された情報が見つかりません。入力内容をご確認ください。"
+  },
+  "result": {
+    "welcomeTitle": "ようこそ、{name}{suffix}さん！",
+    "remainTitle": "残り滞在日数の確認結果",
+    "passport": "パスポート番号",
+    "nationality": "国籍",
+    "birth": "生年月日",
+    "remainTime": "滞在期限"
+  }
+}

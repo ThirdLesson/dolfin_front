@@ -1,0 +1,20 @@
+{
+  "remit": {
+    "myAccount": "自分の口座",
+    "recentTransactions": "最近の取引",
+    "sendTo": "{name} に送金",
+    "howMuch": "いくら送金しますか？",
+    "currentBalance": "現在の残高",
+    "accountNumber": "口座番号",
+    "accountNumberPlaceholder": "口座番号を入力してください。",
+    "phoneNumber": "電話番号",
+    "phoneNumberPlaceholder": "電話番号を入力してください。",
+    "bankSelect": "銀行を選択",
+    "quickAdd": {
+      "thousand": "+1千",
+      "fiveThousand": "+5千",
+      "tenThousand": "+1万",
+      "hundredThousand": "+10万"
+    }
+  }
+}

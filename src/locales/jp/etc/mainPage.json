@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "groupRemit": "グループ送金",
+    "recommendation": "おすすめ",
+    "dutchpay": "割り勘"
+  },
+  "wallet": {
+    "register": "口座登録",
+    "title": "ドルフィンウォレット",
+    "subtitle": "現在の残高（ポイント）",
+    "charge": "チャージ",
+    "remit": "送金"
+  }
+}

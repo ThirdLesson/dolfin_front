@@ -1,0 +1,47 @@
+{
+  "common": {
+    "baseRate": "基準金利 {rate}%",
+    "maxRate": "最大金利 {rate}%",
+    "ratePerYear": "年利 {rate}%",
+    "noResults": "利用可能な商品がありません。",
+    "filterTitle": "フィルター条件",
+    "search": "検索",
+    "savingPeriod": "積立期間",
+    "preferential": "優遇条件",
+    "multiple": "（複数選択可）",
+    "productFilter": "商品フィルター",
+    "range": "～"
+  },
+  "loan": {
+    "filterTitle": "ローン条件",
+    "rate": "ローン金利",
+    "limit": "ローン限度額",
+    "minAmount": "最低金額",
+    "maxAmount": "最高金額"
+  },
+  "detail": {
+    "title": "商品詳細",
+    "ok": "OK",
+    "productName": "商品名",
+    "repayPeriod": "返済期間",
+    "repayPeriodRange": "{min}〜{max}か月",
+    "loanAmount": "ローン金額",
+    "maxLoanAmount": "最大 {amount} 万KRWまで",
+    "rateInfo": "金利情報",
+    "rateTriplet": "最低 {min}%、平均 {avg}%、最大 {max}%",
+    "joinConditions": "申込資格",
+    "minVisaPeriod": "最短ビザ期間",
+    "minVisaMonths": "{months}か月",
+    "eligible": "{name} は本商品を利用できます。",
+    "ineligible": "{name} は本商品を利用できません。",
+    "period": "期間",
+    "months": "{months}か月",
+    "rate": "金利",
+    "baseAndMax": "基準 {base}%、最大 {max}%",
+    "preferential": "優遇条件",
+    "bankName": "銀行",
+    "homepage": "ホームページ",
+    "callCenter": "コールセンター",
+    "nearest": "最寄り支店（{km}km以内）"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "label": {
+    "deposit": "入金",
+    "withdraw": "出金",
+    "charge": "チャージ",
+    "prev": "前へ",
+    "next": "次へ"
+  },
+  "title": {
+    "transactionHistory": "取引履歴",
+    "recentHistory": "最近の取引履歴"
+  },
+  "filter": {
+    "title": "フィルター設定",
+    "confirm": "適用",
+    "period": "期間",
+    "category": "種類",
+    "sort": "並び替え",
+    "amountRange": "金額範囲",
+    "min": "最小金額",
+    "max": "最大金額",
+    "periods": {
+      "ONE_WEEK": "1週間",
+      "ONE_MONTH": "1か月",
+      "THREE_MONTH": "3か月",
+      "SIX_MONTH": "6か月",
+      "ONE_YEAR": "1年",
+      "TWO_YEAR": "2年"
+    },
+    "categories": {
+      "ALL": "すべて",
+      "WITHDRAW": "出金",
+      "DEPOSIT": "入金",
+      "CHARGE": "チャージ",
+      "ACCOUNT_TRANSFER": "口座振替",
+      "WALLET_TRANSFER": "ウォレット振替"
+    },
+    "sorts": {
+      "LATEST": "新しい順",
+      "OLDEST": "古い順"
+    }
+  }
+}

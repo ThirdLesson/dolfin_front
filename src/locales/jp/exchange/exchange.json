@@ -1,0 +1,33 @@
+{
+  "header": {
+    "rate": "為替レート",
+    "bestBankTitle1": "現在最も良い為替優遇を提供している銀行は",
+    "bestBankTitle2": "です"
+  },
+  "caption": {
+    "calculatedNet": "表示金額は送金手数料および中継銀行手数料を除いて計算されています。"
+  },
+  "notice": {
+    "title": "お知らせ",
+    "body": "オンラインでの両替・送金には、外国為替取扱銀行の登録とインターネットバンキングの申込が必要です。",
+    "sendBody": "窓口送金を除き、外国為替登録が必要です。"
+  },
+  "graph": {
+    "title": "為替レートの推移"
+  },
+  "benefit": {
+    "totalPrefix": "合計",
+    "more": "優遇をもっと見る",
+    "counterNotice": "銀行窓口を利用する場合"
+  },
+  "result": {
+    "totalPrefix": "合計"
+  },
+  "inputAmount": {
+    "title": "金額を入力（KRW）",
+    "placeholder": "金額を入力"
+  },
+  "selectCurrency": {
+    "title": "の基準通貨"
+  }
+}

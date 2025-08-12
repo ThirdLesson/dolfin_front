@@ -1,0 +1,22 @@
+{
+  "account": {
+    "add": {
+      "title": "銀行口座を登録してください。",
+      "caption": "安全のため、1KRWの入金で口座を確認します。",
+      "selectBank": "銀行を選択",
+      "accountNumber": "口座番号",
+      "bankLoginId": "銀行ログインID",
+      "bankLoginPw": "銀行ログインパスワード"
+    },
+    "verify": {
+      "title": "振込人名を確認してください",
+      "caption": "口座への1KRW入金の振込人名を入力してください。",
+      "depositor": "振込人名",
+      "timer": "確認まで残り {time}",
+      "demoNotice": "デモ版では1KRW認証機能は利用できません。",
+      "walletPwSetTitle": "電子ウォレットのパスワード設定",
+      "walletPwConfirmTitle": "パスワード確認",
+      "walletPwMismatch": "パスワードが一致しません。"
+    }
+  }
+}

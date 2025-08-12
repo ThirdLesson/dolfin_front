@@ -1,0 +1,27 @@
+{
+  "logout": "ログアウト",
+  "cancel": "キャンセル",
+  "suffix": "",
+  "complete": "完了",
+  "next": "次へ",
+  "won": "ウォン",
+  "join": "参加する",
+  "loading": "読み込み中...",
+  "comingSoon": "近日公開",
+  "comingSoonDesc": "より良いサービスでお届けします。",
+  "header": {
+    "map": "スマートマップ",
+    "history": "取引履歴",
+    "charge": "チャージ",
+    "account": "口座登録",
+    "remit": "送金",
+    "recommendation": "おすすめ",
+    "mypage": "マイページ",
+    "exchangeCheck": "為替チェック",
+    "exchangeCalculator": "為替計算機",
+    "group": "グループ送金",
+    "groupSignup": "グループ送金申込",
+    "test": "テスト",
+    "back": "戻る"
+  }
+}

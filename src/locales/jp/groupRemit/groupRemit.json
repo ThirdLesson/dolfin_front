@@ -1,0 +1,92 @@
+{
+  "groupRemit": {
+    "list": {
+      "headline": "グループ送金に参加して<br/>手数料を節約しましょう。"
+    },
+    "info": {
+      "title": "グループ送金情報"
+    },
+    "collect": {
+      "done": "優遇グループ完成！",
+      "needMore": "あと{count}人で完成！"
+    },
+    "benefit": {
+      "title": "みんなで安く送金",
+      "subtitle": "30人参加で特別優遇！",
+      "desc1": "1人では高い、みんなでなら安い。",
+      "desc2": "いつでも募集、毎月実施。",
+      "blockTitle": "グループ送金の特典",
+      "items": {
+        "recruit": {
+          "title": "常時受付",
+          "subtitle": "毎月1日〜31日いつでも参加可能"
+        },
+        "auto": {
+          "title": "自動送金",
+          "subtitle": "毎月10万〜300万KRWを自動送金"
+        },
+        "cond": {
+          "title": "参加条件",
+          "subtitle": "KBスター銀行アプリ & 外国為替登録が必要"
+        }
+      },
+      "points": {
+        "rate": "為替レート30％優遇",
+        "cable": "電信料無料",
+        "intermediary": "中継銀行手数料無料",
+        "fee": "送金手数料5,000KRW"
+      }
+    },
+    "recipient": {
+      "title": "受取人情報",
+      "swift": "SWIFTコード",
+      "bank": "受取銀行名",
+      "account": "受取口座番号",
+      "name": "受取人名",
+      "address": "受取人住所",
+      "routerCode": "ルーティング番号",
+      "warn": "情報が正しくない場合、送金が失敗する可能性があります。",
+      "commission": {
+        "title": "中継手数料負担者",
+        "OUR": "送金人が全額負担（受取人は全額受取）",
+        "SHA": "送金人が送金手数料、受取人が残額を負担",
+        "BEN": "受取人が全額負担（送金額から差引き）"
+      },
+      "auto": {
+        "title": "自動送金同意",
+        "agree": "毎月同日付での自動送金に同意します。",
+        "notice1": "マイページでグループ送金を管理できます。",
+        "notice2": "失敗時は1回再試行します。",
+        "notice3": "2回失敗すると自動キャンセルされます。"
+      }
+    },
+    "remit": {
+      "title": "送金情報",
+      "country": "送金先国",
+      "purpose": "送金目的",
+      "amount": "金額",
+      "benefitTitle": "予想特典",
+      "originFee": "通常手数料",
+      "groupFee": "グループ手数料",
+      "save": "節約額",
+      "errMin": "最低金額は100,000KRWです。",
+      "errMax": "最高金額は3,000,000KRWです。",
+      "currencyWon": "ウォン"
+    },
+    "complete": {
+      "applied": "申込完了",
+      "notifyTitle": "優遇開始時にお知らせします。",
+      "fxNote": "送金日には、送金前に為替レート30％優遇が適用されます。",
+      "summary": {
+        "country": "送金先国",
+        "amount": "金額",
+        "commission": "予想手数料",
+        "total": "予想合計",
+        "date": "予定日",
+        "monthly": "毎月{day}日に実施"
+      },
+      "warning": "グループ送金日に電子ウォレット残高が不足している場合、送金が失敗する可能性があります。",
+      "ok": "OK"
+    }
+  }
+}
