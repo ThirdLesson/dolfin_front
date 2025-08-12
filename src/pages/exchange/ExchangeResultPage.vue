@@ -6,7 +6,7 @@ import ExchangeResult from '@/features/exchange/exchangeCheck/ui/ExchangeResult.
 const { t } = useI18n();
 </script>
 <template>
-  <div>
+  <div class="flex flex-col gap-[10px]">
     <Head2>
       {{ t('header.bestBankTitle1') }}<br />
       {{ t('header.bestBankTitle2') }}

@@ -28,7 +28,10 @@ const exchangeCheckFunction = async () => {
     targetCurrency: store.exchangeOption.targetCurrency,
     type: selectedType.value,
   });
-  data.value = result.data.banks;
+
+  if (result.data) {
+    data.value = result.data.banks;
+  }
 };
 
 watch(

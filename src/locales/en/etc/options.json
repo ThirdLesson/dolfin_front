@@ -24,10 +24,10 @@
       "kakao": "KakaoBank"
     },
     "exchange": {
-      "getCash": "When getting cash",
-      "sellCash": "When selling cash",
-      "send": "When sending remittance",
-      "receive": "When receiving remittance",
+      "getCash": "Get cash",
+      "sellCash": "Sell cash",
+      "send": "Send remit",
+      "receive": "Receive remit",
       "baseRate": "Base rate"
     },
     "remit": {
