@@ -1,0 +1,17 @@
+{
+  "charge": {
+    "title": "您想充值多少？",
+    "amount": "充值金额",
+    "unit": "KRW",
+    "point": "P",
+    "complete": "充值完成",
+    "confirm": "确认",
+    "finish": "完成",
+    "account": "充值账户",
+    "selectAccount": "您想使用哪个账户？",
+    "error": {
+      "minAmount": "最低充值金额为10,000韩元。",
+      "invalidPassword": "密码错误。"
+    }
+  }
+}

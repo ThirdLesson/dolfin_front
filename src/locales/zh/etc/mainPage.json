@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "groupRemit": "团体汇款",
+    "recommendation": "推荐",
+    "dutchpay": "AA制支付"
+  },
+  "wallet": {
+    "register": "注册账户",
+    "title": "DolFin钱包",
+    "subtitle": "当前余额（积分）",
+    "charge": "充值",
+    "remit": "汇款"
+  }
+}

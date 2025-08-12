@@ -1,0 +1,20 @@
+{
+  "user": "用户",
+  "title": "我的页面",
+  "basicInfo": "基本信息",
+  "phoneNumber": "电话号码",
+  "nationality": "国籍",
+  "birth": "出生日期",
+  "languageSetting": "语言与货币设置",
+  "selectLanguage": "选择语言",
+  "defaultCurrency": "默认货币",
+  "remainingStay": "剩余停留时间",
+  "daysLeft": "剩余 {days} 天",
+  "until": "至 {date}",
+  "accountStatus": "账户状态",
+  "groupRemitStatus": "我的团体汇款",
+  "logout": "退出登录",
+  "addAccount": "添加账户",
+  "cancel": "取消",
+  "exists": "无参与记录。"
+}

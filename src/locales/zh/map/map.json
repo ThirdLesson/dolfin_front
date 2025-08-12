@@ -1,0 +1,15 @@
+{
+  "tabs": {
+    "multicultural": "多文化支援中心",
+    "bank": "外籍专用银行网点"
+  },
+  "modal": {
+    "title": "详细信息",
+    "centerName": "中心名称",
+    "bankName": "银行网点名称",
+    "address": "地址",
+    "phone": "电话号码",
+    "website": "网站",
+    "confirm": "确定"
+  }
+}

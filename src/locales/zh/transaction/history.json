@@ -1,0 +1,43 @@
+{
+  "label": {
+    "deposit": "存款",
+    "withdraw": "取款",
+    "charge": "充值",
+    "prev": "上一页",
+    "next": "下一页"
+  },
+  "title": {
+    "transactionHistory": "交易记录",
+    "recentHistory": "最近交易记录"
+  },
+  "filter": {
+    "title": "设置筛选条件",
+    "confirm": "应用",
+    "period": "时间范围",
+    "category": "类型",
+    "sort": "排序",
+    "amountRange": "金额范围",
+    "min": "最小金额",
+    "max": "最大金额",
+    "periods": {
+      "ONE_WEEK": "1周",
+      "ONE_MONTH": "1个月",
+      "THREE_MONTH": "3个月",
+      "SIX_MONTH": "6个月",
+      "ONE_YEAR": "1年",
+      "TWO_YEAR": "2年"
+    },
+    "categories": {
+      "ALL": "全部",
+      "WITHDRAW": "取款",
+      "DEPOSIT": "存款",
+      "CHARGE": "充值",
+      "ACCOUNT_TRANSFER": "账户转账",
+      "WALLET_TRANSFER": "钱包转账"
+    },
+    "sorts": {
+      "LATEST": "最新",
+      "OLDEST": "最早"
+    }
+  }
+}

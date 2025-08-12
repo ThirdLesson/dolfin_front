@@ -46,6 +46,22 @@ import jpLogin from '@/locales/jp/user/login.json';
 import jpSignUp from '@/locales/jp/user/signUp.json';
 import jpAccount from '@/locales/jp/user/account.json';
 
+import zhMyPage from '@/locales/zh/user/myPage.json';
+import zhCommon from '@/locales/zh/etc/common.json';
+import zhMainPage from '@/locales/zh/etc/mainPage.json';
+import zhHistory from '@/locales/zh/transaction/history.json';
+import zhGroupRemit from '@/locales/zh/groupRemit/groupRemit.json';
+import zhCharge from '@/locales/zh/transaction/charge.json';
+import zhRemit from '@/locales/zh/transaction/remit.json';
+import zhOptions from '@/locales/zh/etc/options.json';
+import zhOnboarding from '@/locales/zh/etc/onboarding.json';
+import zhExchange from '@/locales/zh/exchange/exchange.json';
+import zhMap from '@/locales/zh/map/map.json';
+import zhRecommendation from '@/locales/zh/recommendation/recommendation.json';
+import zhLogin from '@/locales/zh/user/login.json';
+import zhSignUp from '@/locales/zh/user/signUp.json';
+import zhAccount from '@/locales/zh/user/account.json';
+
 export default {
   ko: {
     common: koCommon,
@@ -97,5 +113,22 @@ export default {
     login: jpLogin,
     signup: jpSignUp,
     ...jpAccount,
+  },
+  zh: {
+    common: zhCommon,
+    mypage: zhMyPage,
+    mainpage: zhMainPage,
+    history: zhHistory,
+    ...zhGroupRemit,
+    ...zhCharge,
+    ...zhRemit,
+    ...zhOptions,
+    ...zhOnboarding,
+    ...zhExchange,
+    ...zhMap,
+    recommendation: zhRecommendation,
+    login: zhLogin,
+    signup: zhSignUp,
+    ...zhAccount,
   },
 };

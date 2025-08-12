@@ -1,0 +1,87 @@
+{
+  "groupRemit": {
+    "list": { "headline": "加入团体汇款<br/>节省手续费。" },
+    "info": {
+      "title": "团体汇款信息"
+    },
+    "collect": {
+      "done": "优惠团体已完成！",
+      "needMore": "还差 {count} 人完成！"
+    },
+    "benefit": {
+      "title": "一起汇款更便宜",
+      "subtitle": "30人参加享受特别优惠！",
+      "desc1": "一个人汇款费用高，大家一起更省钱。",
+      "desc2": "随时招募，每月进行。",
+      "blockTitle": "团体汇款优惠",
+      "items": {
+        "recruit": { "title": "随时开放", "subtitle": "每月1日~31日均可加入" },
+        "auto": {
+          "title": "自动转账",
+          "subtitle": "每月自动汇款 10万~300万韩元"
+        },
+        "cond": {
+          "title": "参加资格",
+          "subtitle": "需注册KB Star Banking及外汇业务"
+        }
+      },
+      "points": {
+        "rate": "30% 外汇汇率优惠",
+        "cable": "免电报费",
+        "intermediary": "免中转行手续费",
+        "fee": "汇款手续费 5,000 韩元"
+      }
+    },
+    "recipient": {
+      "title": "收款人信息",
+      "swift": "SWIFT代码",
+      "bank": "收款银行名称",
+      "account": "收款账号",
+      "name": "收款人姓名",
+      "address": "收款人地址",
+      "routerCode": "路由号码",
+      "warn": "信息错误可能导致汇款失败。",
+      "commission": {
+        "title": "中转行手续费承担方",
+        "OUR": "汇款人全额承担（收款人全额到账）",
+        "SHA": "汇款人承担汇款手续费，收款人承担其余费用",
+        "BEN": "收款人全额承担（从金额中扣除）"
+      },
+      "auto": {
+        "title": "自动转账同意",
+        "agree": "我同意每月同日进行自动汇款。",
+        "notice1": "可在“我的页面”管理团体汇款。",
+        "notice2": "失败时重试一次。",
+        "notice3": "连续两次失败将自动取消。"
+      }
+    },
+    "remit": {
+      "title": "汇款信息",
+      "country": "汇款目的国",
+      "purpose": "汇款用途",
+      "amount": "金额",
+      "benefitTitle": "预计优惠",
+      "originFee": "原手续费",
+      "groupFee": "团体手续费",
+      "save": "节省金额",
+      "errMin": "最低金额为 100,000 韩元。",
+      "errMax": "最高金额为 3,000,000 韩元。",
+      "currencyWon": " 韩元"
+    },
+    "complete": {
+      "applied": "申请已完成",
+      "notifyTitle": "优惠开始时我们将通知您。",
+      "fxNote": "在汇款日，发送前将适用30%的外汇汇率优惠。",
+      "summary": {
+        "country": "汇款目的国",
+        "amount": "金额",
+        "commission": "预计手续费",
+        "total": "预计总额",
+        "date": "预定日期",
+        "monthly": "每月{day}日进行"
+      },
+      "warning": "团体汇款日如果电子钱包余额不足，可能导致汇款失败。",
+      "ok": "确定"
+    }
+  }
+}

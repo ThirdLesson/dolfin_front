@@ -1,0 +1,43 @@
+{
+  "step1": {
+    "title1": "请输入您的",
+    "title2": "账号和密码",
+    "id": "账号",
+    "password": "密码",
+    "passwordConfirm": "确认密码",
+    "checkDuplicate": "检查",
+    "idTooShort": "账号长度至少为6个字符。",
+    "idExists": "该账号已被使用。",
+    "idAvailable": "该账号可用。",
+    "passwordRules": "密码必须不少于10个字符，并包含大小写字母、数字和特殊字符。",
+    "passwordMismatch": "两次输入的密码不一致。"
+  },
+  "step2": {
+    "title1": "为进行身份验证，",
+    "title2": "请输入您的电话号码",
+    "phoneNumber": "电话号码",
+    "code": "验证码",
+    "sendCode": "发送验证码",
+    "verifyCode": "验证验证码",
+    "timeLeft": "剩余时间 {time}"
+  },
+  "step3": {
+    "title": "请输入您的个人信息",
+    "name": "姓名",
+    "birth": "出生日期",
+    "yyyy": "年(YYYY)",
+    "mm": "月(MM)",
+    "dd": "日(DD)",
+    "passport": "护照号码",
+    "nationality": "国籍",
+    "notFound": "未找到您的信息，请检查输入的内容。"
+  },
+  "result": {
+    "welcomeTitle": "欢迎，{name}{suffix}！",
+    "remainTitle": "剩余停留时间查询结果",
+    "passport": "护照号码",
+    "nationality": "国籍",
+    "birth": "出生日期",
+    "remainTime": "停留到期日"
+  }
+}

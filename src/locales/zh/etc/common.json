@@ -1,0 +1,27 @@
+{
+  "logout": "退出登录",
+  "cancel": "取消",
+  "suffix": "",
+  "complete": "完成",
+  "next": "下一步",
+  "won": "韩元",
+  "join": "加入",
+  "loading": "加载中...",
+  "comingSoon": "敬请期待",
+  "comingSoonDesc": "我们将带来更优质的服务。",
+  "header": {
+    "map": "智能地图",
+    "history": "交易记录",
+    "charge": "充值",
+    "account": "注册账户",
+    "remit": "汇款",
+    "recommendation": "推荐",
+    "mypage": "我的页面",
+    "exchangeCheck": "汇率查询",
+    "exchangeCalculator": "汇率计算器",
+    "group": "团体汇款",
+    "groupSignup": "申请团体汇款",
+    "test": "测试",
+    "back": "返回"
+  }
+}
