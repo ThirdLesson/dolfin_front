@@ -1,0 +1,124 @@
+{
+  "options": {
+    "banks": {
+      "cu": "新协银行",
+      "post": "韩国邮政",
+      "jeonbuk": "全北银行",
+      "mg": "赛马邑金库",
+      "sc": "渣打第一银行",
+      "kb": "国民银行",
+      "woori": "友利银行",
+      "hana": "韩亚银行",
+      "kdb": "韩国开发银行",
+      "busan": "釜山银行",
+      "gwangju": "光州银行",
+      "im": "I'M 银行",
+      "shinhan": "新韩银行",
+      "nh": "农协银行",
+      "k": "K银行",
+      "city": "花旗银行韩国",
+      "sh": "水协银行",
+      "ibk": "企业银行",
+      "dgb": "大邱银行",
+      "toss": "Toss银行",
+      "kakao": "Kakao银行"
+    },
+    "exchange": {
+      "getCash": "取现时",
+      "sellCash": "卖出现金时",
+      "send": "汇款时",
+      "receive": "收款时",
+      "baseRate": "基准汇率"
+    },
+    "remit": {
+      "accountNumber": "账号",
+      "phoneNumber": "电话号码"
+    },
+    "countries": {
+      "russia": "俄罗斯",
+      "mongolia": "蒙古",
+      "usa": "美国",
+      "vietnam": "越南",
+      "india": "印度",
+      "indonesia": "印度尼西亚",
+      "japan": "日本",
+      "china": "中国",
+      "thailand": "泰国",
+      "philippines": "菲律宾",
+      "koreanRussian": "高丽人（俄籍朝鲜族）",
+      "koreanChinese": "朝鲜族（中国）",
+      "other": "其他"
+    },
+    "nav": {
+      "main": "主页",
+      "exchange": "汇率",
+      "map": "智能地图",
+      "groupRemittance": "团体汇款"
+    },
+    "history": {
+      "period": {
+        "oneWeek": "1周",
+        "oneMonth": "1个月",
+        "threeMonth": "3个月",
+        "sixMonth": "6个月"
+      },
+      "category": {
+        "all": "全部",
+        "withdraw": "取款",
+        "deposit": "存款",
+        "charge": "充值"
+      },
+      "sort": {
+        "latest": "最新",
+        "oldest": "最早"
+      }
+    },
+    "productPeriod": {
+      "sixMonth": "6个月",
+      "oneYear": "12个月",
+      "twoYear": "24个月",
+      "stayExpiration": "停留期限"
+    },
+    "conditions": {
+      "deposit": {
+        "usingCard": "使用卡",
+        "firstBanking": "首次交易",
+        "depositAgain": "再次存款",
+        "online": "在线申请",
+        "utilityBill": "绑定公共事业费",
+        "bankApp": "使用银行APP",
+        "depositAccount": "活期存款",
+        "salaryAccount": "绑定工资账户"
+      },
+      "saving": {
+        "usingCard": "使用卡",
+        "firstBanking": "首次交易",
+        "depositAgain": "再次存款",
+        "online": "在线申请",
+        "utilityBill": "绑定公共事业费",
+        "bankApp": "使用银行APP",
+        "depositAccount": "活期存款",
+        "salaryAccount": "绑定工资账户",
+        "housingSubscription": "住房认购",
+        "autoDeposit": "自动转账",
+        "recommendCoupon": "推荐",
+        "etc": "其他"
+      }
+    },
+    "products": {
+      "deposit": "存款",
+      "saving": "储蓄",
+      "personalLoan": "个人信用贷款",
+      "jeonseLoan": "全租贷款"
+    },
+    "interestRate": {
+      "min": "最低利率",
+      "max": "最高利率",
+      "avg": "平均利率"
+    },
+    "languages": {
+      "ko": "韩语",
+      "en": "英语"
+    }
+  }
+}

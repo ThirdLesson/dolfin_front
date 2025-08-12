@@ -1,0 +1,33 @@
+{
+  "header": {
+    "rate": "汇率",
+    "bestBankTitle1": "目前提供",
+    "bestBankTitle2": "最佳汇率优惠的银行是"
+  },
+  "caption": {
+    "calculatedNet": "所示金额为扣除汇款及中转行手续费后的金额。"
+  },
+  "notice": {
+    "title": "通知",
+    "body": "在线兑换/汇款需要外汇银行登记及开通网上银行服务。",
+    "sendBody": "除柜台汇款外，均需进行外汇登记。"
+  },
+  "graph": {
+    "title": "汇率走势"
+  },
+  "benefit": {
+    "totalPrefix": "合计",
+    "more": "查看更多优惠",
+    "counterNotice": "使用银行柜台时"
+  },
+  "result": {
+    "totalPrefix": "合计"
+  },
+  "inputAmount": {
+    "title": "输入金额（KRW）",
+    "placeholder": "请输入金额"
+  },
+  "selectCurrency": {
+    "title": "的基准货币"
+  }
+}

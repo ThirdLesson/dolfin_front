@@ -1,0 +1,47 @@
+{
+  "common": {
+    "baseRate": "基准利率 {rate}%",
+    "maxRate": "最高利率 {rate}%",
+    "ratePerYear": "年利率 {rate}%",
+    "noResults": "暂无可用产品。",
+    "filterTitle": "筛选条件",
+    "search": "搜索",
+    "savingPeriod": "存款期限",
+    "preferential": "优惠条件",
+    "multiple": "（可多选）",
+    "productFilter": "产品筛选",
+    "range": "~"
+  },
+  "loan": {
+    "filterTitle": "贷款条件",
+    "rate": "贷款利率",
+    "limit": "贷款额度",
+    "minAmount": "最低金额",
+    "maxAmount": "最高金额"
+  },
+  "detail": {
+    "title": "产品详情",
+    "ok": "确定",
+    "productName": "产品名称",
+    "repayPeriod": "还款期限",
+    "repayPeriodRange": "{min}-{max}个月",
+    "loanAmount": "贷款金额",
+    "maxLoanAmount": "最高 {amount}（万元韩元）",
+    "rateInfo": "利率信息",
+    "rateTriplet": "最低 {min}%，平均 {avg}%，最高 {max}%",
+    "joinConditions": "申请资格",
+    "minVisaPeriod": "最低签证期限",
+    "minVisaMonths": "{months}个月",
+    "eligible": "{name} 符合该产品申请条件。",
+    "ineligible": "{name} 不符合该产品申请条件。",
+    "period": "期限",
+    "months": "{months}个月",
+    "rate": "利率",
+    "baseAndMax": "基准 {base}%，最高 {max}%",
+    "preferential": "优惠条件",
+    "bankName": "银行",
+    "homepage": "主页",
+    "callCenter": "客服中心",
+    "nearest": "最近网点（{km} 公里以内）"
+  }
+}

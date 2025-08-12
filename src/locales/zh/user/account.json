@@ -1,0 +1,22 @@
+{
+  "account": {
+    "add": {
+      "title": "请注册您的银行账户。",
+      "caption": "我们将通过安全的1韩元入账来验证账户。",
+      "selectBank": "选择银行",
+      "accountNumber": "账户号码",
+      "bankLoginId": "银行登录ID",
+      "bankLoginPw": "银行登录密码"
+    },
+    "verify": {
+      "title": "请确认存款人姓名",
+      "caption": "请输入1韩元入到账户时的存款人姓名。",
+      "depositor": "存款人",
+      "timer": "剩余 {time} 完成验证",
+      "demoNotice": "演示版本不支持1韩元验证功能。",
+      "walletPwSetTitle": "设置电子钱包密码",
+      "walletPwConfirmTitle": "确认密码",
+      "walletPwMismatch": "两次输入的密码不一致。"
+    }
+  }
+}

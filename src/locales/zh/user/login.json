@@ -1,0 +1,8 @@
+{
+  "id": "账号",
+  "password": "密码",
+  "signup": "注册",
+  "forgotPassword": "忘记密码",
+  "login": "登录",
+  "error": "登录失败。"
+}
