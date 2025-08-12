@@ -9,7 +9,6 @@ import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { Icons, Logos } from '@/asset/images';
 
 const { t } = useI18n();
-
 const emit = defineEmits(['click']);
 
 const text = [
@@ -52,10 +51,14 @@ const text = [
       :title="item.title"
       :subtitle="item.subtitle"
       :image="item.image"
+      class="animate-fadein will-change-transform will-change-opacity"
     />
 
     <div
-      class="flex flex-col gap-3 rounded-xl p-6 text-center text-white bg-gradient-to-r from-[#3F7FF5] to-[#8F35EA]"
+      class="flex flex-col gap-3 rounded-xl p-6 text-center text-white bg-gradient-to-r from-[#3F7FF5] to-[#8F35EA] animate-fadein will-change-transform will-change-opacity"
+      :style="{
+        animationDelay: `${text.length * 0.3}s`,
+      }"
     >
       <div class="flex flex-col gap-4">
         <div class="flex justify-center">
@@ -72,7 +75,15 @@ const text = [
     </div>
 
     <div>
-      <LgMainButton @click="emit('click')">{{ t('common.join') }}</LgMainButton>
+      <LgMainButton
+        @click="emit('click')"
+        class="animate-fadein will-change-transform will-change-opacity"
+        :style="{
+          animationDelay: `${(text.length + 1) * 0.3}s`,
+        }"
+      >
+        {{ t('common.join') }}
+      </LgMainButton>
     </div>
   </div>
 </template>
