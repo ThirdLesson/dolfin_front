@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
@@ -21,10 +21,19 @@ const bankType = ref(transferBankOptions[0].value);
 const showError = ref(false);
 const errorMsg = ref('');
 
+const bankLabelMap = Object.fromEntries(
+  transferBankOptions.map((o) => [o.value, o.label]),
+);
+
+const selectedBankNameKo = computed(() =>
+  t(bankLabelMap[bankType.value] ?? ''),
+);
+
 const handleNext = async () => {
+  // console.log('bankType', selectedBankNameKo.value);
   const result = await checkAccountName({
     accountNumber: accountNumber.value,
-    bankType: bankType.value,
+    bankType: selectedBankNameKo.value,
   });
 
   if (result?.status) {
@@ -74,7 +83,9 @@ watch([accountNumber], () => {
       >
         {{ errorMsg }}
       </Caption1>
-      <LgMainButton @click="handleNext">{{ t('common.coplete') }}</LgMainButton>
+      <LgMainButton @click="handleNext">{{
+        t('common.complete')
+      }}</LgMainButton>
     </div>
   </div>
 </template>

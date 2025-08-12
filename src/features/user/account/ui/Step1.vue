@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
@@ -21,12 +21,20 @@ const bankType = ref(accountBankOptions[0].value);
 const showError = ref(false);
 const errorMsg = ref('');
 
+const bankLabelMap = Object.fromEntries(
+  accountBankOptions.map((o) => [o.value, o.label]),
+);
+
+const selectedBankNameKo = computed(() =>
+  t(bankLabelMap[bankType.value] ?? ''),
+);
+
 const handleNext = async () => {
   const result = await addAccount({
     accountNumber: accountNumber.value,
     bankId: bankId.value,
     bankPassword: bankPassword.value,
-    bankType: bankType.value,
+    bankType: selectedBankNameKo.value,
   });
 
   if (!result.data) {
@@ -38,7 +46,7 @@ const handleNext = async () => {
   const authCode = result.data.authCode;
   emit('next', {
     accountNumber: accountNumber.value,
-    bankType: bankType.value,
+    bankType: selectedBankNameKo.value,
     authCode,
   });
 };
