@@ -1,4 +1,3 @@
-// src/router/routes.js
 import URL from '@/shared/constants/URL';
 
 import SplashPage from '@/pages/etc/SplashPage.vue';
@@ -63,102 +62,102 @@ export default [
     path: URL.PAGE.MAP,
     name: 'map',
     component: MapPage,
-    meta: { header: '스마트맵' },
+    meta: { headerKey: 'common.header.map' },
   },
   {
     path: URL.PAGE.HISTORY,
     name: 'history',
     component: HistoryPage,
-    meta: { header: '거래내역' },
+    meta: { headerKey: 'common.header.history' },
   },
   {
     path: URL.PAGE.CHARGE,
     name: 'charge',
     component: ChargePage,
-    meta: { header: '충전하기' },
+    meta: { headerKey: 'common.header.charge' },
   },
 
   {
     path: URL.PAGE.ACCOUNT,
     name: 'account',
     component: AccountPage,
-    meta: { header: '계좌등록', customBack: true },
+    meta: { headerKey: 'common.header.account', customBack: true },
   },
 
   {
     path: URL.PAGE.REMIT_SELECT,
     name: 'remit-select',
     component: RemitSelectPage,
-    meta: { header: '송금하기' },
+    meta: { headerKey: 'common.header.remit' },
   },
   {
     path: URL.PAGE.REMIT_INPUT,
     name: 'remit-input',
     component: RemitInputPage,
-    meta: { header: '송금하기' },
+    meta: { headerKey: 'common.header.remit' },
   },
   {
     path: URL.PAGE.REMIT_AMOUNT,
     name: 'remit-amount',
     component: RemitAmountPage,
-    meta: { header: '송금하기' },
+    meta: { headerKey: 'common.header.remit' },
   },
   {
     path: URL.PAGE.REMIT_COMPLETE,
     name: 'remit-complete',
     component: RemitCompletePage,
-    meta: { header: '송금하기' },
+    meta: { headerKey: 'common.header.remit' },
   },
 
   {
     path: URL.PAGE.RECOMMENDATION,
     name: 'recommendation',
     component: RecommendationPage,
-    meta: { header: '상품추천' },
+    meta: { headerKey: 'common.header.recommendation' },
   },
   {
     path: URL.PAGE.MYPAGE,
     name: 'mypage',
     component: MyPage,
-    meta: { header: '마이페이지' },
+    meta: { headerKey: 'common.header.mypage' },
   },
 
   {
     path: URL.PAGE.GROUP,
     name: 'group',
     component: GroupPage,
-    meta: { header: '공동 송금', bgColor: true, customBack: true },
+    meta: { headerKey: 'common.header.group', bgColor: true, customBack: true },
   },
   {
     path: URL.PAGE.GROUP_SIGNUP,
     name: 'group-signup',
     component: GroupSignupPage,
-    meta: { header: '공동 송금 신청하기' },
+    meta: { headerKey: 'common.header.groupSignup' },
   },
   {
     path: URL.PAGE.GROUP_COMPLETE,
     name: 'group-complete',
     component: GroupCompletePage,
-    meta: { header: '공동 송금 신청하기' },
+    meta: { headerKey: 'common.header.groupSignup' },
   },
 
   {
     path: URL.PAGE.EXCHANGE_CHECK,
     name: 'exchange-check',
     component: ExchangeCheckPage,
-    meta: { header: '환율 조회' },
+    meta: { headerKey: 'common.header.exchangeCheck' },
   },
   {
     path: URL.PAGE.EXCHANGE_RESULT,
     name: 'exchange-result',
     component: ExchangeResultPage,
-    meta: { header: '환율 조회' },
+    meta: { headerKey: 'common.header.exchangeCheck' },
   },
   {
     path: URL.PAGE.EXCHANGE_CALCULATOR,
     name: 'exchange-calculator',
     component: ExchangeCalculatorPage,
-    meta: { header: '환율 계산' },
+    meta: { headerKey: 'common.header.exchangeCalculator' },
   },
 
   {
@@ -171,18 +170,18 @@ export default [
     path: URL.PAGE.COMING,
     name: 'coming',
     component: ComingPage,
-    meta: { header: '뒤로가기' },
+    meta: { headerKey: 'common.header.back' },
   },
   {
     path: URL.PAGE.TEST,
     name: 'test',
     component: TestPage,
-    meta: { header: '테스트' },
+    meta: { headerKey: 'common.header.test' },
   },
   {
     path: URL.PAGE.DUTCH,
     name: 'dutch',
     component: ComingPage,
-    meta: { header: '뒤로가기' },
+    meta: { headerKey: 'common.header.back' },
   },
 ];

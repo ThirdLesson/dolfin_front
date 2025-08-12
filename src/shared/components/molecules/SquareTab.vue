@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import P1 from '../atoms/typography/P1.vue';
+import { useI18n } from 'vue-i18n';
 
 const model = defineModel();
 const props = defineProps({
@@ -10,9 +11,19 @@ const props = defineProps({
   },
   multiple: {
     type: Boolean,
-    default: false, // 기본은 단일 선택
+    default: false,
   },
 });
+
+const { t } = useI18n(); // 변경: t 함수 사용
+
+// 옵션 라벨(i18n 키)을 번역해 _label 로 보강
+const localizedOptions = computed(() =>
+  props.options.map((o) => ({
+    ...o,
+    _label: typeof o.label === 'string' ? t(o.label) : o.label,
+  })),
+);
 
 const toggle = (optionValue) => {
   if (props.multiple) {
@@ -41,8 +52,9 @@ const isSelected = (optionValue) => {
 </script>
 <template>
   <div class="w-full flex flex-wrap gap-2">
+    <!-- 변경: props.options → localizedOptions, option.label → option._label -->
     <button
-      v-for="option in props.options"
+      v-for="option in localizedOptions"
       :key="option.value"
       @click="toggle(option.value)"
       class="h-[35px] px-9 flex justify-center items-center border-2 rounded-sm"
@@ -52,7 +64,7 @@ const isSelected = (optionValue) => {
           : 'border-dol-sub '
       "
     >
-      <P1 class="text-dol-dark whitespace-nowrap">{{ option.label }}</P1>
+      <P1 class="text-dol-dark whitespace-nowrap">{{ option._label }}</P1>
     </button>
   </div>
 </template>

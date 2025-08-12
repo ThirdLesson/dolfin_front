@@ -1,7 +1,10 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
 import P2 from '@/shared/components/atoms/typography/P2.vue';
 import SquareTab from '@/shared/components/molecules/SquareTab.vue';
 import { productOptions } from '@/shared/constants/options';
+
+const { t } = useI18n();
 
 const emit = defineEmits(['click']);
 const productOption = defineModel('productOption');
@@ -21,7 +24,7 @@ const productOption = defineModel('productOption');
       class="sticky top-[110px] flex justify-end items-center gap-1 px-4 py-2 bg-dol-sub cursor-pointer"
       @click="emit('click')"
     >
-      <P2>상품 필터</P2>
+      <P2>{{ t('recommendation.common.productFilter') }}</P2>
       <i class="bi bi-caret-down-fill" />
     </div>
   </div>

@@ -1,0 +1,43 @@
+{
+  "step1": {
+    "title1": "사용하실 아이디와",
+    "title2": "비밀번호를 알려주세요",
+    "id": "아이디",
+    "password": "비밀번호",
+    "passwordConfirm": "비밀번호 확인",
+    "checkDuplicate": "중복확인",
+    "idTooShort": "아이디는 6자 이상이어야 합니다.",
+    "idExists": "이미 존재하는 회원 아이디입니다.",
+    "idAvailable": "사용 가능한 회원 아이디입니다.",
+    "passwordRules": "비밀번호는 10자 이상, 영문 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.",
+    "passwordMismatch": "비밀번호가 일치하지 않습니다."
+  },
+  "step2": {
+    "title1": "본인 확인을 위해",
+    "title2": "휴대폰 번호를 알려주세요",
+    "phoneNumber": "휴대폰 번호",
+    "code": "인증 번호",
+    "sendCode": "인증번호 받기",
+    "verifyCode": "인증번호 확인",
+    "timeLeft": "인증시간 {time} 남음"
+  },
+  "step3": {
+    "title": "개인정보를 알려주세요",
+    "name": "이름",
+    "birth": "생년월일",
+    "yyyy": "YYYY",
+    "mm": "MM",
+    "dd": "DD",
+    "passport": "여권번호",
+    "nationality": "국적",
+    "notFound": "개인 정보가 조회되지 않습니다. 입력한 정보가 올바른지 확인해주세요."
+  },
+  "result": {
+    "welcomeTitle": "{name}{suffix}, 환영합니다!",
+    "remainTitle": "잔여 체류 기간 확인 결과",
+    "passport": "여권번호",
+    "nationality": "국적",
+    "birth": "생년월일",
+    "remainTime": "체류기간 만료일"
+  }
+}

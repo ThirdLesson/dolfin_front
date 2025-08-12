@@ -1,5 +1,6 @@
 <script setup>
 import { watch, ref, nextTick, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Modal from '@/shared/components/organisms/Modal.vue';
 import PlainCard from '@/shared/components/molecules/card/PlainCard.vue';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
@@ -15,6 +16,8 @@ import {
   getJeonseLoanInfo,
 } from '../services/recommendation.service';
 import { conditionNameMap } from '@/shared/utils/KorEngMap';
+
+const { t } = useI18n();
 
 const props = defineProps({
   show: Boolean,
@@ -36,7 +39,7 @@ const isLoanType = computed(
 );
 
 const spclConditions = computed(() => {
-  let conds = detailInfo.value?.product.spclConditions || [];
+  let conds = detailInfo.value?.product?.spclConditions || [];
   if (typeof conds === 'string') {
     conds = conds.split(',').map((v) => v.trim());
   }
@@ -62,7 +65,6 @@ const fetchDetail = async (id) => {
     default:
       res = null;
   }
-
   if (res?.status === 200) {
     detailInfo.value = res.data;
   }
@@ -109,74 +111,78 @@ watch(
 <template>
   <Modal
     v-if="props.show && detailInfo"
-    title="상품 상세 정보"
-    buttonText="확인"
+    :title="t('recommendation.detail.title')"
+    :buttonText="t('recommendation.detail.ok')"
     @close="emit('close')"
   >
     <div class="flex flex-col gap-[15px]">
       <PlainCard v-if="isLoanType">
         <div class="flex flex-col gap-[5px]">
-          <Head3>상품명</Head3>
+          <Head3>{{ t('recommendation.detail.productName') }}</Head3>
+          <P1>{{ detailInfo.productName || detailInfo.productInfo.productName }}</P1>
+        </div>
+
+        <div class="flex flex-col gap-[5px]">
+          <Head3>{{ t('recommendation.detail.repayPeriod') }}</Head3>
           <P1>{{
-            detailInfo.productName || detailInfo.productInfo.productName
+            t('recommendation.detail.repayPeriodRange', {
+              min: detailInfo.minPeriod || detailInfo.productInfo.minPeriod ,
+              max: detailInfo.maxPeriod || detailInfo.productInfo.maxPeriod,
+            })
           }}</P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
-          <Head3>상환 기간</Head3>
-          <P1
-            >{{ detailInfo.minPeriod || detailInfo.productInfo.minPeriod }}개월
-            ~
-            {{
-              detailInfo.maxPeriod || detailInfo.productInfo.maxPeriod
-            }}개월</P1
-          >
+          <Head3>{{ t('recommendation.detail.loanAmount') }}</Head3>
+          <P1>{{
+            t('recommendation.detail.maxLoanAmount', {
+              amount: detailInfo.maxLoanAmount  || detailInfo.productInfo.maxLoanAmount,
+            })
+          }}</P1>
+
         </div>
 
         <div class="flex flex-col gap-[5px]">
-          <Head3>대출 금액</Head3>
-          <P1
-            >최대
-            {{
-              detailInfo.maxLoanAmount || detailInfo.productInfo.maxLoanAmount
-            }}만원</P1
-          >
-        </div>
-
-        <div class="flex flex-col gap-[5px]">
-          <Head3>금리 정보</Head3>
+          <Head3>{{ t('recommendation.detail.rateInfo') }}</Head3>
           <P1>
-            최저 {{ detailInfo.minRate || detailInfo.productInfo.minRate }}%,
-            평균 {{ detailInfo.avgRate || detailInfo.productInfo.avgRate }}%,
-            최대 {{ detailInfo.maxRate || detailInfo.productInfo.maxRate }}%
+            {{
+              t('recommendation.detail.rateTriplet', {
+                min: detailInfo.minRate || detailInfo.productInfo.minRate,
+                avg: detailInfo.avgRate || detailInfo.productInfo.avgRate,
+                max: detailInfo.maxRate || detailInfo.productInfo.maxRate,
+              })
+            }}
           </P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
-          <Head3>가입 조건</Head3>
-          <P1>{{
-            detailInfo.loanConditions || detailInfo.productInfo.loanConditions
-          }}</P1>
+          <Head3>{{ t('recommendation.detail.joinConditions') }}</Head3>
+          <P1>{{ detailInfo.loanConditions  || detailInfo.productInfo.loanConditions }}</P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
-          <Head3>비자 최소 기간</Head3>
+          <Head3>{{ t('recommendation.detail.minVisaPeriod') }}</Head3>
           <div class="flex flex-col">
-            <P1
-              >{{
-                detailInfo.minPeriod || detailInfo.productInfo.minPeriod
-              }}개월</P1
-            >
-            <Subtitle2
-              v-if="
-                detailInfo.joinAvailable || detailInfo.productInfo.joinAvailable
-              "
-              class="text-dol-main"
-            >
-              {{ userStore.userInfo.name }}님은 이 상품에 가입하실 수 있습니다.
+
+            <P1>{{
+              t('recommendation.detail.minVisaMonths', {
+                months: detailInfo.minPeriod || detailInfo.productInfo.minPeriod,
+              })
+            }}</P1>
+            <Subtitle2 v-if="detailInfo.joinAvailable || detailInfo.productInfo.joinAvailable" class="text-dol-main">
+              {{
+                t('recommendation.detail.eligible', {
+                  name: userStore.userInfo.name || '',
+                })
+              }}
+
             </Subtitle2>
             <P1 v-else class="text-dol-error">
-              {{ userStore.userInfo.name }}님은 이 상품에 가입하실 수 없습니다.
+              {{
+                t('recommendation.detail.ineligible', {
+                  name: userStore.userInfo.name || '',
+                })
+              }}
             </P1>
           </div>
         </div>
@@ -184,37 +190,45 @@ watch(
 
       <PlainCard v-else>
         <div class="flex flex-col gap-[5px]">
-          <Head3>상품명</Head3>
+          <Head3>{{ t('recommendation.detail.productName') }}</Head3>
           <P1>{{ detailInfo.product.name }}</P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
-          <Head3>기간</Head3>
-          <P1>{{ detailInfo.product.saveMonth }}개월</P1>
+          <Head3>{{ t('recommendation.detail.period') }}</Head3>
+          <P1>{{
+            t('recommendation.detail.months', {
+              months: detailInfo.product.saveMonth,
+            })
+          }}</P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
-          <Head3>금리</Head3>
+          <Head3>{{ t('recommendation.detail.rate') }}</Head3>
           <P1>
-            기본 {{ detailInfo.product.interestRate }}%, 최대
-            {{ detailInfo.product.maxInterestRate }}%
+            {{
+              t('recommendation.detail.baseAndMax', {
+                base: detailInfo.product.interestRate,
+                max: detailInfo.product.maxInterestRate,
+              })
+            }}
           </P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
-          <Head3>우대 조건</Head3>
+          <Head3>{{ t('recommendation.detail.preferential') }}</Head3>
           <P1>{{ spclConditions.join(', ') }}</P1>
         </div>
       </PlainCard>
 
       <PlainCard v-if="props.product">
         <div class="flex flex-col gap-[5px]">
-          <Head3>은행명</Head3>
+          <Head3>{{ t('recommendation.detail.bankName') }}</Head3>
           <P1>{{ detailInfo.companyName || detailInfo.company.name }}</P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
-          <Head3>홈페이지</Head3>
+          <Head3>{{ t('recommendation.detail.homepage') }}</Head3>
           <P1 v-if="detailInfo.homepageUrl || detailInfo.company.homepageUrl">
             <a
               :href="detailInfo.homepageUrl || detailInfo.company.homepageUrl"
@@ -228,12 +242,12 @@ watch(
         </div>
 
         <div class="flex flex-col gap-[5px]">
-          <Head3>콜센터</Head3>
+          <Head3>{{ t('recommendation.detail.callCenter') }}</Head3>
           <P1>{{ detailInfo.callNumber || detailInfo.company.callNumber }}</P1>
         </div>
       </PlainCard>
 
-      <Head3>가장 가까운 지점 (1.5km 이내)</Head3>
+      <Head3>{{ t('recommendation.detail.nearest', { km: 1.5 }) }}</Head3>
       <div ref="mapContainer" class="w-full h-[300px]" />
     </div>
   </Modal>

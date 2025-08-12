@@ -4,7 +4,7 @@ import { useKakaoMap } from '@/shared/hooks/useKakaoMap.js';
 import { getCenters, getBanks } from '@/features/map/services/map.service';
 
 const props = defineProps({
-  activeTab: String,
+  activeKey: String,
 });
 
 const emit = defineEmits(['placeClick']);
@@ -17,7 +17,7 @@ const centerList = ref([]);
 const bankList = ref([]);
 const showPlaces = ref([]);
 
-const toPlace = (data, type) =>
+const toPlace = (data) =>
   data.map((d, i) => ({
     id: d.id || i + 1,
     name: d.locationName || d.name,
@@ -42,8 +42,7 @@ const updateMap = () => {
     setCenter(near.lat, near.lng);
   }
 
-  const color =
-    props.activeTab === '다문화 가족 지원 센터' ? '#E80B26' : '#354E73';
+  const color = props.activeKey === 'multicultural' ? '#E80B26' : '#354E73';
 
   drawMarkers(showPlaces.value, color, {
     withHover: true,
@@ -54,13 +53,13 @@ const updateMap = () => {
 };
 
 async function loadPlaces() {
-  if (props.activeTab === '은행 외국인 특화 점포') {
+  if (props.activeKey === 'bank') {
     const banks = await getBanks();
-    bankList.value = toPlace(banks, '은행');
+    bankList.value = toPlace(banks);
     showPlaces.value = bankList.value;
   } else {
     const centers = await getCenters();
-    centerList.value = toPlace(centers, '센터');
+    centerList.value = toPlace(centers);
     showPlaces.value = centerList.value;
   }
   updateMap();
@@ -74,12 +73,11 @@ onMounted(async () => {
     draggable: true,
     scrollwheel: true,
   });
-
   await loadPlaces();
 });
 
 watch(
-  () => props.activeTab,
+  () => props.activeKey,
   () => {
     loadPlaces();
   },

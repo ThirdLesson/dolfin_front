@@ -1,0 +1,19 @@
+{
+  "user": "User",
+  "title": "My Page",
+  "basicInfo": "Basic Info",
+  "phoneNumber": "Phone Number",
+  "nationality": "Nationality",
+  "birth": "Date of Birth",
+  "languageSetting": "Language & Currency Settings",
+  "selectLanguage": "Select Language",
+  "defaultCurrency": "Default Currency",
+  "remainingStay": "Remaining Stay",
+  "daysLeft": "{days} days left",
+  "until": "Until {date}",
+  "accountStatus": "Account Status",
+  "groupRemitStatus": "My Group Remit",
+  "logout": "Log out",
+  "addAccount": "Add Account",
+  "cancel": "Cancel"
+}

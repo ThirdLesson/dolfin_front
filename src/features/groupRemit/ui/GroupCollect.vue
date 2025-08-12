@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
 import SmallDropdown from '@/shared/components/molecules/SmallDropdown.vue';
@@ -8,6 +9,8 @@ import CollectCard from './CollectCard.vue';
 import { currencyOptions } from '@/shared/constants/options';
 import { getMemberCount } from '../service/groupRemit.service';
 import { useGroupRemitStore } from '@/entities/groupRemit/groupRemit.store';
+
+const { t } = useI18n();
 
 const router = useRouter();
 const store = useGroupRemitStore();
@@ -47,7 +50,7 @@ watch(
 </script>
 
 <template>
-  <Head2>공동 송금에 참여하여 <br />수수료를 절약해보세요.</Head2>
+  <Head2 v-html="t('groupRemit.list.headline')"></Head2>
   <div class="flex flex-col gap-5">
     <div class="flex justify-end mt-[10px]">
       <SmallDropdown :options="currencyOptions" v-model="selectedType" />

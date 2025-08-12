@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 import P2 from '@/shared/components/atoms/typography/P2.vue';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
@@ -15,9 +16,9 @@ import {
 import { Banks } from '@/asset/images';
 import { bankNameMap } from '@/shared/utils/KorEngMap';
 
-const props = defineProps({
-  showModal: Boolean,
-});
+const { t } = useI18n();
+
+const props = defineProps({ showModal: Boolean });
 const emit = defineEmits(['select', 'confirm']);
 
 const products = ref([]);
@@ -79,11 +80,10 @@ const goToPage = (page) => {
   }
 };
 
-const isActivePage = (page) => {
-  return page === currentPage.value
+const isActivePage = (page) =>
+  page === currentPage.value
     ? 'bg-dol-sub text-white rounded-sm font-bold'
     : 'text-dol-gray hover:text-dol-main';
-};
 
 watch(
   () => [periodOption.value, JSON.stringify(spclConditions.value)],
@@ -106,15 +106,17 @@ watch(
       @click="emit('select', product)"
     >
       <div class="flex flex-col text-right shrink-0">
-        <P2 class="text-dol-dark-gray"
-          >기본 금리 {{ product.interestRate }}%</P2
-        >
-        <P2 class="text-dol-main">최대 금리 {{ product.maxinterestRate }}%</P2>
+        <P2 class="text-dol-dark-gray">{{
+          t('recommendation.common.baseRate', { rate: product.interestRate })
+        }}</P2>
+        <P2 class="text-dol-main">{{
+          t('recommendation.common.maxRate', { rate: product.maxinterestRate })
+        }}</P2>
       </div>
     </DoubleCard>
 
     <div v-if="products.length === 0" class="text-center text-dol-gray py-8">
-      조회 가능한 상품이 없습니다.
+      {{ t('recommendation.common.noResults') }}
     </div>
 
     <div
@@ -126,7 +128,7 @@ watch(
         @click="goToPage(currentPage - 1)"
         class="text-white"
       >
-        이전
+        {{ t('recommendation.common.prev') }}
       </SmSubButton>
 
       <P1
@@ -144,21 +146,21 @@ watch(
         @click="goToPage(currentPage + 1)"
         class="text-white"
       >
-        다음
+        {{ t('recommendation.common.next') }}
       </SmSubButton>
     </div>
   </div>
 
   <Modal
     v-if="showModal"
-    title="조회 조건 설정"
-    button-text="조회"
+    :title="t('recommendation.common.filterTitle')"
+    :button-text="t('recommendation.common.search')"
     @close="emit('close')"
     @confirm="emit('close')"
   >
     <div class="flex flex-col gap-5">
       <div class="flex flex-col gap-[10px]">
-        <Head3>저축 기간</Head3>
+        <Head3>{{ t('recommendation.common.savingPeriod') }}</Head3>
         <div class="w-full overflow-x-auto bg-white">
           <SquareTab
             v-model="periodOption"
@@ -169,7 +171,10 @@ watch(
       </div>
 
       <div class="flex flex-col gap-[10px]">
-        <Head3>우대 조건 (중복 선택)</Head3>
+        <Head3
+          >{{ t('recommendation.common.preferential') }}
+          {{ t('recommendation.common.multiple') }}</Head3
+        >
         <SquareTab
           v-model="spclConditions"
           :options="depositConditionOptions"

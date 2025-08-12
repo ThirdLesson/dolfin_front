@@ -1,0 +1,24 @@
+{
+  "slides": {
+    "slide1": {
+      "text": [
+        "Finding financial products for foreigners,",
+        "checking exchange rates, overseas remittance..."
+      ],
+      "subText": "Wasn't it too complicated?"
+    },
+    "slide2": {
+      "text": [
+        "From maximum exchange rate benefits",
+        "to group overseas remittance all at once"
+      ],
+      "subText": "DolFin will help you."
+    },
+    "slide3": {
+      "text": ["Smart digital wallet starting with DolFin"],
+      "subText": "Save fees, easy use, worry-free security \nEscape from financial stress."
+    }
+  },
+  "skip": "SKIP",
+  "start": "Get Started"
+}

@@ -1,0 +1,124 @@
+{
+  "options": {
+    "banks": {
+      "cu": "신협은행",
+      "post": "우체국예금",
+      "jeonbuk": "전북은행",
+      "mg": "새마을금고",
+      "sc": "제일은행",
+      "kb": "국민은행",
+      "woori": "우리은행",
+      "hana": "하나은행",
+      "kdb": "산업은행",
+      "busan": "부산은행",
+      "gwangju": "광주은행",
+      "im": "아이엠뱅크",
+      "shinhan": "신한은행",
+      "nh": "농협",
+      "k": "케이뱅크",
+      "city": "씨티은행",
+      "sh": "수협은행",
+      "ibk": "기업은행",
+      "dgb": "대구은행",
+      "toss": "토스뱅크",
+      "kakao": "카카오뱅크"
+    },
+    "exchange": {
+      "getCash": "현찰 받을 때",
+      "sellCash": "현찰 팔 때",
+      "send": "송금 보낼 때",
+      "receive": "송금 받을 때",
+      "baseRate": "매매 기준율"
+    },
+    "remit": {
+      "accountNumber": "계좌번호",
+      "phoneNumber": "전화번호"
+    },
+    "countries": {
+      "russia": "러시아",
+      "mongolia": "몽골",
+      "usa": "미국",
+      "vietnam": "베트남",
+      "india": "인도",
+      "indonesia": "인도네시아",
+      "japan": "일본",
+      "china": "중국",
+      "thailand": "태국",
+      "philippines": "필리핀",
+      "koreanRussian": "고려인",
+      "koreanChinese": "조선족",
+      "other": "기타"
+    },
+    "nav": {
+      "main": "메인",
+      "exchange": "환율조회",
+      "map": "스마트맵",
+      "groupRemittance": "공동송금"
+    },
+    "history": {
+      "period": {
+        "oneWeek": "1주일",
+        "oneMonth": "1개월",
+        "threeMonth": "3개월",
+        "sixMonth": "6개월"
+      },
+      "category": {
+        "all": "전체",
+        "withdraw": "출금",
+        "deposit": "입금",
+        "charge": "충전"
+      },
+      "sort": {
+        "latest": "최신순",
+        "oldest": "과거순"
+      }
+    },
+    "productPeriod": {
+      "sixMonth": "6개월",
+      "oneYear": "12개월",
+      "twoYear": "24개월",
+      "stayExpiration": "체류기간"
+    },
+    "conditions": {
+      "deposit": {
+        "usingCard": "카드사용",
+        "firstBanking": "첫거래",
+        "depositAgain": "재예치",
+        "online": "비대면가입",
+        "utilityBill": "공과금연동",
+        "bankApp": "은행앱사용",
+        "depositAccount": "입출금통장",
+        "salaryAccount": "급여연동"
+      },
+      "saving": {
+        "usingCard": "카드사용",
+        "firstBanking": "첫거래",
+        "depositAgain": "재예치",
+        "online": "비대면가입",
+        "utilityBill": "공과금연동",
+        "bankApp": "은행앱사용",
+        "depositAccount": "입출금통장",
+        "salaryAccount": "급여연동",
+        "housingSubscription": "주택청약",
+        "autoDeposit": "자동이체",
+        "recommendCoupon": "추천",
+        "etc": "기타"
+      }
+    },
+    "products": {
+      "deposit": "예금",
+      "saving": "적금",
+      "personalLoan": "개인 신용 대출",
+      "jeonseLoan": "전세 대출"
+    },
+    "interestRate": {
+      "min": "최저 기준",
+      "max": "최고 기준",
+      "avg": "평균 기준"
+    },
+    "languages": {
+      "ko": "한국어",
+      "en": "영어"
+    }
+  }
+}

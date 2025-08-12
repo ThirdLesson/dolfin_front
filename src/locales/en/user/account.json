@@ -1,0 +1,22 @@
+{
+  "account": {
+    "add": {
+      "title": "Please register your bank account.",
+      "caption": "We will verify the account with a safe 1 KRW deposit.",
+      "selectBank": "Select bank",
+      "accountNumber": "Account number",
+      "bankLoginId": "Bank login ID",
+      "bankLoginPw": "Bank login password"
+    },
+    "verify": {
+      "title": "Please confirm the depositor name",
+      "caption": "Enter the depositor name from the 1 KRW deposit to your account.",
+      "depositor": "Depositor",
+      "timer": "{time} left to verify",
+      "demoNotice": "The 1 KRW verification feature is not available in the demo version.",
+      "walletPwSetTitle": "Set e-wallet password",
+      "walletPwConfirmTitle": "Confirm password",
+      "walletPwMismatch": "Passwords do not match."
+    }
+  }
+}

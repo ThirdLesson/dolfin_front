@@ -1,0 +1,19 @@
+{
+  "user": "사용자",
+  "title": "마이페이지",
+  "basicInfo": "기본 정보",
+  "phoneNumber": "휴대폰 번호",
+  "nationality": "국적",
+  "birth": "생년월일",
+  "languageSetting": "언어 및 통화 설정",
+  "selectLanguage": "언어 선택",
+  "defaultCurrency": "기본 통화",
+  "remainingStay": "잔여 체류 기간",
+  "daysLeft": "{days}일 남음",
+  "until": "{date} 까지",
+  "accountStatus": "등록 계좌 현황",
+  "groupRemitStatus": "내 공동 송금 참여 내역",
+  "logout": "로그아웃",
+  "addAccount": "계좌 추가 등록",
+  "cancel": "취소하기"
+}

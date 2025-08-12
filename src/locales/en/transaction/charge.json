@@ -1,0 +1,17 @@
+{
+  "charge": {
+    "title": "How much would you like to charge?",
+    "amount": "Charge Amount",
+    "unit": "KRW",
+    "point": "P",
+    "complete": "Charge Complete",
+    "confirm": "Confirm",
+    "finish": "Finish",
+    "account": "Charge Account",
+    "selectAccount": "Which account would you like to use?",
+    "error": {
+      "minAmount": "Minimum charge amount is 10,000 KRW.",
+      "invalidPassword": "Password is incorrect."
+    }
+  }
+}

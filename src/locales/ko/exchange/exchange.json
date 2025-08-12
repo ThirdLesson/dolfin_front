@@ -1,0 +1,29 @@
+{
+  "header": {
+    "rate": "환율",
+    "bestBankTitle1": "현재 최고 환전 혜택을",
+    "bestBankTitle2": "제공하는 은행은"
+  },
+  "caption": {
+    "calculatedNet": "송금 수수료 및 해외 중계 은행 수수료를 제외한 실제 송금되는 금액이 계산되어 표시됩니다."
+  },
+  "notice": {
+    "title": "유의 사항",
+    "body": "인터넷뱅킹을 통한 환전·송금 이용 시 외국환 은행 등록 및 인터넷뱅킹 가입이 필요합니다.",
+    "sendBody": "창구를 통한 해외 송금 이외에는 외국환 등록이 필요합니다."
+  },
+  "graph": { "title": "환율 변화 그래프" },
+  "benefit": {
+    "totalPrefix": "총",
+    "more": "더 많은 혜택 보기",
+    "counterNotice": "은행 창구 이용 시"
+  },
+  "result": { "totalPrefix": "총" },
+  "inputAmount": {
+    "title": "환전 금액 입력(KRW)",
+    "placeholder": "금액을 입력하세요"
+  },
+  "selectCurrency": {
+    "title": "님의 기준 통화"
+  }
+}

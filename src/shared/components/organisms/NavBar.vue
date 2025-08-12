@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
 import P2 from '../atoms/typography/P2.vue';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
@@ -13,6 +14,8 @@ import ActiveExchangeIcon from '@/asset/icon/exchangeActive.png';
 import ActiveMapIcon from '@/asset/icon/mapActive.png';
 import ActiveRemitIcon from '@/asset/icon/remitActive.png';
 import { navBarOptions } from '@/shared/constants/options';
+
+const { t } = useI18n();
 
 const router = useRouter();
 const route = useRoute();
@@ -47,7 +50,7 @@ const selectOption = (option) => {
         :class="
           route.path === option.href ? 'text-dol-dark' : 'text-dol-light-gray'
         "
-        >{{ option.label }}</P2
+        >{{ t(option.label) }}</P2
       >
     </button>
   </nav>

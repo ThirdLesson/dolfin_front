@@ -2,6 +2,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
+import { useI18n } from 'vue-i18n';
 
 import URL from '@/shared/constants/URL';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
@@ -26,6 +27,8 @@ import {
   currencyImgOptions,
   languageOptions,
 } from '@/shared/constants/options';
+
+const { t, locale } = useI18n({ useScope: 'global' });
 
 const router = useRouter();
 const groupRemitStore = useGroupRemitStore();
@@ -63,7 +66,10 @@ const getMemberCountByDay = async () => {
 };
 
 watch(language, (val, old) => {
-  if (val !== old) userStore.setUserInfo({ language: val });
+  if (val !== old) {
+    userStore.setUserInfo({ language: val });
+    locale.value = val;
+  }
 });
 
 watch(currency, (val, old) => {
@@ -73,6 +79,7 @@ watch(currency, (val, old) => {
 onMounted(() => {
   fetchMyAccounts();
   getMemberCountByDay();
+  locale.value = language.value || 'ko';
   const info = groupRemitStore.groupRemitInfo;
   if (!info.remittanceDate || !info.amount) {
     info.isSignedUp = false;
@@ -85,29 +92,32 @@ onMounted(() => {
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
         <img :src="Logos.circleLogo" class="w-[50px] h-[50px]" />
-        <Head2>{{ userInfo.name || '사용자' }}님</Head2>
+        <Head2
+          >{{ userInfo.name || t('mypage.user')
+          }}{{ t('common.suffix') }}</Head2
+        >
       </div>
       <button
         class="text-dol-dark-gray cursor-pointer underline"
         @click="handleLogout"
       >
-        <P1>로그아웃</P1>
+        <P1>{{ t('mypage.logout') }}</P1>
       </button>
     </div>
 
     <PlainCard>
-      <Head3>기본 정보</Head3>
+      <Head3>{{ t('mypage.basicInfo') }}</Head3>
       <div class="flex flex-col gap-[5px]">
         <div class="flex justify-between">
-          <P1>휴대폰 번호</P1>
+          <P1>{{ t('mypage.phoneNumber') }}</P1>
           <P1 class="text-dol-dark-gray">{{ userInfo.phoneNumber || '-' }}</P1>
         </div>
         <div class="flex justify-between">
-          <P1>국적</P1>
+          <P1>{{ t('mypage.nationality') }}</P1>
           <P1 class="text-dol-dark-gray">{{ userInfo.nationality || '-' }}</P1>
         </div>
         <div class="flex justify-between">
-          <P1>생년월일</P1>
+          <P1>{{ t('mypage.birth') }}</P1>
           <P1 class="text-dol-dark-gray">{{ userInfo.birth || '-' }}</P1>
         </div>
       </div>
@@ -115,13 +125,13 @@ onMounted(() => {
 
     <PlainCard>
       <div class="flex flex-col gap-[15px]">
-        <Head3>언어 및 통화 설정</Head3>
+        <Head3>{{ t('mypage.languageSetting') }}</Head3>
         <div class="flex flex-col gap-[5px]">
-          <P1>언어 선택</P1>
+          <P1>{{ t('mypage.selectLanguage') }}</P1>
           <Dropdown v-model="language" :options="languageOptions" />
         </div>
         <div class="flex flex-col gap-[5px]">
-          <P1>기본 통화</P1>
+          <P1>{{ t('mypage.defaultCurrency') }}</P1>
           <Dropdown v-model="currency" :options="currencyImgOptions" />
         </div>
       </div>
@@ -129,11 +139,13 @@ onMounted(() => {
 
     <PlainCard>
       <div class="flex justify-between">
-        <Head3>잔여 체류 기간</Head3>
+        <Head3>{{ t('mypage.remainingStay') }}</Head3>
         <div class="flex flex-col text-right">
-          <Head3>{{ userStore.remainDays }}일 남음</Head3>
+          <Head3>{{
+            t('mypage.daysLeft', { days: userStore.remainDays })
+          }}</Head3>
           <P1 class="text-dol-dark-gray whitespace-nowrap">
-            {{ userInfo.remainTime || '-' }} 까지
+            {{ t('mypage.until', { date: userInfo.remainTime || '-' }) }}
           </P1>
         </div>
       </div>
@@ -141,12 +153,13 @@ onMounted(() => {
 
     <PlainCard>
       <div class="flex justify-between items-center">
-        <Head3>등록 계좌 현황</Head3>
+        <Head3>{{ t('mypage.accountStatus') }}</Head3>
         <P2
           class="text-dol-dark-gray cursor-pointer underline"
           @click="router.push(URL.PAGE.ACCOUNT)"
-          >계좌 추가 등록</P2
         >
+          {{ t('mypage.addAccount') }}
+        </P2>
       </div>
       <div v-if="myAccounts.length > 0" class="flex flex-col gap-3 mt-2">
         <DoubleCard
@@ -165,8 +178,10 @@ onMounted(() => {
 
     <PlainCard>
       <div class="flex justify-between">
-        <Head3>내 공동 송금 참여 내역</Head3>
-        <P2 class="text-dol-dark-gray underline cursor-pointer">취소하기</P2>
+        <Head3>{{ t('mypage.groupRemitStatus') }}</Head3>
+        <P2 class="text-dol-dark-gray underline cursor-pointer">
+          {{ t('mypage.cancel') }}
+        </P2>
       </div>
       <CollectCard
         :remittanceDate="groupRemitStore.groupRemitInfo.remittanceDate"

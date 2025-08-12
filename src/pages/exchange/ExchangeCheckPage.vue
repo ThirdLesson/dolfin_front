@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
 import Head3 from '@/shared/components/atoms/typography/Head3.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
@@ -12,6 +13,7 @@ import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { useExchangeStore } from '@/entities/exchange/exchange.store';
 import { useUserStore } from '@/entities/user/user.store';
 
+const { t } = useI18n();
 const userStore = useUserStore();
 const router = useRouter();
 const exchangeStore = useExchangeStore();
@@ -25,7 +27,6 @@ const handleComplete = () => {
     amount: Number(amount.value),
     targetCurrency: targetCurrency.value,
   };
-
   exchangeStore.setExchangeOption(option);
   router.push(URL.PAGE.EXCHANGE_RESULT);
 };
@@ -43,18 +44,17 @@ watch(amount, (newVal) => {
     <Caption2
       v-if="showCaption"
       class="underline text-dol-dark-gray text-center"
-      >송금 수수료 및 해외 중계 은행 수수료를 제외한 실제 송금되는 금액이
-      계산되어 표시됩니다.</Caption2
     >
+      {{ t('caption.calculatedNet') }}
+    </Caption2>
     <div
       class="flex flex-col gap-[10px] p-5 bg-dol-light rounded-sm break-words"
     >
-      <Head3>※ 유의 사항</Head3>
-      <Caption1
-        >인터넷뱅킹을 통한 환전·송금 이용 시 외국환 은행 등록 및 인터넷뱅킹
-        가입이 필요합니다.
-      </Caption1>
+      <Head3>※ {{ t('notice.title') }}</Head3>
+      <Caption1>{{ t('notice.body') }}</Caption1>
     </div>
-    <LgMainButton @click="handleComplete">완료</LgMainButton>
+    <LgMainButton @click="handleComplete">{{
+      t('common.complete')
+    }}</LgMainButton>
   </div>
 </template>

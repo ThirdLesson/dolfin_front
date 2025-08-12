@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
@@ -8,6 +9,8 @@ import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import PwModal from '@/shared/components/organisms/PwModal.vue';
 import { verifyCode } from '../services/account.service';
 import { useUserStore } from '@/entities/user/user.store';
+
+const { t } = useI18n();
 
 const emit = defineEmits(['complete']);
 const props = defineProps({
@@ -44,12 +47,10 @@ const handleComplete = async () => {
 
   if (result.status !== 204) return;
 
-  // 기존에 등록한 계좌가 있는 경우
   if (hasWallet.value) {
     emit('complete', null);
     return;
   }
-  // 계좌를 최초로 등록하는 경우
   isModalOpen.value = true;
 };
 
@@ -94,39 +95,42 @@ onUnmounted(() => {
     <div
       class="w-full h-[25vh] flex flex-col items-center justify-center gap-[5px]"
     >
-      <Subtitle1>입금자명을 확인해주세요</Subtitle1>
-      <Caption1>계좌로 입금된 1원의 입금자명을 입력해주세요.</Caption1>
+      <Subtitle1>{{ t('account.verify.title') }}</Subtitle1>
+      <Caption1>{{ t('account.verify.caption') }}</Caption1>
     </div>
+
     <div class="flex flex-col flex-1 justify-between">
       <div class="w-full flex flex-col items-end gap-1">
         <div class="w-full flex flex-col gap-[10px]">
-          <Subtitle2>입금자명</Subtitle2>
+          <Subtitle2>{{ t('account.verify.depositor') }}</Subtitle2>
           <BoxInput v-model="inputAuthCode" />
         </div>
-        <Caption1 class="text-dol-error"
-          >인증시간 {{ formattedTime }} 남음</Caption1
-        >
+        <Caption1 class="text-dol-error">
+          {{ t('account.verify.timer', { time: formattedTime }) }}
+        </Caption1>
       </div>
+
       <div class="flex flex-col gap-1 w-full items-center">
-        <Caption1 class="underline text-dol-dark-gray"
-          >데모버전에서는 1원 인증 기능을 제공하지 않습니다.</Caption1
-        >
-        <LgMainButton :disabled="!isValid" @click="handleComplete"
-          >완료</LgMainButton
-        >
+        <Caption1 class="underline text-dol-dark-gray">
+          {{ t('account.verify.demoNotice') }}
+        </Caption1>
+        <LgMainButton :disabled="!isValid" @click="handleComplete">
+          {{ t('common.complete') }}
+        </LgMainButton>
       </div>
     </div>
   </div>
+
   <PwModal
     v-if="isModalOpen"
-    title="전자지갑 비밀번호 설정"
+    :title="t('account.verify.walletPwSetTitle')"
     @complete="handlePwComplete"
     @close="() => (isModalOpen = false)"
   />
   <PwModal
     v-if="isCheckModalOpen"
-    title="비밀번호 확인"
-    errorMessage="비밀번호가 일치하지 않습니다."
+    :title="t('account.verify.walletPwConfirmTitle')"
+    :errorMessage="t('account.verify.walletPwMismatch')"
     :showError="showError"
     @input="showError = false"
     @complete="handlePwCheckComplete"

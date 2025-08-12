@@ -1,0 +1,87 @@
+{
+  "groupRemit": {
+    "list": { "headline": "Join a group remittance<br/>and save on fees." },
+    "info": {
+      "title": "Group Remittance Info"
+    },
+    "collect": {
+      "done": "Benefit group complete!",
+      "needMore": "{count} more to complete!"
+    },
+    "benefit": {
+      "title": "Cheaper remittance together",
+      "subtitle": "Special benefits when 30 join!",
+      "desc1": "Alone is costly, together is cheaper.",
+      "desc2": "Recruiting any time, every month.",
+      "blockTitle": "Group Remittance Benefits",
+      "items": {
+        "recruit": { "title": "Always Open", "subtitle": "Join any day 1–31" },
+        "auto": {
+          "title": "Auto Transfer",
+          "subtitle": "Auto remittance monthly 100k–3M KRW"
+        },
+        "cond": {
+          "title": "Eligibility",
+          "subtitle": "KB Star Banking & FX registration required"
+        }
+      },
+      "points": {
+        "rate": "30% preferential FX rate",
+        "cable": "No cable fee",
+        "intermediary": "Intermediary bank fee waived",
+        "fee": "5,000 KRW remittance fee"
+      }
+    },
+    "recipient": {
+      "title": "Recipient Info",
+      "swift": "SWIFT code",
+      "bank": "Recipient bank name",
+      "account": "Recipient account",
+      "name": "Recipient name",
+      "address": "Recipient address",
+      "routerCode": "Routing number",
+      "warn": "Incorrect info may cause failure.",
+      "commission": {
+        "title": "Intermediary fee payer",
+        "OUR": "Sender pays all (recipient gets full)",
+        "SHA": "Sender pays remittance, recipient pays the rest",
+        "BEN": "Recipient pays all (deducted from amount)"
+      },
+      "auto": {
+        "title": "Auto-transfer consent",
+        "agree": "I agree to a monthly auto-transfer on the same date.",
+        "notice1": "Manage group remittance in My Page.",
+        "notice2": "One retry on failure.",
+        "notice3": "Auto-cancel after two failures."
+      }
+    },
+    "remit": {
+      "title": "Remittance Info",
+      "country": "Destination country",
+      "purpose": "Purpose",
+      "amount": "Amount",
+      "benefitTitle": "Estimated Benefits",
+      "originFee": "Original fee",
+      "groupFee": "Group fee",
+      "save": "Savings",
+      "errMin": "Minimum amount is 100,000 KRW.",
+      "errMax": "Maximum amount is 3,000,000 KRW.",
+      "currencyWon": " won"
+    },
+    "complete": {
+      "applied": "Application Completed",
+      "notifyTitle": "We’ll notify you when the benefits start.",
+      "fxNote": "On the remittance day, a 30% preferential FX rate is applied before sending.",
+      "summary": {
+        "country": "Destination country",
+        "amount": "Amount",
+        "commission": "Estimated fee",
+        "total": "Estimated total",
+        "date": "Scheduled date",
+        "monthly": "Every month on the {day}th"
+      },
+      "warning": "If your e-wallet balance is insufficient on the group remittance date, the transfer may fail.",
+      "ok": "OK"
+    }
+  }
+}

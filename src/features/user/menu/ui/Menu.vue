@@ -1,10 +1,12 @@
 <script setup>
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { Icons } from '@/asset/images.js';
 import URL from '@/shared/constants/URL';
 import P1 from '@/shared/components/atoms/typography/P1.vue';
 
 const router = useRouter();
+const { t } = useI18n();
 </script>
 
 <template>
@@ -21,7 +23,7 @@ const router = useRouter();
             class="w-full h-full object-fit"
           />
         </div>
-        <P1>공동 송금</P1>
+        <P1>{{ t('mainpage.menu.groupRemit') }}</P1>
       </div>
 
       <div
@@ -35,7 +37,7 @@ const router = useRouter();
             class="w-full h-full object-fit"
           />
         </div>
-        <P1>상품 추천</P1>
+        <P1>{{ t('mainpage.menu.recommendation') }}</P1>
       </div>
 
       <div
@@ -51,7 +53,7 @@ const router = useRouter();
             class="w-full h-full object-fit"
           />
         </div>
-        <P1>더치페이</P1>
+        <P1>{{ t('mainpage.menu.dutchpay') }}</P1>
       </div>
     </div>
   </div>

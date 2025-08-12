@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "groupRemit": "Group Remittance",
+    "recommendation": "Product Recommendation",
+    "dutchpay": "Dutch Pay"
+  },
+  "wallet": {
+    "register": "Register Account",
+    "title": "DolFin Wallet",
+    "subtitle": "Current Balance (Points)",
+    "charge": "Charge",
+    "remit": "Send"
+  }
+}

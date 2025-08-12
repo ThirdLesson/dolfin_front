@@ -1,0 +1,29 @@
+{
+  "header": {
+    "rate": "Exchange rates",
+    "bestBankTitle1": "The bank offering",
+    "bestBankTitle2": "the best exchange benefit now is"
+  },
+  "caption": {
+    "calculatedNet": "The amount shown is calculated excluding remittance and intermediary bank fees."
+  },
+  "notice": {
+    "title": "Notice",
+    "body": "Foreign exchange bank registration and internet banking enrollment are required for online exchange/remittance.",
+    "sendBody": "Foreign exchange registration is required except for counter remittance."
+  },
+  "graph": { "title": "Exchange Rate Trend" },
+  "benefit": {
+    "totalPrefix": "Total",
+    "more": "View more benefits",
+    "counterNotice": "When using the bank counter"
+  },
+  "result": { "totalPrefix": "Total" },
+  "inputAmount": {
+    "title": "Enter Amount (KRW)",
+    "placeholder": "Enter amount"
+  },
+  "selectCurrency": {
+    "title": "'s base currency"
+  }
+}
