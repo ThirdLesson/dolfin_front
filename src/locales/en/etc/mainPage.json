@@ -1,7 +1,7 @@
 {
   "menu": {
-    "groupRemit": "Group Remittance",
-    "recommendation": "Product Recommendation",
+    "groupRemit": "Group Remit",
+    "recommendation": "Recommendation",
     "dutchpay": "Dutch Pay"
   },
   "wallet": {

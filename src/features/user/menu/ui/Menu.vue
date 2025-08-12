@@ -37,7 +37,7 @@ const { t } = useI18n();
             class="w-full h-full object-fit"
           />
         </div>
-        <P1>{{ t('mainpage.menu.recommendation') }}</P1>
+        <P1 class="text-center">{{ t('mainpage.menu.recommendation') }}</P1>
       </div>
 
       <div
