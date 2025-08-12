@@ -12,6 +12,7 @@ import {
   getDepositInfo,
   getSavingInfo,
   getPersonalLoanInfo,
+  getJeonseLoanInfo,
 } from '../services/recommendation.service';
 import { conditionNameMap } from '@/shared/utils/KorEngMap';
 
@@ -55,9 +56,9 @@ const fetchDetail = async (id) => {
     case 'PERSONAL_LOAN':
       res = await getPersonalLoanInfo(id);
       break;
-    // case 'JEONSE_LOAN':
-    //   res = await getJeonseLoanInfo(id);
-    //   break;
+    case 'JEONSE_LOAN':
+      res = await getJeonseLoanInfo(id);
+      break;
     default:
       res = null;
   }
@@ -116,39 +117,62 @@ watch(
       <PlainCard v-if="isLoanType">
         <div class="flex flex-col gap-[5px]">
           <Head3>상품명</Head3>
-          <P1>{{ detailInfo.productName }}</P1>
+          <P1>{{
+            detailInfo.productName || detailInfo.productInfo.productName
+          }}</P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
           <Head3>상환 기간</Head3>
           <P1
-            >{{ detailInfo.minPeriod }}개월 ~ {{ detailInfo.maxPeriod }}개월</P1
+            >{{ detailInfo.minPeriod || detailInfo.productInfo.minPeriod }}개월
+            ~
+            {{
+              detailInfo.maxPeriod || detailInfo.productInfo.maxPeriod
+            }}개월</P1
           >
         </div>
 
         <div class="flex flex-col gap-[5px]">
           <Head3>대출 금액</Head3>
-          <P1>최대 {{ detailInfo.maxLoanAmount }}만원</P1>
+          <P1
+            >최대
+            {{
+              detailInfo.maxLoanAmount || detailInfo.productInfo.maxLoanAmount
+            }}만원</P1
+          >
         </div>
 
         <div class="flex flex-col gap-[5px]">
           <Head3>금리 정보</Head3>
           <P1>
-            최저 {{ detailInfo.minRate }}%, 평균 {{ detailInfo.avgRate }}%, 최대
-            {{ detailInfo.maxRate }}%
+            최저 {{ detailInfo.minRate || detailInfo.productInfo.minRate }}%,
+            평균 {{ detailInfo.avgRate || detailInfo.productInfo.avgRate }}%,
+            최대 {{ detailInfo.maxRate || detailInfo.productInfo.maxRate }}%
           </P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
           <Head3>가입 조건</Head3>
-          <P1>{{ detailInfo.loanConditions }}</P1>
+          <P1>{{
+            detailInfo.loanConditions || detailInfo.productInfo.loanConditions
+          }}</P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
           <Head3>비자 최소 기간</Head3>
           <div class="flex flex-col">
-            <P1>{{ detailInfo.minPeriod }}개월</P1>
-            <Subtitle2 v-if="detailInfo.joinAvailable" class="text-dol-main">
+            <P1
+              >{{
+                detailInfo.minPeriod || detailInfo.productInfo.minPeriod
+              }}개월</P1
+            >
+            <Subtitle2
+              v-if="
+                detailInfo.joinAvailable || detailInfo.productInfo.joinAvailable
+              "
+              class="text-dol-main"
+            >
               {{ userStore.userInfo.name }}님은 이 상품에 가입하실 수 있습니다.
             </Subtitle2>
             <P1 v-else class="text-dol-error">

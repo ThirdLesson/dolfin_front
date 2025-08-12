@@ -101,18 +101,34 @@ export async function getPersonalLoanInfo(personalLoanId) {
   return res;
 }
 
-export async function getJeonseLoanFilter({ page, pageSize = 20, filterType }) {
+export async function getJeonseLoanFilter({
+  page,
+  pageSize = 20,
+  minAmount,
+  maxAmount,
+  sortBy,
+}) {
   const { url, method } = recommendation.jeonseLoanFilter();
 
   const params = new URLSearchParams({
     page,
     pageSize,
-    filterType,
     minAmount,
     maxAmount,
+    sortBy,
   });
 
   const queryUrl = `${url}?${params.toString()}`;
+  const response = await apiFetch(queryUrl, { method });
+
+  const res = await response.json();
+  return res;
+}
+
+export async function getJeonseLoanInfo(jeonseLoanId) {
+  const { url, method } = recommendation.jeonseLoanInfo();
+  const queryUrl = `${url}/${jeonseLoanId}`;
+
   const response = await apiFetch(queryUrl, { method });
 
   const res = await response.json();

@@ -24,7 +24,11 @@ export const recommendation = {
     method: 'GET',
   }),
   jeonseLoanFilter: () => ({
-    url: `${import.meta.env.VITE_APP_API_URL}/jeonse-loan/jeonse-loan/all`,
+    url: `${import.meta.env.VITE_APP_API_URL}/jeonse-loan/recommend`,
+    method: 'GET',
+  }),
+  jeonseLoanInfo: () => ({
+    url: `${import.meta.env.VITE_APP_API_URL}/jeonse-loan`,
     method: 'GET',
   }),
 };
