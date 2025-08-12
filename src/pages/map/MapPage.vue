@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n';
 import RoundTab from '@/shared/components/molecules/RoundTab.vue';
 import MapView from '@/features/map/ui/MapView.vue';
 import PlaceInfoModal from '@/features/map/ui/PlaceInfoModal.vue';
+import LoadingPage from '../etc/LoadingPage.vue';
 
 const { t, locale } = useI18n({ useScope: 'global' });
 
@@ -12,6 +13,7 @@ const state = reactive({
   activeKey: 'multicultural',
   isOpen: false,
   selectedPlace: {},
+  isLoading: true,
 });
 
 onMounted(() => {
@@ -28,10 +30,17 @@ watch(
 watch(locale, () => {
   state.activeTab = t(`tabs.${state.activeKey}`);
 });
+
+watch(
+  () => state.activeKey,
+  () => {
+    state.isLoading = true;
+  },
+);
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
+  <div class="flex flex-col h-full relative">
     <div class="flex justify-center pt-6">
       <RoundTab
         v-model="state.activeTab"
@@ -48,6 +57,7 @@ watch(locale, () => {
           state.isOpen = true;
         }
       "
+      @ready="state.isLoading = false"
     />
 
     <PlaceInfoModal
@@ -55,6 +65,11 @@ watch(locale, () => {
       :place="state.selectedPlace"
       :tab-key="state.activeKey"
       @close="state.isOpen = false"
+    />
+
+    <LoadingPage
+      v-if="state.isLoading"
+      class="fixed inset-0 z-[999] bg-white"
     />
   </div>
 </template>
