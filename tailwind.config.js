@@ -1,7 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx,mdx}'],
-  darkMode: false,
   theme: {
     extend: {
       colors: {
@@ -27,6 +26,26 @@ export default {
       fontFamily: {
         jua: ['Jua', 'sans-serif'],
         corelight: ['S-CoreDream-3Light', 'sans-serif'],
+      },
+      keyframes: {
+        fadein: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(10px)',
+            visibility: 'hidden',
+          },
+          '1%': {
+            visibility: 'visible',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+            visibility: 'visible',
+          },
+        },
+      },
+      animation: {
+        fadein: 'fadein 0.5s ease-out both',
       },
     },
   },
