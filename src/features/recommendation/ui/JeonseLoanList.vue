@@ -27,20 +27,20 @@ const interestRateOption = ref('AVG_RATE');
 const minAmount = ref(null);
 const maxAmount = ref(null);
 
-const fetchPersonalLoanProducts = async () => {
+const fetchJeonseLoanProducts = async () => {
   const res = await getJeonseLoanFilter({
     page: currentPage.value - 1,
-    filterType: interestRateOption.value,
+    sortBy: interestRateOption.value,
     minAmount: minAmount.value || 0,
-    maxAmount: maxAmount.value || 1000000000,
+    maxAmount: maxAmount.value || 500000000,
   });
 
-  if (res.status === 200 && Array.isArray(res.data?.loans)) {
+  if (res.status === 200 && Array.isArray(res.data?.content)) {
     totalCount.value = res.data.totalCount;
     totalPages.value = res.data.totalPages;
 
-    const newItems = res.data.loans.map((loan) => ({
-      id: loan.personalCreditLoanId,
+    const newItems = res.data.content.map((loan) => ({
+      id: loan.jeonseLoanId,
       title: loan.productName,
       bank: loan.companyName,
       interestRate: loan.selectedRate,
@@ -70,7 +70,7 @@ const pageNumbers = computed(() => {
 const goToPage = (page) => {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
-    fetchPersonalLoanProducts();
+    fetchJeonseLoanProducts();
   }
 };
 
@@ -83,7 +83,7 @@ watch(
   () => [interestRateOption.value, minAmount.value, maxAmount.value],
   () => {
     currentPage.value = 1;
-    fetchPersonalLoanProducts();
+    fetchJeonseLoanProducts();
   },
   { immediate: true },
 );
