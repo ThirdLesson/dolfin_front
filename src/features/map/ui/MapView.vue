@@ -7,7 +7,7 @@ const props = defineProps({
   activeKey: String,
 });
 
-const emit = defineEmits(['placeClick']);
+const emit = defineEmits(['placeClick', 'ready']);
 
 const mapContainer = ref(null);
 const { initMap, setCenter, drawMarkers, nearest, userPos, mapInstance } =
@@ -49,7 +49,10 @@ const updateMap = () => {
     onClick: (place) => emit('placeClick', place),
   });
 
-  setTimeout(refreshMap, 300);
+  setTimeout(() => {
+    refreshMap();
+    emit('ready');
+  }, 300);
 };
 
 async function loadPlaces() {
@@ -73,6 +76,7 @@ onMounted(async () => {
     draggable: true,
     scrollwheel: true,
   });
+
   await loadPlaces();
 });
 
