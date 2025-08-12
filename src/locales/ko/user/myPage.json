@@ -13,6 +13,7 @@
   "until": "{date} 까지",
   "accountStatus": "등록 계좌 현황",
   "groupRemitStatus": "내 공동 송금 참여 내역",
+  "exists": "참여 내역이 없습니다.",
   "logout": "로그아웃",
   "addAccount": "계좌 추가 등록",
   "cancel": "취소하기"

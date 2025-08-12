@@ -15,5 +15,6 @@
   "groupRemitStatus": "My Group Remit",
   "logout": "Log out",
   "addAccount": "Add Account",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "exists": "No participation history."
 }

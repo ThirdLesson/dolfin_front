@@ -32,3 +32,23 @@ export async function getMemberCount({ currency }) {
   const res = await response.json();
   return res;
 }
+
+export async function getGroupRemitInfo() {
+  const { url, method } = groupRemit.getGroupRemitInfo();
+  const response = await apiFetch(url, {
+    method,
+  });
+
+  const res = await response.json();
+  return res;
+}
+
+export async function cancelGroupRemit() {
+  const { url, method } = groupRemit.cancelGroupRemit();
+  const response = await apiFetch(url, {
+    method,
+  });
+
+  const res = await response.json();
+  return res;
+}

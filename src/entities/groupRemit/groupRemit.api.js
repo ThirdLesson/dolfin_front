@@ -11,4 +11,12 @@ export const groupRemit = {
     url: `${import.meta.env.VITE_APP_API_URL}/remittance/group/count`,
     method: 'POST',
   }),
+  getGroupRemitInfo: () => ({
+    url: `${import.meta.env.VITE_APP_API_URL}/remittance/group/check/info`,
+    method: 'GET',
+  }),
+  cancelGroupRemit: () => ({
+    url: `${import.meta.env.VITE_APP_API_URL}/remittance/group/cancel`,
+    method: 'DELETE',
+  }),
 };

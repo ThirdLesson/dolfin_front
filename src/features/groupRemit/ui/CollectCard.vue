@@ -18,6 +18,9 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  currency: {
+    type: String,
+  },
 });
 const emit = defineEmits(['click']);
 
@@ -54,6 +57,7 @@ const isComplete = computed(() => remaining.value === 0);
                 <i class="bi bi-people-fill" />
                 <Subtitle3>{{ memberCount }} / 30</Subtitle3>
               </div>
+              <Subtitle3 class="text-dol-dark-gray">{{ currency }}</Subtitle3>
             </div>
             <Caption1 class="text-dol-dark-gray">
               {{
