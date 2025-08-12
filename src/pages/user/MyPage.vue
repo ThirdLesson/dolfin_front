@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useI18n } from 'vue-i18n';
@@ -22,7 +22,11 @@ import { getMyAccounts } from '@/features/transaction/remit/services/remit.servi
 import { signOut } from '@/features/user/login/services/login.service';
 import { useUserStore } from '@/entities/user/user.store';
 import { useGroupRemitStore } from '@/entities/groupRemit/groupRemit.store';
-import { getMemberCount } from '@/features/groupRemit/service/groupRemit.service';
+import {
+  getMemberCount,
+  getGroupRemitInfo,
+  cancelGroupRemit,
+} from '@/features/groupRemit/service/groupRemit.service';
 import {
   currencyImgOptions,
   languageOptions,
@@ -36,13 +40,15 @@ const userStore = useUserStore();
 const { userInfo } = storeToRefs(userStore);
 
 const myAccounts = ref([]);
+const groupRemitInfo = ref(null);
 const memberCount = ref(0);
 const remittanceDate = ref(
   groupRemitStore.groupRemitInfo.remittanceDate || null,
 );
-
 const language = ref(userInfo.value.language);
 const currency = ref(userInfo.value.currency);
+
+const groupRemitExists = computed(() => !!groupRemitInfo.value?.groupExists);
 
 const handleLogout = async () => {
   await signOut();
@@ -65,6 +71,22 @@ const getMemberCountByDay = async () => {
   memberCount.value = matched?.memberCount ?? 0;
 };
 
+const fetchGroupRemitInfo = async () => {
+  const result = await getGroupRemitInfo();
+
+  if (result?.data) {
+    groupRemitInfo.value = result.data;
+  }
+};
+
+const handleCancel = async () => {
+  const result = await cancelGroupRemit();
+
+  if (result.status === 204) {
+    window.location.reload();
+  }
+};
+
 watch(language, (val, old) => {
   if (val !== old) {
     userStore.setUserInfo({ language: val });
@@ -76,8 +98,16 @@ watch(currency, (val, old) => {
   if (val !== old) userStore.setUserInfo({ currency: val });
 });
 
+watch(
+  () => userInfo.value.walletId,
+  (id) => {
+    if (id) fetchMyAccounts();
+  },
+  { immediate: true },
+);
+
 onMounted(() => {
-  fetchMyAccounts();
+  fetchGroupRemitInfo();
   getMemberCountByDay();
   locale.value = language.value || 'ko';
   const info = groupRemitStore.groupRemitInfo;
@@ -179,16 +209,23 @@ onMounted(() => {
     <PlainCard>
       <div class="flex justify-between">
         <Head3>{{ t('mypage.groupRemitStatus') }}</Head3>
-        <P2 class="text-dol-dark-gray underline cursor-pointer">
+        <P2
+          v-if="groupRemitExists"
+          class="text-dol-dark-gray underline cursor-pointer"
+          @click="handleCancel"
+        >
           {{ t('mypage.cancel') }}
         </P2>
       </div>
       <CollectCard
-        :remittanceDate="groupRemitStore.groupRemitInfo.remittanceDate"
-        :memberCount="memberCount"
+        v-if="groupRemitExists"
+        :remittanceDate="groupRemitInfo.remittanceDate"
+        :memberCount="groupRemitInfo.memberCount"
+        :currency="groupRemitInfo.groupCurrency"
         :showShadow="false"
         :showArrow="false"
       />
+      <P1 v-else class="text-dol-dark-gray">{{ t('mypage.exists') }}</P1>
     </PlainCard>
   </div>
 </template>
