@@ -2,7 +2,6 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
-import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
@@ -101,10 +100,10 @@ onUnmounted(() => {
 
     <div class="flex flex-col flex-1 justify-between">
       <div class="w-full flex flex-col items-end gap-1">
-        <div class="w-full flex flex-col gap-[10px]">
-          <Subtitle2>{{ t('account.verify.depositor') }}</Subtitle2>
-          <BoxInput v-model="inputAuthCode" />
-        </div>
+        <BoxInput
+          :title="t('account.verify.depositor')"
+          v-model="inputAuthCode"
+        />
         <Caption1 class="text-dol-error">
           {{ t('account.verify.timer', { time: formattedTime }) }}
         </Caption1>

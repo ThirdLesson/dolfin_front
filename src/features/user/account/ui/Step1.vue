@@ -2,7 +2,6 @@
 import { ref, watch, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Subtitle1 from '@/shared/components/atoms/typography/Subtitle1.vue';
-import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import Dropdown from '@/shared/components/molecules/Dropdown.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
@@ -74,21 +73,16 @@ watch([bankId, bankPassword], () => {
           :options="accountBankOptions"
           v-model="bankType"
         />
-
-        <div class="flex flex-col gap-[10px]">
-          <Subtitle2>{{ t('account.add.accountNumber') }}</Subtitle2>
-          <BoxInput v-model="accountNumber" />
-        </div>
-
-        <div class="flex flex-col gap-[10px]">
-          <Subtitle2>{{ t('account.add.bankLoginId') }}</Subtitle2>
-          <BoxInput v-model="bankId" />
-        </div>
-
-        <div class="flex flex-col gap-[10px]">
-          <Subtitle2>{{ t('account.add.bankLoginPw') }}</Subtitle2>
-          <BoxInput v-model="bankPassword" type="password" />
-        </div>
+        <BoxInput
+          :title="t('account.add.accountNumber')"
+          v-model="accountNumber"
+        />
+        <BoxInput :title="t('account.add.bankLoginId')" v-model="bankId" />
+        <BoxInput
+          :title="t('account.add.bankLoginPw')"
+          v-model="bankPassword"
+          type="password"
+        />
       </div>
 
       <div class="flex flex-col items-center gap-1">

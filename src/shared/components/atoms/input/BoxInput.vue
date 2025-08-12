@@ -1,4 +1,6 @@
 <script setup>
+import Subtitle2 from '../typography/Subtitle2.vue';
+
 const props = defineProps({
   placeholder: {
     type: String,
@@ -16,13 +18,15 @@ const props = defineProps({
     type: String,
     default: 'lg',
   },
+  title: String,
 });
 
 const value = defineModel();
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="w-full flex flex-col gap-[10px]">
+    <Subtitle2 v-if="title">{{ title }}</Subtitle2>
     <div
       class="border-2 border-dol-dark-gray rounded focus-within:border-dol-main transition-colors"
       :class="[

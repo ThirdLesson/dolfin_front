@@ -3,7 +3,6 @@ import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
-import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { checkTelName } from '../services/remit.service';
@@ -48,13 +47,11 @@ watch([phoneNumber], () => {
 
 <template>
   <div class="flex flex-col justify-between h-full">
-    <div class="flex flex-col gap-[15px]">
-      <Subtitle2>{{ t('remit.phoneNumber') }}</Subtitle2>
-      <BoxInput
-        :placeholder="t('remit.phoneNumberPlaceholder')"
-        v-model="phoneNumber"
-      />
-    </div>
+    <BoxInput
+      :title="t('remit.phoneNumber')"
+      :placeholder="t('remit.phoneNumberPlaceholder')"
+      v-model="phoneNumber"
+    />
     <div class="flex flex-col items-center">
       <Caption1
         class="text-dol-error transition-opacity duration-200"
