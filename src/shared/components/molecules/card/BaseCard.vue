@@ -29,7 +29,7 @@ const props = defineProps({
           <img :src="image" :alt="image" class="w-full h-full object-cover" />
         </div>
         <div class="flex flex-col" :class="!image && 'gap-[10px]'">
-          <Head3>{{ title }}</Head3>
+          <Subtitle3>{{ title }}</Subtitle3>
           <Subtitle3 v-if="subtitle" class="text-dol-dark-gray">{{
             subtitle
           }}</Subtitle3>
