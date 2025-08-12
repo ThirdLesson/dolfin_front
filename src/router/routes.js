@@ -18,7 +18,6 @@ import HistoryPage from '@/pages/transaction/HistoryPage.vue';
 import ChargePage from '@/pages/transaction/ChargePage.vue';
 import AccountPage from '@/pages/user/AccountPage.vue';
 import MyPage from '@/pages/user/MyPage.vue';
-import ExchangeCalculatorPage from '@/pages/exchange/ExchangeCalculatorPage.vue';
 import ExchangeResultPage from '@/pages/exchange/ExchangeResultPage.vue';
 import RemitSelectPage from '@/pages/transaction/RemitSelectPage.vue';
 import RemitInputPage from '@/pages/transaction/RemitInputPage.vue';
@@ -153,13 +152,6 @@ export default [
     component: ExchangeResultPage,
     meta: { headerKey: 'common.header.exchangeCheck' },
   },
-  {
-    path: URL.PAGE.EXCHANGE_CALCULATOR,
-    name: 'exchange-calculator',
-    component: ExchangeCalculatorPage,
-    meta: { headerKey: 'common.header.exchangeCalculator' },
-  },
-
   {
     path: URL.PAGE.LOADING,
     name: 'loading',
