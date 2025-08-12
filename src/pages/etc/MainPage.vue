@@ -53,7 +53,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="h-full flex flex-col gap-5">
+  <div class="w-full h-full flex flex-col gap-5 pb-[80px]">
     <div
       class="flex items-center gap-2 cursor-pointer pt-[70px]"
       @click="() => router.push(URL.PAGE.MYPAGE)"
@@ -63,12 +63,10 @@ onMounted(async () => {
       >
       <Head2>&gt;</Head2>
     </div>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-[15px]">
       <Wallet />
       <Menu />
-      <div @click="() => router.push(URL.PAGE.HISTORY)">
-        <RecentHistory />
-      </div>
+      <RecentHistory @click="() => router.push(URL.PAGE.HISTORY)" />
     </div>
   </div>
 </template>

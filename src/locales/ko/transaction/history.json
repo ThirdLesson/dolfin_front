@@ -2,7 +2,8 @@
   "label": {
     "deposit": "입금",
     "withdraw": "출금",
-    "charge": "충전"
+    "charge": "충전",
+    "exists": "거래내역이 없습니다."
   },
   "title": {
     "transactionHistory": "거래내역",
