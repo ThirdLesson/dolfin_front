@@ -1,0 +1,8 @@
+{
+  "id": "ID",
+  "password": "パスワード",
+  "signup": "新規登録",
+  "forgotPassword": "パスワードをお忘れですか",
+  "login": "ログイン",
+  "error": "ログインに失敗しました。"
+}

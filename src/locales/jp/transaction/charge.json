@@ -1,0 +1,17 @@
+{
+  "charge": {
+    "title": "いくらチャージしますか？",
+    "amount": "チャージ金額",
+    "unit": "KRW",
+    "point": "P",
+    "complete": "チャージ完了",
+    "confirm": "確認",
+    "finish": "完了",
+    "account": "チャージ口座",
+    "selectAccount": "どの口座を使用しますか？",
+    "error": {
+      "minAmount": "最低チャージ金額は10,000KRWです。",
+      "invalidPassword": "パスワードが正しくありません。"
+    }
+  }
+}

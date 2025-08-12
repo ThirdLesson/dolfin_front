@@ -1,0 +1,15 @@
+{
+  "tabs": {
+    "multicultural": "多文化支援センター",
+    "bank": "外国人支店"
+  },
+  "modal": {
+    "title": "詳細",
+    "centerName": "センター名",
+    "bankName": "銀行支店名",
+    "address": "住所",
+    "phone": "電話番号",
+    "website": "ウェブサイト",
+    "confirm": "OK"
+  }
+}

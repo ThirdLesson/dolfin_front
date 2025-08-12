@@ -1,0 +1,20 @@
+{
+  "user": "ユーザー",
+  "title": "マイページ",
+  "basicInfo": "基本情報",
+  "phoneNumber": "電話番号",
+  "nationality": "国籍",
+  "birth": "生年月日",
+  "languageSetting": "言語・通貨設定",
+  "selectLanguage": "言語を選択",
+  "defaultCurrency": "デフォルト通貨",
+  "remainingStay": "残り滞在日数",
+  "daysLeft": "残り {days} 日",
+  "until": "{date} まで",
+  "accountStatus": "口座状況",
+  "groupRemitStatus": "マイグループ送金",
+  "logout": "ログアウト",
+  "addAccount": "口座追加",
+  "cancel": "キャンセル",
+  "exists": "参加履歴がありません。"
+}

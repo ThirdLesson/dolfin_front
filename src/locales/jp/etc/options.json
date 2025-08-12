@@ -1,0 +1,125 @@
+{
+  "options": {
+    "banks": {
+      "cu": "新協銀行",
+      "post": "韓国郵便局",
+      "jeonbuk": "全北銀行",
+      "mg": "セマウル金庫",
+      "sc": "SC第一銀行",
+      "kb": "KB国民銀行",
+      "woori": "ウリィ銀行",
+      "hana": "ハナ銀行",
+      "kdb": "韓国産業銀行",
+      "busan": "釜山銀行",
+      "gwangju": "光州銀行",
+      "im": "I'Mバンク",
+      "shinhan": "新韓銀行",
+      "nh": "農協銀行",
+      "k": "Kバンク",
+      "city": "シティバンク韓国",
+      "sh": "水協銀行",
+      "ibk": "IBK企業銀行",
+      "dgb": "大邱銀行",
+      "toss": "トス銀行",
+      "kakao": "カカオバンク"
+    },
+    "exchange": {
+      "getCash": "現金を受け取るとき",
+      "sellCash": "現金を売るとき",
+      "send": "送金するとき",
+      "receive": "送金を受け取るとき",
+      "baseRate": "基準レート"
+    },
+    "remit": {
+      "accountNumber": "口座番号",
+      "phoneNumber": "電話番号"
+    },
+    "countries": {
+      "russia": "ロシア",
+      "mongolia": "モンゴル",
+      "usa": "アメリカ",
+      "vietnam": "ベトナム",
+      "india": "インド",
+      "indonesia": "インドネシア",
+      "japan": "日本",
+      "china": "中国",
+      "thailand": "タイ",
+      "philippines": "フィリピン",
+      "koreanRussian": "高麗人（在ロシア韓国系）",
+      "koreanChinese": "朝鮮族（在中国韓国系）",
+      "other": "その他"
+    },
+    "nav": {
+      "main": "メインページ",
+      "exchange": "為替",
+      "map": "スマートマップ",
+      "groupRemittance": "グループ送金"
+    },
+    "history": {
+      "period": {
+        "oneWeek": "1週間",
+        "oneMonth": "1か月",
+        "threeMonth": "3か月",
+        "sixMonth": "6か月"
+      },
+      "category": {
+        "all": "すべて",
+        "withdraw": "引き出し",
+        "deposit": "入金",
+        "charge": "チャージ"
+      },
+      "sort": {
+        "latest": "最新",
+        "oldest": "古い順"
+      }
+    },
+    "productPeriod": {
+      "sixMonth": "6か月",
+      "oneYear": "12か月",
+      "twoYear": "24か月",
+      "stayExpiration": "滞在期間"
+    },
+    "conditions": {
+      "deposit": {
+        "usingCard": "カード利用",
+        "firstBanking": "初回取引",
+        "depositAgain": "再預金",
+        "online": "オンライン申込",
+        "utilityBill": "公共料金連携",
+        "bankApp": "銀行アプリ利用",
+        "depositAccount": "普通預金",
+        "salaryAccount": "給与連携"
+      },
+      "saving": {
+        "usingCard": "カード利用",
+        "firstBanking": "初回取引",
+        "depositAgain": "再預金",
+        "online": "オンライン申込",
+        "utilityBill": "公共料金連携",
+        "bankApp": "銀行アプリ利用",
+        "depositAccount": "普通預金",
+        "salaryAccount": "給与連携",
+        "housingSubscription": "住宅加入",
+        "autoDeposit": "自動送金",
+        "recommendCoupon": "紹介",
+        "etc": "その他"
+      }
+    },
+    "products": {
+      "deposit": "預金",
+      "saving": "貯蓄",
+      "personalLoan": "個人信用ローン",
+      "jeonseLoan": "チョンセローン"
+    },
+    "interestRate": {
+      "min": "最低金利",
+      "max": "最高金利",
+      "avg": "平均金利"
+    },
+    "languages": {
+      "ko": "韓国語",
+      "en": "英語",
+      "jp": "日本語"
+    }
+  }
+}
