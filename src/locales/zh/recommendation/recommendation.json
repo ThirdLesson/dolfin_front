@@ -42,6 +42,7 @@
     "bankName": "银行",
     "homepage": "主页",
     "callCenter": "客服中心",
-    "nearest": "最近网点（{km} 公里以内）"
+    "nearest": "最近网点（{km} 公里以内）",
+    "noNearby": "附近{km}公里范围内没有网点。"
   }
 }

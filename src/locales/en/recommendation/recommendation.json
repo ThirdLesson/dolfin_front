@@ -42,6 +42,7 @@
     "bankName": "Bank",
     "homepage": "Homepage",
     "callCenter": "Call Center",
-    "nearest": "Nearest branch (within {km} km)"
+    "nearest": "Nearest branch (within {km} km)",
+    "noNearby": "No branches within {km} km nearby."
   }
 }

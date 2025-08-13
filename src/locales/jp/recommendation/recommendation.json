@@ -42,6 +42,7 @@
     "bankName": "銀行",
     "homepage": "ホームページ",
     "callCenter": "コールセンター",
-    "nearest": "最寄り支店（{km}km以内）"
+    "nearest": "最寄り支店（{km}km以内）",
+    "noNearby": "周辺{km}km以内に支店はありません。"
   }
 }

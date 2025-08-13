@@ -6,17 +6,15 @@ export function useKakaoMap() {
   const userPos = { lat: 37.5665, lng: 126.978 };
   let openInfoWindow = null;
 
-  // Kakao Maps SDK 로드
   const loadKakao = () =>
     new Promise((resolve) => {
       if (window.kakao?.maps) return resolve();
       const script = document.createElement('script');
-      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_MAP_KEY}&autoload=false`;
-      script.onload = () => kakao.maps.load(resolve);
+      script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_MAP_KEY}&libraries=services&autoload=false`;
+      script.onload = () => window.kakao.maps.load(resolve);
       document.head.appendChild(script);
     });
 
-  // 사용자 위치 가져오기
   const getUserLocation = () =>
     new Promise((res) => {
       navigator.geolocation.getCurrentPosition(
@@ -30,7 +28,6 @@ export function useKakaoMap() {
       );
     });
 
-  // 두 지점 간 거리 (km, haversine)
   const haversine = (lat1, lng1, lat2, lng2) => {
     const toRad = (d) => (d * Math.PI) / 180;
     const R = 6371;
@@ -50,7 +47,7 @@ export function useKakaoMap() {
     );
   };
 
-  // 가장 가까운 지점 반환
+  // 가장 가까운 지점
   const nearest = (lat, lng, list) =>
     list.reduce(
       (near, p) => {
@@ -59,11 +56,12 @@ export function useKakaoMap() {
       },
       {
         place: list[0],
-        dist: haversine(lat, lng, list[0]?.lat || 0, list[0]?.lng || 0),
+        dist: list[0]
+          ? haversine(lat, lng, list[0].lat, list[0].lng)
+          : Infinity,
       },
     ).place;
 
-  // 모든 마커 제거
   const clearMarkers = () => {
     markers.value.forEach((m) => m.setMap(null));
     markers.value = [];
@@ -71,14 +69,12 @@ export function useKakaoMap() {
     openInfoWindow = null;
   };
 
-  // Kakao Map 타일 강제 리프레시
   const relayoutMap = () => {
     if (mapInstance.value && window.kakao?.maps) {
-      kakao.maps.event.trigger(mapInstance.value, 'resize');
+      window.kakao.maps.event.trigger(mapInstance.value, 'resize');
     }
   };
 
-  // 개별 마커 + 인포윈도우 생성
   const createMarker = ({
     place,
     color,
@@ -91,18 +87,19 @@ export function useKakaoMap() {
         <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" fill="${color}"/>
         <circle cx="8" cy="6" r="3" fill="white"/>
       </svg>`;
-    const markerImage = new kakao.maps.MarkerImage(
+
+    const markerImage = new window.kakao.maps.MarkerImage(
       `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`,
-      new kakao.maps.Size(35, 41),
+      new window.kakao.maps.Size(35, 41),
     );
 
-    const marker = new kakao.maps.Marker({
-      position: new kakao.maps.LatLng(place.lat, place.lng),
+    const marker = new window.kakao.maps.Marker({
+      position: new window.kakao.maps.LatLng(place.lat, place.lng),
       map: mapInstance.value,
       image: markerImage,
     });
 
-    const infoWindow = new kakao.maps.InfoWindow({
+    const infoWindow = new window.kakao.maps.InfoWindow({
       content: `<div style="padding:5px 10px; white-space:nowrap;">
                   <strong>${place.name}</strong><br/>
                   <small>${place.address || ''}</small>
@@ -110,20 +107,18 @@ export function useKakaoMap() {
       zIndex: 3,
     });
 
-    // 항상 열려있는 인포윈도우
     if (alwaysOpenInfo) {
       infoWindow.open(mapInstance.value, marker);
       openInfoWindow = infoWindow;
     }
 
-    // Hover 시 열리고 닫히는 인포윈도우
     if (withHover) {
-      kakao.maps.event.addListener(marker, 'mouseover', () => {
+      window.kakao.maps.event.addListener(marker, 'mouseover', () => {
         openInfoWindow?.close();
         infoWindow.open(mapInstance.value, marker);
         openInfoWindow = infoWindow;
       });
-      kakao.maps.event.addListener(marker, 'mouseout', () => {
+      window.kakao.maps.event.addListener(marker, 'mouseout', () => {
         if (openInfoWindow === infoWindow) {
           infoWindow.close();
           openInfoWindow = null;
@@ -131,39 +126,73 @@ export function useKakaoMap() {
       });
     }
 
-    // 클릭 이벤트
-    kakao.maps.event.addListener(marker, 'click', () => onClick?.(place));
+    window.kakao.maps.event.addListener(marker, 'click', () =>
+      onClick?.(place),
+    );
     markers.value.push(marker);
   };
 
-  // 지도 초기화
   const initMap = async (container, center = userPos, options = {}) => {
     if (!container) return;
     await loadKakao();
     await getUserLocation();
 
-    mapInstance.value = new kakao.maps.Map(container, {
-      center: new kakao.maps.LatLng(center.lat, center.lng),
+    mapInstance.value = new window.kakao.maps.Map(container, {
+      center: new window.kakao.maps.LatLng(center.lat, center.lng),
       level: 5,
       draggable: options.draggable ?? true,
       scrollwheel: options.scrollwheel ?? true,
     });
 
-    // 초기화 후 타일 리프레시
     setTimeout(relayoutMap, 500);
   };
 
-  // 지도 중심 이동
   const setCenter = (lat, lng) => {
-    mapInstance.value?.setCenter(new kakao.maps.LatLng(lat, lng));
+    mapInstance.value?.setCenter(new window.kakao.maps.LatLng(lat, lng));
   };
 
-  // 여러 마커 그리기 (표시 후 지도 리프레시)
   const drawMarkers = async (places, color, opts = {}) => {
     await loadKakao();
     clearMarkers();
     places.forEach((p) => createMarker({ place: p, color, ...opts }));
     setTimeout(relayoutMap, 300);
+  };
+
+  // 은행명으로 1.5km 반경 검색
+  const searchPlacesByBank = async (
+    bankName,
+    radiusKm = 1.5,
+    center = userPos,
+  ) => {
+    await loadKakao();
+    return new Promise((resolve) => {
+      const places = new window.kakao.maps.services.Places();
+      const options = {
+        location: new window.kakao.maps.LatLng(center.lat, center.lng),
+        radius: Math.floor(radiusKm * 1000),
+        size: 15,
+      };
+
+      places.keywordSearch(
+        bankName,
+        (data, status) => {
+          if (status !== window.kakao.maps.services.Status.OK) {
+            resolve([]);
+            return;
+          }
+          const mapped = data.map((d) => ({
+            name: d.place_name,
+            lat: Number(d.y),
+            lng: Number(d.x),
+            address: d.road_address_name || d.address_name,
+            category_name: d.category_name,
+            category_group_code: d.category_group_code, // 'BK9' = 은행
+          }));
+          resolve(mapped);
+        },
+        options,
+      );
+    });
   };
 
   return {
@@ -174,5 +203,7 @@ export function useKakaoMap() {
     drawMarkers,
     nearest,
     relayoutMap,
+    haversine,
+    searchPlacesByBank,
   };
 }
