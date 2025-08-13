@@ -17,6 +17,7 @@ router.beforeEach((to, from, next) => {
     URL.PAGE.SIGNUP,
     URL.PAGE.SPLASH,
     URL.PAGE.ONBOARDING,
+    URL.PAGE.COMING,
   ];
   const authRequired = !publicPages.includes(to.path);
 
