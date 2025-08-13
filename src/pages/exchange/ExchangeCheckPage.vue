@@ -41,10 +41,7 @@ watch(amount, (newVal) => {
     <SelectCurrency v-model="targetCurrency" />
     <ExchangeGraph :currency="targetCurrency" />
     <InputAmount v-model="amount" />
-    <Caption2
-      v-if="showCaption"
-      class="underline text-dol-dark-gray text-center"
-    >
+    <Caption2 v-if="showCaption" class="underline text-dol-dark-gray">
       {{ t('caption.calculatedNet') }}
     </Caption2>
     <div
