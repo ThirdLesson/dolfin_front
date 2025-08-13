@@ -1,18 +1,11 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import URL from '@/shared/constants/URL';
+
 import P2 from '../atoms/typography/P2.vue';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
-import mainIcon from '@/asset/icon/main.png';
-import exchangeIcon from '@/asset/icon/exchange.png';
-import mapIcon from '@/asset/icon/map.png';
-import remitIcon from '@/asset/icon/remit.png';
-import ActiveMainIcon from '@/asset/icon/mainActive.png';
-import ActiveExchangeIcon from '@/asset/icon/exchangeActive.png';
-import ActiveMapIcon from '@/asset/icon/mapActive.png';
-import ActiveRemitIcon from '@/asset/icon/remitActive.png';
+import { Icons } from '@/asset/images';
 import { navBarOptions } from '@/shared/constants/options';
 
 const { t } = useI18n();
