@@ -22,9 +22,12 @@ const remittanceDate = computed(() => store.groupRemitInfo.remittanceDate);
 
 const purpose = ref('');
 const amount = ref('');
+
+const numberError = ref(false);
 const minError = ref(false);
 const maxError = ref(false);
 const showError = ref(false);
+
 const commissionInfo = reactive({
   originalCommission: null,
   benefitCommission: null,
@@ -32,12 +35,18 @@ const commissionInfo = reactive({
 });
 
 const disabled = computed(() => {
-  return !amount.value || !purpose.value;
+  return !amount.value || !purpose.value || numberError.value;
 });
 
 const handleNext = () => {
-  minError.value = amount.value < 100000;
-  maxError.value = amount.value > 3000000;
+  if (numberError.value) {
+    showError.value = false;
+    return;
+  }
+
+  const amt = Number(amount.value || 0);
+  minError.value = amt < 100000;
+  maxError.value = amt > 3000000;
 
   if (minError.value || maxError.value) {
     showError.value = true;
@@ -45,7 +54,7 @@ const handleNext = () => {
   }
 
   emit('updateRemit', {
-    amount: Number(amount.value),
+    amount: amt,
     purpose: purpose.value,
     currency: currency.value,
     remittanceDate: Number(remittanceDate.value),
@@ -55,13 +64,14 @@ const handleNext = () => {
 
 const fetchGroupCommission = async () => {
   const result = await getGroupCommission();
-
   if (result.status === 200) {
     Object.assign(commissionInfo, result.data);
   }
 };
 
-watch(amount, () => {
+watch(amount, (newVal) => {
+  numberError.value = !/^\d*$/.test(newVal);
+
   if (showError.value) {
     showError.value = false;
     minError.value = false;
@@ -78,13 +88,24 @@ onMounted(fetchGroupCommission);
       <PlainCard>
         <div class="flex flex-col gap-5">
           <Head3>{{ t('groupRemit.remit.title') }}</Head3>
+
           <LineInput
             v-model="countryNameMap[currency]"
             :title="t('groupRemit.remit.country')"
             :disabled="true"
           />
+
           <LineInput v-model="purpose" :title="t('groupRemit.remit.purpose')" />
-          <LineInput v-model="amount" :title="t('groupRemit.remit.amount')" />
+
+          <LineInput
+            v-model="amount"
+            :title="t('groupRemit.remit.amount')"
+            inputmode="numeric"
+            pattern="\\d*"
+          />
+          <Caption1 v-if="numberError" class="text-dol-error text-sm -mt-3">
+            {{ t('groupRemit.remit.errNum') }}
+          </Caption1>
         </div>
       </PlainCard>
 
@@ -95,27 +116,27 @@ onMounted(fetchGroupCommission);
             <P1 class="text-dol-dark-gray">{{
               t('groupRemit.remit.originFee')
             }}</P1>
-            <P1 class="line-through"
-              >{{ commissionInfo.originalCommission?.toLocaleString()
-              }}{{ t('common.won') }}</P1
-            >
+            <P1 class="line-through">
+              {{ commissionInfo.originalCommission?.toLocaleString()
+              }}{{ t('common.won') }}
+            </P1>
           </div>
           <div class="flex justify-between">
             <P1 class="text-dol-dark-gray">{{
               t('groupRemit.remit.groupFee')
             }}</P1>
-            <P1
-              >{{ commissionInfo.benefitCommission?.toLocaleString()
-              }}{{ t('common.won') }}</P1
-            >
+            <P1>
+              {{ commissionInfo.benefitCommission?.toLocaleString()
+              }}{{ t('common.won') }}
+            </P1>
           </div>
           <div class="w-full h-[2px] bg-dol-light-gray" />
           <div class="flex justify-between">
             <Head3>{{ t('groupRemit.remit.save') }}</Head3>
-            <Head3 class="text-dol-main"
-              >{{ commissionInfo.benefitAmount?.toLocaleString()
-              }}{{ t('common.won') }}</Head3
-            >
+            <Head3 class="text-dol-main">
+              {{ commissionInfo.benefitAmount?.toLocaleString()
+              }}{{ t('common.won') }}
+            </Head3>
           </div>
         </div>
       </div>
@@ -134,7 +155,10 @@ onMounted(fetchGroupCommission);
               : ''
         }}
       </Caption1>
-      <LgMainButton @click="handleNext" :disabled="disabled">다음</LgMainButton>
+
+      <LgMainButton @click="handleNext" :disabled="disabled">{{
+        t('common.next')
+      }}</LgMainButton>
     </div>
   </div>
 </template>
