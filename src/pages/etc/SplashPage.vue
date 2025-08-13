@@ -8,7 +8,7 @@ import { useUserStore } from '@/entities/user/user.store';
 const router = useRouter();
 const userStore = useUserStore();
 
-const splashGif = Logos.splash;
+const splashVideo = Logos.splash;
 
 const isFirstVisit = localStorage.getItem('hasVisited');
 
@@ -25,7 +25,7 @@ onMounted(() => {
     } else {
       router.replace(URL.PAGE.LOGIN);
     }
-  }, 3000);
+  }, 2000);
 });
 </script>
 
@@ -33,9 +33,15 @@ onMounted(() => {
   <div
     class="pb-10 h-full w-full flex flex-col items-center justify-end relative"
   >
-    <img
-      :src="splashGif"
-      class="w-[70%] object-contain absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+    <video
+      :src="splashVideo"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+      width="720"
+      height="720"
+      class="w-[70%] object-contain absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none"
     />
     <p class="font-jua text-dol-dark-gray text-[40px] z-10">DolFin</p>
   </div>

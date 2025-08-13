@@ -55,7 +55,7 @@ import comingLogo from './logo/comingLogo.png';
 import loading from './logo/loading.gif';
 import logo from './logo/logo.png';
 import nbgLogo from './logo/nbgLogo.svg';
-import splash from './logo/splash.gif';
+import splash from './logo/splash.mp4';
 
 import onboarding1 from './onboarding/onboarding1.png';
 import onboarding2 from './onboarding/onboarding2.png';
