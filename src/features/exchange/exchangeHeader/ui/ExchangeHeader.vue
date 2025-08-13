@@ -2,105 +2,70 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useI18n } from 'vue-i18n';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
-
 import P1 from '@/shared/components/atoms/typography/P1.vue';
-import CanadaFlag from '@/asset/flag/canada.png';
-import ChinaFlag from '@/asset/flag/china.png';
-import EuFlag from '@/asset/flag/eu.png';
-import HongkongFlag from '@/asset/flag/hongkong.png';
-import IndonesiaFlag from '@/asset/flag/indonesia.png';
-import JapanFlag from '@/asset/flag/japan.png';
-import KoreaFlag from '@/asset/flag/korea.png';
-import MalaysiaFlag from '@/asset/flag/malaysia.png';
-import RussiaFlag from '@/asset/flag/russia.png';
-import ThailandFlag from '@/asset/flag/thailand.png';
-import UkFlag from '@/asset/flag/uk.png';
-import UsaFlag from '@/asset/flag/usa.png';
-import VietnamFlag from '@/asset/flag/vietnam.png';
-
-const { t } = useI18n();
-
-const options = [
-  {
-    value: 'canada',
-    rate: '123',
-    src: CanadaFlag,
-  },
-  {
-    value: 'china',
-    rate: '2445',
-    src: ChinaFlag,
-  },
-  {
-    value: 'eu',
-    rate: '134535',
-    src: EuFlag,
-  },
-  {
-    value: 'hongkong',
-    rate: '14345',
-    src: HongkongFlag,
-  },
-  {
-    value: 'indonesia',
-    rate: '14352355',
-    src: IndonesiaFlag,
-  },
-  {
-    value: 'japan',
-    rate: '923',
-    src: JapanFlag,
-  },
-  {
-    value: 'korea',
-    rate: '1000',
-    src: KoreaFlag,
-  },
-  {
-    value: 'malaysia',
-    rate: '2376478',
-    src: MalaysiaFlag,
-  },
-  {
-    value: 'russia',
-    rate: '2313',
-    src: RussiaFlag,
-  },
-  {
-    value: 'tailand',
-    rate: '76645',
-    src: ThailandFlag,
-  },
-  {
-    value: 'uk',
-    rate: '65',
-    src: UkFlag,
-  },
-  {
-    value: 'usa',
-    rate: '12',
-    src: UsaFlag,
-  },
-  {
-    value: 'vietnam',
-    rate: '5433647',
-    src: VietnamFlag,
-  },
-];
+import { getLiveExchange } from '../services/ExchangeHeader.service';
+import { Flags } from '@/asset/images';
+import { formatNumber } from '@/shared/utils/format';
 
 const isPC = useMediaQuery();
 
-const currentIndex = ref(0);
-let intervalId = null;
+const { t } = useI18n();
 
-onMounted(() => {
-  intervalId = setInterval(() => {
-    currentIndex.value = (currentIndex.value + 1) % options.length;
-  }, 3000);
+const currencyIcon = {
+  USD: Flags.usa,
+  JPY: Flags.japan,
+  EUR: Flags.eu,
+  GBP: Flags.uk,
+  CAD: Flags.canada,
+  HKD: Flags.hongkong,
+  CNY: Flags.china,
+  THB: Flags.thailand,
+  IDR: Flags.indonesia,
+  VND: Flags.vietnam,
+  RUB: Flags.russia,
+  MYR: Flags.malaysia,
+};
+
+const exchangeRates = ref([]);
+
+const fetchLiveExchange = async () => {
+  const result = await getLiveExchange();
+
+  if (result?.data) {
+    exchangeRates.value = result.data.map((item) => {
+      return {
+        currency: item.currency,
+        rate: formatNumber(item.exchangeRate),
+        src: currencyIcon[item.currency],
+      };
+    });
+  } else {
+    exchangeRates.value = [];
+  }
+};
+
+const currentIndex = ref(0);
+let slideInterval = null;
+let refreshInterval = null;
+
+onMounted(async () => {
+  await fetchLiveExchange();
+
+  if (exchangeRates.value.length > 0) {
+    slideInterval = setInterval(() => {
+      currentIndex.value =
+        (currentIndex.value + 1) % exchangeRates.value.length;
+    }, 3000);
+  }
+
+  refreshInterval = setInterval(() => {
+    fetchLiveExchange();
+  }, 60000);
 });
 
 onBeforeUnmount(() => {
-  clearInterval(intervalId);
+  clearInterval(slideInterval);
+  clearInterval(refreshInterval);
 });
 </script>
 
@@ -111,16 +76,16 @@ onBeforeUnmount(() => {
   >
     <P1>{{ t('header.rate') }}</P1>
     <div
-      v-if="options.length"
+      v-if="exchangeRates.length"
       :key="currentIndex"
       class="flex items-center gap-[10px] animate-slide-up-pause"
     >
       <img
-        :src="options[currentIndex].src"
-        :alt="options[currentIndex].value"
+        :src="exchangeRates[currentIndex].src"
+        :alt="exchangeRates[currentIndex].currency"
         class="w-[20px] h-[20px] rounded-full shadow-custom-shadow object-cover"
       />
-      <P1>{{ options[currentIndex].rate }}</P1>
+      <P1>{{ exchangeRates[currentIndex].rate }}</P1>
     </div>
   </header>
 </template>
