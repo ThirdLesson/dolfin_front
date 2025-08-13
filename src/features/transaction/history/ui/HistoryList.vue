@@ -180,7 +180,7 @@ const isActivePage = (page) =>
       </SmMainButton>
     </div>
   </div>
-  <P1 v-else class="text-dol-dark-gray pt-[10px]">
+  <P1 v-else class="text-dol-dark-gray pt-[10px] text-center">
     {{ t('history.label.exists') }}</P1
   >
 </template>
