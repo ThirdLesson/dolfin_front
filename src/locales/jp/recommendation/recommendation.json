@@ -26,7 +26,7 @@
     "repayPeriod": "返済期間",
     "repayPeriodRange": "{min}〜{max}か月",
     "loanAmount": "ローン金額",
-    "maxLoanAmount": "最大 {amount} 万KRWまで",
+    "maxLoanAmount": "最大 {amount} ウォン",
     "rateInfo": "金利情報",
     "rateTriplet": "最低 {min}%、平均 {avg}%、最大 {max}%",
     "joinConditions": "申込資格",

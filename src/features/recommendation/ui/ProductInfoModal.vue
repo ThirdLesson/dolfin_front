@@ -16,6 +16,7 @@ import {
   getJeonseLoanInfo,
 } from '../services/recommendation.service';
 import { conditionNameMap } from '@/shared/utils/KorEngMap';
+import { formatNumber } from '@/shared/utils/format';
 
 const { t } = useI18n();
 
@@ -119,14 +120,16 @@ watch(
       <PlainCard v-if="isLoanType">
         <div class="flex flex-col gap-[5px]">
           <Head3>{{ t('recommendation.detail.productName') }}</Head3>
-          <P1>{{ detailInfo.productName || detailInfo.productInfo.productName }}</P1>
+          <P1>{{
+            detailInfo.productName || detailInfo.productInfo.productName
+          }}</P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
           <Head3>{{ t('recommendation.detail.repayPeriod') }}</Head3>
           <P1>{{
             t('recommendation.detail.repayPeriodRange', {
-              min: detailInfo.minPeriod || detailInfo.productInfo.minPeriod ,
+              min: detailInfo.minPeriod || detailInfo.productInfo.minPeriod,
               max: detailInfo.maxPeriod || detailInfo.productInfo.maxPeriod,
             })
           }}</P1>
@@ -136,10 +139,11 @@ watch(
           <Head3>{{ t('recommendation.detail.loanAmount') }}</Head3>
           <P1>{{
             t('recommendation.detail.maxLoanAmount', {
-              amount: detailInfo.maxLoanAmount  || detailInfo.productInfo.maxLoanAmount,
+              amount:
+                formatNumber(detailInfo.maxLoanAmount) ||
+                formatNumber(detailInfo.productInfo.maxLoanAmount),
             })
           }}</P1>
-
         </div>
 
         <div class="flex flex-col gap-[5px]">
@@ -157,25 +161,31 @@ watch(
 
         <div class="flex flex-col gap-[5px]">
           <Head3>{{ t('recommendation.detail.joinConditions') }}</Head3>
-          <P1>{{ detailInfo.loanConditions  || detailInfo.productInfo.loanConditions }}</P1>
+          <P1>{{
+            detailInfo.loanConditions || detailInfo.productInfo.loanConditions
+          }}</P1>
         </div>
 
         <div class="flex flex-col gap-[5px]">
           <Head3>{{ t('recommendation.detail.minVisaPeriod') }}</Head3>
           <div class="flex flex-col">
-
             <P1>{{
               t('recommendation.detail.minVisaMonths', {
-                months: detailInfo.minPeriod || detailInfo.productInfo.minPeriod,
+                months:
+                  detailInfo.minPeriod || detailInfo.productInfo.minPeriod,
               })
             }}</P1>
-            <Subtitle2 v-if="detailInfo.joinAvailable || detailInfo.productInfo.joinAvailable" class="text-dol-main">
+            <Subtitle2
+              v-if="
+                detailInfo.joinAvailable || detailInfo.productInfo.joinAvailable
+              "
+              class="text-dol-main"
+            >
               {{
                 t('recommendation.detail.eligible', {
                   name: userStore.userInfo.name || '',
                 })
               }}
-
             </Subtitle2>
             <P1 v-else class="text-dol-error">
               {{

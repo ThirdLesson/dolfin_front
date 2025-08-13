@@ -26,7 +26,7 @@
     "repayPeriod": "还款期限",
     "repayPeriodRange": "{min}-{max}个月",
     "loanAmount": "贷款金额",
-    "maxLoanAmount": "最高 {amount}（万元韩元）",
+    "maxLoanAmount": "最高 {amount}韩元",
     "rateInfo": "利率信息",
     "rateTriplet": "最低 {min}%，平均 {avg}%，最高 {max}%",
     "joinConditions": "申请资格",

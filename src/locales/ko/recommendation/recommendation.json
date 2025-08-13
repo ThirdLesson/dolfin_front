@@ -26,7 +26,7 @@
     "repayPeriod": "상환 기간",
     "repayPeriodRange": "{min}개월 ~ {max}개월",
     "loanAmount": "대출 금액",
-    "maxLoanAmount": "최대 {amount}만원",
+    "maxLoanAmount": "최대 {amount}원",
     "rateInfo": "금리 정보",
     "rateTriplet": "최저 {min}%, 평균 {avg}%, 최대 {max}%",
     "joinConditions": "가입 조건",

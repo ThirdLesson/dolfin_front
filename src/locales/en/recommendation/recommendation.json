@@ -26,7 +26,7 @@
     "repayPeriod": "Repayment Period",
     "repayPeriodRange": "{min}-{max} months",
     "loanAmount": "Loan Amount",
-    "maxLoanAmount": "Up to {amount} (10k KRW)",
+    "maxLoanAmount": "Up to {amount} KRW",
     "rateInfo": "Rate Information",
     "rateTriplet": "Min {min}%, Avg {avg}%, Max {max}%",
     "joinConditions": "Eligibility",
