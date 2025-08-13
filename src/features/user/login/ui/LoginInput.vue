@@ -26,12 +26,11 @@ const handleLogin = async () => {
   });
   if (result) {
     userStore.setUserInfo(result);
+    userStore.setAccessToken(result.accessToken);
     isFCMInitialized.value = false;
-    userStore.setLoginState(true);
     router.push(URL.PAGE.MAIN);
   } else {
     alert(t('login.error'));
-    userStore.setLoginState(false);
   }
   loginId.value = '';
   password.value = '';
