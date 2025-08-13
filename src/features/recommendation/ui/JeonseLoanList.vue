@@ -119,7 +119,7 @@ watch(
         @click="goToPage(currentPage - 1)"
         class="text-white"
       >
-        {{ t('recommendation.common.prev') }}
+        {{ t('common.prev') }}
       </SmSubButton>
 
       <P1
@@ -137,7 +137,7 @@ watch(
         @click="goToPage(currentPage + 1)"
         class="text-white"
       >
-        {{ t('recommendation.common.next') }}
+        {{ t('common.next') }}
       </SmSubButton>
     </div>
   </div>

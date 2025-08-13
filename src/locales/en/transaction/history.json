@@ -3,8 +3,6 @@
     "deposit": "Deposit",
     "withdraw": "Withdraw",
     "charge": "Charge",
-    "prev": "Prev",
-    "next": "Next",
     "exists": "No transaction history."
   },
   "title": {

@@ -3,8 +3,7 @@
     "deposit": "存款",
     "withdraw": "取款",
     "charge": "充值",
-    "prev": "上一页",
-    "next": "下一页"
+    "exists": "没有交易记录。"
   },
   "title": {
     "transactionHistory": "交易记录",

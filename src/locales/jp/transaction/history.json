@@ -3,8 +3,7 @@
     "deposit": "入金",
     "withdraw": "出金",
     "charge": "チャージ",
-    "prev": "前へ",
-    "next": "次へ"
+    "exists": "取引履歴がありません。"
   },
   "title": {
     "transactionHistory": "取引履歴",
