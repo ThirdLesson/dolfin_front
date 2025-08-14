@@ -65,7 +65,7 @@
       "groupFee": "Group fee",
       "save": "Savings",
       "errMin": "Minimum amount is 100,000 KRW.",
-      "errMax": "Maximum amount is 3,000,000 KRW.",
+      "errMax": "Maximum amount is 5,000,000 KRW.",
       "errNum": "Only numbers are allowed.",
       "currencyWon": "KRW"
     },

@@ -46,7 +46,7 @@ const handleNext = () => {
 
   const amt = Number(amount.value || 0);
   minError.value = amt < 100000;
-  maxError.value = amt > 3000000;
+  maxError.value = amt > 5000000;
 
   if (minError.value || maxError.value) {
     showError.value = true;
