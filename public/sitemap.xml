@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://dolfin-digital.vercel.app/main</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://dolfin-digital.vercel.app/exchange-check</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/exchange-result</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://dolfin-digital.vercel.app/remit-select</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/remit-input</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/remit-amount</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/remit-complete</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://dolfin-digital.vercel.app/group</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/group-signup</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/group-complete</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://dolfin-digital.vercel.app/recommendation</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://dolfin-digital.vercel.app/mypage</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/account</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/history</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/charge</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://dolfin-digital.vercel.app/map</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dolfin-digital.vercel.app/coming</loc>
+    <lastmod>2025-08-14</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

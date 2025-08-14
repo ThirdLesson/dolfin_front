@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dolfin-digital.vercel.app/sitemap.xml
