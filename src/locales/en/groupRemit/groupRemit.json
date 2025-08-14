@@ -66,7 +66,8 @@
       "save": "Savings",
       "errMin": "Minimum amount is 100,000 KRW.",
       "errMax": "Maximum amount is 3,000,000 KRW.",
-      "errNum": "Only numbers are allowed."
+      "errNum": "Only numbers are allowed.",
+      "currencyWon": "KRW"
     },
     "complete": {
       "applied": "Application Completed",

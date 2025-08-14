@@ -2,6 +2,7 @@
   "remit": {
     "myAccount": "내 계좌",
     "recentTransactions": "최근 거래 목록",
+    "where": "어디로 보낼까요?",
     "sendTo": "{name} 님께",
     "howMuch": "얼마를 보낼까요?",
     "currentBalance": "현재 잔액",
@@ -10,6 +11,7 @@
     "phoneNumber": "전화번호",
     "phoneNumberPlaceholder": "전화번호를 입력하세요.",
     "bankSelect": "은행 선택",
+    "complete": "송금 완료",
     "quickAdd": {
       "thousand": "+1천",
       "fiveThousand": "+5천",

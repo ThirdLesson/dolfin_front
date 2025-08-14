@@ -2,6 +2,7 @@
   "remit": {
     "myAccount": "我的账户",
     "recentTransactions": "最近交易",
+    "where": "您要汇到哪里？",
     "sendTo": "汇给 {name}",
     "howMuch": "您想汇多少钱？",
     "currentBalance": "当前余额",
@@ -10,6 +11,7 @@
     "phoneNumber": "电话号码",
     "phoneNumberPlaceholder": "请输入电话号码。",
     "bankSelect": "选择银行",
+    "complete": "汇款完成",
     "quickAdd": {
       "thousand": "+1千",
       "fiveThousand": "+5千",
