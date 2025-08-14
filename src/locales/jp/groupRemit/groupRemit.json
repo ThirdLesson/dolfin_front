@@ -71,7 +71,7 @@
       "save": "節約額",
       "errMin": "最低金額は100,000KRWです。",
       "errMax": "最高金額は3,000,000KRWです。",
-      "currencyWon": "ウォン"
+      "errNum": "数字のみ入力できます。"
     },
     "complete": {
       "applied": "申込完了",
