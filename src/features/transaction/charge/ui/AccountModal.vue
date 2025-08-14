@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n';
 import Modal from '@/shared/components/organisms/Modal.vue';
 import SingleCard from '@/shared/components/molecules/card/SingleCard.vue';
 import { Banks } from '@/asset/images';
-import { bankNameMap } from '@/shared/utils/KorEngMap';
+import { bankEngNameMap } from '@/shared/utils/KorEngMap';
 
 const { t } = useI18n();
 
@@ -29,7 +29,7 @@ const emit = defineEmits(['select', 'close']);
         class="cursor-pointer"
         @click="emit('select', item)"
       >
-        <SingleCard :image="Banks[bankNameMap[item.bankType]]"
+        <SingleCard :image="Banks[bankEngNameMap[item.bankType]]"
           >{{ item.bankType }} {{ item.accountNumber }}</SingleCard
         >
       </li>

@@ -16,7 +16,7 @@ import CollectCard from '@/features/groupRemit/ui/CollectCard.vue';
 
 import { Logos } from '@/asset/images';
 import { Banks } from '@/asset/images';
-import { bankNameMap } from '@/shared/utils/KorEngMap';
+import { bankEngNameMap } from '@/shared/utils/KorEngMap';
 import { formatAccountNumber } from '@/shared/utils/format';
 import { getMyAccounts } from '@/features/transaction/remit/services/remit.service';
 import { signOut } from '@/features/user/login/services/login.service';
@@ -198,7 +198,7 @@ onMounted(() => {
           v-for="(item, idx) in myAccounts"
           :key="idx"
           :title="item.bankType"
-          :image="Banks[bankNameMap[item.bankType]]"
+          :image="Banks[bankEngNameMap[item.bankType]]"
           :show-shadow="false"
         >
           <P1 class="whitespace-nowrap">

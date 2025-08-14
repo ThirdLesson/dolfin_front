@@ -9,7 +9,7 @@ import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import Subtitle3 from '@/shared/components/atoms/typography/Subtitle3.vue';
 import { exchangeCheck } from '../service/exchangeCheck.service';
 import { Banks } from '@/asset/images';
-import { bankNameMap } from '@/shared/utils/KorEngMap';
+import { bankEngNameMap } from '@/shared/utils/KorEngMap';
 import BenefitInfo from './BenefitInfo.vue';
 import { useExchangeStore } from '@/entities/exchange/exchange.store';
 import { exchangeOptions } from '@/shared/constants/options';
@@ -58,7 +58,7 @@ watch(
     <div v-for="item in data" :key="item.index" class="mb-[15px]">
       <DoubleCard
         :title="item.bankName"
-        :image="Banks[bankNameMap[item.bankName]]"
+        :image="Banks[bankEngNameMap[item.bankName]]"
       >
         <div class="flex flex-col items-end">
           <Caption2>{{ item.exchangeRate }}</Caption2>

@@ -10,6 +10,7 @@ import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { checkAccountName } from '../services/remit.service';
 import { useTransStore } from '@/entities/transaction/transaction.store';
 import { transferBankOptions } from '@/shared/constants/options';
+import { bankKorNameMap } from '@/shared/utils/KorEngMap';
 
 const router = useRouter();
 const store = useTransStore();
@@ -20,13 +21,7 @@ const bankType = ref(transferBankOptions[0].value);
 const showError = ref(false);
 const errorMsg = ref('');
 
-const bankLabelMap = Object.fromEntries(
-  transferBankOptions.map((o) => [o.value, o.label]),
-);
-
-const selectedBankNameKo = computed(() =>
-  t(bankLabelMap[bankType.value] ?? ''),
-);
+const selectedBankNameKo = computed(() => bankKorNameMap[bankType.value] ?? '');
 
 const handleNext = async () => {
   const result = await checkAccountName({
@@ -37,7 +32,7 @@ const handleNext = async () => {
   if (result?.status) {
     store.setTransInfo({
       accountNumber: Number(accountNumber.value),
-      bankType: bankType.value,
+      bankType: selectedBankNameKo.value,
       name: result.data.name,
     });
 

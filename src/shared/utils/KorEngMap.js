@@ -1,4 +1,4 @@
-export const bankNameMap = {
+export const bankEngNameMap = {
   국민은행: 'kb',
   신한은행: 'shinhan',
   하나은행: 'hana',
@@ -22,6 +22,30 @@ export const bankNameMap = {
   아이엠뱅크: 'im',
   신협은행: 'cu',
   새마을금고: 'mg',
+};
+
+export const bankKorNameMap = {
+  kb: '국민은행',
+  shinhan: '신한은행',
+  hana: '하나은행',
+  woori: '우리은행',
+  nh: '농협은행',
+  ibk: '기업은행',
+  sc: '제일은행',
+  kakao: '카카오뱅크',
+  toss: '토스뱅크',
+  k: '케이뱅크',
+  city: '씨티은행',
+  dgb: '대구은행',
+  busan: '경남은행',
+  gwangju: '전북은행',
+  post: '우체국',
+  sh: '수협은행',
+  kdb: '산업은행',
+  im: '아이엠뱅크',
+  cu: '신협은행',
+  mg: '새마을금고',
+  jeonbuk: '전북은행',
 };
 
 export const countryNameMap = {

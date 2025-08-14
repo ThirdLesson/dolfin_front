@@ -66,7 +66,7 @@ watch([bankId, bankPassword], () => {
       <Caption1>{{ t('account.add.caption') }}</Caption1>
     </div>
 
-    <div class="flex flex-1 flex-col justify-between">
+    <div class="flex flex-1 flex-col justify-between gap-5">
       <div class="w-full flex flex-col gap-[15px]">
         <Dropdown
           :title="'account.add.selectBank'"

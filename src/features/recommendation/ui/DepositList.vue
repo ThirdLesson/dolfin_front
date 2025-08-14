@@ -14,7 +14,7 @@ import {
   productPeriodOptions,
 } from '@/shared/constants/options';
 import { Banks } from '@/asset/images';
-import { bankNameMap } from '@/shared/utils/KorEngMap';
+import { bankEngNameMap } from '@/shared/utils/KorEngMap';
 
 const { t } = useI18n();
 
@@ -50,7 +50,7 @@ const fetchDepositProducts = async () => {
       preferential: (product.spclConditions || []).join(', '),
       website: company.homepageUrl,
       callNumber: company.callNumber,
-      logo: Banks[bankNameMap[company.name]] || '',
+      logo: Banks[bankEngNameMap[company.name]] || '',
     }));
 
     products.value = newItems;

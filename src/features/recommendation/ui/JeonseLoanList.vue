@@ -12,7 +12,7 @@ import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import { getJeonseLoanFilter } from '../services/recommendation.service';
 import { interestRateOptions } from '@/shared/constants/options';
 import { Banks } from '@/asset/images';
-import { bankNameMap } from '@/shared/utils/KorEngMap';
+import { bankEngNameMap } from '@/shared/utils/KorEngMap';
 
 const { t } = useI18n();
 
@@ -44,7 +44,7 @@ const fetchJeonseLoanProducts = async () => {
       title: loan.productName,
       bank: loan.companyName,
       interestRate: loan.selectedRate,
-      logo: Banks[bankNameMap[loan.companyName]] || '',
+      logo: Banks[bankEngNameMap[loan.companyName]] || '',
     }));
 
     products.value = newItems;

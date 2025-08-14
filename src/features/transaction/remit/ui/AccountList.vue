@@ -6,7 +6,7 @@ import URL from '@/shared/constants/URL';
 import Subtitle2 from '@/shared/components/atoms/typography/Subtitle2.vue';
 import DoubleCard from '@/shared/components/molecules/card/DoubleCard.vue';
 import { Banks } from '@/asset/images';
-import { bankNameMap } from '@/shared/utils/KorEngMap';
+import { bankEngNameMap } from '@/shared/utils/KorEngMap';
 import { formatAccountNumber } from '@/shared/utils/format';
 import { getMyAccounts, getRecentAccounts } from '../services/remit.service';
 import { useTransStore } from '@/entities/transaction/transaction.store';
@@ -63,7 +63,7 @@ onMounted(() => {
       v-for="(item, index) in myAccounts"
       :key="index"
       :title="item.bankType"
-      :image="Banks[bankNameMap[item.bankType]]"
+      :image="Banks[bankEngNameMap[item.bankType]]"
       @click="handleSelectAccount(item)"
     >
       <Subtitle2>{{ formatAccountNumber(item.accountNumber) }}</Subtitle2>
@@ -76,7 +76,7 @@ onMounted(() => {
       :key="index"
       :title="item.name"
       :subtitle="item.bankType"
-      :image="Banks[bankNameMap[item.bankType]]"
+      :image="Banks[bankEngNameMap[item.bankType]]"
       @click="handleSelectAccount(item)"
     >
       <Subtitle2>{{ formatAccountNumber(item.accountNumber) }}</Subtitle2>
