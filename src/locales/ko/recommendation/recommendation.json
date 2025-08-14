@@ -42,6 +42,7 @@
     "bankName": "은행명",
     "homepage": "홈페이지",
     "callCenter": "콜센터",
-    "nearest": "가장 가까운 지점 ({km}km 이내)"
+    "nearest": "가장 가까운 지점 ({km}km 이내)",
+    "noNearby": "주변 {km}km 내에 지점이 없습니다."
   }
 }
