@@ -79,7 +79,6 @@ const fetchDetail = async (id) => {
   if (res?.status === 200) detailInfo.value = res.data;
 };
 
-// ATM/무인/CD 등 제외하는 필터
 const isBranchOnly = (item) => {
   const name = (item.name || '').toUpperCase();
   const cat = (item.category_name || '').toUpperCase();
@@ -95,13 +94,11 @@ const isBranchOnly = (item) => {
   ];
 
   const hasBad = badWords.some((w) => name.includes(w) || cat.includes(w));
-  // 카카오 그룹코드 'BK9' = 은행
   const isBankGroup = item.category_group_code === 'BK9';
 
   return isBankGroup && !hasBad;
 };
 
-// 가장 가까운 “지점” 1개만 표시 + 항상 인포윈도우 오픈
 const drawNearestBranch = async (bankName) => {
   noNearby.value = false;
 
@@ -112,14 +109,12 @@ const drawNearestBranch = async (bankName) => {
     return;
   }
 
-  // ATM/무인/CD 제외
   const branches = results.filter(isBranchOnly);
   if (!branches.length) {
     noNearby.value = true;
     return;
   }
 
-  // 거리 계산 후 가장 가까운 1개
   const withDist = branches
     .map((r) => ({
       ...r,
@@ -136,7 +131,6 @@ const drawNearestBranch = async (bankName) => {
   const nearest = withDist[0];
   setCenter(nearest.lat, nearest.lng);
 
-  // 하나만 마커 표시 + 인포윈도우 항상 열기
   await drawMarkers(
     [
       {
@@ -205,15 +199,14 @@ watch(
 
         <div class="flex flex-col gap-[5px]">
           <Head3>{{ t('recommendation.detail.loanAmount') }}</Head3>
-          <P1>
-            {{
-              t('recommendation.detail.maxLoanAmount', {
-                amount:
-                  formatNumber(detailInfo.maxLoanAmount) ||
-                  formatNumber(detailInfo.productInfo.maxLoanAmount),
-              })
-            }}
-          </P1>
+          {{
+            t('recommendation.detail.maxLoanAmount', {
+              amount: formatNumber(
+                detailInfo.maxLoanAmount ||
+                  detailInfo.productInfo.maxLoanAmount,
+              ),
+            })
+          }}
         </div>
 
         <div class="flex flex-col gap-[5px]">
