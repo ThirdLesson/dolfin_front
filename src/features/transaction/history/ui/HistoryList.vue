@@ -128,7 +128,7 @@ const isActivePage = (page) =>
 </script>
 
 <template>
-  <div v-if="transactions.length > 0" class="flex flex-col">
+  <div v-if="transactions.length > 0" class="flex flex-col select-none">
     <div v-for="(items, date) in groupedTransactions" :key="date" class="pb-2">
       <div class="px-4 pt-[35px] pb-[10px] border-b border-dol-dark-gray">
         <Subtitle3 class="text-dol-dark-gray">{{ date }}</Subtitle3>

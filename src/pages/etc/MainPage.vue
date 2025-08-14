@@ -53,7 +53,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col gap-5 pb-[80px]">
+  <div class="w-full h-full flex flex-col gap-5 pb-[80px] select-none">
     <div
       class="flex items-center gap-2 cursor-pointer pt-[70px]"
       @click="() => router.push(URL.PAGE.MYPAGE)"

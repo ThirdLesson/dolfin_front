@@ -31,7 +31,7 @@ const text = [
 </script>
 
 <template>
-  <div class="bg-dol-light-sub flex flex-col gap-5">
+  <div class="bg-dol-light-sub flex flex-col gap-5 select-none">
     <div class="flex flex-col gap-5">
       <div>
         <Head2>{{ t('groupRemit.benefit.title') }}</Head2>

@@ -37,7 +37,7 @@ watch(amount, (newVal) => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-[10px]">
+  <div class="flex flex-col gap-[10px] select-none">
     <SelectCurrency v-model="targetCurrency" />
     <ExchangeGraph :currency="targetCurrency" />
     <InputAmount v-model="amount" />

@@ -25,7 +25,7 @@ const selectOption = (option) => {
 
 <template>
   <nav
-    class="w-full h-[80px] bg-white fixed bottom-0 left-0 shadow-custom-shadow flex justify-between items-center px-7"
+    class="w-full h-[80px] bg-white fixed bottom-0 left-0 shadow-custom-shadow flex justify-between items-center px-7 select-none"
     :class="isPC && 'max-w-[500px] left-1/2 -translate-x-1/2'"
   >
     <button

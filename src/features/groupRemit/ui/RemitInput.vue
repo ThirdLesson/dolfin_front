@@ -84,7 +84,7 @@ onMounted(fetchGroupCommission);
 
 <template>
   <div class="h-full flex flex-col justify-between">
-    <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-5 select-none">
       <PlainCard>
         <div class="flex flex-col gap-5">
           <Head3>{{ t('groupRemit.remit.title') }}</Head3>
@@ -142,7 +142,7 @@ onMounted(fetchGroupCommission);
       </div>
     </div>
 
-    <div class="flex flex-col items-center gap-1">
+    <div class="flex flex-col items-center gap-5">
       <Caption1
         class="text-dol-error transition-opacity duration-200"
         :class="!showError && 'opacity-0'"

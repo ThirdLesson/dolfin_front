@@ -50,12 +50,12 @@ watch(
 </script>
 
 <template>
-  <Head2 v-html="t('groupRemit.list.headline')"></Head2>
+  <Head2 v-html="t('groupRemit.list.headline')" class="select-none" />
   <div class="flex flex-col gap-5">
-    <div class="flex justify-end mt-[10px]">
+    <div class="flex justify-end mt-[10px] select-none">
       <SmallDropdown :options="currencyOptions" v-model="selectedType" />
     </div>
-    <div class="flex flex-col gap-[15px]">
+    <div class="flex flex-col gap-[15px] select-none">
       <CollectCard
         v-for="item in groupList"
         :key="item.day"

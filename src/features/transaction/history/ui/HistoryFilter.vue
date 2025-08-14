@@ -45,7 +45,7 @@ const applyFilters = () => {
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col select-none">
     <div
       class="flex justify-end items-center gap-1 px-4 py-2 bg-dol-sub cursor-pointer"
       @click="emit('updateShowFilterModal', true)"

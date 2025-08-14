@@ -59,7 +59,7 @@ const disabled = computed(() => {
 </script>
 
 <template>
-  <div class="h-full flex flex-col gap-5">
+  <div class="h-full flex flex-col gap-5 select-none">
     <PlainCard>
       <div class="flex flex-col gap-5">
         <Head3>{{ t('groupRemit.recipient.title') }}</Head3>

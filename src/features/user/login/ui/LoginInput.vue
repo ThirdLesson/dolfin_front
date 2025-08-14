@@ -38,7 +38,7 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-[25px]">
+  <div class="flex flex-col gap-[25px] select-none">
     <BoxInput :placeholder="t('login.id')" v-model="loginId" />
     <BoxInput
       :placeholder="t('login.password')"

@@ -14,7 +14,7 @@ const store = useTransStore();
 <template>
   <div class="flex flex-col h-full justify-between">
     <div
-      class="flex flex-col h-[60vh] w-full items-center justify-center gap-6"
+      class="flex flex-col h-[60vh] w-full items-center justify-center gap-6 select-none"
     >
       <img :src="Icons.check" alt="complete" />
       <div class="flex flex-col items-center">

@@ -8,7 +8,7 @@ const { t } = useI18n();
 
 <template>
   <div
-    class="fixed inset-0 flex flex-col justify-center items-center overflow-hidden"
+    class="fixed inset-0 flex flex-col justify-center items-center overflow-hidden select-none"
   >
     <img
       :src="loading"

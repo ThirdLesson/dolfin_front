@@ -33,6 +33,7 @@ const buttonClasses = computed(() => {
     'justify-center',
     'rounded-md',
     'whitespace-nowrap',
+    'select-none',
   ];
 
   const sizeClasses = {

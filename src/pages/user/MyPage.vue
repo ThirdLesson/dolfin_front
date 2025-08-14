@@ -118,7 +118,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-full w-full flex flex-col gap-[15px] overflow-y-auto p-[2px]">
+  <div
+    class="h-full w-full flex flex-col gap-[15px] overflow-y-auto p-[2px] select-none"
+  >
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
         <img :src="Logos.circleLogo" class="w-[50px] h-[50px]" />

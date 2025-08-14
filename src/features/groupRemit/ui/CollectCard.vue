@@ -31,14 +31,14 @@ const isComplete = computed(() => remaining.value === 0);
 
 <template>
   <div
-    class="w-full flex rounded-sm gap-[10px] items-center justify-between cursor-pointer"
+    class="w-full flex rounded-sm gap-[10px] items-center justify-between cursor-pointer select-none"
     :class="[
       isComplete ? 'bg-dol-light-gray' : 'bg-white',
       showShadow ? 'shadow-custom-shadow p-5' : 'bg-white',
     ]"
     @click="emit('click')"
   >
-    <div class="w-full flex gap-5 items-center">
+    <div class="w-full flex gap-5 items-center select-none">
       <div
         class="w-[40px] h-[40px] rounded-md flex items-center justify-center shrink-0"
         :class="isComplete ? 'bg-dol-dark-gray' : 'bg-dol-dark'"

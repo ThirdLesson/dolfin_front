@@ -14,7 +14,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="flex flex-col h-full justify-between gap-5">
+  <div class="flex flex-col h-full justify-between gap-5 select-none">
     <div class="flex flex-col gap-5">
       <Subtitle1>어디로 보낼까요?</Subtitle1>
       <SquareTab :options="remitOptions" v-model="selected" />

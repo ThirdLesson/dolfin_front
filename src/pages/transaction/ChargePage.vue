@@ -96,7 +96,7 @@ onMounted(() => {
 <template>
   <div v-if="isComplete" class="flex flex-col justify-between h-full">
     <div
-      class="flex flex-col h-[60vh] w-full items-center justify-center gap-6"
+      class="flex flex-col h-[60vh] w-full items-center justify-center gap-6 select-none"
     >
       <img :src="Icons.check" alt="complete" />
       <div class="flex flex-col items-center justify-center">
@@ -109,7 +109,7 @@ onMounted(() => {
     }}</LgMainButton>
   </div>
 
-  <div v-else class="flex flex-col w-full h-full">
+  <div v-else class="flex flex-col w-full h-full select-none">
     <ChargeDisplay :amount="amount" :minError="minError" />
     <ChargeAccount
       :bankType="selectedAccount.bankType"

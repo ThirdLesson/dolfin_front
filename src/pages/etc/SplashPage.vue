@@ -31,7 +31,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="pb-10 h-full w-full flex flex-col items-center justify-end relative"
+    class="pb-10 h-full w-full flex flex-col items-center justify-end relative select-none"
   >
     <video
       :src="splashVideo"

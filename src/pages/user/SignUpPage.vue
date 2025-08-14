@@ -40,7 +40,6 @@ const currentStep = computed(() => {
   }
 });
 
-// ms(밀리초) 동안 대기하는 Promise 함수
 const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const handleSignUp = async () => {
@@ -73,7 +72,7 @@ const handleSignUp = async () => {
 </script>
 
 <template>
-  <div class="h-full flex flex-col justify-between">
+  <div class="h-full flex flex-col justify-between select-none">
     <component
       :is="currentStep"
       :joinSuccess="joinSuccess"

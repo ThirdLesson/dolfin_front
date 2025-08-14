@@ -40,7 +40,7 @@ watch(
 </script>
 
 <template>
-  <div class="flex flex-col h-full relative">
+  <div class="flex flex-col h-full relative select-none">
     <div class="flex justify-center pt-6">
       <RoundTab
         v-model="state.activeTab"

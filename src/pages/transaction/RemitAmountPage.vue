@@ -87,7 +87,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col w-full h-full">
+  <div class="flex flex-col w-full h-full select-none">
     <AmountDisplay
       :amount="amount"
       :balance="accountBalance"

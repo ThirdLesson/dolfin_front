@@ -23,7 +23,7 @@ const goBack = () => {
 
 <template>
   <div
-    class="w-full h-[60px] bg-white fixed top-0 left-0 flex items-center gap-5 px-5 shadow-custom-shadow"
+    class="w-full h-[60px] bg-white fixed top-0 left-0 flex items-center gap-5 px-5 shadow-custom-shadow select-none"
     :class="isPC && 'max-w-[500px] left-1/2 -translate-x-1/2'"
   >
     <div class="cursor-pointer flex justify-center items-center">

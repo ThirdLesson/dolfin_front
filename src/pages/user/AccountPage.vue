@@ -56,7 +56,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-full flex flex-col justify-between overflow-y-auto">
+  <div class="h-full flex flex-col justify-between overflow-y-auto select-none">
     <component
       :is="currentStep"
       :authCode="authCode"

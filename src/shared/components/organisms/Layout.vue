@@ -13,7 +13,6 @@ const router = useRouter();
 const isPC = useMediaQuery();
 const { t } = useI18n();
 
-// headerKey 우선 사용 + 문자열 header는 폴백
 const headerTitle = computed(() => {
   const key = route.meta?.headerKey;
   if (key) return t(key);

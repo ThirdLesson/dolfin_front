@@ -9,7 +9,7 @@ const { t } = useI18n();
 
 <template>
   <div
-    class="fixed inset-0 flex flex-col justify-center items-center overflow-hidden"
+    class="fixed inset-0 flex flex-col justify-center items-center overflow-hidden cursor-default select-none"
   >
     <img :src="coming" alt="coming" />
     <Head2>{{ t('common.comingSoon') }}</Head2>
