@@ -26,7 +26,7 @@ const maxAmount = ref('');
 
 const displayLabel = computed(() => {
   const p = t(`history.filter.periods.${selectedPeriod.value}`);
-  const cKey = selectedCategory.value || 'ALL'; // ← 요거!
+  const cKey = selectedCategory.value || 'ALL';
   const c = t(`history.filter.categories.${cKey}`);
   const s = t(`history.filter.sorts.${selectedSort.value}`);
   return `${p} / ${c} / ${s}`;
@@ -37,8 +37,8 @@ const applyFilters = () => {
     newPeriod: selectedPeriod.value,
     newType: selectedCategory.value,
     newSort: selectedSort.value,
-    newMin: minAmount.value ? Number(minAmount.value) : undefined,
-    newMax: maxAmount.value ? Number(maxAmount.value) : undefined,
+    newMin: minAmount.value ? Number(minAmount.value) : null,
+    newMax: maxAmount.value ? Number(maxAmount.value) : null,
   });
   emit('updateShowFilterModal', false);
 };

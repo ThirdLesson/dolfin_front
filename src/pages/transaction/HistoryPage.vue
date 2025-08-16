@@ -6,10 +6,10 @@ import HistoryList from '@/features/transaction/history/ui/HistoryList.vue';
 const showFilterModal = ref(false);
 
 const period = ref('ONE_MONTH');
-const type = ref(undefined);
+const type = ref(null);
 const sortDirection = ref('LATEST');
-const minAmount = ref(undefined);
-const maxAmount = ref(undefined);
+const minAmount = ref(null);
+const maxAmount = ref(null);
 
 const updateFilter = ({ newPeriod, newType, newSort, newMin, newMax }) => {
   period.value = newPeriod;

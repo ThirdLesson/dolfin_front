@@ -34,6 +34,8 @@ onMounted(async () => {
     page: 0,
     size: 4,
     sortDirection: 'LATEST',
+    minAmount: null,
+    maxAmount: null,
   });
 
   recentTransactions.value =
