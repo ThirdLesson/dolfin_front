@@ -48,7 +48,7 @@ const totalAmount = store.getTotalAmount;
           <Subtitle2 class="text-dol-dark-gray">{{
             t('groupRemit.complete.summary.country')
           }}</Subtitle2>
-          <P1>{{ countryNameMap[currency] }}</P1>
+          <P1>{{ t(`country.${currency}`) }}</P1>
         </div>
         <div class="flex items-center justify-between">
           <Subtitle2 class="text-dol-dark-gray">{{

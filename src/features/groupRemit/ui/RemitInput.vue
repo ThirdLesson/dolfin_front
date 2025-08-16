@@ -9,7 +9,6 @@ import LineInput from '@/shared/components/atoms/input/LineInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { useGroupRemitStore } from '@/entities/groupRemit/groupRemit.store';
 import { getGroupCommission } from '../service/groupRemit.service';
-import { countryNameMap } from '@/shared/utils/KorEngMap';
 
 const { t } = useI18n();
 
@@ -90,7 +89,7 @@ onMounted(fetchGroupCommission);
           <Head3>{{ t('groupRemit.remit.title') }}</Head3>
 
           <LineInput
-            v-model="countryNameMap[currency]"
+            :model-value="t(`country.${currency}`)"
             :title="t('groupRemit.remit.country')"
             :disabled="true"
           />

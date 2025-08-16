@@ -1,4 +1,20 @@
 {
+  "country": {
+    "USD": "United States",
+    "JPY": "Japan",
+    "EUR": "European Union",
+    "GBP": "United Kingdom",
+    "CAD": "Canada",
+    "KRW": "South Korea",
+    "HKD": "Hong Kong",
+    "CNY": "China",
+    "THB": "Thailand",
+    "IDR": "Indonesia",
+    "VND": "Vietnam",
+    "RUB": "Russia",
+    "BDT": "Bangladesh",
+    "MYR": "Malaysia"
+  },
   "groupRemit": {
     "list": { "headline": "Join a group remittance<br/>and save on fees." },
     "info": {
