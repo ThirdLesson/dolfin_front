@@ -57,9 +57,9 @@ import logo from './logo/logo.png';
 import nbgLogo from './logo/nbgLogo.svg';
 import splash from './logo/splash.mp4';
 
-import onboarding1 from './onboarding/onboarding1.png';
-import onboarding2 from './onboarding/onboarding2.png';
-import onboarding3 from './onboarding/onboarding3.png';
+import onboarding1 from './onboarding/onboarding1.webp';
+import onboarding2 from './onboarding/onboarding2.webp';
+import onboarding3 from './onboarding/onboarding3.webp';
 
 export const Logos = {
   circleLogo,
