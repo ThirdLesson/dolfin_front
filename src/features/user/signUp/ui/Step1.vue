@@ -18,7 +18,6 @@ const isIdValid = ref(null);
 const idErrorMsg = ref('');
 const pwErrorMsg = ref('');
 
-// 최소 10자, 영문 대소문자, 숫자, 특수문자 각각 최소 1개
 const passwordPattern =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{10,}$/;
 

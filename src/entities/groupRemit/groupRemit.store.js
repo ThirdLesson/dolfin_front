@@ -29,7 +29,6 @@ export const useGroupRemitStore = defineStore(
       };
     };
 
-    // 총 예상 금액 계산: 송금 금액 + 수수료
     const getTotalAmount = computed(() => {
       const amount = Number(groupRemitInfo.value.amount || 0);
       const commission = Number(groupRemitInfo.value.commission || 0);

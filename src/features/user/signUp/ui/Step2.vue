@@ -15,7 +15,6 @@ const phoneNumber = ref('');
 const code = ref('');
 const isCodeValid = ref(false);
 
-// 타이머 관련
 const INITIAL_TIME = 300;
 const time = ref(0);
 const showTimer = ref(false);
@@ -28,7 +27,6 @@ const formattedTime = computed(() => {
 });
 
 const startTimer = () => {
-  // 기존 타이머 정리
   if (timer) clearInterval(timer);
   time.value = INITIAL_TIME;
   showTimer.value = true;

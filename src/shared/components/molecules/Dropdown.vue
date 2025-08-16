@@ -3,7 +3,7 @@ import { ref, computed } from 'vue';
 import Subtitle2 from '../atoms/typography/Subtitle2.vue';
 import { useI18n } from 'vue-i18n';
 
-const model = defineModel(); // 양방향 바인딩을 위한 변수
+const model = defineModel(); 
 const props = defineProps({
   title: String,
   options: {
@@ -25,7 +25,6 @@ const select = (option) => {
   isOpen.value = false;
 };
 
-// 옵션 라벨(i18n 키)을 번역해 _label 로 보강
 const localizedOptions = computed(() =>
   props.options.map((o) => ({
     ...o,
@@ -33,7 +32,6 @@ const localizedOptions = computed(() =>
   })),
 );
 
-// 선택 표시 localizedOptions 기준으로 찾고, _label 사용
 const selectedOption = computed(() => {
   return (
     localizedOptions.value.find((opt) => opt.value === model.value) ||

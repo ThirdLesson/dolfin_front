@@ -102,7 +102,6 @@ const isBranchOnly = (item) => {
 const drawNearestBranch = async (bankName) => {
   noNearby.value = false;
 
-  // 은행명으로 1.5km 검색
   const results = await searchPlacesByBank(bankName, 1.5, userPos);
   if (!results.length) {
     noNearby.value = true;

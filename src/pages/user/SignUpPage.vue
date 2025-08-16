@@ -45,7 +45,6 @@ const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 const handleSignUp = async () => {
   await router.push(URL.PAGE.LOADING);
 
-  // 회원가입 API 요청과 5초 대기를 동시에 실행
   const [result] = await Promise.all([
     signUp({
       birth: formatDate(signupData.birth, '-'),

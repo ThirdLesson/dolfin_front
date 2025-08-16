@@ -15,9 +15,8 @@ const props = defineProps({
   },
 });
 
-const { t } = useI18n(); // 변경: t 함수 사용
+const { t } = useI18n(); 
 
-// 옵션 라벨(i18n 키)을 번역해 _label 로 보강
 const localizedOptions = computed(() =>
   props.options.map((o) => ({
     ...o,
@@ -27,7 +26,6 @@ const localizedOptions = computed(() =>
 
 const toggle = (optionValue) => {
   if (props.multiple) {
-    // 다중 선택 모드 (배열 기반)
     if (!Array.isArray(model.value)) {
       model.value = [];
     }
@@ -38,7 +36,6 @@ const toggle = (optionValue) => {
       model.value.push(optionValue);
     }
   } else {
-    // 단일 선택 모드
     model.value = optionValue;
   }
 };

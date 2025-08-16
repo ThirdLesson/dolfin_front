@@ -11,7 +11,6 @@ import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import { Icons } from '@/asset/images';
 import { useGroupRemitStore } from '@/entities/groupRemit/groupRemit.store';
-import { countryNameMap } from '@/shared/utils/KorEngMap';
 
 const { t } = useI18n({ useScope: 'global' });
 

@@ -1,5 +1,4 @@
 export const transaction = {
-  // 송금하기 페이지
   getRecentTels: () => ({
     url: `${import.meta.env.VITE_APP_API_URL}/transfer/recent/wallet`,
     method: 'GET',

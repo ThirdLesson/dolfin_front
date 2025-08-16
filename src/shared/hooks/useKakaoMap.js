@@ -47,7 +47,6 @@ export function useKakaoMap() {
     );
   };
 
-  // 가장 가까운 지점
   const nearest = (lat, lng, list) =>
     list.reduce(
       (near, p) => {
@@ -158,7 +157,6 @@ export function useKakaoMap() {
     setTimeout(relayoutMap, 300);
   };
 
-  // 은행명으로 1.5km 반경 검색
   const searchPlacesByBank = async (
     bankName,
     radiusKm = 1.5,
@@ -186,7 +184,7 @@ export function useKakaoMap() {
             lng: Number(d.x),
             address: d.road_address_name || d.address_name,
             category_name: d.category_name,
-            category_group_code: d.category_group_code, // 'BK9' = 은행
+            category_group_code: d.category_group_code, 
           }));
           resolve(mapped);
         },

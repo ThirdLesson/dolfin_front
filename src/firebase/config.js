@@ -11,25 +11,17 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_FIREBASE_APP_ID,
 };
 
-// Firebase 초기화
 const app = initializeApp(firebaseConfig);
 
-// FCM 메시징 설정
 const messaging = getMessaging(app);
 
-// FCM 토큰 가져오기 함수
 export const requestForToken = async () => {
   try {
     const currentToken = await getToken(messaging, {
       vapidKey: import.meta.env.VITE_APP_FIREBASE_VAPID_KEY,
-      // serviceWorkerRegistration: await navigator.serviceWorker.register(
-      //   '/firebase-messaging-sw.js',
-      // ),
     });
 
     if (currentToken) {
-      // console.log('FCM 토큰 가져오기 성공!', currentToken);
-
       try {
         await postFCMToken({ fcmToken: currentToken });
       } catch (e) {
@@ -45,7 +37,6 @@ export const requestForToken = async () => {
   }
 };
 
-// Foreground 메시지 수신 함수
 export const onMessageListener = () =>
   new Promise((resolve) => {
     onMessage(messaging, (payload) => {

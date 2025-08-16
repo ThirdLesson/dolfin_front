@@ -57,7 +57,6 @@ watch(password, (newPassword) => {
   }
 });
 
-// 모달이 열릴 때 body 스크롤 막기
 onMounted(() => {
   shuffleKeypad();
   document.body.style.overflow = 'hidden';

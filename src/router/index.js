@@ -8,7 +8,6 @@ const router = createRouter({
   routes,
 });
 
-// 전역 가드 (기존 로직 유지 + 토큰 fallback)
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
 

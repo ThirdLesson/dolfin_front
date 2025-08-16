@@ -5,7 +5,6 @@ importScripts(
   'https://www.gstatic.com/firebasejs/12.0.0/firebase-messaging-compat.js',
 );
 
-// Firebase 초기화
 firebase.initializeApp({
   apiKey: 'AIzaSyCoFE5jVGp6fHu54zexrYKJe8O3GXAJBy0',
   authDomain: 'dolfin-1df70.firebaseapp.com',
@@ -17,10 +16,7 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// Background 메세지 처리
 messaging.onBackgroundMessage((payload) => {
-  console.log('Background 메세지 수신', payload);
-
   const notificationTitle = payload.title;
   const notificationOptions = {
     body: payload.body,
