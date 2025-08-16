@@ -13,7 +13,8 @@
 
 @font-face {
   font-family: Pretendard;
-  src: url('/Pretendard-Medium.woff');
+  src: url('/Pretendard-Medium.woff') format('woff');
+  font-display: swap;
 }
 
 @font-face {
@@ -21,6 +22,7 @@
   src: url('/BMJUA_ttf.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -29,6 +31,7 @@
     format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 /* Chrome, Safari, Opera */
