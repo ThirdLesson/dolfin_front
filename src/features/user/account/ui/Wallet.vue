@@ -16,12 +16,15 @@ import MdSubButton from '@/shared/components/atoms/button/MdSubButton.vue';
 import MdMainButton from '@/shared/components/atoms/button/MdMainButton.vue';
 
 const router = useRouter();
+const userStore = useUserStore();
 const { t } = useI18n();
-const accountBalance = ref(null);
+
+const accountBalance = ref(Number(localStorage.getItem('lastBalance') || 0));
 const walletId = ref(null);
 
-const userStore = useUserStore();
 const { setWalletId } = userStore;
+
+const isRegistered = computed(() => !walletId.value);
 
 const fetchWalletInfo = async () => {
   const result = await getWalletInfo();
@@ -30,14 +33,11 @@ const fetchWalletInfo = async () => {
     accountBalance.value = result.data.balance;
     walletId.value = result.data.walletId;
     setWalletId(result.data.walletId);
+    localStorage.setItem('lastBalance', String(result.data.balance));
   }
 };
 
-const isRegistered = computed(() => walletId.value === null);
-
-onMounted(() => {
-  fetchWalletInfo();
-});
+onMounted(fetchWalletInfo);
 </script>
 
 <template>
@@ -61,7 +61,7 @@ onMounted(() => {
 
     <div class="flex flex-col gap-5">
       <Head1
-        class="cursor-pointer text-center w-full"
+        class="cursor-pointer text-center w-full min-h-[1.2em]"
         @click="() => router.push(URL.PAGE.HISTORY)"
       >
         {{ accountBalance?.toLocaleString() }} P

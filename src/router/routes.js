@@ -1,179 +1,149 @@
 import URL from '@/shared/constants/URL';
 
-import SplashPage from '@/pages/etc/SplashPage.vue';
-import OnboardingPage from '@/pages/etc/OnboardingPage.vue';
-import LoginPage from '@/pages/user/LoginPage.vue';
-import SignUpPage from '@/pages/user/SignUpPage.vue';
-import MainPage from '@/pages/etc/MainPage.vue';
-import TestPage from '@/pages/etc/TestPage.vue';
-import MapPage from '@/pages/map/MapPage.vue';
-import ExchangeCheckPage from '@/pages/exchange/ExchangeCheckPage.vue';
-import GroupPage from '@/pages/groupRemit/GroupPage.vue';
-import GroupSignupPage from '@/pages/groupRemit/GroupSignupPage.vue';
-import GroupCompletePage from '@/pages/groupRemit/GroupCompletePage.vue';
-import LoadingPage from '@/pages/etc/LoadingPage.vue';
-import ComingPage from '@/pages/etc/ComingPage.vue';
-import RecommendationPage from '@/pages/recommendation/RecommendationPage.vue';
-import HistoryPage from '@/pages/transaction/HistoryPage.vue';
-import ChargePage from '@/pages/transaction/ChargePage.vue';
-import AccountPage from '@/pages/user/AccountPage.vue';
-import MyPage from '@/pages/user/MyPage.vue';
-import ExchangeResultPage from '@/pages/exchange/ExchangeResultPage.vue';
-import RemitSelectPage from '@/pages/transaction/RemitSelectPage.vue';
-import RemitInputPage from '@/pages/transaction/RemitInputPage.vue';
-import RemitAmountPage from '@/pages/transaction/RemitAmountPage.vue';
-import RemitCompletePage from '@/pages/transaction/RemitCompletePage.vue';
-
 export default [
   {
     path: URL.PAGE.SPLASH,
     name: 'splash',
-    component: SplashPage,
+    component: () => import('@/pages/etc/SplashPage.vue'),
     meta: { navBar: false },
   },
   {
     path: URL.PAGE.ONBOARDING,
     name: 'onboarding',
-    component: OnboardingPage,
+    component: () => import('@/pages/etc/OnboardingPage.vue'),
     meta: { navBar: false },
   },
   {
     path: URL.PAGE.LOGIN,
     name: 'login',
-    component: LoginPage,
+    component: () => import('@/pages/user/LoginPage.vue'),
     meta: { navBar: false },
   },
   {
     path: URL.PAGE.SIGNUP,
     name: 'signup',
-    component: SignUpPage,
+    component: () => import('@/pages/user/SignUpPage.vue'),
     meta: { navBar: false },
   },
-
   {
     path: URL.PAGE.MAIN,
     name: 'main',
-    component: MainPage,
+    component: () => import('@/pages/etc/MainPage.vue'),
     meta: { exchangeHeader: true },
   },
-
   {
     path: URL.PAGE.MAP,
     name: 'map',
-    component: MapPage,
+    component: () => import('@/pages/map/MapPage.vue'),
     meta: { headerKey: 'common.header.map' },
   },
   {
     path: URL.PAGE.HISTORY,
     name: 'history',
-    component: HistoryPage,
+    component: () => import('@/pages/transaction/HistoryPage.vue'),
     meta: { headerKey: 'common.header.history' },
   },
   {
     path: URL.PAGE.CHARGE,
     name: 'charge',
-    component: ChargePage,
+    component: () => import('@/pages/transaction/ChargePage.vue'),
     meta: { headerKey: 'common.header.charge' },
   },
-
   {
     path: URL.PAGE.ACCOUNT,
     name: 'account',
-    component: AccountPage,
+    component: () => import('@/pages/user/AccountPage.vue'),
     meta: { headerKey: 'common.header.account', customBack: true },
   },
 
   {
     path: URL.PAGE.REMIT_SELECT,
     name: 'remit-select',
-    component: RemitSelectPage,
+    component: () => import('@/pages/transaction/RemitSelectPage.vue'),
     meta: { headerKey: 'common.header.remit' },
   },
   {
     path: URL.PAGE.REMIT_INPUT,
     name: 'remit-input',
-    component: RemitInputPage,
+    component: () => import('@/pages/transaction/RemitInputPage.vue'),
     meta: { headerKey: 'common.header.remit' },
   },
   {
     path: URL.PAGE.REMIT_AMOUNT,
     name: 'remit-amount',
-    component: RemitAmountPage,
+    component: () => import('@/pages/transaction/RemitAmountPage.vue'),
     meta: { headerKey: 'common.header.remit' },
   },
   {
     path: URL.PAGE.REMIT_COMPLETE,
     name: 'remit-complete',
-    component: RemitCompletePage,
+    component: () => import('@/pages/transaction/RemitCompletePage.vue'),
     meta: { headerKey: 'common.header.remit' },
   },
-
   {
     path: URL.PAGE.RECOMMENDATION,
     name: 'recommendation',
-    component: RecommendationPage,
+    component: () => import('@/pages/recommendation/RecommendationPage.vue'),
     meta: { headerKey: 'common.header.recommendation' },
   },
   {
     path: URL.PAGE.MYPAGE,
     name: 'mypage',
-    component: MyPage,
+    component: () => import('@/pages/user/MyPage.vue'),
     meta: { headerKey: 'common.header.mypage' },
   },
-
   {
     path: URL.PAGE.GROUP,
     name: 'group',
-    component: GroupPage,
+    component: () => import('@/pages/groupRemit/GroupPage.vue'),
     meta: { headerKey: 'common.header.group', bgColor: true, customBack: true },
   },
   {
     path: URL.PAGE.GROUP_SIGNUP,
     name: 'group-signup',
-    component: GroupSignupPage,
+    component: () => import('@/pages/groupRemit/GroupSignupPage.vue'),
     meta: { headerKey: 'common.header.groupSignup' },
   },
   {
     path: URL.PAGE.GROUP_COMPLETE,
     name: 'group-complete',
-    component: GroupCompletePage,
+    component: () => import('@/pages/groupRemit/GroupCompletePage.vue'),
     meta: { headerKey: 'common.header.groupSignup' },
   },
-
   {
     path: URL.PAGE.EXCHANGE_CHECK,
     name: 'exchange-check',
-    component: ExchangeCheckPage,
+    component: () => import('@/pages/exchange/ExchangeCheckPage.vue'),
     meta: { headerKey: 'common.header.exchangeCheck' },
   },
   {
     path: URL.PAGE.EXCHANGE_RESULT,
     name: 'exchange-result',
-    component: ExchangeResultPage,
+    component: () => import('@/pages/exchange/ExchangeResultPage.vue'),
     meta: { headerKey: 'common.header.exchangeCheck' },
   },
   {
     path: URL.PAGE.LOADING,
     name: 'loading',
-    component: LoadingPage,
+    component: () => import('@/pages/etc/LoadingPage.vue'),
     meta: { navBar: false },
   },
   {
     path: URL.PAGE.COMING,
     name: 'coming',
-    component: ComingPage,
+    component: () => import('@/pages/etc/ComingPage.vue'),
     meta: { headerKey: 'common.header.back' },
   },
   {
     path: URL.PAGE.TEST,
     name: 'test',
-    component: TestPage,
+    component: () => import('@/pages/etc/TestPage.vue'),
     meta: { headerKey: 'common.header.test' },
   },
   {
     path: URL.PAGE.DUTCH,
     name: 'dutch',
-    component: ComingPage,
+    component: () => import('@/pages/etc/ComingPage.vue'),
     meta: { headerKey: 'common.header.back' },
   },
 ];
