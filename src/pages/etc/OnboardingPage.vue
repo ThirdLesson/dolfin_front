@@ -1,11 +1,6 @@
 <script setup>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-
 import { useRouter } from 'vue-router';
-import { ref, computed } from 'vue';
+import { ref, computed, shallowRef, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
 import Head2 from '@/shared/components/atoms/typography/Head2.vue';
@@ -17,6 +12,10 @@ const router = useRouter();
 const { t, tm } = useI18n();
 
 const currentIndex = ref(0);
+const ready = ref(false);
+const SwiperComp = shallowRef(null);
+const SwiperSlideComp = shallowRef(null);
+const modules = shallowRef([]);
 
 const getLines = (key) => {
   const v = tm(key);
@@ -42,10 +41,10 @@ const slides = computed(() => [
 ]);
 
 let swiperApi = null;
-
 const handleSwiper = (s) => {
   swiperApi = s || null;
 };
+
 const handleSlideChange = (s) => {
   currentIndex.value = s?.activeIndex ?? 0;
 };
@@ -57,22 +56,75 @@ const onNext = () => {
     swiperApi?.slideNext?.();
   }
 };
+
+onMounted(() => {
+  const idle = (cb) =>
+    'requestIdleCallback' in window
+      ? window.requestIdleCallback(cb)
+      : setTimeout(cb, 0);
+  idle(async () => {
+    const [{ Swiper, SwiperSlide }, { Pagination }] = await Promise.all([
+      import('swiper/vue'),
+      import('swiper/modules'),
+      import('swiper/css'),
+      import('swiper/css/pagination'),
+    ]);
+    SwiperComp.value = Swiper;
+    SwiperSlideComp.value = SwiperSlide;
+    modules.value = [Pagination];
+    ready.value = true;
+  });
+});
 </script>
 
 <template>
   <div class="flex flex-col h-full w-full">
-    <Swiper
-      :modules="[Pagination]"
+    <div
+      v-if="!ready"
+      class="flex flex-col items-center justify-center h-full text-center"
+    >
+      <img
+        :src="slides[0].img"
+        :alt="slides[0].titleLines?.[0] || 'DolFin onboarding image'"
+        class="w-[70%] max-w-xs mb-8"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div class="text-base leading-relaxed flex flex-col">
+        <Head2 class="font-corelight">{{ slides[0].titleLines?.[0] }}</Head2>
+        <P1 class="mt-2 font-corelight whitespace-pre-line">{{
+          slides[0].subText
+        }}</P1>
+      </div>
+    </div>
+
+    <component
+      v-else
+      :is="SwiperComp"
+      :modules="modules"
       :pagination="{ clickable: true }"
+      :preloadImages="false"
       @swiper="handleSwiper"
       @slideChange="handleSlideChange"
       class="w-full h-full"
     >
-      <SwiperSlide v-for="(slide, index) in slides" :key="index">
+      <component
+        :is="SwiperSlideComp"
+        v-for="(slide, index) in slides"
+        :key="index"
+      >
         <div
           class="flex flex-col items-center justify-center h-full text-center"
         >
-          <img :src="slide.img" class="w-[70%] max-w-xs mb-8" />
+          <img
+            :src="slide.img"
+            :alt="slide.titleLines?.[0] || `onboarding-${index + 1}`"
+            class="w-[70%] max-w-xs mb-8"
+            :loading="index === 0 ? 'eager' : 'lazy'"
+            :fetchpriority="index === 0 ? 'high' : null"
+            decoding="async"
+          />
           <div class="text-base leading-relaxed flex flex-col">
             <Head2
               v-for="(line, i) in slide.titleLines"
@@ -85,8 +137,8 @@ const onNext = () => {
             }}</P1>
           </div>
         </div>
-      </SwiperSlide>
-    </Swiper>
+      </component>
+    </component>
 
     <div class="flex items-center justify-between mt-5 p-5">
       <button @click="router.replace(URL.PAGE.LOGIN)">
