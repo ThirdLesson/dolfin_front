@@ -30,18 +30,21 @@ onMounted(() => {
 
 <template>
   <div
-    class="pb-10 h-full w-full flex flex-col items-center justify-end relative select-none"
+    class="pb-10 h-full w-full flex flex-col items-center justify-end gap-20 relative select-none overflow-hidden"
   >
-    <video
-      :src="splashVideo"
-      autoplay
-      muted
-      playsinline
-      preload="auto"
-      width="720"
-      height="720"
-      class="w-[70%] object-contain absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none"
-    />
+    <div
+      class="relative w-[70%] max-w-[720px] overflow-hidden bg-white"
+      :style="{ aspectRatio: '1080 / 1920' }"
+    >
+      <video
+        :src="splashVideo"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+        class="absolute inset-0 w-full h-full object-cover block origin-center transform-gpu scale-[1.01] bg-white"
+      />
+    </div>
     <p class="font-jua text-dol-dark-gray text-[40px] z-10">DolFin</p>
   </div>
 </template>
