@@ -26,7 +26,6 @@ const handleLogin = async () => {
   });
   if (result) {
     userStore.setUserInfo(result);
-    userStore.setAccessToken(result.accessToken);
     isFCMInitialized.value = false;
     router.push(URL.PAGE.MAIN);
   } else {

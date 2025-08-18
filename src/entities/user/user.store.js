@@ -20,19 +20,12 @@ export const useUserStore = defineStore(
     });
 
     const isFCMInitialized = ref(false);
-    const accessToken = ref(null);
-
-    const isLoggedIn = computed(() => !!accessToken.value);
 
     const setUserInfo = (data) => {
       userInfo.value = {
         ...userInfo.value,
         ...data,
       };
-    };
-
-    const setAccessToken = (token) => {
-      accessToken.value = token;
     };
 
     const setWalletId = (id) => {
@@ -55,7 +48,6 @@ export const useUserStore = defineStore(
         language: 'ko',
       };
       isFCMInitialized.value = false;
-      accessToken.value = null;
     };
 
     const remainDays = computed(() => {
@@ -74,11 +66,8 @@ export const useUserStore = defineStore(
     return {
       userInfo,
       isFCMInitialized,
-      accessToken,
-      isLoggedIn,
       remainDays,
       setUserInfo,
-      setAccessToken,
       clearUserInfo,
       setWalletId,
     };

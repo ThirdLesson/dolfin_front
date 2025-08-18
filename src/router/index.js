@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import routes from './routes';
-import { useUserStore } from '@/entities/user/user.store';
 import URL from '@/shared/constants/URL';
 
 const router = createRouter({
@@ -9,8 +8,6 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const userStore = useUserStore();
-
   const publicPages = [
     URL.PAGE.LOGIN,
     URL.PAGE.SIGNUP,
@@ -18,10 +15,9 @@ router.beforeEach((to, from, next) => {
     URL.PAGE.ONBOARDING,
     URL.PAGE.COMING,
   ];
+  
   const authRequired = !publicPages.includes(to.path);
-
-  const hasToken = !!localStorage.getItem('accessToken');
-  const isLoggedIn = userStore.isLoggedIn || hasToken;
+  const isLoggedIn = !!localStorage.getItem('accessToken');
 
   if (!isLoggedIn && authRequired) {
     next(URL.PAGE.LOGIN);

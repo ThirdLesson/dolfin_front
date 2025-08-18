@@ -3,14 +3,13 @@ import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import URL from '@/shared/constants/URL';
 import { Logos } from '@/asset/images';
-import { useUserStore } from '@/entities/user/user.store';
 
 const router = useRouter();
-const userStore = useUserStore();
 
 const splashVideo = Logos.splash;
 
 const isFirstVisit = localStorage.getItem('hasVisited');
+const isLoggedIn = !!localStorage.getItem('accessToken');
 
 onMounted(() => {
   setTimeout(() => {
@@ -20,7 +19,7 @@ onMounted(() => {
       return;
     }
 
-    if (userStore.isLoggedIn) {
+    if (isLoggedIn) {
       router.replace(URL.PAGE.MAIN);
     } else {
       router.replace(URL.PAGE.LOGIN);
