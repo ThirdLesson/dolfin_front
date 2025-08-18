@@ -20,7 +20,9 @@ const store = useExchangeStore();
 const selectedType = ref(exchangeOptions[0].value);
 const data = ref([]);
 
-const isSendType = computed(() => selectedType.value === 'SEND');
+const showNotice = computed(
+  () => selectedType.value === 'SEND' || selectedType.value === 'GETCASH',
+);
 
 const exchangeCheckFunction = async () => {
   const result = await exchangeCheck({
@@ -48,7 +50,7 @@ watch(
     <div class="w-full flex flex-col items-end mb-[20px] gap-[15px]">
       <SmallDropdown :options="exchangeOptions" v-model="selectedType" />
       <div
-        v-if="isSendType"
+        v-if="showNotice"
         class="w-full flex flex-col p-4 rounded-sm bg-dol-light"
       >
         <Subtitle3>※ {{ t('notice.title') }}</Subtitle3>
@@ -70,7 +72,7 @@ watch(
       <BenefitInfo
         v-if="item.policyList.length > 0"
         :policyList="item.policyList"
-        :changguAmount="isSendType ? item.changguAmount : null"
+        :changguAmount="selectedType === 'SEND' ? item.changguAmount : null"
       />
     </div>
   </div>
