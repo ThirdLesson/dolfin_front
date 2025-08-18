@@ -9,6 +9,7 @@
   "loading": "Loading...",
   "comingSoon": "Coming Soon",
   "comingSoonDesc": "We will come back with better services.",
+  "input": "Please enter text",
   "header": {
     "map": "Smart Map",
     "history": "Transactions History",

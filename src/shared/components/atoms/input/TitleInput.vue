@@ -1,14 +1,18 @@
 <script setup>
+import { computed } from 'vue';
 import Head3 from '../typography/Head3.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
-  placeholder: {
-    type: String,
-    default: '텍스트를 입력해주세요',
-  },
   title: {
     type: String,
     required: true,
+  },
+  placeholder: {
+    type: String,
+    default: '',
   },
   type: {
     type: String,
@@ -17,6 +21,7 @@ const props = defineProps({
 });
 
 const value = defineModel();
+const placeholderText = computed(() => props.placeholder || t('common.input'));
 </script>
 
 <template>
@@ -26,7 +31,7 @@ const value = defineModel();
       <input
         class="text-[15px] font-bold w-full bg-transparent border-none outline-none pb-2 placeholder-black"
         v-model="value"
-        :placeholder="placeholder"
+        :placeholder="placeholderText"
         :type="type"
       />
     </div>

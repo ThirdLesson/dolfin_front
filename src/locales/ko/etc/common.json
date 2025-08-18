@@ -11,6 +11,7 @@
   "loading": "로딩중. . .",
   "comingSoon": "준비중입니다.",
   "comingSoonDesc": "추후 더 좋은 서비스로 찾아뵙겠습니다.",
+  "input": "텍스트를 입력해주세요",
   "header": {
     "map": "스마트맵",
     "history": "거래내역",

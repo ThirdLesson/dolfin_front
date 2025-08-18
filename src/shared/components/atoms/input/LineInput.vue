@@ -1,11 +1,15 @@
 <script setup>
+import { computed } from 'vue';
 import Subtitle3 from '../typography/Subtitle3.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
   title: String,
   placeholder: {
     type: String,
-    default: '텍스트를 입력하세요.',
+    default: '',
   },
   disabled: {
     type: Boolean,
@@ -14,6 +18,7 @@ const props = defineProps({
 });
 
 const value = defineModel();
+const placeholderText = computed(() => props.placeholder || t('common.input'));
 </script>
 
 <template>
@@ -26,7 +31,7 @@ const value = defineModel();
         <input
           class="text-[12px] font-medium w-full bg-transparent border-none outline-none placeholder-dol-light-gray"
           v-model="value"
-          :placeholder="placeholder"
+          :placeholder="placeholderText"
           :disabled="disabled"
         />
       </div>
