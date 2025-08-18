@@ -55,8 +55,9 @@ const handleSendCode = async () => {
 const handleVerifyCode = async () => {
   const result = await verifyCode({
     phoneNumber: phoneNumber.value,
-    code: Number(code.value),
+    code: code.value,
   });
+
   if (result.status === 204) isCodeValid.value = true;
 };
 

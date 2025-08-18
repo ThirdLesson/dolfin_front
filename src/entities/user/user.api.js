@@ -33,7 +33,7 @@ export const user = {
     url: `${import.meta.env.VITE_APP_API_URL}/codef/account`,
     method: 'POST',
   }),
-  verifyCode: () => ({
+  verifyAccount: () => ({
     url: `${import.meta.env.VITE_APP_API_URL}/codef/account/verify`,
     method: 'POST',
   }),

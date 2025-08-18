@@ -15,8 +15,8 @@ export async function addAccount(data) {
   };
 }
 
-export async function verifyCode({ authCode }) {
-  const { url, method } = user.verifyCode();
+export async function verifyAccount({ authCode }) {
+  const { url, method } = user.verifyAccount();
   const response = await apiFetch(url, {
     method,
     body: JSON.stringify({ authCode }),

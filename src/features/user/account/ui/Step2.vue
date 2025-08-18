@@ -6,7 +6,7 @@ import Caption1 from '@/shared/components/atoms/typography/Caption1.vue';
 import BoxInput from '@/shared/components/atoms/input/BoxInput.vue';
 import LgMainButton from '@/shared/components/atoms/button/LgMainButton.vue';
 import PwModal from '@/shared/components/organisms/PwModal.vue';
-import { verifyCode } from '../services/account.service';
+import { verifyAccount } from '../services/account.service';
 import { useUserStore } from '@/entities/user/user.store';
 
 const { t } = useI18n();
@@ -40,8 +40,8 @@ const formattedTime = computed(() => {
 });
 
 const handleComplete = async () => {
-  const result = await verifyCode({
-    authCode: Number(inputAuthCode.value),
+  const result = await verifyAccount({
+    authCode: inputAuthCode.value,
   });
 
   if (result.status !== 204) return;
