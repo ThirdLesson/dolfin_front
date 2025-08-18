@@ -18,7 +18,7 @@
     "more": "더 많은 혜택 보기",
     "counterNotice": "은행 창구 이용 시"
   },
-  "result": { "totalPrefix": "총" },
+  "result": { "totalPrefix": "총", "per": "당" },
   "inputAmount": {
     "title": "환전 금액 입력(KRW)",
     "placeholder": "금액을 입력하세요"

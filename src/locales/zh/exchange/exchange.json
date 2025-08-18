@@ -21,7 +21,8 @@
     "counterNotice": "使用银行柜台时"
   },
   "result": {
-    "totalPrefix": "合计"
+    "totalPrefix": "合计",
+    "per": "每"
   },
   "inputAmount": {
     "title": "输入金额（KRW）",

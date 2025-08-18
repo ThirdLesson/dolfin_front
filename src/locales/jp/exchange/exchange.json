@@ -21,7 +21,8 @@
     "counterNotice": "銀行窓口を利用する場合"
   },
   "result": {
-    "totalPrefix": "合計"
+    "totalPrefix": "合計",
+    "per": "あたり"
   },
   "inputAmount": {
     "title": "金額を入力（KRW）",

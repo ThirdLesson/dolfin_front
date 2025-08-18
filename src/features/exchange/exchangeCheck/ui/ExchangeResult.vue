@@ -15,10 +15,17 @@ import { useExchangeStore } from '@/entities/exchange/exchange.store';
 import { exchangeOptions } from '@/shared/constants/options';
 
 const { t } = useI18n();
-
 const store = useExchangeStore();
+
+const HUNDRED_UNIT_CURRENCY = ['JPY', 'VND', 'IDR'];
+
 const selectedType = ref(exchangeOptions[0].value);
 const data = ref([]);
+const currency = ref(null);
+
+const unit = computed(() =>
+  HUNDRED_UNIT_CURRENCY.includes(store.exchangeOption.targetCurrency) ? 100 : 1,
+);
 
 const showNotice = computed(
   () => selectedType.value === 'SEND' || selectedType.value === 'GETCASH',
@@ -32,6 +39,7 @@ const exchangeCheckFunction = async () => {
   });
 
   if (result.data) {
+    currency.value = result.data.targetCurrency;
     data.value = result.data.banks;
   }
 };
@@ -63,7 +71,10 @@ watch(
         :image="Banks[bankEngNameMap[item.bankName]]"
       >
         <div class="flex flex-col items-end">
-          <Caption2>{{ item.exchangeRate }}</Caption2>
+          <Caption2>
+            {{ `${unit} ${currency}` }} {{ t('result.per') }}
+            {{ item.exchangeRate }}</Caption2
+          >
           <Subtitle2
             >{{ t('result.totalPrefix') }} {{ item.totalAmount }}</Subtitle2
           >

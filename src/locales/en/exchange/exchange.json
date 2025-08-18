@@ -18,7 +18,7 @@
     "more": "View more benefits",
     "counterNotice": "When using the bank counter"
   },
-  "result": { "totalPrefix": "Total" },
+  "result": { "totalPrefix": "Total", "per": "per" },
   "inputAmount": {
     "title": "Enter Amount (KRW)",
     "placeholder": "Enter amount"
