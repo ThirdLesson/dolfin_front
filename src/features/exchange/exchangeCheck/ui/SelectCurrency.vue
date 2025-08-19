@@ -16,6 +16,9 @@ const model = defineModel();
 const dropdownKey = ref(0);
 
 onMounted(async () => {
+  try {
+    await document.fonts?.ready;
+  } catch {}
   await nextTick();
   dropdownKey.value += 1;
 });

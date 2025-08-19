@@ -47,24 +47,24 @@ const selectedOption = computed(() => {
     }}</Subtitle2>
     <div class="relative">
       <div
-        class="h-[50px] px-5 border-2 text-[15px] font-semibold rounded-sm flex items-center justify-between cursor-pointer"
+        class="h-[50px] px-5 border-2 text-[15px] font-semibold antialiased rounded-sm flex items-center justify-between cursor-pointer"
         :class="[
           props.color && 'border-dol-main',
           isOpen ? 'border-dol-main' : 'border-dol-dark-gray',
         ]"
         @click="isOpen = !isOpen"
       >
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 flex-1 min-w-0">
           <img
             v-if="selectedOption?.src"
             :src="selectedOption.src"
-            class="w-5 h-5 object-contain"
+            class="w-5 h-5 object-contain shrink-0"
           />
           {{ selectedOption?.translatedLabel }}
         </div>
         <i
           :class="isOpen ? 'text-dol-main' : 'text-dol-dark-gray'"
-          class="bi bi-caret-down-fill"
+          class="bi bi-caret-down-fill shrink-0"
         />
       </div>
       <ul
