@@ -30,21 +30,21 @@ import enLogin from '@/locales/en/user/login.json';
 import enSignUp from '@/locales/en/user/signUp.json';
 import enAccount from '@/locales/en/user/account.json';
 
-import jpMyPage from '@/locales/jp/user/myPage.json';
-import jpCommon from '@/locales/jp/etc/common.json';
-import jpMainPage from '@/locales/jp/etc/mainPage.json';
-import jpHistory from '@/locales/jp/transaction/history.json';
-import jpGroupRemit from '@/locales/jp/groupRemit/groupRemit.json';
-import jpCharge from '@/locales/jp/transaction/charge.json';
-import jpRemit from '@/locales/jp/transaction/remit.json';
-import jpOptions from '@/locales/jp/etc/options.json';
-import jpOnboarding from '@/locales/jp/etc/onboarding.json';
-import jpExchange from '@/locales/jp/exchange/exchange.json';
-import jpMap from '@/locales/jp/map/map.json';
-import jpRecommendation from '@/locales/jp/recommendation/recommendation.json';
-import jpLogin from '@/locales/jp/user/login.json';
-import jpSignUp from '@/locales/jp/user/signUp.json';
-import jpAccount from '@/locales/jp/user/account.json';
+import jaMyPage from '@/locales/ja/user/myPage.json';
+import jaCommon from '@/locales/ja/etc/common.json';
+import jaMainPage from '@/locales/ja/etc/mainPage.json';
+import jaHistory from '@/locales/ja/transaction/history.json';
+import jaGroupRemit from '@/locales/ja/groupRemit/groupRemit.json';
+import jaCharge from '@/locales/ja/transaction/charge.json';
+import jaRemit from '@/locales/ja/transaction/remit.json';
+import jaOptions from '@/locales/ja/etc/options.json';
+import jaOnboarding from '@/locales/ja/etc/onboarding.json';
+import jaExchange from '@/locales/ja/exchange/exchange.json';
+import jaMap from '@/locales/ja/map/map.json';
+import jaRecommendation from '@/locales/ja/recommendation/recommendation.json';
+import jaLogin from '@/locales/ja/user/login.json';
+import jaSignUp from '@/locales/ja/user/signUp.json';
+import jaAccount from '@/locales/ja/user/account.json';
 
 import zhMyPage from '@/locales/zh/user/myPage.json';
 import zhCommon from '@/locales/zh/etc/common.json';
@@ -97,22 +97,22 @@ export default {
     signup: enSignUp,
     ...enAccount,
   },
-  jp: {
-    common: jpCommon,
-    mypage: jpMyPage,
-    mainpage: jpMainPage,
-    history: jpHistory,
-    ...jpGroupRemit,
-    ...jpCharge,
-    ...jpRemit,
-    ...jpOptions,
-    ...jpOnboarding,
-    ...jpExchange,
-    ...jpMap,
-    recommendation: jpRecommendation,
-    login: jpLogin,
-    signup: jpSignUp,
-    ...jpAccount,
+  ja: {
+    common: jaCommon,
+    mypage: jaMyPage,
+    mainpage: jaMainPage,
+    history: jaHistory,
+    ...jaGroupRemit,
+    ...jaCharge,
+    ...jaRemit,
+    ...jaOptions,
+    ...jaOnboarding,
+    ...jaExchange,
+    ...jaMap,
+    recommendation: jaRecommendation,
+    login: jaLogin,
+    signup: jaSignUp,
+    ...jaAccount,
   },
   zh: {
     common: zhCommon,
