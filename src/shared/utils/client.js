@@ -49,7 +49,6 @@ export async function apiFetch(url, options = {}) {
 
   let response = await fetch(url, config);
 
-  // 응답을 JSON으로 먼저 파싱
   let result;
   try {
     result = await response.clone().json();
@@ -57,12 +56,10 @@ export async function apiFetch(url, options = {}) {
     result = {};
   }
 
-  // AccessToken 만료 → refresh
   if (result.message === '토큰 재발급이 필요합니다.') {
     const refreshed = await refresh();
 
     if (refreshed.message === '토큰 재발급이 필요합니다.') {
-      // 리프레시 성공 → 토큰 갱신하고 재요청
       const retryHeaders = {
         ...headers,
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -76,7 +73,6 @@ export async function apiFetch(url, options = {}) {
     }
 
     if (refreshed.message === '로그인이 필요한 서비스입니다.') {
-      // 리프레시 실패 → 사용자 정보 & 토큰 삭제
       await signOut();
       window.location.href = URL.PAGE.LOGIN;
     }
