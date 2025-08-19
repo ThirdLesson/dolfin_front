@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted, nextTick, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import PlainCard from '@/shared/components/molecules/card/PlainCard.vue';
 import Dropdown from '@/shared/components/molecules/Dropdown.vue';
@@ -12,11 +13,21 @@ const store = useUserStore();
 const userName = store.userInfo.name;
 
 const model = defineModel();
+const dropdownKey = ref(0);
+
+onMounted(async () => {
+  await nextTick();
+  dropdownKey.value += 1;
+});
 </script>
 
 <template>
   <PlainCard>
     <Head3>{{ userName }}{{ t('selectCurrency.title') }}</Head3>
-    <Dropdown :options="currencyImgOptions" v-model="model" />
+    <Dropdown
+      :key="dropdownKey"
+      :options="currencyImgOptions"
+      v-model="model"
+    />
   </PlainCard>
 </template>
