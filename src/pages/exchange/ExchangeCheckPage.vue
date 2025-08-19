@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import URL from '@/shared/constants/URL';
@@ -18,7 +18,10 @@ const userStore = useUserStore();
 const router = useRouter();
 const exchangeStore = useExchangeStore();
 
-const targetCurrency = ref(userStore.userInfo.currency);
+const targetCurrency = computed({
+  get: () => userStore.userInfo.currency,
+  set: (v) => userStore.setUserInfo({ currency: v }),
+});
 const amount = ref('');
 const showCaption = ref(false);
 

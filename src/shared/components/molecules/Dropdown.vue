@@ -3,7 +3,7 @@ import { ref, computed } from 'vue';
 import Subtitle2 from '../atoms/typography/Subtitle2.vue';
 import { useI18n } from 'vue-i18n';
 
-const model = defineModel(); 
+const model = defineModel();
 const props = defineProps({
   title: String,
   options: {
@@ -28,7 +28,7 @@ const select = (option) => {
 const localizedOptions = computed(() =>
   props.options.map((o) => ({
     ...o,
-    _label: typeof o.label === 'string' ? t(o.label) : o.label,
+    translatedLabel: typeof o.label === 'string' ? t(o.label) : o.label,
   })),
 );
 
@@ -39,9 +39,9 @@ const selectedOption = computed(() => {
   );
 });
 </script>
+
 <template>
   <div class="w-full flex flex-col gap-[10px]" v-bind="$attrs">
-    <!-- title 도 t() 적용 (키면 번역, 일반문자면 원문) -->
     <Subtitle2 v-if="props.title" :class="props.color && 'text-dol-main'">{{
       t(props.title)
     }}</Subtitle2>
@@ -60,7 +60,7 @@ const selectedOption = computed(() => {
             :src="selectedOption.src"
             class="w-5 h-5 object-contain"
           />
-          {{ selectedOption?._label }}
+          {{ selectedOption?.translatedLabel }}
         </div>
         <i
           :class="isOpen ? 'text-dol-main' : 'text-dol-dark-gray'"
@@ -71,7 +71,6 @@ const selectedOption = computed(() => {
         v-if="isOpen"
         class="absolute top-[48px] z-10 mt-1 w-full border border-dol-dark-gray rounded bg-white shadow"
       >
-        <!-- 변경: props.options → localizedOptions, item.label → item._label -->
         <li
           v-for="item in localizedOptions"
           :key="item.value"
@@ -85,7 +84,7 @@ const selectedOption = computed(() => {
             >
               <img :src="item.src" class="object-fit" />
             </div>
-            {{ item._label }}
+            {{ item.translatedLabel }}
           </div>
         </li>
       </ul>
