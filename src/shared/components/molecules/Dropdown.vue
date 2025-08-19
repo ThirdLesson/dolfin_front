@@ -53,7 +53,6 @@ const selectedOption = computed(() => {
           isOpen ? 'border-dol-main' : 'border-dol-dark-gray',
         ]"
         @click="isOpen = !isOpen"
-        @touchstart.prevent="isOpen = !isOpen"
       >
         <div class="flex items-center gap-2">
           <img
@@ -76,7 +75,6 @@ const selectedOption = computed(() => {
           v-for="item in localizedOptions"
           :key="item.value"
           @click="select(item.value)"
-          @touchstart.prevent="select(item.value)"
           class="flex items-center h-[45px] px-4 border-b border-dol-light-gray hover:bg-dol-sub text-[15px] font-semibold cursor-pointer"
         >
           <div class="flex items-center gap-[10px]">
