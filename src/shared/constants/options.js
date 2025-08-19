@@ -279,6 +279,6 @@ export const interestRateOptions = [
 export const languageOptions = [
   { label: 'options.languages.ko', value: 'ko' },
   { label: 'options.languages.en', value: 'en' },
-  { label: 'options.languages.jp', value: 'jp' },
+  { label: 'options.languages.ja', value: 'ja' },
   { label: 'options.languages.zh', value: 'zh' },
 ];

@@ -16,7 +16,7 @@ export const useUserStore = defineStore(
       phoneNumber: '',
       remainTime: '',
       walletId: null,
-      language: 'ko',
+      language: 'system',
     });
 
     const isFCMInitialized = ref(false);
@@ -26,6 +26,10 @@ export const useUserStore = defineStore(
         ...userInfo.value,
         ...data,
       };
+    };
+
+    const setLanguage = (lang) => {
+      userInfo.value.language = lang;
     };
 
     const setWalletId = (id) => {
@@ -45,7 +49,7 @@ export const useUserStore = defineStore(
         phoneNumber: '',
         remainTime: '',
         walletId: null,
-        language: 'ko',
+        language: 'system',
       };
       isFCMInitialized.value = false;
     };
@@ -70,6 +74,7 @@ export const useUserStore = defineStore(
       setUserInfo,
       clearUserInfo,
       setWalletId,
+      setLanguage,
     };
   },
   {

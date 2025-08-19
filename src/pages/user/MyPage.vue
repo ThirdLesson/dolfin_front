@@ -32,7 +32,9 @@ import {
   languageOptions,
 } from '@/shared/constants/options';
 
-const { t, locale } = useI18n({ useScope: 'global' });
+import { resolveLocale, SYSTEM } from '@/shared/utils/locale';
+
+const { t } = useI18n({ useScope: 'global' });
 
 const router = useRouter();
 const groupRemitStore = useGroupRemitStore();
@@ -45,7 +47,9 @@ const memberCount = ref(0);
 const remittanceDate = ref(
   groupRemitStore.groupRemitInfo.remittanceDate || null,
 );
-const language = ref(userInfo.value.language);
+
+const selectedLanguage = ref(resolveLocale(userInfo.value.language || SYSTEM));
+
 const currency = ref(userInfo.value.currency);
 
 const groupRemitExists = computed(() => !!groupRemitInfo.value?.groupExists);
@@ -73,7 +77,6 @@ const getMemberCountByDay = async () => {
 
 const fetchGroupRemitInfo = async () => {
   const result = await getGroupRemitInfo();
-
   if (result?.data) {
     groupRemitInfo.value = result.data;
   }
@@ -81,18 +84,30 @@ const fetchGroupRemitInfo = async () => {
 
 const handleCancel = async () => {
   const result = await cancelGroupRemit();
-
   if (result.status === 204) {
     window.location.reload();
   }
 };
 
-watch(language, (val, old) => {
-  if (val !== old) {
-    userStore.setUserInfo({ language: val });
-    locale.value = val;
-  }
+let initDone = false;
+onMounted(() => {
+  initDone = true;
 });
+
+watch(selectedLanguage, (val, old) => {
+  if (!initDone || val === old) return;
+  userStore.setUserInfo({ language: val });
+});
+
+watch(
+  () => userInfo.value.language,
+  (saved) => {
+    const next = resolveLocale(saved || SYSTEM);
+    if (selectedLanguage.value !== next) {
+      selectedLanguage.value = next;
+    }
+  },
+);
 
 watch(currency, (val, old) => {
   if (val !== old) userStore.setUserInfo({ currency: val });
@@ -109,7 +124,6 @@ watch(
 onMounted(() => {
   fetchGroupRemitInfo();
   getMemberCountByDay();
-  locale.value = language.value || 'ko';
   const info = groupRemitStore.groupRemitInfo;
   if (!info.remittanceDate || !info.amount) {
     info.isSignedUp = false;
@@ -124,10 +138,9 @@ onMounted(() => {
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
         <img :src="Logos.circleLogo" class="w-[50px] h-[50px]" />
-        <Head2
-          >{{ userInfo.name || t('mypage.user')
-          }}{{ t('common.suffix') }}</Head2
-        >
+        <Head2>
+          {{ userInfo.name || t('mypage.user') }}{{ t('common.suffix') }}
+        </Head2>
       </div>
       <button
         class="text-dol-dark-gray cursor-pointer underline"
@@ -160,7 +173,7 @@ onMounted(() => {
         <Head3>{{ t('mypage.languageSetting') }}</Head3>
         <div class="flex flex-col gap-[5px]">
           <P1>{{ t('mypage.selectLanguage') }}</P1>
-          <Dropdown v-model="language" :options="languageOptions" />
+          <Dropdown v-model="selectedLanguage" :options="languageOptions" />
         </div>
         <div class="flex flex-col gap-[5px]">
           <P1>{{ t('mypage.defaultCurrency') }}</P1>
@@ -173,9 +186,9 @@ onMounted(() => {
       <div class="flex justify-between">
         <Head3>{{ t('mypage.remainingStay') }}</Head3>
         <div class="flex flex-col text-right">
-          <Head3>{{
-            t('mypage.daysLeft', { days: userStore.remainDays })
-          }}</Head3>
+          <Head3>
+            {{ t('mypage.daysLeft', { days: userStore.remainDays }) }}
+          </Head3>
           <P1 class="text-dol-dark-gray whitespace-nowrap">
             {{ t('mypage.until', { date: userInfo.remainTime || '-' }) }}
           </P1>
