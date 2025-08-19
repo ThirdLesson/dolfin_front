@@ -40,24 +40,17 @@ const currentStep = computed(() => {
   }
 });
 
-const wait = (ms) => new Promise((res) => setTimeout(res, ms));
-
 const handleSignUp = async () => {
-  await router.push(URL.PAGE.LOADING);
-
-  const [result] = await Promise.all([
-    signUp({
-      birth: formatDate(signupData.birth, '-'),
-      country: signupData.country,
-      loginId: signupData.loginId,
-      name: signupData.name,
-      nationality: signupData.nationality,
-      passportNumber: signupData.passportNumber,
-      password: signupData.password,
-      phoneNumber: formatDate(signupData.phoneNumber, '-'),
-    }),
-    wait(5000),
-  ]);
+  const result = await signUp({
+    birth: formatDate(signupData.birth, '-'),
+    country: signupData.country,
+    loginId: signupData.loginId,
+    name: signupData.name,
+    nationality: signupData.nationality,
+    passportNumber: signupData.passportNumber,
+    password: signupData.password,
+    phoneNumber: formatDate(signupData.phoneNumber, '-'),
+  });
 
   if (result.status !== 200) {
     alert('회원가입 실패');
