@@ -28,28 +28,27 @@
 
 ## ⛏️ 기술 스택
 ### 프레임워크
-<p align="left">
-  <img src="https://skillicons.dev/icons?i=vue,tailwind" height="32" />
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+### 라이브러리 
+<p style="display:inline-flex; align-items:center; gap:8px; margin:0;">
+  <img src="https://img.shields.io/badge/vue--i18n-76B900?style=for-the-badge&logo=vuedotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/pinia-FFF000?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Chart.js-F5788D?style=for-the-badge&logo=chartdotjs&logoColor=white" />
 </p>
 
-### 라이브러리
-<p align="left">
-  <img src="https://github.com/user-attachments/assets/174cad05-9896-42e8-b16a-4ecda0444deb"
-       height="32" alt="vue-i18n"/>
-  <img src="https://go-skill-icons.vercel.app/api/icons?i=pinia,chartjs" height="32" />
-</p>
-
-### 디자인 툴
-<p align="left">
-  <img src="https://skillicons.dev/icons?i=figma" height="32" />
-</p>
+### 협업 툴
+![slack](https://img.shields.io/badge/slack-4A154B.svg?&style=for-the-badge&logo=slack&logoColor=white)
+![notion](https://img.shields.io/badge/notion-000000.svg?&style=for-the-badge&logo=notion&logoColor=white)
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white)
 
 ### 빌드 빛 배포
-<p align="left">
-   <img src="https://raw.githubusercontent.com/webmaxru/progressive-web-apps-logo/master/pwalogo.svg"
-     height="18"/>
-  <img src="https://skillicons.dev/icons?i=vite,vercel,pwa" height="32" />
+<p style="display:inline-flex; align-items:center; gap:8px; margin:0;">
+  <img src="https://img.shields.io/badge/pwa-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white" />
+  <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" />
 </p>
-
 
 
