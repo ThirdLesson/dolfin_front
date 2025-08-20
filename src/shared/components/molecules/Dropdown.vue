@@ -60,7 +60,9 @@ const selectedOption = computed(() => {
             :src="selectedOption.src"
             class="w-5 h-5 object-contain shrink-0"
           />
-          {{ selectedOption?.translatedLabel }}
+          <span class="truncate block min-w-0" :key="$i18n.locale">
+            {{ selectedOption?.translatedLabel }}
+          </span>
         </div>
         <i
           :class="isOpen ? 'text-dol-main' : 'text-dol-dark-gray'"
@@ -84,7 +86,9 @@ const selectedOption = computed(() => {
             >
               <img :src="item.src" class="object-fit" />
             </div>
-            {{ item.translatedLabel }}
+            <span class="truncate block min-w-0">{{
+              item.translatedLabel
+            }}</span>
           </div>
         </li>
       </ul>
